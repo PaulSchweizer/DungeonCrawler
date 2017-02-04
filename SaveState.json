@@ -1,0 +1,34 @@
+{
+    //
+    // The current level
+    //
+    "Level": 1,
+
+    //
+    // The player's position
+    //
+    "PlayerPosition":
+    [
+        0,
+        0,
+        0
+    ],
+
+    //
+    // The player's progress in the story
+    //
+    "Story":
+    {
+        "CompletedQuests":
+        [
+            "Quest 1",
+            "Quest 2",
+            "Quest 5"
+        ],
+        "ActiveQuests":
+        [
+            "Quest 3",
+            "Quest 4"
+        ]
+    }
+}
