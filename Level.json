@@ -1,0 +1,90 @@
+{
+    //
+    // A list of loot-able objects in the level
+    //
+    "LootObjects":
+    [
+        {
+            // Name of the Object
+            "Name": "Chest",
+
+            //
+            // The path to the prefab
+            //
+            "Prefab": "Assets/Prefab/Chest",
+
+            //
+            // The position and rotation of the root transform
+            //
+            "Transform":
+            {
+                "Position":
+                [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Rotation":
+                [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            },
+
+            //
+            // The contents of the loot-able object
+            //
+            "Contents":
+            {
+                "Gold": 100,
+                "Sword": 1,
+                "Shield": 1
+            }
+        }
+    ],
+
+    //
+    // A list of enemies in the level
+    //
+    "Enemies":
+    [
+        {
+            "Name": "Police Zombie",
+
+            //
+            // Id to identify the Enemy.
+            // This will provide enough information to retrieve the prefab
+            //
+            "Id": 1,
+
+            //
+            // The start position and rotation of the enemy
+            //
+            "Transform":
+            {
+                "Position":
+                [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Rotation":
+                [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            },
+
+            //
+            // The items that this enemy posses
+            //
+            "RandomInventory": true,
+            "Inventory":
+            {
+                "Gold": 600
+            }
+        }
+    ]
+}
