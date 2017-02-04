@@ -1,0 +1,105 @@
+{
+    //
+    // A unique id that identifies the Character in other data files.
+    //
+    "Id": 0,
+
+    //
+    // The type of the Character
+    //
+    "Type": "AI Enemy",
+
+    //
+    // The name of the Character
+    //
+    "Name": "Zombie",
+
+    //
+    // The Stats are a list of Attributes
+    //
+    "Stats":
+    [
+        {
+            // The name of the attribute
+            "Name": "Strength",
+
+            // The current value
+            "Value": 10,
+
+            // The absolute minimum value
+            "MinValue": 0,
+
+            // The absolute maximum value
+            "MaxValue": 999,
+
+            // A list of modifiers that currently act on the attribute
+            "Modifiers":
+            [
+                {
+                    "Name": "Spider Poison",
+
+                    // The type of the modifier
+                    "Type": "Temporary",
+
+                    // The modifying value
+                    "Value": -1.0,
+
+                    // The total time this modifier is active
+                    "TotalTime": 20.0,
+
+                    // The time left until the modifier is removed.
+                    "RemainingTime": 5.54
+                },
+                {
+                    "Name": "Strength Buff",
+                    "Type": "Temporary",
+                    "Value": 10.0,
+                    "TotalTime": 1000.0,
+                    "RemainingTime": 856.36
+                }
+            ]
+        },
+        {
+            "Name": "Life",
+            "Value": 10,
+            "MinValue": 0,
+            "MaxValue": 100,
+            "Modifiers": []
+        }
+    ],
+
+    //
+    // The Magic Skills are identifiable by their name
+    // This makes it easier to debug
+    //
+    "MagicSkills":
+    [
+        "Fireball",
+        "Hailstorm",
+        "Healing"
+    ],
+
+    //
+    // The items in the inventory are identifiable by their name,
+    // again making it easier to debug
+    //
+    "Inventory":
+    {
+        "Sword": 1,
+        "Shield": 1,
+        "Potion": 12
+    },
+
+    //
+    // The equipped items, again identified by their unique name
+    //
+    "Equipment":
+    {
+        "LeftHand": "Sword",
+        "RightHand": "Shield",
+        "Slot0": "Potion",
+        "Slot1": null,
+        "Slot2": null,
+        "Slot3": null
+    }
+}
