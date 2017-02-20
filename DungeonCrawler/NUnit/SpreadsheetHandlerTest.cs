@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
 using DungeonCrawler.Core;
+using DungeonCrawler.Items;
+using System.Data;
+using DungeonCrawler.Locations;
 
 namespace DungeonCrawler.NUnit
 {
@@ -10,10 +13,33 @@ namespace DungeonCrawler.NUnit
     class SpreadsheetHandlerTest
     {
         [Test]
-        public void LoadRegisteredGames()
+        public void GetRegisteredGames()
         {
             var data = SpreadsheetHandler.GetRegisteredGames();
-            Console.WriteLine(data.Tables["Table"].Rows[0]["Name"]);
+            foreach (GameData game in data)
+            {
+                Console.WriteLine(game);
+            }
+        }
+
+        [Test]
+        public void GetItems()
+        {
+            var items = SpreadsheetHandler.GetItems();
+            foreach(Item item in items)
+            {
+               Console.WriteLine(item);            
+            }
+        }
+
+        [Test]
+        public void GetLocations()
+        {
+            var locations = SpreadsheetHandler.GetLocations();
+            foreach(Location location in locations)
+            {
+                Console.WriteLine(location);
+            }
         }
     }
 }

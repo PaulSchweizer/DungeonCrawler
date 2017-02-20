@@ -4,7 +4,12 @@ using System.Text;
 
 namespace DungeonCrawler.Items
 {
-    public class Item
+    public interface IItem
+    {
+        void Use();
+    }
+
+    public class Item : IItem
     {
         public int Id;
 
@@ -12,9 +17,18 @@ namespace DungeonCrawler.Items
 
         public string Description;
 
+        public float Price;
+
+        public bool QuestItem;
+
         public override string ToString()
         {
-            return string.Format("{0} - {1} {2}", Id, Name, Description);
+            return string.Format("{0} | {1} | {2} | {3} | {4}", Id, Name, Description, Price, QuestItem);
+        }
+
+        public void Use()
+        {
+            throw new NotImplementedException();
         }
     }
 }

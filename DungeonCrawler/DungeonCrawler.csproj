@@ -49,12 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Characters\Character.cs" />
-    <Compile Include="Characters\CharacterLoader.cs" />
+    <Compile Include="Core\Data.cs" />
+    <Compile Include="Core\Game.cs" />
     <Compile Include="Core\SpreadsheetHandler.cs" />
     <Compile Include="Items\Item.cs" />
-    <Compile Include="Items\ItemLoader.cs" />
-    <Compile Include="NUnit\ItemTest.cs" />
+    <Compile Include="Locations\Cell.cs" />
+    <Compile Include="Locations\Location.cs" />
+    <Compile Include="NUnit\GameTest.cs" />
     <Compile Include="NUnit\SpreadsheetHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
