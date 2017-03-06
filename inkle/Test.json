@@ -1,0 +1,35 @@
+﻿[
+    {
+        "Text": "Hello, how are you?",
+        "Options": [
+            {
+                "Id": 0,
+                "Text": "I heard you have issues with Orcs?",
+                "Conditions": [
+                    {
+                        "Name": "KillOrcBossQuest",
+                        "Value": 0
+                    }
+                ],
+                "Target": 3
+            },
+            {
+                "Id": 1,
+                "Text": "Where can I find herbs?",
+                "Conditions": [],
+                "Target": 4
+            },
+            {
+                "Id": 2,
+                "Text": "The Orc Boss is dead!",
+                "Conditions": [
+                    {
+                        "Name": "KillOrcBossQuest",
+                        "Value": 1
+                    }
+                ],
+                "Target": 5
+            }
+        ]
+    }
+]
