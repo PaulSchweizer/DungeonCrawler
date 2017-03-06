@@ -1,0 +1,29 @@
+[
+  {
+    "CurrentKnot": "start",
+    "Knots": [
+      {
+        "Text": "\nHello, what's on your mind?\n",
+        "Type": "Knot",
+        "Id": "start",
+        "Options": [
+          "start_orcs",
+          "start_herbs"
+        ]
+      }
+    ],
+    "Options": [
+      {
+        "Text": " I heard you have trouble with Orcs?",
+        "Destination": "orcs",
+        "Sticky": true,
+        "Conditions": {
+          "herbs": 1,
+          "quest": 0
+        },
+        "Type": "Option",
+        "Id": "start_orcs"
+      }
+    ]
+  }
+]

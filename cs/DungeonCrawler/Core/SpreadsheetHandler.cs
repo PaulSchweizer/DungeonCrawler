@@ -31,7 +31,7 @@ namespace DungeonCrawler.Core
             get
             {
                 if (Online) { return "Table=Dialogs"; }
-                else { return @"C:\PROJECTS\DungeonCrawler\tmp\Dialogs.json"; }
+                else { return @"..\..\..\..\json\Dialogs.json"; }
             }
         }
 
@@ -40,7 +40,7 @@ namespace DungeonCrawler.Core
             get
             {
                 if (Online) { return "Table=GameConditions"; }
-                else { return @"C:\PROJECTS\DungeonCrawler\tmp\GameConditions.json"; }
+                else { return @"..\..\..\..\json\GameConditions.json"; }
             }
         }
 

@@ -4,7 +4,8 @@
 
 packages
 unity
-python
+python/dialog_graph
+python/pygraphml
 doc
 
 #################

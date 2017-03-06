@@ -1,0 +1,17 @@
+[
+  {
+    "Id": 0,
+    "Name": "OrcBossDead",
+    "Value": 0
+  },
+  {
+    "Id": 1,
+    "Name": "LostAmuletQuest",
+    "Value": 0
+  },
+  {
+    "Id": 2,
+    "Name": "OrcBossQuest",
+    "Value": 0
+  }
+]
