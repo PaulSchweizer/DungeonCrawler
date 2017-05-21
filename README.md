@@ -6,6 +6,27 @@
 
 3. Serialization data format is JSON.
 
+# Todos
+- Character
+    - Attributes
+    - Skills
+    - Aspects
+    - Stunts
+    - XP and Levels
+    - Inventory
+    - Equipment
+        - Weapons
+        - Armor
+
+- Aspect & Tag System
+    - Actions
+        - Combat
+        - Magic
+        - Trading
+
+- Quest System
+(- Conversation System)
+
 
 # Different interaction levels in the game
 Worldmap
@@ -178,3 +199,29 @@ This Special Skill for example will only work against undead opponents.
     "Skills": ["Combat"]
 }
 ```
+
+# Combat
+
+## Melee
+
+```cs
+Character.Attack(Character attacker,
+                 Skill skill,
+                 Weapon weapon,
+                 Stunt stunt,
+                 Character[] defenders,
+                 Location location){
+    int aspectBonus = AspectBonus(Attacker, defenders, location);
+    int damage = Max(0, skill.Value
+                        + weapon.Bonus
+                        + stunt.Bonus
+                        + aspectBonus
+                        + DFate);
+    for (Character defender in defenders) {
+        defender.ReceiveDamage(damage, attacker);
+    }
+}
+```
+
+## Zones
+

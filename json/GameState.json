@@ -1,0 +1,17 @@
+// GameState/GameState.json
+{
+    "Characters": [
+        "Emberion", // --> GameState/Emberion.json
+        "Farus" // --> GameState/Farus.json
+    ],
+
+    "CurrentLocation": {
+        "Location": "Marshlands",
+        "Cell": 16
+    },
+
+    "GlobalTags": [
+        "Weresnails",
+        "StoneDiscovered"
+    ]
+}
