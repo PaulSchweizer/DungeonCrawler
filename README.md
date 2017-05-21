@@ -8,56 +8,56 @@
 
 
 # Different interaction levels in the game
-    Worldmap
+Worldmap
+  |
+  Location
+    |
+    Cell
       |
-      Location
+      Situation
         |
-        Cell
-          |
-          Situation
-            |
-            Action
+        Action
 
 ## Worldmap
-    - Travel between locations
-    - Explore new territories
-    - Random encounters during traveling
-    - Hunting
-    - Collecting herbs
-    - Camping
+- Travel between locations
+- Explore new territories
+- Random encounters during traveling
+- Hunting
+- Collecting herbs
+- Camping
 
 ## Location
-    - Take control of the characters and explore the location
-    - Isometric top down perspective
-    - Location is made up of Cells
+- Take control of the characters and explore the location
+- Isometric top down perspective
+- Location is made up of Cells
 
 ## Cell
-    - Building blocks for a location
-    - Decorative elements
-    - Items
-    - NPCs
-    - Enemies
-    - Obstacles
-    - Each cell has it's defined content randomly placed on the Cell
-    - A flat quad
-    - NavMesh has to be figured out
+- Building blocks for a location
+- Decorative elements
+- Items
+- NPCs
+- Enemies
+- Obstacles
+- Each cell has it's defined content randomly placed on the Cell
+- A flat quad
+- NavMesh has to be figured out
 
 ## Situation
 The situational state of the game.
 
-    - Exploration
-    - Combat
-    - Conversation
-    - Trade
-    - Cinematic (=> Displaying story text)
+- Exploration
+- Combat
+- Conversation
+- Trade
+- Cinematic (=> Displaying story text)
 
 ## Action
 The action that a Character takes, basically the used Skill.
 
-    - Attack
-    - Magic
-    - Use Item
-    - Other Skills ...
+- Attack
+- Magic
+- Use Item
+- Other Skills ...
 
 
 # Skill and Combat System - Driven by Aspects
@@ -78,43 +78,43 @@ Each tag describes an aspect of the Player Character.
 
 The wolf attacks and we find ourselves in a MeleeCombat Situation. John has to slay the attacking beast. These are his Stats:
 
-    ```json
-    "Skills": {
-        "MeleeCombat": 2,
-        "Stealth": 1
+```json
+"Skills": {
+    "MeleeCombat": 2,
+    "Stealth": 1
+},
+"Aspects": [
+    {
+        "Name": "Master of the white #wolf",
+        "Skills": ["MeleeCombat", "Stealth"],
+        "Bonus": 1
     },
+    {
+        "Name": "Child of the #wilderness",
+        "Skills": ["Stealth"],
+        "Bonus": 0
+    },
+    {
+        "Name": "Afraid of #caverns",
+        "Skills": ["MeleeCombat"],
+        "Bonus": -1
+    }
+],
+"Equipment": {
+    "Name": "Wolfbane",
+    "Description": "Magic sword against wolves",
+    "Skills": ["Combat"],
+    "Bonus": 3,
+    "Type": "Weapon",
     "Aspects": [
         {
-            "Name": "Master of the white #wolf",
-            "Skills": ["MeleeCombat", "Stealth"],
+            "Name": "Slayer of #wolves",
+            "Skills": ["Combat"],
             "Bonus": 1
-        },
-        {
-            "Name": "Child of the #wilderness",
-            "Skills": ["Stealth"],
-            "Bonus": 0
-        },
-        {
-            "Name": "Afraid of #caverns",
-            "Skills": ["MeleeCombat"],
-            "Bonus": -1
         }
-    ],
-    "Equipment": {
-        "Name": "Wolfbane",
-        "Description": "Magic sword against wolves",
-        "Skills": ["Combat"],
-        "Bonus": 3,
-        "Type": "Weapon",
-        "Aspects": [
-            {
-                "Name": "Slayer of #wolves",
-                "Skills": ["Combat"],
-                "Bonus": 1
-            }
-        ]
-    }
-    ```
+    ]
+}
+```
 
 Let's look at the aspects of the situation first:
     #dark #caverns
@@ -138,29 +138,29 @@ These tags will trigger the corresponding aspects.
 
 Aspects fall in three categories:
 
-    1. Add 1 if the situation provides a corresponding tag.
-    2. Subtract 1 if the situation does not provide the corresponding tag.
-    3. Add 1 if the situation provides a corresponding tag but also subtract 1 if the situation does not provide the corresponding tag.
+1. Add 1 if the situation provides a corresponding tag.
+2. Subtract 1 if the situation does not provide the corresponding tag.
+3. Add 1 if the situation provides a corresponding tag but also subtract 1 if the situation does not provide the corresponding tag.
 
 Each aspect only affects a certain set of Skills.
 
 Tag:
 
-    ´´´json
-    {
-        "Name": "wolf",
-        "Alternatives": ["wolves"]
-    }
-    ´´´
+´´´json
+{
+    "Name": "wolf",
+    "Alternatives": ["wolves"]
+}
+´´´
 
 Aspect:
 
-    ´´´json
-    {
-        "Name": "#Master of #wolves",
-        "Skills": ["Combat", "Stealth"],
-        "Bonus": 1
-    }
-    ´´´
+´´´json
+{
+    "Name": "#Master of #wolves",
+    "Skills": ["Combat", "Stealth"],
+    "Bonus": 1
+}
+´´´
 
 
