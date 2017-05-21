@@ -1,0 +1,46 @@
+{
+    "Id": 0,
+    "Type": "Player",
+    "Name": "John Doe",
+    "PhysicalStress": {
+        "Value": 0,
+        "MaxValue": 8,
+        "MinValue": 0
+    },
+    "ComposureStress": {
+        "Value": 0,
+        "MaxValue": 8,
+        "MinValue": 0
+    },
+    "Skills": {
+        "Combat": 2,
+        "Endurance": 1,
+        "Resolve": 1
+    },
+    "Aspects": [
+        {
+            "Name": "#Master of #wolves",
+            "Skills": ["Combat", "Stealth"],
+            "Bonus": 1,
+            "XP Cost": "2*1 + 2*1 + 2 = 6"
+        }
+    ],
+    "Stunts": [
+        {
+            "Name": "Destroy #undead",
+            "Bonus": 2,
+            "Skills": ["Combat"],
+            "XP Cost": "1*1 + 1*4 + 1 = 6"
+        }
+    ],
+    "Inventory": {
+        "Sword": 1,
+        "Shield": 1,
+        "Potion": 12
+    },
+    "Equipment": {
+        "LeftHand": "Sword",
+        "RightHand": "Shield",
+        "Slot0": "Potion"
+    }
+}

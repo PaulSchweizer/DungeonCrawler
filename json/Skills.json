@@ -1,0 +1,45 @@
+{
+    "Name": "#Master of #wolves",
+    "Skills": ["Combat", "Stealth"],
+    "Bonus": 1,
+    "XP Cost": "2*1 + 2*1 + 2 = 6"
+}
+
+{
+    "Name": "Destroy #undead",
+    "Bonus": 2,
+    "Skills": ["Combat"],
+    "XP Cost": "1*1 + 1*4 + 1 = 6"
+}
+
+{
+    "Name": "Wolfbane",
+    "Description": "Magic sword against wolves",
+    "Skills": ["Combat"],
+    "Bonus": 3,
+    "Type": "Weapon",
+    "Aspects": [
+        {
+            "Name": "Slayer of #wolves",
+            "Skills": ["Combat"],
+            "Bonus": 1,
+            "XP Cost": "1*1 + 1*1 + 2 = 4"
+        }
+    ]
+}
+
+Hero
+Combat 2
+"#Master of #wolves", ["Combat"] +
+"Eyes that see in the #dark", ["Combat"] /
+"Afraid of #caverns", ["Combat"] -
+Combat Final 2 + 1 + 1 - 1 = 3
+
+Wolf
+Combat 1
+"#Creature of the #wilderness", ["Stealth"], +
+"#Cavern dwellers", ["Combat"], +
+"Only as strong as the #pack", ["Combat"], /
+Combat Final 1 + 1 + 1 + 1 = 4
+
+Location.Aspects + Situation.Aspects <- compared against -> Actor.Aspects
