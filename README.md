@@ -132,7 +132,7 @@ The final MeleeCombat value for this action in this particular situation for Joh
 
     2(base) +3(weapon) -1(#caverns) +1(#wolf) +1(#wolf) = 6
 
-### Aspects and Tags
+## Aspects and Tags
 Tags are the key descriptors of the game elements.
 These tags will trigger the corresponding aspects.
 
@@ -146,21 +146,35 @@ Each aspect only affects a certain set of Skills.
 
 Tag:
 
-´´´json
+```json
 {
     "Name": "wolf",
     "Alternatives": ["wolves"]
 }
-´´´
+```
 
 Aspect:
 
-´´´json
+```json
 {
     "Name": "#Master of #wolves",
     "Skills": ["Combat", "Stealth"],
     "Bonus": 1
 }
-´´´
+```
 
+## Special Skills
+These Skills work in conjunction with the basic Skills.
+They improve the Skill value for an action.
+They cost activation points.
+They can have tags assigned that limit their effectiveness to only those certain situations that hold a corresponding tag.
 
+This Special Skill for example will only work against undead opponents.
+
+```json
+{
+    "Name": "Vanquish the #undead",
+    "Bonus": 4,
+    "Skills": ["Combat"]
+}
+```
