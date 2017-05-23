@@ -1,0 +1,20 @@
+{
+    "Tags": [
+        "dark",
+        "light",
+        "wolf"
+    ],
+    "Synonyms": {
+        "dark": [
+            "darkness"
+        ],
+        "wolf": [
+            "wolves"
+        ]
+    },
+    "Opposing": {
+        "light": [
+            "dark"
+        ]
+    }
+}

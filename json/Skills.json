@@ -1,3 +1,10 @@
+"Skill": {
+    "Name": "MeleeCombat",
+    "Description": "Fight with all sorts of one handed weapons."
+}
+
+
+
 {
     "Name": "#Master of #wolves",
     "Skills": ["Combat", "Stealth"],
@@ -43,3 +50,18 @@ Combat 1
 Combat Final 1 + 1 + 1 + 1 = 4
 
 Location.Aspects + Situation.Aspects <- compared against -> Actor.Aspects
+
+
+
+
+
+Situation: "#dark cave"
+Creature: ("dweller in the #dark", 0)
+Hero: ("magic #light", 1)
+
+--> #light eradicates #dark
+
+Creature gets -1
+
+
+["light", "wolf", "dark"]

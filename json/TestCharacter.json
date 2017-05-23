@@ -1,0 +1,9 @@
+{
+    "Id": 0,
+    "Name": "John Doe",
+    "PhysicalStress": {
+        "Value": 0,
+        "MaxValue": 8,
+        "MinValue": 0
+    }
+}

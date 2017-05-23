@@ -1,0 +1,24 @@
+﻿{
+    "Id": 1,
+    "Name": "Rat",
+    "PhysicalStress": {
+        "Value": 0,
+        "MaxValue": 5,
+        "MinValue": 0
+    },
+    "Consequences": [
+        {
+            "Type": "Minor",
+            "Capacity": 2,
+            "IsTaken": false
+        }
+    ],
+    "Skills": {
+        "Combat": 1
+    },
+    "Tags": [
+        "rat"
+    ],
+    "Aspects": [],
+    "IsTakenOut": false
+}

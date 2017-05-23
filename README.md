@@ -7,22 +7,22 @@
 3. Serialization data format is JSON.
 
 # Todos
-- Character
-    - Attributes
-    - Skills
-    - Aspects
-    - Stunts
-    - XP and Levels
-    - Inventory
-    - Equipment
-        - Weapons
-        - Armor
+- ☐ Character
+    - ✔ Attributes
+    - ✔ Skills
+    - ✔ Aspects
+    - ☐ Stunts
+    - ☐ XP and Levels
+    - ☐ Inventory
+    - ☐ Equipment
+        - ☐ Weapons
+        - ☐ Armor
 
-- Aspect & Tag System
-    - Actions
-        - Combat
-        - Magic
-        - Trading
+- ☐ Aspect & Tag System
+    - ☐ Actions
+        - ☐ Combat
+        - ☐ Magic
+        - ☐ Trading
 
 - Quest System
 (- Conversation System)
@@ -40,45 +40,45 @@ Worldmap
         Action
 
 ## Worldmap
-- Travel between locations
-- Explore new territories
-- Random encounters during traveling
-- Hunting
-- Collecting herbs
-- Camping
+- ☐ Travel between locations
+- ☐ Explore new territories
+- ☐ Random encounters during traveling
+- ☐ Hunting
+- ☐ Collecting herbs
+- ☐ Camping
 
 ## Location
-- Take control of the characters and explore the location
-- Isometric top down perspective
-- Location is made up of Cells
+- ☐ Take control of the characters and explore the location
+- ☐ Isometric top down perspective
+- ☐ Location is made up of Cells
 
 ## Cell
-- Building blocks for a location
-- Decorative elements
-- Items
-- NPCs
-- Enemies
-- Obstacles
-- Each cell has it's defined content randomly placed on the Cell
-- A flat quad
-- NavMesh has to be figured out
+- ☐ Building blocks for a location
+- ☐ Decorative elements
+- ☐ Items
+- ☐ NPCs
+- ☐ Enemies
+- ☐ Obstacles
+- ☐ Each cell has it's defined content randomly placed on the Cell
+- ☐ A flat quad
+- ☐ NavMesh has to be figured out
 
 ## Situation
 The situational state of the game.
 
-- Exploration
-- Combat
-- Conversation
-- Trade
-- Cinematic (=> Displaying story text)
+- ☐ Exploration
+- ☐ Combat
+- ☐ Conversation
+- ☐ Trade
+- ☐ Cinematic (=> Displaying story text)
 
 ## Action
 The action that a Character takes, basically the used Skill.
 
-- Attack
-- Magic
-- Use Item
-- Other Skills ...
+- ☐ Attack
+- ☐ Magic
+- ☐ Use Item
+- ☐ Other Skills ...
 
 
 # Skill and Combat System - Driven by Aspects
@@ -184,6 +184,12 @@ Aspect:
 }
 ```
 
+### Acquiring, Removing and Changing Aspects
+- Permanent Aspects can be acquired on Level-Up, through taking Consequences and through completing certain quests.
+- Aspects can be changed on Level-Up.
+- Aspects can be changed and removed in certain areas (e.g. fountain of healing) or on completing certain tasks.
+
+
 ## Special Skills
 These Skills work in conjunction with the basic Skills.
 They improve the Skill value for an action.
@@ -210,8 +216,8 @@ Character.Attack(Character attacker,
                  Weapon weapon,
                  Stunt stunt,
                  Character[] defenders,
-                 Location location){
-    int aspectBonus = AspectBonus(Attacker, defenders, location);
+                 Situation situation){
+    int aspectBonus = AspectBonus(Attacker, defenders, situation);
     int damage = Max(0, skill.Value
                         + weapon.Bonus
                         + stunt.Bonus
@@ -223,5 +229,34 @@ Character.Attack(Character attacker,
 }
 ```
 
-## Zones
+```cs
+Character.ReceiveDamage(int damage, Character attacker) {
+    if (PhysicalStress.Value + damage > PhysicalStress.MaxValue) {
+        TakeConsequence(damage);
+    }
+    else {
+        PhysicalStress.Value += damage;
+    }
+}
+
+Character.TakeConsequence(int damage, Character attacker) {
+    // Try to see if the damage can be absorbed by a consequence
+    for (Consequence consequence in Consequences) {
+        if (damage <= consequence.Capacity && !consequence.Active)
+        {
+            consequence.Active = True;
+            return;
+        }
+    }
+
+    // Too much damage, can't take another consequence
+    ChangeState(States.PassedOut);
+}
+```
+
+# Tags
+
+    TagsTable.Synonyms(string tag)
+    TagsTable.Opposing(string tag)
+
 
