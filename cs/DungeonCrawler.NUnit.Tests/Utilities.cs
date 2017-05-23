@@ -21,4 +21,14 @@ namespace DungeonCrawler.NUnit.Tests
             return json;
         }
     }
+
+    internal class NonRandomDie : Random
+    {
+        public static int DieResult = 0;
+
+        public override int Next(int a, int b)
+        {
+            return DieResult;
+        }
+    }
 }

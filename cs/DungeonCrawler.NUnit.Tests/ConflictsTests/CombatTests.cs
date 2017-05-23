@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using DungeonCrawler.Utilities;
+using NUnit.Framework;
 using System;
 
 namespace DungeonCrawler.NUnit.Tests.ConflictsTests
@@ -15,6 +16,7 @@ namespace DungeonCrawler.NUnit.Tests.ConflictsTests
         {
             hero = Character.Character.DeserializeFromJson(Utilities.JsonResource("Hero"));
             rat = Character.Character.DeserializeFromJson(Utilities.JsonResource("Rat"));
+            Dice.Die = new NonRandomDie();
         }
 
         [Test]

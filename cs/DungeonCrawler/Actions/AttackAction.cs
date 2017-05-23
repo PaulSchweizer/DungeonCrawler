@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DungeonCrawler.Utilities;
+using System;
 
 namespace DungeonCrawler.Actions
 {
@@ -28,7 +29,7 @@ namespace DungeonCrawler.Actions
         {
             int attackValue = AttackValue(attacker, defender, skill, tags);
             int defendValue = DefendValue(attacker, defender, skill, tags);
-            int shifts = attackValue - defendValue;
+            int shifts = attackValue - defendValue + Dice.Roll();
 
             if (shifts > 0)
             {

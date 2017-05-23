@@ -45,6 +45,7 @@
     <Compile Include="Aspect\Aspect.cs" />
     <Compile Include="Aspect\Tags.cs" />
     <Compile Include="Character\Character.cs" />
+    <Compile Include="Utilities\Dice.cs" />
     <Compile Include="__old\Core\Data.cs" />
     <Compile Include="__old\Core\Game.cs" />
     <Compile Include="__old\Core\GameCondition.cs" />

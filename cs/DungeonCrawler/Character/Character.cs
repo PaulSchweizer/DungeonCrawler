@@ -120,15 +120,6 @@ namespace DungeonCrawler.Character
             IsTakenOut = true;
         }
 
-
-
-
-
-
-
-
-
-
         #region Serialization
 
         public static Character DeserializeFromJson(string json)
