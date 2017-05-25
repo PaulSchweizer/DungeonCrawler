@@ -1,1 +1,1 @@
-INPUT                  = C:\projects\dungeoncrawler\src\DungeonCrawler
+INPUT                  = C:\projects\dungeoncrawler\cs\DungeonCrawler
