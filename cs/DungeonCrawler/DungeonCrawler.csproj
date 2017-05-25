@@ -46,15 +46,6 @@
     <Compile Include="Aspect\Tags.cs" />
     <Compile Include="Character\Character.cs" />
     <Compile Include="Utilities\Dice.cs" />
-    <Compile Include="__old\Core\Data.cs" />
-    <Compile Include="__old\Core\Game.cs" />
-    <Compile Include="__old\Core\GameCondition.cs" />
-    <Compile Include="__old\Core\SpreadsheetHandler.cs" />
-    <Compile Include="__old\Dialogs\Dialog.cs" />
-    <Compile Include="__old\Dialogs\DialogManager.cs" />
-    <Compile Include="__old\Items\Item.cs" />
-    <Compile Include="__old\Locations\Cell.cs" />
-    <Compile Include="__old\Locations\Location.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
