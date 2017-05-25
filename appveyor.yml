@@ -8,9 +8,9 @@ assembly_info:
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
 before_build:
-  - nuget restore "./src/DungeonCrawler.sln"
+  - nuget restore "./cs/DungeonCrawler.sln"
 build:
-  project: /src/DungeonCrawler.sln
+  project: /cs/DungeonCrawler.sln
   verbosity: minimal
 after_test:
   - cmd: .\after_test.cmd
