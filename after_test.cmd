@@ -51,6 +51,6 @@ git status
 
 git add --all
 
-rem git commit -m "Deploy code docs to GitHub Pages Appveyor build:" -m "Commit: "
-rem git push --force "https://%GH_REPO_TOKEN%@github.com/PaulSchweizer/DungeonCrawler.git"
+git commit -m "Deploy code docs to GitHub Pages Appveyor build:" -m "Commit: "
+git push --force "https://%GH_REPO_TOKEN%@github.com/PaulSchweizer/DungeonCrawler.git"
 rem > /dev/null 2>&1
