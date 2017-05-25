@@ -1,5 +1,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/a92mehch8obru8iy?svg=true)](https://ci.appveyor.com/project/PaulSchweizer/dungeoncrawler) [![Coverage Status](https://coveralls.io/repos/github/PaulSchweizer/DungeonCrawler/badge.svg?branch=master)](https://coveralls.io/github/PaulSchweizer/DungeonCrawler?branch=master)
 
+Docs: https://paulschweizer.github.io/DungeonCrawler/
+
 # DungeonCrawler
 
 1. Dialogs are managed with InkleWriter, a custom parser and custom classes for the dialogs.
