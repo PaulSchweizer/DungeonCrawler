@@ -41,7 +41,7 @@ rem Generate the Doxygen code documentation and log the output.
 echo 'Generating Doxygen code documentation...'
 rem Redirect both stderr and stdout to the log file AND the console.
 
-C:\projects\dungeoncrawler\tools\Doxygen.1.8.9.2\tools\doxygen.exe C:\projects\dungeoncrawler\config_appveyor.sh
+C:\projects\dungeoncrawler\tools\Doxygen.1.8.9.2\tools\doxygen.exe C:\projects\dungeoncrawler\doxygen_config_appveyor.sh
 
 xcopy C:\projects\dungeoncrawler\doc\DungeonCrawler\html C:\projects\dungeoncrawler\doc\DungeonCrawler /s /y
 
