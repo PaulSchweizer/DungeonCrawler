@@ -5,6 +5,8 @@ nuget install coveralls.net -Version 0.412.0 -OutputDirectory tools
 .\tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -target:.\tools\NUnit.Runners.2.6.4\tools\nunit-console.exe -targetargs:"/nologo /noshadow .\src\ActionRpgKit.NUnit.Tests\bin\Debug\ActionRpgKit.NUnit.Tests.dll" -filter:"+[ActionRpgKit]*" -register:user
 .\tools\coveralls.net.0.412\tools\csmacnz.Coveralls.exe --opencover -i .\results.xml
 
+type .\results.xml
+
 nuget install Doxygen -Version 1.8.9.2 -OutputDirectory tools
 nuget install GraphViz.NET -OutputDirectory tools
 
