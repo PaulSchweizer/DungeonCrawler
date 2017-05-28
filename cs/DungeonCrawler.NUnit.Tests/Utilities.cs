@@ -22,6 +22,9 @@ namespace DungeonCrawler.NUnit.Tests
         }
     }
 
+    /// <summary>
+    /// Mocks the dice roll and provides a predictable result.
+    /// </summary>
     internal class NonRandomDie : Random
     {
         public static int DieResult = 0;
