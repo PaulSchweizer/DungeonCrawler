@@ -38,17 +38,24 @@ namespace DungeonCrawler.Aspect
                 return cost;
             }
         }
-
-        public bool HasAnyTag(string[] tags)
+ 
+        public int Matches(string[] tags)
         {
+            int matches = 0;
+
+            if (Array.Exists(Tags, element => element == "any"))
+            {
+                matches += 1;
+            }
+
             foreach (string tag in tags)
             {
                 if (Array.Exists(Tags, element => element == tag.ToLower()))
                 {
-                    return true;
+                    matches += 1;
                 }
             }
-            return false;
+            return matches;
         }
 
         private string[] ParseNameForTags()

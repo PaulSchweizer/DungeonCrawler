@@ -29,6 +29,11 @@ namespace DungeonCrawler.NUnit.Tests
     {
         public static int DieResult = 0;
 
+        public NonRandomDie(int dieResult = 0)
+        {
+            DieResult = dieResult;
+        }
+
         public override int Next(int a, int b)
         {
             return DieResult;

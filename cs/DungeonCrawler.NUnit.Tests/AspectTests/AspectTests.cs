@@ -32,8 +32,17 @@ namespace DungeonCrawler.NUnit.Tests.AspectTests
         public void Check_if_aspect_has_tags()
         {
             Aspect.Aspect aspect = new Aspect.Aspect("The #dark, #knight.", new string[] { "Combat" }, 1);
-            Assert.IsTrue(aspect.HasAnyTag(new string[] { "Dark", "notDark" }));
-            Assert.IsFalse(aspect.HasAnyTag(new string[] { "notDark" }));
+            Assert.AreEqual(1, aspect.Matches(new string[] { "Dark", "notDark" }));
+            Assert.AreEqual(0, aspect.Matches(new string[] { "notDark" }));
+        }
+
+        [Test]
+        public void Aspect_with_tag_any_is_always_triggered()
+        {
+            Aspect.Aspect aspect = new Aspect.Aspect("This is triggered by #Any tag.", new string[] { "Combat" }, 1);
+            Assert.AreEqual(1, aspect.Matches(new string[] { }));
+            aspect = new Aspect.Aspect("This is triggered by #Any tag and #dark.", new string[] { "Combat" }, 1);
+            Assert.AreEqual(2, aspect.Matches(new string[] { "dark" }));
         }
     }
 }

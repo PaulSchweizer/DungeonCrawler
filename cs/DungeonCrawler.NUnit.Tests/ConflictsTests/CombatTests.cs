@@ -16,7 +16,7 @@ namespace DungeonCrawler.NUnit.Tests.ConflictsTests
         {
             hero = Character.Character.DeserializeFromJson(Utilities.JsonResource("Hero"));
             rat = Character.Character.DeserializeFromJson(Utilities.JsonResource("Rat"));
-            Dice.Die = new NonRandomDie();
+            Dice.Die = new NonRandomDie(dieResult: 0);
         }
 
         [Test]
@@ -25,6 +25,8 @@ namespace DungeonCrawler.NUnit.Tests.ConflictsTests
             int attackValue = Actions.AttackAction.AttackValue(
                 attacker: hero, defender: rat,
                 skill: "Combat", tags: new string[] { });
+            Assert.AreEqual(3, attackValue);
+
             int defendValue = Actions.AttackAction.DefendValue(
                 attacker: hero, defender: rat,
                 skill: "Combat", tags: new string[] { });
@@ -52,7 +54,16 @@ namespace DungeonCrawler.NUnit.Tests.ConflictsTests
             Assert.IsTrue(rat.Consequences[0].IsTaken);
             Assert.IsFalse(rat.IsTakenOut);
 
-            //The next hit will take the Rat out
+            // Rat now has an Aspect through the Consequence
+            Assert.AreEqual(1, rat.AllAspects.Count);
+
+            // Defend value is lower now since the rat has an Aspect from the Consequence
+            defendValue = Actions.AttackAction.DefendValue(
+                attacker: hero, defender: rat,
+                skill: "Combat", tags: new string[] { });
+            Assert.AreEqual(0, defendValue);
+
+            // The next hit will take the Rat out, no more stress or consequences left
             Actions.AttackAction.Attack(
                 attacker: hero, defender: rat,
                 skill: "Combat", tags: new string[] { });

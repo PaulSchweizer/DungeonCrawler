@@ -37,8 +37,7 @@ namespace DungeonCrawler.Character
         public void Take()
         {
             IsTaken = true;
-            Effect = new Aspect.Aspect("Consequence Standin Aspect", new string[] { "Any" }, -1);
-
+            Effect = new Aspect.Aspect("Consequence Standin Aspect that affects #any skill.", new string[] { "Combat" }, -1);
         }
     }
 
@@ -53,10 +52,33 @@ namespace DungeonCrawler.Character
         public List<Aspect.Aspect> Aspects;
         public bool IsTakenOut;
 
+        public List<Aspect.Aspect> AllAspects
+        {
+            get
+            {
+                List<Aspect.Aspect> aspects = new List<Aspect.Aspect>();
+                if (Aspects != null)
+                {
+                    foreach(Aspect.Aspect aspect in Aspects)
+                    {
+                        aspects.Add(aspect);
+                    }
+                }
+                foreach (Consequence consequence in Consequences)
+                {
+                    if (consequence.IsTaken)
+                    {
+                        aspects.Add(consequence.Effect);
+                    }
+                }
+                return aspects;
+            }
+        }
+
         public Aspect.Aspect[] AspectsAffectingSkill(string skill)
         {
             List<Aspect.Aspect> aspects = new List<Aspect.Aspect>();
-            foreach (Aspect.Aspect aspect in Aspects)
+            foreach (Aspect.Aspect aspect in AllAspects)
             {
                 if (Array.Exists(aspect.Skills, element => element == skill))
                 {
@@ -87,7 +109,7 @@ namespace DungeonCrawler.Character
             int skillValue = Skills[skill];
             foreach (Aspect.Aspect aspect in AspectsAffectingSkill(skill))
             {
-                if (aspect.HasAnyTag(tags))
+                if (aspect.Matches(tags) > 0)
                 {
                     skillValue += aspect.Bonus;
                 }

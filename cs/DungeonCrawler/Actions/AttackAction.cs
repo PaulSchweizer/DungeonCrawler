@@ -6,23 +6,6 @@ namespace DungeonCrawler.Actions
     public class AttackAction
     {
 
-//        Character.Attack(Character attacker,
-//                 Skill skill,
-//                 Weapon weapon,
-//                 Stunt stunt,
-//                 Character[] defenders,
-//                 Situation situation){
-//    int aspectBonus = AspectBonus(Attacker, defenders, situation);
-//        int damage = Max(0, skill.Value
-//                            + weapon.Bonus
-//                            + stunt.Bonus
-//                            + aspectBonus
-//                            + DFate);
-//    for (Character defender in defenders) {
-//        defender.ReceiveDamage(damage, attacker);
-//    }
-//}
-
         public static int Attack(
             Character.Character attacker, Character.Character defender,
             string skill, string[] tags)
