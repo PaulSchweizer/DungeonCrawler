@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DungeonCrawler.NUnit.Tests
 {
-    public static class Utilities
+    internal static class Utilities
     {
         public static string JsonResource(string file)
         {
@@ -20,10 +20,30 @@ namespace DungeonCrawler.NUnit.Tests
             }
             return json;
         }
+
+        public static Character.Character Hero()
+        {
+            return Character.Character.DeserializeFromJson(Utilities.JsonResource("Hero"));
+        }
+
+        public static Character.Character Rat()
+        {
+            return Character.Character.DeserializeFromJson(Utilities.JsonResource("Rat"));
+        }
+
+        public static Items.Item Weapon()
+        {
+            return Items.Item.DeserializeFromJson(Utilities.JsonResource("Weapon"));
+        }
+
+        public static void InitializeItemDatabase()
+        {
+            Items.ItemDatabase.Instance.Items[Weapon().Name] = Weapon();
+        }
     }
 
     /// <summary>
-    /// Mocks the dice roll and provides a predictable result.
+    /// Mock the dice roll and provides a predictable result.
     /// </summary>
     internal class NonRandomDie : Random
     {

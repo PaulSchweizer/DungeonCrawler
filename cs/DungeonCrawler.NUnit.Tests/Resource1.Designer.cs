@@ -99,5 +99,15 @@ namespace DungeonCrawler.NUnit.Tests {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Weapon {
+            get {
+                object obj = ResourceManager.GetObject("Weapon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

@@ -34,5 +34,8 @@
             "Bonus": 1
         }
     ],
+	"Equipment": {
+		"RightHand": null
+	},
     "IsTakenOut": false
 }

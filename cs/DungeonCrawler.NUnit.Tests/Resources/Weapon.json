@@ -1,0 +1,20 @@
+﻿{
+    "Name": "Ratbane",
+    "Type": "Weapon",
+    "Description": "Ancient sword of rat fighting.",
+    "Skills": ["Combat"],
+    "Bonus": 3,
+    "Aspects": [
+        {
+            "Name": "Extinguisher of #rats.",
+            "Bonus": 1,
+            "Skills": ["Combat"]
+        }
+    ],
+    "Consequences": [
+    ],
+    "Tags": [
+        "cursed"
+    ],
+    "EquipmentSlot": "RightHand"
+}

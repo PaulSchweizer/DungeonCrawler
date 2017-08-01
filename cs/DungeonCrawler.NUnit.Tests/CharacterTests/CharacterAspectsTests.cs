@@ -11,8 +11,8 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         [SetUp]
         public void SetUp()
         {
-            hero = Character.Character.DeserializeFromJson(Utilities.JsonResource("Hero"));
-            rat = Character.Character.DeserializeFromJson(Utilities.JsonResource("Rat"));
+            hero = Utilities.Hero();
+            rat = Utilities.Rat();
         }
 
         [Test]

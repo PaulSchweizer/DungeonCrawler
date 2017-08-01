@@ -50,8 +50,41 @@ namespace DungeonCrawler.Character
         public Dictionary<string, int> Skills;
         public string[] Tags;
         public List<Aspect.Aspect> Aspects;
+        public Dictionary<string, string> Equipment;
         public bool IsTakenOut;
 
+        #region Equipment
+
+        public void Equip(string itemName, string slot)
+        {
+            Items.Item item = Items.ItemDatabase.Item(itemName);
+            if (slot == item.EquipmentSlot && Equipment.ContainsKey(slot))
+            {
+                if (Equipment[slot] != null)
+                {
+                    UnEquip(slot);
+                }
+                Equipment[slot] = itemName;
+            }
+        }
+
+        public void UnEquip(string itemName)
+        {
+            foreach (KeyValuePair<string, string> entry in Equipment)
+            {
+                if (entry.Value == itemName)
+                {
+                    Equipment[entry.Key] = null;
+                    return;
+                }
+            }
+        }
+
+        #endregion
+
+        #region Aspects and Skills
+
+        [JsonIgnore]
         public List<Aspect.Aspect> AllAspects
         {
             get
@@ -62,6 +95,16 @@ namespace DungeonCrawler.Character
                     foreach(Aspect.Aspect aspect in Aspects)
                     {
                         aspects.Add(aspect);
+                    }
+                }
+                foreach (string itemName in Equipment.Values)
+                {
+                    if (itemName != null)
+                    {
+                        foreach(Aspect.Aspect aspect in Items.ItemDatabase.Item(itemName).Aspects)
+                        {
+                            aspects.Add(aspect);
+                        }
                     }
                 }
                 foreach (Consequence consequence in Consequences)
@@ -88,22 +131,6 @@ namespace DungeonCrawler.Character
             return aspects.ToArray();
         }
 
-        //[JsonIgnore]
-        //public string[] Tags
-        //{
-        //    get {
-        //        List<string> tags = new List<string>();
-        //        foreach (Aspect.Aspect aspect in Aspects)
-        //        {
-        //            foreach(string tag in aspect.Tags)
-        //            {
-        //                tags.Add(tag);
-        //            }
-        //        }
-        //        return tags.ToArray();
-        //    }
-        //}
-
         public int SkillValue(string skill, string[] tags)
         {
             int skillValue = Skills[skill];
@@ -114,8 +141,23 @@ namespace DungeonCrawler.Character
                     skillValue += aspect.Bonus;
                 }
             }
+            foreach (string itemName in Equipment.Values)
+            {
+                if (itemName != null)
+                {
+                    Items.Item item = Items.ItemDatabase.Item(itemName);
+                    if (Array.Exists(item.Skills, element => element == skill))
+                    {
+                        skillValue += item.Bonus;
+                    }
+                }
+            }
             return skillValue;
         }
+
+        #endregion
+
+        #region Damage and Consequences
 
         public void TakePhysicalDamage(int shifts)
         {
@@ -141,6 +183,8 @@ namespace DungeonCrawler.Character
 
             IsTakenOut = true;
         }
+
+        #endregion
 
         #region Serialization
 
