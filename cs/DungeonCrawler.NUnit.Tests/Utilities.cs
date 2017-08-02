@@ -36,9 +36,15 @@ namespace DungeonCrawler.NUnit.Tests
             return Items.Item.DeserializeFromJson(Utilities.JsonResource("Weapon"));
         }
 
+        public static Items.Item Armour()
+        {
+            return Items.Item.DeserializeFromJson(Utilities.JsonResource("Armour"));
+        }
+
         public static void InitializeItemDatabase()
         {
             Items.ItemDatabase.Instance.Items[Weapon().Name] = Weapon();
+            Items.ItemDatabase.Instance.Items[Armour().Name] = Armour();
         }
     }
 

@@ -107,7 +107,7 @@ namespace DungeonCrawler.Character
                         }
                     }
                 }
-                foreach (Consequence consequence in Consequences)
+                foreach (Consequence consequence in AllConsequences)
                 {
                     if (consequence.IsTaken)
                     {
@@ -158,6 +158,33 @@ namespace DungeonCrawler.Character
         #endregion
 
         #region Damage and Consequences
+
+        [JsonIgnore]
+        public List<Consequence> AllConsequences
+        {
+            get
+            {
+                List<Consequence> consequences = new List<Consequence>();
+                if (consequences != null)
+                {
+                    foreach (Consequence consequence in Consequences)
+                    {
+                        consequences.Add(consequence);
+                    }
+                }
+                foreach (string itemName in Equipment.Values)
+                {
+                    if (itemName != null)
+                    {
+                        foreach (Consequence consequence in Items.ItemDatabase.Item(itemName).Consequences)
+                        {
+                            consequences.Add(consequence);
+                        }
+                    }
+                }
+                return consequences;
+            }
+        }
 
         public void TakePhysicalDamage(int shifts)
         {

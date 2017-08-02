@@ -11,26 +11,64 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
 3. Serialization data format is JSON.
 
 # Todos
-- ☐ Character
-    - ✔ Attributes
-    - ✔ Skills
-    - ✔ Aspects
-    - ☐ Equipment
-        - ✔ Weapons
-        - ☐ Armor
-    - ☐ XP and Levels
-    - ☐ Stunts
-    - ☐ Inventory
+- [ ] Character
+    - [x] Attributes
+    - [x] Skills
+    - [x] Aspects
+    - [ ] Equipment
+        - [x] Weapons
+        - [ ] Armour
+    - [ ] XP and Levels
+    - [ ] Stunts
+    - [ ] Inventory
 
-- ☐ Aspect & Tag System
-    - ☐ Actions
-        - ☐ Combat
-        - ☐ Magic
-        - ☐ Trading
+- [ ] Aspect & Tag System
+    - [ ] Actions
+        - [ ] Combat
+        - [ ] Magic
+        - [ ] Trading
 
 - Quest System
 (- Conversation System)
 
+# Actions that a Player can perform
+- [ ] Attack(attacker, defender)
+- [ ] Move(destination)
+- [ ] Repair(item)
+- [ ] Heal(character)
+- [ ] Equip(item)
+- [ ] UnEquip(item)
+- [ ] ImproveSkill(skill)
+- [ ] LearnSkill(skill)
+- [ ] AddNewAspect(aspect)
+- [ ] EditAspect(aspect)
+
+# Actions that a Character can perform
+- [ ] Attack
+    - [ ] MeleeWeapons
+    - [ ] RangedWeapons
+    - [ ] Magic
+- [ ] Defend
+    - [ ] MeleeWeapons
+    - [ ] RangedWeapons
+    - [ ] Magic
+- [ ] Repair
+    - [ ] Item
+- [ ] Heal
+    - [ ] Stress
+    - [ ] Consequence
+- [ ] Move
+
+# Skills
+- [ ] MeleeWeapons
+    - Attack
+    - Defend
+- [ ] RangedWeapons
+    - Attack
+- [ ] Craftsmanship
+    - Repair
+- [ ] Healing
+    - Heal
 
 # Different interaction levels in the game
 Worldmap
@@ -44,45 +82,45 @@ Worldmap
         Action
 
 ## Worldmap
-- ☐ Travel between locations
-- ☐ Explore new territories
-- ☐ Random encounters during traveling
-- ☐ Hunting
-- ☐ Collecting herbs
-- ☐ Camping
+- [ ] Travel between locations
+- [ ] Explore new territories
+- [ ] Random encounters during traveling
+- [ ] Hunting
+- [ ] Collecting herbs
+- [ ] Camping
 
 ## Location
-- ☐ Take control of the characters and explore the location
-- ☐ Isometric top down perspective
-- ☐ Location is made up of Cells
+- [ ] Take control of the characters and explore the location
+- [ ] Isometric top down perspective
+- [ ] Location is made up of Cells
 
 ## Cell
-- ☐ Building blocks for a location
-- ☐ Decorative elements
-- ☐ Items
-- ☐ NPCs
-- ☐ Enemies
-- ☐ Obstacles
-- ☐ Each cell has it's defined content randomly placed on the Cell
-- ☐ A flat quad
-- ☐ NavMesh has to be figured out
+- [ ] Building blocks for a location
+- [ ] Decorative elements
+- [ ] Items
+- [ ] NPCs
+- [ ] Enemies
+- [ ] Obstacles
+- [ ] Each cell has it's defined content randomly placed on the Cell
+- [ ] A flat quad
+- [ ] NavMesh has to be figured out
 
 ## Situation
 The situational state of the game.
 
-- ☐ Exploration
-- ☐ Combat
-- ☐ Conversation
-- ☐ Trade
-- ☐ Cinematic (=> Displaying story text)
+- [ ] Exploration
+- [ ] Combat
+- [ ] Conversation
+- [ ] Trade
+- [ ] Cinematic (=> Displaying story text)
 
 ## Action
 The action that a Character takes, basically the used Skill.
 
-- ☐ Attack
-- ☐ Magic
-- ☐ Use Item
-- ☐ Other Skills ...
+- [ ] Attack
+- [ ] Magic
+- [ ] Use Item
+- [ ] Other Skills ...
 
 
 # Skill and Combat System - Driven by Aspects

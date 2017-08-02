@@ -1,0 +1,25 @@
+﻿{
+    "Name": "LeatherArmour",
+    "Type": "Armour",
+    "Description": "Simple leather armour.",
+    "Skills": ["Combat"],
+    "Bonus": 1,
+    "Aspects": [
+        {
+            "Name": "Protection against #rats.",
+            "Bonus": 1,
+            "Skills": ["Combat"]
+        }
+    ],
+    "Consequences": [
+        {
+            "Type": "Minor",
+            "Capacity": 2,
+            "IsTaken": false
+        }
+    ],
+    "Tags": [
+        "cursed"
+    ],
+    "EquipmentSlot": "Torso"
+}

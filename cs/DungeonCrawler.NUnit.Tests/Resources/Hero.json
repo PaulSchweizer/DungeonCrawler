@@ -35,7 +35,8 @@
         }
     ],
 	"Equipment": {
-		"RightHand": null
+		"RightHand": null,
+		"Torso": null
 	},
     "IsTakenOut": false
 }

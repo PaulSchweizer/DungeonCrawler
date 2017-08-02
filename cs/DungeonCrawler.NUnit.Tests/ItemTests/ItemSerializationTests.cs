@@ -12,6 +12,7 @@ namespace DungeonCrawler.NUnit.Tests.ItemTests
         {
             string json = Utilities.JsonResource("Weapon");
             Item deserializedItem = Item.DeserializeFromJson(json);
+            Assert.AreEqual("Ratbane", deserializedItem.Name);
         }
     }
 }

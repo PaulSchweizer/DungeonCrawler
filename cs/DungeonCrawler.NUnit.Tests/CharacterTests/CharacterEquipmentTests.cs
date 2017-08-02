@@ -11,6 +11,7 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         Character.Character hero;
         Character.Character rat;
         Items.Item weapon;
+        Items.Item armour;
 
         [SetUp]
         public void SetUp()
@@ -18,6 +19,7 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             hero = Utilities.Hero();
             rat = Utilities.Rat();
             weapon = Utilities.Weapon();
+            armour = Utilities.Armour();
             Utilities.InitializeItemDatabase();
         }
 
@@ -34,6 +36,21 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             // Unequip the weapon 
             hero.UnEquip(weapon.Name);
             Assert.AreEqual(2, hero.SkillValue(skill: "Combat", tags: new string[] { }));
+        }
+
+        [Test]
+        public void Equipped_armour_adds_to_consequences()
+        {
+            // No armor equipped yet
+            Assert.AreEqual(2, hero.AllConsequences.Count);
+
+            // Equipped armour increases the consequences
+            hero.Equip(armour.Name, "Torso");
+            Assert.AreEqual(3, hero.AllConsequences.Count);
+
+            // Unequip the armour 
+            hero.UnEquip(armour.Name);
+            Assert.AreEqual(2, hero.AllConsequences.Count);
         }
     }
 }
