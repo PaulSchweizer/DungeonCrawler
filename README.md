@@ -15,12 +15,12 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
     - ✔ Attributes
     - ✔ Skills
     - ✔ Aspects
-    - ☐ Stunts
-    - ☐ XP and Levels
-    - ☐ Inventory
     - ☐ Equipment
-        - ☐ Weapons
+        - ✔ Weapons
         - ☐ Armor
+    - ☐ XP and Levels
+    - ☐ Stunts
+    - ☐ Inventory
 
 - ☐ Aspect & Tag System
     - ☐ Actions

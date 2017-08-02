@@ -10,12 +10,15 @@ namespace DungeonCrawler.NUnit.Tests.ConflictsTests
 
         Character.Character hero;
         Character.Character rat;
+        Items.Item weapon;
 
         [SetUp]
         public void SetUp()
         {
-            hero = Character.Character.DeserializeFromJson(Utilities.JsonResource("Hero"));
-            rat = Character.Character.DeserializeFromJson(Utilities.JsonResource("Rat"));
+            hero = Utilities.Hero();
+            rat = Utilities.Rat();
+            weapon = Utilities.Weapon();
+            Utilities.InitializeItemDatabase();
             Dice.Die = new NonRandomDie(dieResult: 0);
         }
 
