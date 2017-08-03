@@ -174,7 +174,7 @@ namespace DungeonCrawler.Character
                 var jsonWriter = new JsonTextWriter(stringWriter) { Formatting = Formatting.Indented };
                 jsonWriter.Indentation = 4;
                 jsonWriter.WriteToken(jsonReader);
-                return stringWriter.ToString();
+                return stringWriter.ToString(); 
             }
         }
 
