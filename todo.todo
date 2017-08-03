@@ -1,0 +1,11 @@
+Items:
+ ☐ Item
+ ☐ MeleeWeapon : Item
+ ☐ Armour : Item
+ ☐ Inventory
+  ☐ amount
+  ☐ health
+ ☐ EquipmentSlots
+
+Other:
+ ☐ Get the SkillValue as a list of Modifiers

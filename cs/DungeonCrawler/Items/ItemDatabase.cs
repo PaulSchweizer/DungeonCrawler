@@ -29,7 +29,14 @@ namespace DungeonCrawler.Items
 
         public static Item Item(string itemName)
         {
-            return Instance.Items[itemName];
+            if (Instance.Items.ContainsKey(itemName))
+            {
+                return null;
+            }
+            else
+            {
+                return Instance.Items[itemName];
+            }
         }
 
         public static void DeserializeFromJson(string json)

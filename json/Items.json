@@ -1,0 +1,49 @@
+"Item": {
+    "Name": "Item Name",
+    "Type": "Item Type",
+    "Description": "Ancient sword of rat fighting.",
+    "Aspects": [],
+    "Tags": [
+        "cursed"
+    ],
+    "EquipmentSlot": "RightHand"
+},
+
+"MeleeWeapon":
+{
+    "Name": "Ratbane",
+    "Type": "Weapon",
+    "Description": "Ancient sword of rat fighting.",
+    "Skills": ["MeleeWeapons"],
+    "Damage": 3,
+    "Aspects": [
+        {
+            "Name": "Extinguisher of #rats.",
+            "Bonus": 1,
+            "Skills": ["MeleeWeapons"]
+        }
+    ],
+    "Tags": [
+        "cursed"
+    ],
+    "EquipmentSlot": "RightHand"
+},
+
+"Armour": {
+    "Name": "LeatherArmour",
+    "Type": "Armour",
+    "Description": "Simple leather armour.",
+    "Protection": 1,
+    "Aspects": [],
+    "Consequences": [
+        {
+            "Type": "Minor",
+            "Capacity": 2,
+            "IsTaken": false
+        }
+    ],
+    "Tags": [
+        "cursed"
+    ],
+    "EquipmentSlot": "Torso"
+}
