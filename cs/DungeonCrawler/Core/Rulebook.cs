@@ -6,8 +6,11 @@ namespace DungeonCrawler.Core
 {
     public class Rulebook
     {
-        public Dictionary<string, Skill> Skills;
+        public Dictionary<string, Skill> Skills = new Dictionary<string, Skill>();
         public Dictionary<string, string[]> Tags = new Dictionary<string, string[]>();
+        public Dictionary<string, Item> Items = new Dictionary<string, Item>();
+
+        #region Singleton
 
         private static Rulebook _instance;
 
@@ -26,6 +29,10 @@ namespace DungeonCrawler.Core
                 _instance = value;
             }
         }
+
+        #endregion 
+
+        #region Tags
 
         public static string[] SynonymsOf(string tag)
         {
@@ -50,6 +57,26 @@ namespace DungeonCrawler.Core
             return new string[] { };
         }
 
+        #endregion
+
+        #region Items
+
+        public static Item Item(string itemName)
+        {
+            if (!Instance.Items.ContainsKey(itemName))
+            {
+                return null;
+            }
+            else
+            {
+                return Instance.Items[itemName];
+            }
+        }
+
+        #endregion 
+
+        #region Serialization
+
         public static void DeserializeFromJson(string json)
         {
             Instance = JsonConvert.DeserializeObject<Rulebook>(json);
@@ -70,5 +97,7 @@ namespace DungeonCrawler.Core
                 return stringWriter.ToString();
             }
         }
+
+        #endregion
     }
 }

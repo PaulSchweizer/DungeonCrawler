@@ -22,6 +22,7 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
 # Rulebook
 - [x] All Available Skills
 - [x] All available Tags
+- [x] All available Items
 
 # Character
 - [ ] Character
@@ -30,8 +31,11 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
     - [x] Aspects
     - [x] Consequences
     - [x] Skills
+    - [x] Inventory
+        - [x] AddItem
+        - [x] RemoveItem
+        - [x] Items
 
-    - [ ] Inventory
     - [ ] Equipment
         - [ ] Weapons
         - [ ] Armour

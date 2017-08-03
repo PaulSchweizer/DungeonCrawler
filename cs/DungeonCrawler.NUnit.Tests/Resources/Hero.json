@@ -30,9 +30,16 @@
         }
     ],
     "Equipment": {
-        "RightHand": null,
+        "RightHand": "Sword",
         "Torso": null
     },
-    "Inventory": {},
+    "Inventory": {
+        "Items": {
+            "Sword": {
+                "Amount": 1,
+                "Quality": 100
+            }
+        }
+    },
     "IsTakenOut": false
 }

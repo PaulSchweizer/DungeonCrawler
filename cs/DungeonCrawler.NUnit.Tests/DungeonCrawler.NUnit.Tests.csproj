@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="CharacterTests\CharacterAspectsTests.cs" />
     <Compile Include="CharacterTests\CharacterSerializationTests.cs" />
+    <Compile Include="CharacterTests\InventoryTests.cs" />
     <Compile Include="CoreTests\AspectTests.cs" />
     <Compile Include="CoreTests\GameMasterTests.cs" />
+    <Compile Include="CoreTests\ItemTests.cs" />
     <Compile Include="CoreTests\RulebookTests.cs" />
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>

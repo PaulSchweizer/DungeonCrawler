@@ -42,6 +42,47 @@ namespace DungeonCrawler.Character
         }
     }
 
+    public class Inventory
+    {
+        public Dictionary<string, Dictionary<string, int>> Items;
+        
+        public Inventory()
+        {
+            Items = new Dictionary<string, Dictionary<string, int>>();
+        }
+
+        public void AddItem(string name, int amount, int quality)
+        {
+            if (Items.ContainsKey(name))
+            {
+                Items[name]["Amount"] += amount;
+                Items[name]["Quality"] = quality < Items[name]["Quality"] ? quality: Items[name]["Quality"];
+            }
+            else
+            {
+                Items[name] = new Dictionary<string, int>();
+                Items[name]["Amount"] = amount;
+                Items[name]["Quality"] = quality;
+            }
+        }
+
+        public void RemoveItem(string name, int amount)
+        {
+            if (Items.ContainsKey(name))
+            {
+                Items[name]["Amount"] -= amount;
+                if (Items[name]["Amount"] <= 0)
+                {
+                    Items.Remove(name);
+                }
+            }
+            else
+            {
+                throw new Exception(string.Format("Item {0} not in the Inventory.", name));
+            }
+        }
+    }
+
     public class Character
     {
         public int Id;
@@ -52,15 +93,10 @@ namespace DungeonCrawler.Character
         public string[] Tags;
         public List<Aspect> Aspects;
         public Dictionary<string, string> Equipment;
-        public Dictionary<string, int[]> Inventory;
+        public Inventory Inventory;
         public bool IsTakenOut;
 
         #region Actions
-
-        public void Attack()
-        {
-
-        }
 
         #endregion
 
