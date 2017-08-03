@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using DungeonCrawler.GameMaster;
+using DungeonCrawler.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -53,6 +55,34 @@ namespace DungeonCrawler.Character
         public Dictionary<string, string> Equipment;
         public bool IsTakenOut;
 
+        #region Actions
+
+        public void Attack(Character defender, string attackSkill)
+        {
+            string[] tags = new string[Situation.Tags.Length + defender.Tags.Length];
+            Array.Copy(Situation.Tags, tags, Situation.Tags.Length);
+            Array.Copy(defender.Tags, 0, tags, Situation.Tags.Length, defender.Tags.Length);
+
+            int value = SkillValue(attackSkill, tags) + Dice.Roll();
+            //int shifts = defender.Defend(this, attackSkill, value);
+            //if (shifts > 0)
+            //{
+            //    int damage = shifts;
+            //    if (Weapon != null)
+            //    {
+            //        damage += Weapon.Damage;
+            //        Weapon.Use();
+            //    }
+            //    bool takenOut = defender.TakeDamage(damage);
+            //    if (takenOut)
+            //    {
+            //        GainExperience(defender.Experience);
+            //    }
+            //}
+        }
+
+        #endregion
+
         #region Equipment
 
         public void Equip(string itemName, string slot)
@@ -77,6 +107,25 @@ namespace DungeonCrawler.Character
                     Equipment[entry.Key] = null;
                     return;
                 }
+            }
+        }
+
+        public Items.Item Weapon
+        {
+            get
+            {
+                foreach (string itemName in Equipment.Values)
+                {
+                    Items.Item item = Items.ItemDatabase.Item(itemName);
+                    if (item != null)
+                    {
+                        if (item.Type == "Weapon")
+                        {
+                            return item;
+                        }
+                    }
+                }
+                return null;
             }
         }
 

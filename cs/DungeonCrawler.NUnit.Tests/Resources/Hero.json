@@ -38,5 +38,10 @@
 		"RightHand": null,
 		"Torso": null
 	},
-    "IsTakenOut": false
+    "IsTakenOut": false,
+    "Inventory":
+    {
+        "Sword": ["amount=1", "health=100"],
+        "LeatherArmour": [1, 50],
+    }
 }
