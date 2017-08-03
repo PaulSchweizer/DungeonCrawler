@@ -13,25 +13,20 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         {
             hero = Utilities.Hero();
             rat = Utilities.Rat();
+            Utilities.LoadRulebook();
         }
 
         [Test]
         public void All_aspects_affecting_Skill()
         {
-            Assert.IsNotEmpty(hero.AspectsAffectingSkill("Combat"));
+            Assert.IsNotEmpty(hero.AspectsAffectingSkill("MeleeWeapons"));
             Assert.IsEmpty(hero.AspectsAffectingSkill("DoesNotExist"));
-        }
-
-        [Test]
-        public void Aspects_are_used_to_tag_a_Character()
-        {
-            Assert.Contains("rat", rat.Tags);
         }
 
         [Test]
         public void Aspects_change_skill_values()
         {
-            int combatValue = hero.SkillValue("Combat", new string[] { "Rat" });
+            int combatValue = hero.SkillValue("MeleeWeapons", new string[] { "Rat" });
             Assert.AreEqual(3, combatValue);
         }
     }

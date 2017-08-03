@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace DungeonCrawler.Aspect
+namespace DungeonCrawler.Core
 {
-    public class TagsTable
+    public class Rulebook
     {
-        public string[] Tags;
-        public Dictionary<string, string[]> Synonyms;
-        public Dictionary<string, string[]> Opposites;
-        public static TagsTable Instance
+        public Dictionary<string, Skill> Skills;
+        public Dictionary<string, string[]> Tags = new Dictionary<string, string[]>();
+
+        private static Rulebook _instance;
+
+        public static Rulebook Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new TagsTable();
+                    _instance = new Rulebook();
                 }
                 return _instance;
             }
@@ -24,36 +26,39 @@ namespace DungeonCrawler.Aspect
                 _instance = value;
             }
         }
-        private static TagsTable _instance;
 
         public static string[] SynonymsOf(string tag)
         {
             tag = tag.ToLower();
-            if (Instance.Synonyms.ContainsKey(tag))
+            if (Instance.Tags.ContainsKey(tag))
             {
-                return Instance.Synonyms[tag];
+                return Instance.Tags[tag];
             }
-            return new string[] { };
-        }
-
-        public static string[] OppositesOf(string tag)
-        {
-            tag = tag.ToLower();
-            if (Instance.Opposites.ContainsKey(tag))
+            else
             {
-                return Instance.Opposites[tag];
+                foreach(KeyValuePair<string, string[]> entry in Instance.Tags)
+                {
+                    foreach(string value in entry.Value)
+                    {
+                        if (value == tag)
+                        {
+                            return new string[] {entry.Key};
+                        }
+                    }
+                }
             }
             return new string[] { };
         }
 
         public static void DeserializeFromJson(string json)
         {
-            Instance = JsonConvert.DeserializeObject<TagsTable>(json);
+            Instance = JsonConvert.DeserializeObject<Rulebook>(json);
         }
 
         public static string SerializeToJson()
         {
-            string json = JsonConvert.SerializeObject(Instance, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(Instance, Formatting.Indented,
+                new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
             using (var stringReader = new StringReader(json))
             using (var stringWriter = new StringWriter())

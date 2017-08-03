@@ -1,5 +1,7 @@
-Items:
- ☐ Item
+Situation:
+ ☐ Tags
+
+Item:
  ☐ MeleeWeapon : Item
  ☐ Armour : Item
  ☐ Inventory

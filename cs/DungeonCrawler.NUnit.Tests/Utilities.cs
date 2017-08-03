@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DungeonCrawler.Core;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -22,31 +23,22 @@ namespace DungeonCrawler.NUnit.Tests
             return json;
         }
 
+        public static void LoadRulebook()
+        {
+            string json = JsonResource("Rulebook");
+            Rulebook.DeserializeFromJson(json);
+        }
+
         public static Character.Character Hero()
         {
-            return Character.Character.DeserializeFromJson(Utilities.JsonResource("Hero"));
+            return Character.Character.DeserializeFromJson(JsonResource("Hero"));
         }
 
         public static Character.Character Rat()
         {
-            return Character.Character.DeserializeFromJson(Utilities.JsonResource("Rat"));
+            return Character.Character.DeserializeFromJson(JsonResource("Rat"));
         }
 
-        public static Items.Item Weapon()
-        {
-            return Items.Item.DeserializeFromJson(Utilities.JsonResource("Weapon"));
-        }
-
-        public static Items.Item Armour()
-        {
-            return Items.Item.DeserializeFromJson(Utilities.JsonResource("Armour"));
-        }
-
-        public static void InitializeItemDatabase()
-        {
-            Items.ItemDatabase.Instance.Items[Weapon().Name] = Weapon();
-            Items.ItemDatabase.Instance.Items[Armour().Name] = Armour();
-        }
     }
 
     /// <summary>

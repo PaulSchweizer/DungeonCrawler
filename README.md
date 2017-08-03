@@ -11,16 +11,33 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
 3. Serialization data format is JSON.
 
 # Todos
+- [ ] GameMaster
+    - [ ] Location
+    - [x] Cell
+    - [ ] Situation
+    - [ ] LoadRulebook
+- [x] Tags
+- [x] Aspects
+
+# Rulebook
+- [x] All Available Skills
+- [x] All available Tags
+
+# Character
 - [ ] Character
+    - [x] Serialize to json
     - [x] Attributes
-    - [x] Skills
     - [x] Aspects
+    - [x] Consequences
+    - [x] Skills
+
+    - [ ] Inventory
     - [ ] Equipment
-        - [x] Weapons
+        - [ ] Weapons
         - [ ] Armour
+
     - [ ] XP and Levels
     - [ ] Stunts
-    - [ ] Inventory
 
 - [ ] Aspect & Tag System
     - [ ] Actions
@@ -30,18 +47,6 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
 
 - Quest System
 (- Conversation System)
-
-# Actions that a Player can perform
-- [ ] Attack(attacker, defender)
-- [ ] Move(destination)
-- [ ] Repair(item)
-- [ ] Heal(character)
-- [ ] Equip(item)
-- [ ] UnEquip(item)
-- [ ] ImproveSkill(skill)
-- [ ] LearnSkill(skill)
-- [ ] AddNewAspect(aspect)
-- [ ] EditAspect(aspect)
 
 # Actions that a Character can perform
 - [ ] Attack
@@ -58,6 +63,18 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
     - [ ] Stress
     - [ ] Consequence
 - [ ] Move
+
+# Actions that a Player can perform
+- [ ] Attack(attacker, defender)
+- [ ] Move(destination)
+- [ ] Repair(item)
+- [ ] Heal(character)
+- [ ] Equip(item)
+- [ ] UnEquip(item)
+- [ ] ImproveSkill(skill)
+- [ ] LearnSkill(skill)
+- [ ] AddNewAspect(aspect)
+- [ ] EditAspect(aspect)
 
 # Skills
 - [ ] MeleeWeapons

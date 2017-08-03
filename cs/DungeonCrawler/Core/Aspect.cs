@@ -3,10 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace DungeonCrawler.Aspect
+namespace DungeonCrawler.Core
 {
     public class Aspect
     {
+        //{
+        //    "Name": "I used to kill #rats for living.",
+        //    "Skills": [
+        //        "MeleeWeapons"
+        //    ],
+        //    "Bonus": 1
+        //}
         public string Name;
         public string[] Skills;
         public int Bonus;
@@ -33,12 +40,12 @@ namespace DungeonCrawler.Aspect
                 }
                 else if (Bonus < 0)
                 {
-                    cost = - cost - 2;
+                    cost = -cost - 2;
                 }
                 return cost;
             }
         }
- 
+
         public int Matches(string[] tags)
         {
             int matches = 0;
@@ -53,6 +60,17 @@ namespace DungeonCrawler.Aspect
                 if (Array.Exists(Tags, element => element == tag.ToLower()))
                 {
                     matches += 1;
+                }
+                else
+                {
+                    foreach (string synonym in Rulebook.SynonymsOf(tag))
+                    {
+                        if (Array.Exists(Tags, element => element == synonym.ToLower()))
+                        {
+                            matches += 1;
+                            break;
+                        }                    
+                    }
                 }
             }
             return matches;

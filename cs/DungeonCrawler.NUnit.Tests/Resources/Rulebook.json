@@ -1,0 +1,55 @@
+﻿{
+    "Skills": {
+        "MeleeWeapons": {
+            "Name": "MeleeWeapons",
+            "Description": "Fight in close range.",
+            "OpposingSkills": [
+                "MeleeWeapons", 
+                "Athletics"
+            ],
+            "Actions": [
+                "Attack", 
+                "Defend"
+            ]
+        },
+        "RangedWeapons": {
+            "Name": "RangedWeapons",
+            "Description": "All sorts of ranged weaponry.",
+            "OpposingSkills": [
+                "Athletics"
+            ],
+            "Actions": [
+                "Attack"
+            ]
+        },   
+        "Athletics": {
+            "Name": "Athletics",
+            "Description": "Avoid danger.",
+            "OpposingSkills": [],
+            "Actions": [
+                "Defend"
+            ]
+        },
+        "Craftsmanship": {
+            "Name": "Craftsmanship",
+            "Description": "Repair broken or damaged items.",
+            "OpposingSkills": [],
+            "Actions": [
+                "Repair"
+            ]
+        },
+        "Healing": {
+            "Name": "Healing",
+            "Description": "Heal consequences.",
+            "OpposingSkills": [],
+            "Actions": [
+                "Heal"
+            ]
+        }
+    },
+    "Tags": {
+        "rat": [
+            "rats"
+        ]
+    }
+}

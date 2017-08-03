@@ -14,12 +14,16 @@
         }
     ],
     "Skills": {
-        "Combat": 1
+        "MeleeWeapons": 1
     },
     "Tags": [
         "rat"
     ],
     "Aspects": [],
 	"Equipment": {},
-    "IsTakenOut": false
+    "IsTakenOut": false,
+	"Inventory":
+    {
+        "Ratfur": [1, 100],
+    }
 }

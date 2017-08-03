@@ -2,13 +2,12 @@
     "Name": "LeatherArmour",
     "Type": "Armour",
     "Description": "Simple leather armour.",
-    "Skills": ["Combat"],
-    "Bonus": 1,
+    "Protection": 1,
     "Aspects": [
         {
-            "Name": "Protection against #rats.",
+            "Name": "Good protection against #rats.",
             "Bonus": 1,
-            "Skills": ["Combat"]
+            "Skills": ["MeleeWeapons"]
         }
     ],
     "Consequences": [

@@ -1,6 +1,6 @@
 ﻿{
     "Id": 0,
-    "Name": "Hero",
+    "Name": "Hero, a test character",
     "PhysicalStress": {
         "Value": 0,
         "MaxValue": 5,
@@ -11,37 +11,28 @@
             "Type": "Minor",
             "Capacity": 2,
             "IsTaken": false
-        },
-        {
-            "Type": "Medium",
-            "Capacity": 4,
-            "IsTaken": false
         }
     ],
     "Skills": {
-        "Combat": 2
+        "MeleeWeapons": 2
     },
     "Tags": [
         "hero",
-        "test"
+        "human"
     ],
     "Aspects": [
         {
-            "Name": "I really want to see this #rat dead!",
+            "Name": "I used to kill #rats for living.",
             "Skills": [
-                "Combat"
+                "MeleeWeapons"
             ],
             "Bonus": 1
         }
     ],
-	"Equipment": {
-		"RightHand": null,
-		"Torso": null
-	},
-    "IsTakenOut": false,
-    "Inventory":
-    {
-        "Sword": ["amount=1", "health=100"],
-        "LeatherArmour": [1, 50],
-    }
+    "Equipment": {
+        "RightHand": null,
+        "Torso": null
+    },
+    "Inventory": {},
+    "IsTakenOut": false
 }

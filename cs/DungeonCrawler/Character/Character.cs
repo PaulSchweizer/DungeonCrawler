@@ -1,5 +1,4 @@
-﻿using DungeonCrawler.GameMaster;
-using DungeonCrawler.Utilities;
+﻿using DungeonCrawler.Core;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -26,9 +25,9 @@ namespace DungeonCrawler.Character
         public string Type;
         public int Capacity;
         public bool IsTaken;
-        public Aspect.Aspect Effect;
+        public Aspect Effect;
 
-        public Consequence(string type, int capacity, bool isTaken=false, Aspect.Aspect effect=null)
+        public Consequence(string type, int capacity, bool isTaken = false, Aspect effect = null)
         {
             Type = type;
             Capacity = capacity;
@@ -39,7 +38,7 @@ namespace DungeonCrawler.Character
         public void Take()
         {
             IsTaken = true;
-            Effect = new Aspect.Aspect("Consequence Standin Aspect that affects #any skill.", new string[] { "Combat" }, -1);
+            Effect = new Aspect("Consequence Standin Aspect that affects #any skill.", new string[] { "MeleeCombat" }, -1);
         }
     }
 
@@ -51,126 +50,39 @@ namespace DungeonCrawler.Character
         public List<Consequence> Consequences;
         public Dictionary<string, int> Skills;
         public string[] Tags;
-        public List<Aspect.Aspect> Aspects;
+        public List<Aspect> Aspects;
         public Dictionary<string, string> Equipment;
+        public Dictionary<string, int[]> Inventory;
         public bool IsTakenOut;
 
         #region Actions
 
-        public void Attack(Character defender, string attackSkill)
+        public void Attack()
         {
-            string[] tags = new string[Situation.Tags.Length + defender.Tags.Length];
-            Array.Copy(Situation.Tags, tags, Situation.Tags.Length);
-            Array.Copy(defender.Tags, 0, tags, Situation.Tags.Length, defender.Tags.Length);
 
-            int value = SkillValue(attackSkill, tags) + Dice.Roll();
-            //int shifts = defender.Defend(this, attackSkill, value);
-            //if (shifts > 0)
-            //{
-            //    int damage = shifts;
-            //    if (Weapon != null)
-            //    {
-            //        damage += Weapon.Damage;
-            //        Weapon.Use();
-            //    }
-            //    bool takenOut = defender.TakeDamage(damage);
-            //    if (takenOut)
-            //    {
-            //        GainExperience(defender.Experience);
-            //    }
-            //}
-        }
-
-        #endregion
-
-        #region Equipment
-
-        public void Equip(string itemName, string slot)
-        {
-            Items.Item item = Items.ItemDatabase.Item(itemName);
-            if (slot == item.EquipmentSlot && Equipment.ContainsKey(slot))
-            {
-                if (Equipment[slot] != null)
-                {
-                    UnEquip(slot);
-                }
-                Equipment[slot] = itemName;
-            }
-        }
-
-        public void UnEquip(string itemName)
-        {
-            foreach (KeyValuePair<string, string> entry in Equipment)
-            {
-                if (entry.Value == itemName)
-                {
-                    Equipment[entry.Key] = null;
-                    return;
-                }
-            }
-        }
-
-        public Items.Item Weapon
-        {
-            get
-            {
-                foreach (string itemName in Equipment.Values)
-                {
-                    Items.Item item = Items.ItemDatabase.Item(itemName);
-                    if (item != null)
-                    {
-                        if (item.Type == "Weapon")
-                        {
-                            return item;
-                        }
-                    }
-                }
-                return null;
-            }
         }
 
         #endregion
 
         #region Aspects and Skills
 
-        [JsonIgnore]
-        public List<Aspect.Aspect> AllAspects
+        public int SkillValue(string skill, string[] tags)
         {
-            get
+            int skillValue = Skills[skill];
+            foreach (Aspect aspect in AspectsAffectingSkill(skill))
             {
-                List<Aspect.Aspect> aspects = new List<Aspect.Aspect>();
-                if (Aspects != null)
+                if (aspect.Matches(tags) > 0)
                 {
-                    foreach(Aspect.Aspect aspect in Aspects)
-                    {
-                        aspects.Add(aspect);
-                    }
+                    skillValue += aspect.Bonus;
                 }
-                foreach (string itemName in Equipment.Values)
-                {
-                    if (itemName != null)
-                    {
-                        foreach(Aspect.Aspect aspect in Items.ItemDatabase.Item(itemName).Aspects)
-                        {
-                            aspects.Add(aspect);
-                        }
-                    }
-                }
-                foreach (Consequence consequence in AllConsequences)
-                {
-                    if (consequence.IsTaken)
-                    {
-                        aspects.Add(consequence.Effect);
-                    }
-                }
-                return aspects;
             }
+            return skillValue;
         }
 
-        public Aspect.Aspect[] AspectsAffectingSkill(string skill)
+        public Aspect[] AspectsAffectingSkill(string skill)
         {
-            List<Aspect.Aspect> aspects = new List<Aspect.Aspect>();
-            foreach (Aspect.Aspect aspect in AllAspects)
+            List<Aspect> aspects = new List<Aspect>();
+            foreach (Aspect aspect in AllAspects)
             {
                 if (Array.Exists(aspect.Skills, element => element == skill))
                 {
@@ -180,85 +92,30 @@ namespace DungeonCrawler.Character
             return aspects.ToArray();
         }
 
-        public int SkillValue(string skill, string[] tags)
+        [JsonIgnore]
+        public List<Aspect> AllAspects
         {
-            int skillValue = Skills[skill];
-            foreach (Aspect.Aspect aspect in AspectsAffectingSkill(skill))
+            get
             {
-                if (aspect.Matches(tags) > 0)
+                List<Aspect> aspects = new List<Aspect>();
+                if (Aspects != null)
                 {
-                    skillValue += aspect.Bonus;
-                }
-            }
-            foreach (string itemName in Equipment.Values)
-            {
-                if (itemName != null)
-                {
-                    Items.Item item = Items.ItemDatabase.Item(itemName);
-                    if (Array.Exists(item.Skills, element => element == skill))
+                    foreach (Aspect aspect in Aspects)
                     {
-                        skillValue += item.Bonus;
+                        aspects.Add(aspect);
                     }
                 }
+                return aspects;
             }
-            return skillValue;
         }
 
         #endregion
 
         #region Damage and Consequences
 
-        [JsonIgnore]
-        public List<Consequence> AllConsequences
-        {
-            get
-            {
-                List<Consequence> consequences = new List<Consequence>();
-                if (consequences != null)
-                {
-                    foreach (Consequence consequence in Consequences)
-                    {
-                        consequences.Add(consequence);
-                    }
-                }
-                foreach (string itemName in Equipment.Values)
-                {
-                    if (itemName != null)
-                    {
-                        foreach (Consequence consequence in Items.ItemDatabase.Item(itemName).Consequences)
-                        {
-                            consequences.Add(consequence);
-                        }
-                    }
-                }
-                return consequences;
-            }
-        }
+        #endregion
 
-        public void TakePhysicalDamage(int shifts)
-        {
-            if (PhysicalStress.Value + shifts > PhysicalStress.MaxValue)
-            {
-                TakeConsequence(shifts);
-            }
-            else
-            {
-                PhysicalStress.Value += shifts;
-            }
-        }
-
-        public void TakeConsequence(int shifts) {
-            // Try to see if the damage can be absorbed by a consequence
-            foreach (Consequence consequence in Consequences) {
-                if (shifts <= consequence.Capacity && !consequence.IsTaken)
-                {
-                    consequence.Take();
-                    return;
-                }
-            }
-
-            IsTakenOut = true;
-        }
+        #region Equipment
 
         #endregion
 

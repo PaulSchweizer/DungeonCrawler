@@ -121,17 +121,20 @@
   <data name="Armour" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\armour.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="GameMaster" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\gamemaster.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Hero" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\hero.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Rat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\rat.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Rulebook" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\rulebook.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="TagsTable" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\TagsTable.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="TestCharacter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\TestCharacter.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Weapon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\weapon.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
