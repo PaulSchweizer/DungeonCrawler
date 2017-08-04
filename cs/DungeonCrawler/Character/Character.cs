@@ -22,14 +22,14 @@ namespace DungeonCrawler.Character
 
     public class Consequence
     {
-        public string Type;
+        public string Name;
         public int Capacity;
         public bool IsTaken;
         public Aspect Effect;
 
-        public Consequence(string type, int capacity, bool isTaken = false, Aspect effect = null)
+        public Consequence(string name, int capacity, bool isTaken = false, Aspect effect = null)
         {
-            Type = type;
+            Name = name;
             Capacity = capacity;
             IsTaken = isTaken;
             Effect = effect;
@@ -220,16 +220,7 @@ namespace DungeonCrawler.Character
             {
                 List<Consequence> consequences = new List<Consequence>();
 
-                // Default Consequences
-                if (consequences != null)
-                {
-                    foreach (Consequence consequence in Consequences)
-                    {
-                        consequences.Add(consequence);
-                    }
-                }
-
-                // All the Consequences that equipped armour provides
+                // 1. All the Consequences that equipped armour provides
                 foreach (string itemName in Equipment.Values)
                 {
                     if (itemName != null)
@@ -238,13 +229,24 @@ namespace DungeonCrawler.Character
                         if (item is Armour)
                         {
                             Armour armour = (Armour)item;
-                            foreach (Consequence consequence in armour.Consequences)
+                            foreach(Consequence consequence in armour.Consequences)
                             {
                                 consequences.Add(consequence);
                             }
                         }
                     }
                 }
+                consequences.Sort((x, y) => x.Capacity.CompareTo(y.Capacity));
+
+                // 1. Default Consequences
+                if (consequences != null)
+                {
+                    foreach (Consequence consequence in Consequences)
+                    {
+                        consequences.Add(consequence);
+                    }
+                }
+
                 return consequences;
             }
         }

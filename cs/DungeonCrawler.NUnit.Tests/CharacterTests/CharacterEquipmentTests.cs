@@ -63,7 +63,7 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         {
             hero.Equip(armour.Name, "Torso");
             Assert.AreEqual(3, hero.AllConsequences.Count);
-            //Assert.AreSame(hero.AllConsequences[0], Rulebook.Armour(armour.Name).Consequences[0]);
+            Assert.AreSame(hero.AllConsequences[0], Rulebook.Armour(armour.Name).Consequences[0]);
         }
     }
 }

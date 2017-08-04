@@ -6,8 +6,6 @@ namespace DungeonCrawler.Core
     public class Item
     {
         public string Name;
-        public string Type;
-        public string Description;
         public Aspect[] Aspects;
         public string[] Tags;
         public string EquipmentSlot;

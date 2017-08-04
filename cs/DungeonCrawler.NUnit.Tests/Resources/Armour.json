@@ -1,7 +1,5 @@
 ﻿{
     "Name": "Armour",
-    "Type": "Armour",
-    "Description": "Simple leather armour.",
     "Protection": 1,
     "Aspects": [
         {
@@ -12,7 +10,7 @@
     ],
     "Consequences": [
         {
-            "Type": "Minor",
+            "Name": "Iron studs for better protection.",
             "Capacity": 2,
             "IsTaken": false
         }

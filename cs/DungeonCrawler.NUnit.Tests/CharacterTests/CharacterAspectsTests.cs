@@ -46,6 +46,5 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             hero.Consequences[0].Take();
             Assert.AreEqual(2, hero.AllAspects.Count);
         }
-
     }
 }

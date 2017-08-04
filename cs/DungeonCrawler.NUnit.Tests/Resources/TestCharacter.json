@@ -39,7 +39,51 @@
         "Torso": null
     },
     "Inventory": {
-        "Items": {}
+		"Items": [
+			{
+				"Name": "Gold Coin"
+			}
+		],
+        "Weapons": [
+            {
+				"Name": "Sword",
+				"Skills": ["MeleeWeapons"],
+				"Damage": 3,
+				"Aspects": [
+					{
+						"Name": "Extinguisher of #rats.",
+						"Bonus": 1,
+						"Skills": ["MeleeWeapons"]
+					}
+				],
+				"Tags": [],
+				"EquipmentSlot": "RightHand"
+			}
+        ],
+		"Armours": [
+			{
+				"Name": "Armour",
+				"Protection": 1,
+				"Aspects": [
+					{
+						"Name": "Good protection against #rats.",
+						"Bonus": 1,
+						"Skills": ["MeleeWeapons"]
+					}
+				],
+				"Consequences": [
+					{
+						"Name": "Iron studs for better protection.",
+						"Capacity": 2,
+						"IsTaken": false
+					}
+				],
+				"Tags": [
+					"cursed"
+				],
+				"EquipmentSlot": "Torso"
+			}
+        ]
     },
     "IsTakenOut": false
 }

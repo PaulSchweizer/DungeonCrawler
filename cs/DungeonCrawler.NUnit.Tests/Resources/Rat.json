@@ -8,7 +8,7 @@
     },
     "Consequences": [
         {
-            "Type": "Minor",
+            "Name": "Rats are hard to kill.",
             "Capacity": 2,
             "IsTaken": false
         }

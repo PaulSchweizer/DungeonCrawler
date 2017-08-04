@@ -56,8 +56,6 @@
 	"Weapons" : {
 		"Weapon": {
 			"Name": "Weapon",
-			"Type": "Weapon",
-			"Description": "Ancient sword of rat fighting.",
 			"Skills": ["MeleeWeapons"],
 			"Damage": 3,
 			"Aspects": [
@@ -74,8 +72,6 @@
 	"Armours" : {
 		"Armour": {
 			"Name": "Armour",
-			"Type": "Armour",
-			"Description": "Simple leather armour.",
 			"Protection": 1,
 			"Aspects": [
 				{
