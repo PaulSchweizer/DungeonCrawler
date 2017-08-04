@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterTests\CharacterAspectsTests.cs" />
+    <Compile Include="CharacterTests\CharacterEquipmentTests.cs" />
     <Compile Include="CharacterTests\CharacterSerializationTests.cs" />
+    <Compile Include="CharacterTests\CharacterSkillsTests.cs" />
     <Compile Include="CharacterTests\InventoryTests.cs" />
     <Compile Include="CoreTests\AspectTests.cs" />
     <Compile Include="CoreTests\GameMasterTests.cs" />

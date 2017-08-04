@@ -9,6 +9,8 @@ namespace DungeonCrawler.Core
         public Dictionary<string, Skill> Skills = new Dictionary<string, Skill>();
         public Dictionary<string, string[]> Tags = new Dictionary<string, string[]>();
         public Dictionary<string, Item> Items = new Dictionary<string, Item>();
+        public Dictionary<string, Weapon> Weapons = new Dictionary<string, Weapon>();
+        public Dictionary<string, Armour> Armours = new Dictionary<string, Armour>();
 
         #region Singleton
 
@@ -63,13 +65,45 @@ namespace DungeonCrawler.Core
 
         public static Item Item(string itemName)
         {
-            if (!Instance.Items.ContainsKey(itemName))
+            if (Instance.Items.ContainsKey(itemName))
+            {
+                return Instance.Items[itemName];
+            }
+            else if (Instance.Weapons.ContainsKey(itemName))
+            {
+                return Instance.Weapons[itemName];
+            }
+            else if (Instance.Armours.ContainsKey(itemName))
+            {
+                return Instance.Armours[itemName];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static Weapon Weapon(string itemName)
+        {
+            if (!Instance.Weapons.ContainsKey(itemName))
             {
                 return null;
             }
             else
             {
-                return Instance.Items[itemName];
+                return Instance.Weapons[itemName];
+            }
+        }
+
+        public static Armour Armour(string itemName)
+        {
+            if (!Instance.Armours.ContainsKey(itemName))
+            {
+                return null;
+            }
+            else
+            {
+                return Instance.Armours[itemName];
             }
         }
 

@@ -11,6 +11,11 @@
             "Type": "Minor",
             "Capacity": 2,
             "IsTaken": false
+        },
+        {
+            "Type": "Medium",
+            "Capacity": 4,
+            "IsTaken": false
         }
     ],
     "Skills": {
@@ -30,12 +35,16 @@
         }
     ],
     "Equipment": {
-        "RightHand": "Sword",
+        "RightHand": null,
         "Torso": null
     },
     "Inventory": {
         "Items": {
             "Sword": {
+                "Amount": 1,
+                "Quality": 100
+            },
+            "Armour": {
                 "Amount": 1,
                 "Quality": 100
             }

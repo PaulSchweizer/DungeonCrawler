@@ -30,18 +30,44 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
     - [x] Attributes
     - [x] Aspects
     - [x] Consequences
+        - [ ] Order them from lowest to highest
+        - [ ] Put armour consequences first
+        - [ ] Can't take Consequence of Armour when pointing to original
+            - [ ] Either: Add entry to Inventory ???
+            - [ ] Or: Copy Consequence to Hero when equipped
+            - [ ]     And Delete when unequipped ???
+            - [ ] Or: Copy the entire object ???
+
+    "Consequences": [
+        {
+            "Name": "Leather embossed with metal.",
+            "Capacity": 2,
+            "IsTaken": false,
+            "Aspect": "Ripped and torn."
+        }
+    ],
+
     - [x] Skills
     - [x] Inventory
         - [x] AddItem
         - [x] RemoveItem
         - [x] Items
 
-    - [ ] Equipment
-        - [ ] Weapons
-        - [ ] Armour
+    - [x] Get the SkillValue as a list of Modifiers
+        - [ ] What if the Skill doesn't exist?
+            - [ ] Exception
+
+    - [x] Equipment
+        - [x] Weapons
+        - [x] Armour
+        - [ ] What if equipped in the wrong slot?
+            - [ ] Exceptions for these cases
+        - [ ] What if equipped item is not in Inventory?
+            - [ ] Exception
 
     - [ ] XP and Levels
     - [ ] Stunts
+
 
 - [ ] Aspect & Tag System
     - [ ] Actions

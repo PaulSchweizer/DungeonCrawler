@@ -52,5 +52,49 @@
             "rats"
         ]
     },
-	"Items" : {}
+	"Items" : {},
+	"Weapons" : {
+		"Weapon": {
+			"Name": "Weapon",
+			"Type": "Weapon",
+			"Description": "Ancient sword of rat fighting.",
+			"Skills": ["MeleeWeapons"],
+			"Damage": 3,
+			"Aspects": [
+				{
+					"Name": "Extinguisher of #rats.",
+					"Bonus": 1,
+					"Skills": ["MeleeWeapons"]
+				}
+			],
+			"Tags": [],
+			"EquipmentSlot": "RightHand"
+		}
+	},
+	"Armours" : {
+		"Armour": {
+			"Name": "Armour",
+			"Type": "Armour",
+			"Description": "Simple leather armour.",
+			"Protection": 1,
+			"Aspects": [
+				{
+					"Name": "Good protection against #rats.",
+					"Bonus": 1,
+					"Skills": ["MeleeWeapons"]
+				}
+			],
+			"Consequences": [
+				{
+					"Type": "Minor",
+					"Capacity": 2,
+					"IsTaken": false
+				}
+			],
+			"Tags": [
+				"cursed"
+			],
+			"EquipmentSlot": "Torso"
+		}
+	}
 }

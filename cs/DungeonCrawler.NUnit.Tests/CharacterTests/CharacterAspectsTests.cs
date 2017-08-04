@@ -3,7 +3,7 @@
 namespace DungeonCrawler.NUnit.Tests.CharacterTests
 {
     [TestFixture]
-    public class CharacterAspects
+    public class CharacterAspectsTests
     {
         Character.Character hero;
         Character.Character rat;
@@ -29,5 +29,23 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             int combatValue = hero.SkillValue("MeleeWeapons", new string[] { "Rat" });
             Assert.AreEqual(3, combatValue);
         }
+
+        [Test]
+        public void AllAspects_contains_Equipment()
+        {
+            Assert.AreEqual(1, hero.AllAspects.Count);
+            hero.Equip("Weapon", "RightHand");
+            hero.Equip("Armour", "Torso");
+            Assert.AreEqual(3, hero.AllAspects.Count);
+        }
+
+        [Test]
+        public void AllAspects_contains_taken_Consequences()
+        {
+            Assert.AreEqual(1, hero.AllAspects.Count);
+            hero.Consequences[0].Take();
+            Assert.AreEqual(2, hero.AllAspects.Count);
+        }
+
     }
 }

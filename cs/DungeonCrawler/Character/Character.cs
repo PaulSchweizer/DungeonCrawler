@@ -102,17 +102,28 @@ namespace DungeonCrawler.Character
 
         #region Aspects and Skills
 
-        public int SkillValue(string skill, string[] tags)
+        public int[] SkillValueModifiers(string skill, string[] tags)
         {
-            int skillValue = Skills[skill];
+            List<int> modifiers = new List<int>();
             foreach (Aspect aspect in AspectsAffectingSkill(skill))
             {
                 if (aspect.Matches(tags) > 0)
                 {
-                    skillValue += aspect.Bonus;
+                    modifiers.Add(aspect.Bonus);
                 }
             }
-            return skillValue;
+            return modifiers.ToArray();
+        }
+
+        public int SkillValue(string skill, string[] tags)
+        {
+            int[] modifiers = SkillValueModifiers(skill, tags);
+            int value = Skills[skill];
+            foreach (var item in modifiers)
+            {
+                value += item;
+            }
+            return value;
         }
 
         public Aspect[] AspectsAffectingSkill(string skill)
@@ -134,6 +145,8 @@ namespace DungeonCrawler.Character
             get
             {
                 List<Aspect> aspects = new List<Aspect>();
+
+                // Basic Aspects
                 if (Aspects != null)
                 {
                     foreach (Aspect aspect in Aspects)
@@ -141,7 +154,58 @@ namespace DungeonCrawler.Character
                         aspects.Add(aspect);
                     }
                 }
+
+                // Aspects of all taken Consequences
+                foreach (Consequence consequence in AllConsequences)
+                {
+                    if (consequence.IsTaken)
+                    {
+                        aspects.Add(consequence.Effect);
+                    }
+                }
+
+                // Aspects from the equipped Items
+                foreach (string itemName in Equipment.Values)
+                {
+                    if (itemName != null)
+                    {
+                        foreach (Aspect aspect in Rulebook.Item(itemName).Aspects)
+                        {
+                            aspects.Add(aspect);
+                        }
+                    }
+                }
+
                 return aspects;
+            }
+        }
+
+        #endregion
+
+        #region Equipment
+
+        public void Equip(string itemName, string slot)
+        {
+            Item item = Rulebook.Item(itemName);
+            if (slot == item.EquipmentSlot && Equipment.ContainsKey(slot))
+            {
+                if (Equipment[slot] != null)
+                {
+                    UnEquip(slot);
+                }
+                Equipment[slot] = itemName;
+            }
+        }
+
+        public void UnEquip(string itemName)
+        {
+            foreach (KeyValuePair<string, string> entry in Equipment)
+            {
+                if (entry.Value == itemName)
+                {
+                    Equipment[entry.Key] = null;
+                    return;
+                }
             }
         }
 
@@ -149,9 +213,41 @@ namespace DungeonCrawler.Character
 
         #region Damage and Consequences
 
-        #endregion
+        [JsonIgnore]
+        public List<Consequence> AllConsequences
+        {
+            get
+            {
+                List<Consequence> consequences = new List<Consequence>();
 
-        #region Equipment
+                // Default Consequences
+                if (consequences != null)
+                {
+                    foreach (Consequence consequence in Consequences)
+                    {
+                        consequences.Add(consequence);
+                    }
+                }
+
+                // All the Consequences that equipped armour provides
+                foreach (string itemName in Equipment.Values)
+                {
+                    if (itemName != null)
+                    {
+                        Item item = Rulebook.Item(itemName);
+                        if (item is Armour)
+                        {
+                            Armour armour = (Armour)item;
+                            foreach (Consequence consequence in armour.Consequences)
+                            {
+                                consequences.Add(consequence);
+                            }
+                        }
+                    }
+                }
+                return consequences;
+            }
+        }
 
         #endregion
 
