@@ -39,7 +39,9 @@
         "Torso": null
     },
     "Inventory": {
-        "Items": {}
+        "Items": [],
+        "Weapons": [],
+        "Armours": []
     },
     "IsTakenOut": false
 }

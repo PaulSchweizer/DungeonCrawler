@@ -44,43 +44,49 @@ namespace DungeonCrawler.Character
 
     public class Inventory
     {
-        public Dictionary<string, Dictionary<string, int>> Items;
+        public List<Item> Items;
+        public List<Weapon> Weapons;
+        public List<Armour> Armours;
         
         public Inventory()
         {
-            Items = new Dictionary<string, Dictionary<string, int>>();
+            Items = new List<Item>();
+            Weapons = new List<Weapon>();
+            Armours = new List<Armour>();
         }
 
-        public void AddItem(string name, int amount, int quality)
+        public void AddItem(string name, int amount)
         {
-            if (Items.ContainsKey(name))
+            Item item = Items.Find(i => i.Name == name);
+
+            if (item != null)
             {
-                Items[name]["Amount"] += amount;
-                Items[name]["Quality"] = quality < Items[name]["Quality"] ? quality: Items[name]["Quality"];
+                item.Amount += amount;
             }
             else
             {
-                Items[name] = new Dictionary<string, int>();
-                Items[name]["Amount"] = amount;
-                Items[name]["Quality"] = quality;
+                // Get a copy of that item from the Rulebook
+                //item = Rulebook.GetNewItem(name);
+                //Items[name] = new Dictionary<string, int>();
+                //Items[name]["Amount"] = amount;
             }
         }
 
-        public void RemoveItem(string name, int amount)
-        {
-            if (Items.ContainsKey(name))
-            {
-                Items[name]["Amount"] -= amount;
-                if (Items[name]["Amount"] <= 0)
-                {
-                    Items.Remove(name);
-                }
-            }
-            else
-            {
-                throw new Exception(string.Format("Item {0} not in the Inventory.", name));
-            }
-        }
+        //public void RemoveItem(string name, int amount)
+        //{
+        //    if (Items.ContainsKey(name))
+        //    {
+        //        Items[name]["Amount"] -= amount;
+        //        if (Items[name]["Amount"] <= 0)
+        //        {
+        //            Items.Remove(name);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        throw new Exception(string.Format("Item {0} not in the Inventory.", name));
+        //    }
+        //}
     }
 
     public class Character

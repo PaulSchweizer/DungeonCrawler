@@ -52,9 +52,9 @@
             "rats"
         ]
     },
-	"Items" : {},
-	"Weapons" : {
-		"Weapon": {
+	"Items" : [],
+	"Weapons" : [
+		{
 			"Name": "Weapon",
 			"Skills": ["MeleeWeapons"],
 			"Damage": 3,
@@ -68,9 +68,9 @@
 			"Tags": [],
 			"EquipmentSlot": "RightHand"
 		}
-	},
-	"Armours" : {
-		"Armour": {
+	],
+	"Armours": [
+		{
 			"Name": "Armour",
 			"Protection": 1,
 			"Aspects": [
@@ -92,5 +92,5 @@
 			],
 			"EquipmentSlot": "Torso"
 		}
-	}
+	]
 }

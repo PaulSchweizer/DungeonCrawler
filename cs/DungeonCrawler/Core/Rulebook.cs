@@ -8,9 +8,9 @@ namespace DungeonCrawler.Core
     {
         public Dictionary<string, Skill> Skills = new Dictionary<string, Skill>();
         public Dictionary<string, string[]> Tags = new Dictionary<string, string[]>();
-        public Dictionary<string, Item> Items = new Dictionary<string, Item>();
-        public Dictionary<string, Weapon> Weapons = new Dictionary<string, Weapon>();
-        public Dictionary<string, Armour> Armours = new Dictionary<string, Armour>();
+        public List<Item> Items = new List<Item>();
+        public List<Weapon> Weapons = new List<Weapon>();
+        public List<Armour> Armours = new List<Armour>();
 
         #region Singleton
 
@@ -63,48 +63,39 @@ namespace DungeonCrawler.Core
 
         #region Items
 
-        public static Item Item(string itemName)
+        public static Item Item(string name)
         {
-            if (Instance.Items.ContainsKey(itemName))
+            Item item = Instance.Items.Find(i => i.Name == name);
+            if (item != null)
             {
-                return Instance.Items[itemName];
+                return item;
             }
-            else if (Instance.Weapons.ContainsKey(itemName))
+            item = Instance.Weapons.Find(i => i.Name == name);
+            if (item != null)
             {
-                return Instance.Weapons[itemName];
+                return item;
             }
-            else if (Instance.Armours.ContainsKey(itemName))
+            item = Instance.Armours.Find(i => i.Name == name);
+            if (item != null)
             {
-                return Instance.Armours[itemName];
+                return item;
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
-        public static Weapon Weapon(string itemName)
+        //public static Item GetNewItem(string name)
+        //{
+
+        //}
+
+        public static Weapon Weapon(string name)
         {
-            if (!Instance.Weapons.ContainsKey(itemName))
-            {
-                return null;
-            }
-            else
-            {
-                return Instance.Weapons[itemName];
-            }
+            return Instance.Weapons.Find(i => i.Name == name);
         }
 
-        public static Armour Armour(string itemName)
+        public static Armour Armour(string name)
         {
-            if (!Instance.Armours.ContainsKey(itemName))
-            {
-                return null;
-            }
-            else
-            {
-                return Instance.Armours[itemName];
-            }
+            return Instance.Armours.Find(i => i.Name == name);
         }
 
         #endregion 
