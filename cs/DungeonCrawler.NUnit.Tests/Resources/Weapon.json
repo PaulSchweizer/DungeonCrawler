@@ -10,5 +10,6 @@
         }
     ],
     "Tags": [],
-    "EquipmentSlot": "RightHand"
+    "EquipmentSlot": "RightHand",
+	"IsUnique": true
 }

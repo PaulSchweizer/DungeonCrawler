@@ -26,8 +26,8 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
             Weapon weapon = Weapon.DeserializeFromJson(json);
             json = Utilities.JsonResource("Armour");
             Armour armour = Armour.DeserializeFromJson(json);
-            Rulebook.Instance.Weapons["Weapon"] = weapon;
-            Rulebook.Instance.Armours["Armour"] = armour;
+            Rulebook.Instance.Weapons.Add(weapon);
+            Rulebook.Instance.Armours.Add(armour);
 
             // Retrieve Items
             weapon = Rulebook.Weapon("Weapon");

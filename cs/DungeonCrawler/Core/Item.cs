@@ -9,7 +9,7 @@ namespace DungeonCrawler.Core
         public Aspect[] Aspects;
         public string[] Tags;
         public string EquipmentSlot;
-        public int Amount;
+        public bool IsUnique;
 
         public static Item DeserializeFromJson(string json)
         {

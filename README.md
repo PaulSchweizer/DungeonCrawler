@@ -33,14 +33,20 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
         - [x] Order them from lowest to highest
         - [x] Put armour consequences first
         - [ ] Can't take Consequence of Armour when pointing to original
-            - [x] Add an "Amount" attribute to the Items
-            - [ ] Copy Object from the Rulebook.Items etc. if given as a string
-            - [ ] Copy the entire object
+            - [x] Amount as separate list
+            - [x] Copy Object from the Rulebook.Items etc. if given as a string
+            - [x] Otherwise, take the entire object
+                - [x] Unique and non unique items
                 - [ ] Replace with a stand-in object later that only
                       holds the necessary, changeable attributes
-            - [ ] Add Weapon to Inventory
-            - [ ] Add Armour
-            - [ ] Add Item
+            - [x] Add Weapon to Inventory
+            - [x] Add Armour
+            - [x] Add Item
+            - [x] Remove Items
+                - [ ] Might not remove the correct item!!!
+
+            - [ ] What if serialized and equipped???
+
     - [x] Skills
     - [x] Inventory
         - [x] AddItem

@@ -39,6 +39,11 @@ namespace DungeonCrawler.NUnit.Tests
             return Character.Character.DeserializeFromJson(JsonResource("Rat"));
         }
 
+        public static Item Item()
+        {
+            return Core.Item.DeserializeFromJson(JsonResource("Item"));
+        }
+
         public static Weapon Weapon()
         {
             return Core.Weapon.DeserializeFromJson(JsonResource("Weapon"));

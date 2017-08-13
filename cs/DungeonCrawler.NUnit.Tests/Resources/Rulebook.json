@@ -52,7 +52,15 @@
             "rats"
         ]
     },
-	"Items" : [],
+	"Items" : [
+		{
+			"Name": "Item",
+			"Aspects": [],
+			"Tags": [],
+			"EquipmentSlot": null,
+			"IsUnique": false
+		}
+	],
 	"Weapons" : [
 		{
 			"Name": "Weapon",
@@ -66,7 +74,8 @@
 				}
 			],
 			"Tags": [],
-			"EquipmentSlot": "RightHand"
+			"EquipmentSlot": "RightHand",
+			"IsUnique": true
 		}
 	],
 	"Armours": [
@@ -90,7 +99,8 @@
 			"Tags": [
 				"cursed"
 			],
-			"EquipmentSlot": "Torso"
+			"EquipmentSlot": "Torso",
+			"IsUnique": true
 		}
 	]
 }

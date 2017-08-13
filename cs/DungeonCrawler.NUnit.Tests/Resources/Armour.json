@@ -18,5 +18,6 @@
     "Tags": [
         "cursed"
     ],
-    "EquipmentSlot": "Torso"
+    "EquipmentSlot": "Torso",
+	"IsUnique": true
 }

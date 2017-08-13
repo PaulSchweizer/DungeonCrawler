@@ -41,7 +41,8 @@
     "Inventory": {
         "Items": [],
         "Weapons": [],
-        "Armours": []
+        "Armours": [],
+        "Amounts": {}
     },
     "IsTakenOut": false
 }
