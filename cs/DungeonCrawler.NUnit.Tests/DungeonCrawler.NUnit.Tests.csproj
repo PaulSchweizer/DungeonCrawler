@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CharacterTests\CharacterAspectsTests.cs" />
     <Compile Include="CharacterTests\CharacterEquipmentTests.cs" />
+    <Compile Include="CharacterTests\CharacterHealthTests.cs" />
     <Compile Include="CharacterTests\CharacterSerializationTests.cs" />
     <Compile Include="CharacterTests\CharacterSkillsTests.cs" />
     <Compile Include="CharacterTests\InventoryTests.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="CoreTests\GameMasterTests.cs" />
     <Compile Include="CoreTests\ItemTests.cs" />
     <Compile Include="CoreTests\RulebookTests.cs" />
+    <Compile Include="IntegrationTests\CombatTests.cs" />
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -21,6 +21,10 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             rat = Utilities.Rat();
             weapon = Utilities.Weapon();
             armour = Utilities.Armour();
+
+            hero.Inventory.AddItem(weapon);
+            hero.Inventory.AddItem(armour);
+
             Utilities.LoadRulebook();
         }
 
@@ -64,6 +68,14 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             hero.Equip(armour.Name, "Torso");
             Assert.AreEqual(3, hero.AllConsequences.Count);
             Assert.AreSame(hero.AllConsequences[0], Rulebook.Armour(armour.Name).Consequences[0]);
+        }
+
+        [Test]
+        public void Item_has_to_be_in_inventory_to_be_euippable()
+        {
+            hero.Inventory.RemoveItem(armour);
+            hero.Equip(armour.Name, "Torso");
+            Assert.IsNull(hero.Equipment["Torso"]);
         }
     }
 }

@@ -145,6 +145,11 @@ namespace DungeonCrawler.Character
 
         public void Equip(string itemName, string slot)
         {
+            if (Inventory.Item(itemName) == null)
+            {
+                return;
+            }
+
             Item item = Rulebook.Item(itemName);
             if (slot == item.EquipmentSlot && Equipment.ContainsKey(slot))
             {
@@ -208,6 +213,58 @@ namespace DungeonCrawler.Character
 
                 return consequences;
             }
+        }
+
+        [JsonIgnore]
+        public int Protection
+        {
+            get
+            {
+                int protection = 0;
+                foreach (string itemName in Equipment.Values)
+                {
+                    Item item = Inventory.Item(itemName);
+                    if (item is Armour)
+                    {
+                        Armour armour = item as Armour;
+                        protection += armour.Protection;
+                    }
+                }
+                return protection;
+            }
+        }
+
+        public void ReceiveDamage(int damage)
+        {
+            // Subtract Protection by Armour
+            damage = Math.Max(damage - Protection, 0);
+
+            if (PhysicalStress.Value + damage > PhysicalStress.MaxValue)
+            {
+                TakeConsequence(damage);
+            }
+            else
+            {
+                PhysicalStress.Value += damage;
+            }
+        }
+
+        public void TakeConsequence(int damage)
+        {
+            foreach (Consequence consequence in AllConsequences)
+            {
+                if (damage <= consequence.Capacity && !consequence.IsTaken)
+                {
+                    consequence.Take();
+                    return;
+                }
+            }
+            GetsTakenOut(damage);
+        }
+
+        public void GetsTakenOut(int damage)
+        {
+            IsTakenOut = true;
         }
 
         #endregion

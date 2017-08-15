@@ -43,7 +43,9 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
             - [x] Add Armour
             - [x] Add Item
             - [x] Remove Items
-                - [ ] Might not remove the correct item!!!
+                - [x] Might not remove the correct item
+            - [x] Armour provides Protection
+            - [x] Item has to be in the Inventory to be taken into account when being equipped
 
             - [ ] What if serialized and equipped???
 

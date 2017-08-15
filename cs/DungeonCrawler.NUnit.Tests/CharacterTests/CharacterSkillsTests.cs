@@ -12,6 +12,8 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         public void SetUp()
         {
             hero = Utilities.Hero();
+            hero.Inventory.AddItem(Utilities.Weapon());
+            hero.Inventory.AddItem(Utilities.Armour());
             Utilities.LoadRulebook();
         }
 
