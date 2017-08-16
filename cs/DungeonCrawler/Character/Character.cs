@@ -269,6 +269,62 @@ namespace DungeonCrawler.Character
 
         #endregion
 
+        #region Actions
+
+        public void Attack(Character defender, string attackSkill = "MeleeWeapons")
+        {
+            List<string> tags = new List<string>(); 
+            for(int i = 0; i < defender.Tags.Length; i++)
+            {
+                if (!tags.Contains(defender.Tags[i]))
+                {
+                    tags.Add(defender.Tags[i]);
+                }
+            }
+            for (int i = 0; i < GameMaster.CurrentTags.Length; i++)
+            {
+                if (!tags.Contains(GameMaster.CurrentTags[i]))
+                {
+                    tags.Add(GameMaster.CurrentTags[i]);
+                }
+            }
+            int value = SkillValue(attackSkill, tags.ToArray()) + Dice.Roll();
+            int shifts = defender.Defend(this, attackSkill, value);
+            if (shifts > 0)
+            {
+                defender.ReceiveDamage(shifts);
+                if (defender.IsTakenOut)
+                {
+                    //ReceiveXP(Defender.XP)
+                }
+            }
+        }
+
+        public int Defend(Character attacker, string attackSkill, int value)
+        {
+            List<string> tags = new List<string>();
+            for (int i = 0; i < attacker.Tags.Length; i++)
+            {
+                if (!tags.Contains(attacker.Tags[i]))
+                {
+                    tags.Add(attacker.Tags[i]);
+                }
+            }
+            for (int i = 0; i < GameMaster.CurrentTags.Length; i++)
+            {
+                if (!tags.Contains(GameMaster.CurrentTags[i]))
+                {
+                    tags.Add(GameMaster.CurrentTags[i]);
+                }
+            }
+            string defendSkill = "MeleeWeapons";
+            int defendValue = SkillValue(defendSkill, tags.ToArray());
+            int shifts = value - defendValue;
+            return shifts;
+        }
+
+        #endregion
+
         #region Serialization
 
         public static Character DeserializeFromJson(string json)

@@ -12,7 +12,14 @@ namespace DungeonCrawler.Core
         {
             get
             {
-                return CurrentCell.Tags;
+                if (CurrentCell != null)
+                {
+                    return CurrentCell.Tags;
+                }
+                else
+                {
+                    return new string[] { };
+                }
             }
         }
     }

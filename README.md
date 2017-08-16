@@ -47,7 +47,7 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
             - [x] Armour provides Protection
             - [x] Item has to be in the Inventory to be taken into account when being equipped
 
-            - [ ] What if serialized and equipped???
+            - [ ] What if serialized and then equipped???
 
     - [x] Skills
     - [x] Inventory
@@ -95,7 +95,8 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
 - [ ] Move
 
 # Actions that a Player can perform
-- [ ] Attack(attacker, defender)
+- [x] Attack(skill, attacker, defender)
+    - [ ] Add Weapon Damage
 - [ ] Move(destination)
 - [ ] Repair(item)
 - [ ] Heal(character)
