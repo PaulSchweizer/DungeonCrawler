@@ -1,4 +1,6 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/a92mehch8obru8iy?svg=true)](https://ci.appveyor.com/project/PaulSchweizer/dungeoncrawler) [![Coverage Status](https://coveralls.io/repos/github/PaulSchweizer/DungeonCrawler/badge.svg?branch=master)](https://coveralls.io/github/PaulSchweizer/DungeonCrawler?branch=master)
+Master: [![Build status](https://ci.appveyor.com/api/projects/status/a92mehch8obru8iy?svg=true)](https://ci.appveyor.com/project/PaulSchweizer/dungeoncrawler) [![Coverage Status](https://coveralls.io/repos/github/PaulSchweizer/DungeonCrawler/badge.svg?branch=master)](https://coveralls.io/github/PaulSchweizer/DungeonCrawler?branch=master)
+
+Dev: [![Coverage Status](https://coveralls.io/repos/github/PaulSchweizer/DungeonCrawler/badge.svg?branch=dev)](https://coveralls.io/github/PaulSchweizer/DungeonCrawler?branch=dev)
 
 Docs: https://paulschweizer.github.io/DungeonCrawler/
 
