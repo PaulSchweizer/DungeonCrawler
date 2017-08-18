@@ -149,8 +149,7 @@ namespace DungeonCrawler.Character
             {
                 return;
             }
-
-            Item item = Rulebook.Item(itemName);
+            Item item = Inventory.Item(itemName);
             if (slot == item.EquipmentSlot && Equipment.ContainsKey(slot))
             {
                 if (Equipment[slot] != null)
@@ -234,6 +233,25 @@ namespace DungeonCrawler.Character
             }
         }
 
+        [JsonIgnore]
+        public int Damage
+        {
+            get
+            {
+                int damage = 0;
+                foreach (string itemName in Equipment.Values)
+                {
+                    Item item = Inventory.Item(itemName);
+                    if (item is Weapon)
+                    {
+                        Weapon weapon = item as Weapon;
+                        damage += weapon.Damage;
+                    }
+                }
+                return damage;
+            }
+        }
+
         public void ReceiveDamage(int damage)
         {
             // Subtract Protection by Armour
@@ -292,7 +310,7 @@ namespace DungeonCrawler.Character
             int shifts = defender.Defend(this, attackSkill, value);
             if (shifts > 0)
             {
-                defender.ReceiveDamage(shifts);
+                defender.ReceiveDamage(shifts + Damage);
                 if (defender.IsTakenOut)
                 {
                     //ReceiveXP(Defender.XP)

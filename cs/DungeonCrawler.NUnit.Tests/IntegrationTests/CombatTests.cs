@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using DungeonCrawler.Core;
 using System.Collections.Generic;
+using System;
 
 namespace DungeonCrawler.NUnit.Tests.IntegrationTests
 {
@@ -29,10 +30,16 @@ namespace DungeonCrawler.NUnit.Tests.IntegrationTests
             hero.Skills["MeleeWeapons"] = 0;
             hero.Aspects = new List<Aspect>();
             rat.Skills["MeleeWeapons"] = 1;
+            rat.Equipment["RightHand"] = null;
 
             rat.Attack(hero);
-
             Assert.AreEqual(1, hero.PhysicalStress.Value);
+
+            rat.Inventory.AddItem(weapon);
+            rat.Equip(weapon.Name, "RightHand");
+
+            rat.Attack(hero);
+            Assert.AreEqual(1 + 1 + weapon.Damage, hero.PhysicalStress.Value);
         }
     }
 }
