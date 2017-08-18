@@ -50,6 +50,7 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
             - [x] Item has to be in the Inventory to be taken into account when being equipped
 
             - [ ] What if serialized and then equipped???
+              Item should be unique
 
     - [x] Skills
     - [x] Inventory
@@ -98,7 +99,7 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
 
 # Actions that a Player can perform
 - [x] Attack(skill, attacker, defender)
-    - [ ] Add Weapon Damage
+    - [x] Add Weapon Damage
 - [ ] Move(destination)
 - [ ] Repair(item)
 - [ ] Heal(character)
