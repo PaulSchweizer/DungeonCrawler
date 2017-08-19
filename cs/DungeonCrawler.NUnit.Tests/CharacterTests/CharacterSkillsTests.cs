@@ -34,5 +34,15 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             modifiers = hero.SkillValueModifiers(skill: "MeleeWeapons", tags: new string[] { "rat" });
             Assert.AreEqual(new int[] { 1, 1, 1 }, modifiers);
         }
+
+        [Test]
+        public void Character_doesnt_have_Skill()
+        {
+            int value = hero.SkillValue("DoesntExist", new string[] { });
+            Assert.AreEqual(0, value);
+
+            int[] modifiers = hero.SkillValueModifiers(skill: "DoesntExist", tags: new string[] { "rat" });
+            Assert.AreEqual(new int[] { }, modifiers);
+        }
     }
 }

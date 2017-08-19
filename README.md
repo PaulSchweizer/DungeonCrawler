@@ -58,8 +58,7 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
         - [x] RemoveItem
         - [x] Items
     - [x] Get the SkillValue as a list of Modifiers
-        - [ ] What if the Skill doesn't exist?
-            - [ ] Exception
+        - [x] What if the Skill doesn't exist?
 
     - [x] Equipment
         - [x] Weapons
@@ -83,11 +82,11 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
 
 # Actions that a Character can perform
 - [ ] Attack
-    - [ ] MeleeWeapons
+    - [x] MeleeWeapons
     - [ ] RangedWeapons
     - [ ] Magic
 - [ ] Defend
-    - [ ] MeleeWeapons
+    - [x] MeleeWeapons
     - [ ] RangedWeapons
     - [ ] Magic
 - [ ] Repair

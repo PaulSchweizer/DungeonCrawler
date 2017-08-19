@@ -55,6 +55,9 @@ namespace DungeonCrawler.Character
         public Inventory Inventory;
         public bool IsTakenOut;
 
+        [JsonIgnore]
+        public int Spin;
+
         #region Actions
 
         #endregion
@@ -76,6 +79,10 @@ namespace DungeonCrawler.Character
 
         public int SkillValue(string skill, string[] tags)
         {
+            if (!Skills.ContainsKey(skill))
+            {
+                return 0;
+            }
             int[] modifiers = SkillValueModifiers(skill, tags);
             int value = Skills[skill];
             foreach (var item in modifiers)
@@ -335,9 +342,29 @@ namespace DungeonCrawler.Character
                     tags.Add(GameMaster.CurrentTags[i]);
                 }
             }
-            string defendSkill = "MeleeWeapons";
-            int defendValue = SkillValue(defendSkill, tags.ToArray());
+
+            // Get the best defend skill
+            int defendValue = 0;
+            string defendSkill = null;
+            foreach (string skill in Rulebook.Instance.Skills[attackSkill].OpposingSkills)
+            {
+                if (Skills.ContainsKey(skill))
+                {
+                    int skillValue = SkillValue(skill, tags.ToArray());
+                    if (skillValue > defendValue)
+                    {
+                        defendValue = skillValue;
+                        defendSkill = skill;
+                    }
+                }
+            }
             int shifts = value - defendValue;
+
+            if (shifts < -1)
+            {
+                Spin += shifts / -2;
+            }
+
             return shifts;
         }
 
