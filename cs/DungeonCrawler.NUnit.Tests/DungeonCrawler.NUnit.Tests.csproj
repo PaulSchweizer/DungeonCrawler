@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterTests\CharacterAspectsTests.cs" />
+    <Compile Include="CharacterTests\CharacterXPTests.cs" />
     <Compile Include="CharacterTests\CharacterEquipmentTests.cs" />
     <Compile Include="CharacterTests\CharacterHealthTests.cs" />
     <Compile Include="CharacterTests\CharacterSerializationTests.cs" />

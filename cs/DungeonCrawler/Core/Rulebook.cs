@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -98,7 +99,7 @@ namespace DungeonCrawler.Core
             return Instance.Armours.Find(i => i.Name == name);
         }
 
-        #endregion 
+        #endregion
 
         #region Serialization
 

@@ -46,6 +46,8 @@ namespace DungeonCrawler.Character
     {
         public int Id;
         public string Name;
+        public int XP;
+        public int SkillPoints;
         public Attribute PhysicalStress;
         public List<Consequence> Consequences;
         public Dictionary<string, int> Skills;
@@ -58,9 +60,26 @@ namespace DungeonCrawler.Character
         [JsonIgnore]
         public int Spin;
 
-        #region Actions
-
-        #endregion
+        [JsonIgnore]
+        public int Cost
+        {
+            get
+            {
+                int cost = 0;
+                foreach(int skillValue in Skills.Values)
+                {
+                    cost += skillValue;
+                }
+                foreach(Consequence consequence in AllConsequences)
+                {
+                    cost += consequence.Capacity;
+                }
+                cost += Protection;
+                cost += Damage;
+                cost += PhysicalStress.MaxValue;
+                return cost;
+            }
+        }
 
         #region Aspects and Skills
 
@@ -143,6 +162,55 @@ namespace DungeonCrawler.Character
                 }
 
                 return aspects;
+            }
+        }
+
+        #endregion
+
+        #region XP & Level
+
+        [JsonIgnore]
+        public int Level
+        {
+            get
+            {
+                return (int)Math.Sqrt(XP / 100);
+            }
+        }
+
+        public void ReceiveXP(int xp)
+        {
+            int previousLevel = Level;
+            XP += xp;
+            if (previousLevel < Level)
+            {
+                NextLevelReached();
+            }
+        }
+
+        public void NextLevelReached()
+        {
+            SkillPoints += 1;
+        }
+
+        public void LevelUpSkill(string skill)
+        {
+            // Character doesn't have the skill yet
+            if (!Skills.ContainsKey(skill))
+            {
+                if (SkillPoints > 0)
+                {
+                    Skills[skill] = 0;
+                    SkillPoints -= 1;
+                    return;
+                }
+            }
+
+            int cost = Skills[skill] + 1;
+            if (SkillPoints >= cost)
+            {
+                Skills[skill] += 1;
+                SkillPoints -= cost;
             }
         }
 
@@ -320,7 +388,7 @@ namespace DungeonCrawler.Character
                 defender.ReceiveDamage(shifts + Damage);
                 if (defender.IsTakenOut)
                 {
-                    //ReceiveXP(Defender.XP)
+                    ReceiveXP(defender.Cost);
                 }
             }
         }

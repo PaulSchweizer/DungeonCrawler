@@ -68,7 +68,16 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
         - [ ] What if equipped item is not in Inventory?
             - [ ] Exception
 
-    - [ ] XP and Levels
+    - [x] XP and Levels
+        [x] Level Formula 100 * n**2
+        [x] XP Cost
+        [x] Receive SkillPoints
+        [x] How to Skill up
+            - Per Level +1 Skill Point
+            - The max for skills is 6
+            - 5 * (6+5+4+3+2+1) = 105 meaning at Level 105 all Skills would be maxed
+            - The cost for a Skills is $level + 1
+
     - [ ] Stunts
 
 - [ ] Aspect & Tag System

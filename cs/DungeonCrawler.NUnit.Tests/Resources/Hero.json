@@ -1,6 +1,8 @@
 ﻿{
     "Id": 0,
     "Name": "Hero, a test character",
+    "XP": 0,
+    "SkillPoints": 0,
     "PhysicalStress": {
         "Value": 0,
         "MaxValue": 5,
