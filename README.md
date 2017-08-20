@@ -60,6 +60,7 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
         - [x] Items
     - [x] Get the SkillValue as a list of Modifiers
         - [x] What if the Skill doesn't exist?
+    - [ ] Loot!
 
     - [x] Equipment
         - [x] Weapons

@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Text;
 
 namespace DungeonCrawler.NUnit.Tests
 {
@@ -61,15 +60,42 @@ namespace DungeonCrawler.NUnit.Tests
     internal class NonRandomDie : Random
     {
         public static int DieResult = 0;
+        public static List<int> DieResults = new List<int>();
+        private static int _index = 0;
 
         public NonRandomDie(int dieResult = 0)
         {
             DieResult = dieResult;
         }
 
+        public NonRandomDie(List<int> dieResults)
+        {
+            DieResults = dieResults;
+        }
+
+        public static void Initialize(int dieResult)
+        {
+            DieResult = dieResult;
+            _index = 0;
+        }
+
+        public static void Initialize(List<int> dieResults)
+        {
+            DieResults = dieResults;
+            _index = 0;
+        }
+
         public override int Next(int a, int b)
         {
-            return DieResult;
+            if (_index >= DieResults.Count)
+            {
+                return DieResult;
+            }
+            else
+            {
+                _index += 1;
+                return DieResults[_index - 1];
+            }
         }
     }
 }
