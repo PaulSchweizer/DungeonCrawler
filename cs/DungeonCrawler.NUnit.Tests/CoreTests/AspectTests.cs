@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using DungeonCrawler.Core;
+using System;
 
 namespace DungeonCrawler.NUnit.Tests.CoreTests
 {
@@ -55,6 +56,13 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
 
             aspect = new Aspect("Matching rats with it's synonym #rat.", new string[] { }, 1);
             Assert.AreEqual(1, aspect.Matches(new string[] { "rats" }));
+        }
+
+        [Test]
+        public void Aspect_costs()
+        {
+            Aspect aspect = new Aspect("The #dark, #knight.", new string[] { "MeleeWeapon" }, 1);
+            Assert.AreEqual(5, aspect.Cost);
         }
     }
 }

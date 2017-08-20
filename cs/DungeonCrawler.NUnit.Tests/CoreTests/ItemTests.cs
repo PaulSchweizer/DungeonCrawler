@@ -15,5 +15,12 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
             json = Utilities.JsonResource("Armour");
             Armour armour = Armour.DeserializeFromJson(json);
         }
+
+        [Test]
+        public void Item_cost_depends_on_its_parameters()
+        {
+            Weapon weapon = Utilities.Weapon();
+            Console.WriteLine(weapon.Cost);
+        }
     }
 }

@@ -11,6 +11,20 @@ namespace DungeonCrawler.Core
         public string EquipmentSlot;
         public bool IsUnique;
 
+        public virtual int Cost
+        {
+            get
+            {
+                int cost = 0;
+                foreach(Aspect aspect in Aspects)
+                {
+                    cost += aspect.Cost;
+                }
+                cost += Tags.Length;
+                return cost;
+            }
+        }
+
         public static Item DeserializeFromJson(string json)
         {
             return JsonConvert.DeserializeObject<Item>(json);
@@ -22,6 +36,16 @@ namespace DungeonCrawler.Core
         public string[] Skills;
         public int Damage;
 
+        public override int Cost
+        {
+            get
+            {
+                int cost = base.Cost;
+                cost += Damage;
+                return cost;
+            }
+        }
+
         new public static Weapon DeserializeFromJson(string json)
         {
             return JsonConvert.DeserializeObject<Weapon>(json);
@@ -32,6 +56,16 @@ namespace DungeonCrawler.Core
     {
         public int Protection;
         public Character.Consequence[] Consequences;
+
+        public override int Cost
+        {
+            get
+            {
+                int cost = base.Cost;
+                cost += Protection;
+                return cost;
+            }
+        }
 
         new public static Armour DeserializeFromJson(string json)
         {

@@ -31,6 +31,7 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
     - [x] Serialize to json
     - [x] Attributes
     - [x] Aspects
+        - [x] Cost
     - [x] Consequences
         - [x] Order them from lowest to highest
         - [x] Put armour consequences first
