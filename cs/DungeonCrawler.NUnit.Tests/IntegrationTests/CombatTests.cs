@@ -21,6 +21,8 @@ namespace DungeonCrawler.NUnit.Tests.IntegrationTests
             weapon = Utilities.Weapon();
             armour = Utilities.Armour();
             Utilities.LoadRulebook();
+            Dice.Distribution = new Dictionary<int, int>() { { -4, -4 }, { -3, -3 }, { -2, -2 }, { -1, -1 }, { 0, 0 },
+                                                             { 1, 1 }, { 2, 2 }, { 3, 3 }, { 4, 4 }};
             Dice.Die = new NonRandomDie(0);
             hero.Aspects = new List<Aspect>();
             rat.Equipment["RightHand"] = null;
@@ -85,24 +87,24 @@ namespace DungeonCrawler.NUnit.Tests.IntegrationTests
             // 3. The fight happens
             // Round 1:
             // The Hero almost kills the first rat right away due to good dice rolls
-            //NonRandomDie.DieResult = 4;
-            //hero.Attack(rat1, "MeleeWeapons");
+            NonRandomDie.DieResult = 4;
+            hero.Attack(rat1, "MeleeWeapons");
 
             // The first rat attacks the hero, it has to roll at least 3 in order to deal some damage,
             // The 0 is not enough
-            //NonRandomDie.DieResult = 0;
-            //rat1.Attack(hero, "MeleeWeapons");
+            NonRandomDie.DieResult = 0;
+            rat1.Attack(hero, "MeleeWeapons");
 
             // The next rat is really lucky and rolls a 4, dealing 2 damage
-            NonRandomDie.DieResult = 2;
+            NonRandomDie.DieResult = 4;
             rat2.Attack(hero, "MeleeWeapons");
 
-            //// The third rat is really unlucky and rolls a -1, giving the hero 2 Spin on his next Action
-            //NonRandomDie.DieResult = -2;
-            //rat3.Attack(hero, "MeleeWeapons");
+            // The third rat is really unlucky and rolls a -1, giving the hero 2 Spin on his next Action
+            NonRandomDie.DieResult = -2;
+            rat3.Attack(hero, "MeleeWeapons");
 
-            //Console.WriteLine(hero.Spin);
-            //Console.WriteLine(Character.Character.SerializeToJson(hero));
+            Console.WriteLine(hero.Spin);
+            Console.WriteLine(Character.Character.SerializeToJson(hero));
         }
     }
 }

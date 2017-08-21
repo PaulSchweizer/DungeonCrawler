@@ -433,9 +433,6 @@ namespace DungeonCrawler.Character
                 Spin += shifts / -2;
             }
 
-            Console.WriteLine(defendValue);
-            Console.WriteLine(value);
-
             return shifts;
         }
 

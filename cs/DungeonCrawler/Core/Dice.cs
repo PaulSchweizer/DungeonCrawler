@@ -8,14 +8,21 @@ namespace DungeonCrawler.Core
     {
         public static Random Die = new Random();
 
+        public static Dictionary<int, int> Distribution =
+            new Dictionary<int, int>() { { 1, -4 }, { 5, -3 }, { 15, -2 }, { 31, -1 }, { 50, 0 },
+                                         { 66, 1 }, { 76, 2 }, { 80, 3 }, { 81, 4 }};
+
         public static int Roll()
         {
-            int result = 0;
-            for (int i = 0; i < 4; i++)
+            int die = Die.Next(0, 82);
+            foreach (int key in Distribution.Keys)
             {
-                result += Die.Next(-1, 2);
+                if (die <= key)
+                {
+                    return Distribution[key];
+                }
             }
-            return result;
+            return 0;
         }
     }
 }
