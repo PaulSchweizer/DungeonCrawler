@@ -11,6 +11,7 @@ namespace DungeonCrawler.Core
         public string EquipmentSlot;
         public bool IsUnique;
 
+        [JsonIgnore]
         public virtual int Cost
         {
             get
