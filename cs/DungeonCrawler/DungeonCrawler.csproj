@@ -45,6 +45,7 @@
     <Compile Include="Character\Inventory.cs" />
     <Compile Include="Core\Aspect.cs" />
     <Compile Include="Core\Dice.cs" />
+    <Compile Include="Core\GameEventsLogger.cs" />
     <Compile Include="Core\GameMaster.cs" />
     <Compile Include="Core\Cell.cs" />
     <Compile Include="Core\Item.cs" />

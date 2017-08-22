@@ -6,7 +6,7 @@ using System;
 namespace DungeonCrawler.NUnit.Tests.IntegrationTests
 {
     [TestFixture]
-    public class CombatTests
+    public class CombatIntegrationTests
     {
         Character.Character hero;
         Character.Character rat;
@@ -26,6 +26,8 @@ namespace DungeonCrawler.NUnit.Tests.IntegrationTests
             Dice.Die = new NonRandomDie(0);
             hero.Aspects = new List<Aspect>();
             rat.Equipment["RightHand"] = null;
+
+            GameEventsLogger.Reset();
         }
 
         [Test]
@@ -103,8 +105,7 @@ namespace DungeonCrawler.NUnit.Tests.IntegrationTests
             NonRandomDie.DieResults = new List<int> { -2, 0 };
             rat3.Attack(hero, "MeleeWeapons");
 
-            Console.WriteLine(hero.Spin);
-            Console.WriteLine(Character.Character.SerializeToJson(hero));
+            Console.WriteLine(GameEventsLogger.Next);
         }
     }
 }

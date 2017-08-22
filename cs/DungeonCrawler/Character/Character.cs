@@ -381,8 +381,11 @@ namespace DungeonCrawler.Character
                     tags.Add(GameMaster.CurrentTags[i]);
                 }
             }
-            int value = SkillValue(attackSkill, tags.ToArray()) + Dice.Roll();
-            int shifts = defender.Defend(this, attackSkill, value);
+            int skillValue = SkillValue(attackSkill, tags.ToArray());
+            int diceValue = Dice.Roll();
+            int totalValue = skillValue + diceValue;
+            GameEventsLogger.LogAttack(this, defender, attackSkill, totalValue, skillValue, diceValue);
+            int shifts = defender.Defend(this, attackSkill, totalValue);
             if (shifts > 0)
             {
                 defender.ReceiveDamage(shifts + Damage);
@@ -393,7 +396,7 @@ namespace DungeonCrawler.Character
             }
         }
 
-        public int Defend(Character attacker, string attackSkill, int value)
+        public int Defend(Character attacker, string attackSkill, int attackValue)
         {
             List<string> tags = new List<string>();
             for (int i = 0; i < attacker.Tags.Length; i++)
@@ -426,8 +429,10 @@ namespace DungeonCrawler.Character
                     }
                 }
             }
-            int shifts = value - defendValue + Dice.Roll();
-
+            int diceValue = Dice.Roll();
+            int totalDefendValue = defendValue + diceValue;
+            int shifts = attackValue - totalDefendValue;
+            GameEventsLogger.LogDefend(attacker, this, defendSkill, shifts, attackValue, defendValue, diceValue);
             if (shifts < -1)
             {
                 Spin += shifts / -2;

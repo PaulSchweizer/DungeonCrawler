@@ -26,6 +26,10 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
 - [x] All available Tags
 - [x] All available Items
 
+# Listener
+- [ ] Load Templates
+- [ ] Listen to Actions
+
 # Character
 - [ ] Character
     - [x] Serialize to json

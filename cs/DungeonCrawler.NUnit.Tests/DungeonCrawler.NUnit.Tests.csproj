@@ -51,8 +51,9 @@
     <Compile Include="CoreTests\AspectTests.cs" />
     <Compile Include="CoreTests\GameMasterTests.cs" />
     <Compile Include="CoreTests\ItemTests.cs" />
+    <Compile Include="CoreTests\GameEventsLoggerTests.cs" />
     <Compile Include="CoreTests\RulebookTests.cs" />
-    <Compile Include="IntegrationTests\CombatTests.cs" />
+    <Compile Include="IntegrationTests\CombatIntegrationTests.cs" />
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
