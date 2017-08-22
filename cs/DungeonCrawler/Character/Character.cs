@@ -426,7 +426,7 @@ namespace DungeonCrawler.Character
                     }
                 }
             }
-            int shifts = value - defendValue;
+            int shifts = value - defendValue + Dice.Roll();
 
             if (shifts < -1)
             {
