@@ -338,6 +338,7 @@ namespace DungeonCrawler.Character
             }
             else
             {
+                GameEventsLogger.LogReceivePhysicalStress(this, damage);
                 PhysicalStress.Value += damage;
             }
         }
@@ -349,15 +350,17 @@ namespace DungeonCrawler.Character
                 if (damage <= consequence.Capacity && !consequence.IsTaken)
                 {
                     consequence.Take();
+                    GameEventsLogger.LogTakeConsequence(this, consequence);
                     return;
                 }
             }
-            GetsTakenOut(damage);
+            GetsTakenOut();
         }
 
-        public void GetsTakenOut(int damage)
+        public void GetsTakenOut()
         {
             IsTakenOut = true;
+            GameEventsLogger.LogGetsTakenOut(this);
         }
 
         #endregion
@@ -432,7 +435,7 @@ namespace DungeonCrawler.Character
             int diceValue = Dice.Roll();
             int totalDefendValue = defendValue + diceValue;
             int shifts = attackValue - totalDefendValue;
-            GameEventsLogger.LogDefend(attacker, this, defendSkill, shifts, attackValue, defendValue, diceValue);
+            GameEventsLogger.LogDefend(attacker, this, defendSkill, totalDefendValue, defendValue, diceValue);
             if (shifts < -1)
             {
                 Spin += shifts / -2;
