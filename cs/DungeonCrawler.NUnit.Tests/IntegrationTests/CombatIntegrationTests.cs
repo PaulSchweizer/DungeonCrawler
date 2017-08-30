@@ -88,7 +88,7 @@ namespace DungeonCrawler.NUnit.Tests.IntegrationTests
 
             // 3. The fight happens
             // Round 1:
-            // The Hero almost kills the first rat right away due to good dice rolls
+            // The Hero defeats the first rat right away due to good dice rolls
             NonRandomDie.Initialize(new List<int> { 4, 0 });
             hero.Attack(rat1, "MeleeWeapons");
 
@@ -104,6 +104,38 @@ namespace DungeonCrawler.NUnit.Tests.IntegrationTests
             // The third rat is really unlucky and rolls a -1, giving the hero 2 Spin on his next Action
             NonRandomDie.Initialize(new List<int> { -2, 0 });
             rat3.Attack(hero, "MeleeWeapons");
+
+            // Round 2:
+            // The Hero damages the second rat right away due to good dice rolls
+            NonRandomDie.Initialize(new List<int> { 2, 0 });
+            hero.Attack(rat2, "MeleeWeapons");
+
+            NonRandomDie.Initialize(new List<int> { 0, 0 });
+            rat2.Attack(hero, "MeleeWeapons");
+
+            NonRandomDie.Initialize(new List<int> { 2, 0 });
+            rat3.Attack(hero, "MeleeWeapons");
+
+            // Round 3:
+            NonRandomDie.Initialize(new List<int> { 1, 0 });
+            hero.Attack(rat2, "MeleeWeapons");
+
+            NonRandomDie.Initialize(new List<int> { -1, 0 });
+            rat2.Attack(hero, "MeleeWeapons");
+
+            NonRandomDie.Initialize(new List<int> { 3, 0 });
+            rat3.Attack(hero, "MeleeWeapons");
+
+            // Round 4:
+            NonRandomDie.Initialize(new List<int> { 1, -1 });
+            hero.Attack(rat3, "MeleeWeapons");
+
+            NonRandomDie.Initialize(new List<int> { 3, -3 });
+            rat3.Attack(hero, "MeleeWeapons");
+
+            // Round 5:
+            NonRandomDie.Initialize(new List<int> { 1, -1 });
+            hero.Attack(rat3, "MeleeWeapons");
 
             Console.WriteLine(GameEventsLogger.Next);
         }

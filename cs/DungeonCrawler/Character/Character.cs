@@ -438,7 +438,9 @@ namespace DungeonCrawler.Character
             GameEventsLogger.LogDefend(attacker, this, defendSkill, totalDefendValue, defendValue, diceValue);
             if (shifts < -1)
             {
-                Spin += shifts / -2;
+                int spin = shifts / -2;
+                Spin += spin;
+                GameEventsLogger.LogGainsSpin(this, spin);
             }
 
             return shifts;

@@ -12,11 +12,12 @@ namespace DungeonCrawler.Core
 
         private static int index = 0;
 
-        private static string AttackTemplate = "\u2694 \"{0}\" attacks \"{1}\" with \"{2}\" {3} ({4}+D{5})";
-        private static string DefendTemplate = "\u26C9 \"{0}\" defends against \"{1}\" with \"{2}\" {3} ({4}+D{5})";
-        private static string ReceivePhysicalStressTemplate = "* \"{0}\" receives {1} PhysicalStress";
-        private static string TakeConsequenceTemplate = "\"{0}\" takes Consequence {1} {2}";
-        private static string GetsTakenOutTemplate = "\u271D \"{0}\" is taken out.";
+        private static string AttackTemplate = "\u2694 __{0}__ _attacks_ __{1}__ with _{2}_ {3} ({4}+D{5})";
+        private static string DefendTemplate = "\u26C9 __{0}__ _defends_ against __{1}__ with _{2}_ {3} ({4}+D{5})";
+        private static string ReceivePhysicalStressTemplate = "__{0}__ receives {1} _PhysicalStress_";
+        private static string TakeConsequenceTemplate = "__{0}__ takes _Consequence_ \"{1}\" {2}";
+        private static string GetsTakenOutTemplate = "\u271D __{0}__ is _taken out_";
+        private static string GainsSpinTemplate = "__{0}__ gains {1} _spin_";
 
         public static string Next
         {
@@ -73,6 +74,11 @@ namespace DungeonCrawler.Core
         public static void LogGetsTakenOut(Character.Character character)
         {
             Log.Add(string.Format(GetsTakenOutTemplate, character.Name));
+        }
+
+        public static void LogGainsSpin(Character.Character character, int spin)
+        {
+            Log.Add(string.Format(GainsSpinTemplate, character.Name, spin));
         }
     }
 }
