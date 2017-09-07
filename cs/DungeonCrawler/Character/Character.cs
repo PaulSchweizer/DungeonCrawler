@@ -218,11 +218,11 @@ namespace DungeonCrawler.Character
 
         #region Equipment
 
-        public void Equip(string itemName, string slot)
+        public bool Equip(string itemName, string slot)
         {
             if (Inventory.Item(itemName) == null)
             {
-                return;
+                return false;
             }
             Item item = Inventory.Item(itemName);
             if (slot == item.EquipmentSlot && Equipment.ContainsKey(slot))
@@ -232,7 +232,9 @@ namespace DungeonCrawler.Character
                     UnEquip(slot);
                 }
                 Equipment[slot] = itemName;
+                return true;
             }
+            return false;
         }
 
         public void UnEquip(string itemName)

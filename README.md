@@ -27,8 +27,7 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
 - [x] All available Items
 
 # Listener
-- [ ] Load Templates
-- [ ] Listen to Actions
+- [x] Listen to Actions
 
 # Character
 - [ ] Character
@@ -69,10 +68,8 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
     - [x] Equipment
         - [x] Weapons
         - [x] Armour
-        - [ ] What if equipped in the wrong slot?
-            - [ ] Exceptions for these cases
-        - [ ] What if equipped item is not in Inventory?
-            - [ ] Exception
+        - [x] What if equipped in the wrong slot?
+        - [x] What if equipped item is not in Inventory?
 
     - [x] XP and Levels
         [x] Level Formula 100 * n**2

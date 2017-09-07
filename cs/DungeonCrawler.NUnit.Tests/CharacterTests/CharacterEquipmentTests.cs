@@ -71,11 +71,18 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         }
 
         [Test]
-        public void Item_has_to_be_in_inventory_to_be_euippable()
+        public void Item_has_to_be_in_inventory_to_be_equippable()
         {
             hero.Inventory.RemoveItem(armour);
             hero.Equip(armour.Name, "Torso");
             Assert.IsNull(hero.Equipment["Torso"]);
+        }
+
+        [Test]
+        public void Item_can_only_be_equipped_in_allowed_slot()
+        {
+            bool equipped = hero.Equip(armour.Name, "WrongSlot");
+            Assert.IsFalse(equipped);
         }
     }
 }
