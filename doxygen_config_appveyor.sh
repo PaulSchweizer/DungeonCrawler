@@ -1,3 +1,5 @@
+PROJECT_NAME           = "Dungeon Crawler"
+PROJECT_BRIEF          = "Library for turn based RPG"
 INPUT                  = C:\projects\dungeoncrawler\cs\DungeonCrawler
 FILE_PATTERNS          = *.cs
 RECURSIVE              = YES
