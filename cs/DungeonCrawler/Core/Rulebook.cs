@@ -12,6 +12,7 @@ namespace DungeonCrawler.Core
         public List<Item> Items = new List<Item>();
         public List<Weapon> Weapons = new List<Weapon>();
         public List<Armour> Armours = new List<Armour>();
+        public List<Stunt> Stunts = new List<Stunt>();
 
         #region Singleton
 
@@ -83,11 +84,6 @@ namespace DungeonCrawler.Core
             }
             return null;
         }
-
-        //public static Item GetNewItem(string name)
-        //{
-
-        //}
 
         public static Weapon Weapon(string name)
         {

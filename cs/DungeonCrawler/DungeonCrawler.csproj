@@ -30,6 +30,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -51,6 +53,7 @@
     <Compile Include="Core\Item.cs" />
     <Compile Include="Core\Rulebook.cs" />
     <Compile Include="Core\Skill.cs" />
+    <Compile Include="Core\Stunt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -73,7 +76,9 @@
   <PropertyGroup>
     <PostBuildEvent>if not exist "C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\dlls" mkdir C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\dlls
 
-xcopy /y /c $(TargetPath) C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\dlls</PostBuildEvent>
+xcopy /y /c $(TargetPath) C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\dlls
+
+xcopy /y /c C:\PROJECTS\DungeonCrawler\cs\DungeonCrawler.NUnit.Tests\Resources C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\json</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

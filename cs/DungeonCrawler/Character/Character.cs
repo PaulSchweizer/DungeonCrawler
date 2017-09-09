@@ -53,6 +53,7 @@ namespace DungeonCrawler.Character
         public Dictionary<string, int> Skills;
         public string[] Tags;
         public List<Aspect> Aspects;
+        public List<Stunt> Stunts;
         public Dictionary<string, string> Equipment;
         public Inventory Inventory;
         public bool IsTakenOut;
@@ -369,7 +370,7 @@ namespace DungeonCrawler.Character
 
         #region Actions
 
-        public void Attack(Character defender, string attackSkill = "MeleeWeapons")
+        public void Attack(Character defender, string attackSkill = "MeleeWeapons", Stunt stunt = null)
         {
             List<string> tags = new List<string>(); 
             for(int i = 0; i < defender.Tags.Length; i++)
@@ -389,6 +390,10 @@ namespace DungeonCrawler.Character
             int skillValue = SkillValue(attackSkill, tags.ToArray());
             int diceValue = Dice.Roll();
             int totalValue = skillValue + diceValue;
+            if (stunt != null)
+            {
+                totalValue += stunt.Bonus;
+            }
             GameEventsLogger.LogAttack(this, defender, attackSkill, totalValue, skillValue, diceValue);
             int shifts = defender.Defend(this, attackSkill, totalValue);
             if (shifts > 0)

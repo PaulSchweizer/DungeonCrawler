@@ -82,6 +82,8 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
             - The cost for a Skills is $level + 1
 
     - [ ] Stunts
+        - [ ] Cost
+        - [ ] FatePoints / ActionPoints etc.
 
 - [ ] Aspect & Tag System
     - [ ] Actions
@@ -131,6 +133,15 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
     - Repair
 - [ ] Healing
     - Heal
+
+# Unity
+- [ ] Levelbuilder
+    - [ ] Read Json and build the level
+    - [ ] Testing tiles are forest, clearing and cliffs for now
+    - [ ] Add enemies to the tiles
+    - [ ] Add treasure to the tiles
+    - [ ] Add Quest things to the tiles
+    - [ ] Dynamically build levels
 
 # Different interaction levels in the game
 Worldmap

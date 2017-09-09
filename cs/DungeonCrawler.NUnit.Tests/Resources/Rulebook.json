@@ -102,5 +102,15 @@
 			"EquipmentSlot": "Torso",
 			"IsUnique": true
 		}
-	]
+	],
+    "Stunts": [
+        {
+            "Name": "MagicAttack",
+            "Cost": 2,
+            "Bonus": 2,
+            "Skills": [
+                "MeleeWeapons"
+            ]
+        }
+    ]
 }

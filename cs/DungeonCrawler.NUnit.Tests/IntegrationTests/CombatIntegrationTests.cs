@@ -57,6 +57,16 @@ namespace DungeonCrawler.NUnit.Tests.IntegrationTests
         }
 
         [Test]
+        public void Hero_uses_Stunt()
+        {
+            hero.Skills["MeleeWeapons"] = 1;
+            rat.Skills["MeleeWeapons"] = 1;
+
+            hero.Attack(rat, "MeleeWeapons", hero.Stunts[0]);
+            Assert.AreEqual(2, rat.PhysicalStress.Value);
+        }
+
+        [Test]
         public void Example_combat()
         {
             // Our Hero is venturing around in #dark #caverns.

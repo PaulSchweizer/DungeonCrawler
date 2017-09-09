@@ -36,6 +36,16 @@
             "Bonus": 1
         }
     ],
+    "Stunts": [
+        {
+            "Name": "MagicAttack",
+            "Cost": 2,
+            "Bonus": 2,
+            "Skills": [
+                "MeleeWeapons"
+            ]
+        }
+    ],
     "Equipment": {
         "RightHand": null,
         "Torso": null
