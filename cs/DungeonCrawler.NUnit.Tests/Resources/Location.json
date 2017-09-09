@@ -1,0 +1,28 @@
+﻿{
+	"Name": "Forest",
+	"Description": "A #dark #forest.",
+	"Tags": [
+		"dark",
+		"forest"
+	],
+	"Floorplan": [
+		{
+			"Position": [
+				0,
+				0
+			],
+			"Type": "Forest",
+			"Tags": [
+				"dark"
+			]
+		},
+		{
+			"Position": [
+				1,
+				0
+			],
+			"Type": "Clearing",
+			"Tags": []
+		}
+	]
+}

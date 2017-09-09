@@ -130,6 +130,9 @@
   <data name="Item" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\item.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Location" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\location.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Rat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\rat.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

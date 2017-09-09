@@ -57,6 +57,16 @@ namespace DungeonCrawler.NUnit.Tests.IntegrationTests
         }
 
         [Test]
+        public void Hero_uses_spin_when_attacking()
+        {
+            hero.Skills["MeleeWeapons"] = 1;
+            rat.Skills["MeleeWeapons"] = 1;
+            hero.Spin = 2;
+            hero.Attack(rat);
+            Assert.AreEqual(2, rat.PhysicalStress.Value);
+        }
+
+        [Test]
         public void Hero_uses_Stunt()
         {
             hero.Skills["MeleeWeapons"] = 1;
@@ -98,9 +108,9 @@ namespace DungeonCrawler.NUnit.Tests.IntegrationTests
 
             // 3. The fight happens
             // Round 1:
-            // The Hero defeats the first rat right away due to good dice rolls
-            NonRandomDie.Initialize(new List<int> { 4, 0 });
-            hero.Attack(rat1, "MeleeWeapons");
+            // The Hero defeats the first rat right away due to good dice rolls and usage of his Stunt
+            NonRandomDie.Initialize(new List<int> { 2, 0 });
+            hero.Attack(rat1, "MeleeWeapons", hero.Stunts[0]);
 
             // The first rat attacks the hero, it has to roll at least 3 in order to deal some damage,
             // The 0 is not enough

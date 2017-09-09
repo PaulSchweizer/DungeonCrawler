@@ -181,6 +181,7 @@ namespace DungeonCrawler.Character
 
         public void ReceiveXP(int xp)
         {
+            GameEventsLogger.LogReceivesXP(this, xp);
             int previousLevel = Level;
             XP += xp;
             if (previousLevel < Level)
@@ -191,6 +192,7 @@ namespace DungeonCrawler.Character
 
         public void NextLevelReached()
         {
+            GameEventsLogger.LogReachesNextLevel(this);
             SkillPoints += 1;
         }
 
@@ -372,6 +374,7 @@ namespace DungeonCrawler.Character
 
         public void Attack(Character defender, string attackSkill = "MeleeWeapons", Stunt stunt = null)
         {
+            GameEventsLogger.LogSeparator("Attack");
             List<string> tags = new List<string>(); 
             for(int i = 0; i < defender.Tags.Length; i++)
             {
@@ -393,6 +396,13 @@ namespace DungeonCrawler.Character
             if (stunt != null)
             {
                 totalValue += stunt.Bonus;
+                GameEventsLogger.LogUsesStunt(this, stunt);
+            }
+            if (Spin > 0)
+            {
+                totalValue += Spin;
+                GameEventsLogger.LogUsesSpin(this, Spin);
+                Spin = 0;
             }
             GameEventsLogger.LogAttack(this, defender, attackSkill, totalValue, skillValue, diceValue);
             int shifts = defender.Defend(this, attackSkill, totalValue);

@@ -103,6 +103,16 @@ namespace DungeonCrawler.NUnit.Tests {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Location {
+            get {
+                object obj = ResourceManager.GetObject("Location", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Rat {
             get {
                 object obj = ResourceManager.GetObject("Rat", resourceCulture);

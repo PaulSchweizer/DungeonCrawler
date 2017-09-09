@@ -52,6 +52,11 @@ namespace DungeonCrawler.NUnit.Tests
         {
             return Core.Armour.DeserializeFromJson(JsonResource("Armour"));
         }
+
+        public static Location Location()
+        {
+            return Core.Location.DeserializeFromJson(JsonResource("Location"));
+        }
     }
 
     /// <summary>

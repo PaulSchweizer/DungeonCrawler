@@ -51,6 +51,7 @@
     <Compile Include="Core\GameMaster.cs" />
     <Compile Include="Core\Cell.cs" />
     <Compile Include="Core\Item.cs" />
+    <Compile Include="Core\Location.cs" />
     <Compile Include="Core\Rulebook.cs" />
     <Compile Include="Core\Skill.cs" />
     <Compile Include="Core\Stunt.cs" />

@@ -52,6 +52,7 @@
     <Compile Include="CoreTests\GameMasterTests.cs" />
     <Compile Include="CoreTests\ItemTests.cs" />
     <Compile Include="CoreTests\GameEventsLoggerTests.cs" />
+    <Compile Include="CoreTests\LocationTests.cs" />
     <Compile Include="CoreTests\RulebookTests.cs" />
     <Compile Include="IntegrationTests\CombatIntegrationTests.cs" />
     <Compile Include="Resource1.Designer.cs">
@@ -79,6 +80,7 @@
     <EmbeddedResource Include="Resources\GameMaster.json" />
     <EmbeddedResource Include="Resources\Rulebook.json" />
     <EmbeddedResource Include="Resources\TestCharacter.json" />
+    <EmbeddedResource Include="Resources\Location.json" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
