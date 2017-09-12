@@ -57,10 +57,16 @@ namespace DungeonCrawler.NUnit.Tests
         {
             return Core.Location.DeserializeFromJson(JsonResource("Location"));
         }
+
+        public static void SetupTestDice()
+        {
+            Dice.Distribution = new Dictionary<int, int>() { { -4, -4 }, { -3, -3 }, { -2, -2 }, { -1, -1 }, { 0, 0 },
+                                                             { 1, 1 }, { 2, 2 }, { 3, 3 }, { 4, 4 }};
+        }
     }
 
     /// <summary>
-    /// Mock the dice roll and provides a predictable result.
+    /// Mock the dice roll and provide a predictable result.
     /// </summary>
     internal class NonRandomDie : Random
     {

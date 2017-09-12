@@ -1,6 +1,7 @@
 ﻿using DungeonCrawler.Character;
 using DungeonCrawler.Core;
 using NUnit.Framework;
+using System;
 
 namespace DungeonCrawler.NUnit.Tests.CharacterTests
 {
@@ -18,6 +19,8 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             rat = Utilities.Rat();
             armour = Utilities.Armour();
             Utilities.LoadRulebook();
+            Utilities.SetupTestDice();
+            Dice.Die = new NonRandomDie(0);
         }
 
         [Test]
@@ -67,6 +70,28 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             {
                 Assert.IsFalse(consequence.IsTaken);
             }
+        }
+
+        [Test]
+        public void Hero_heals_consequence()
+        {
+            hero.Skills["Healing"] = 1;
+            hero.Consequences[0].Take();
+            hero.Consequences[1].Take();
+
+            // Not enough skill value to heal minor consequence of 2
+            hero.Heal(hero, hero.Consequences[0]);
+            Assert.IsTrue(hero.Consequences[0].IsTaken);
+
+            Dice.Die = new NonRandomDie(1);
+            hero.Heal(hero, hero.Consequences[0]);
+            Assert.IsFalse(hero.Consequences[0].IsTaken);
+
+            Dice.Die = new NonRandomDie(3);
+            hero.Heal(hero, hero.Consequences[1]);
+            Assert.IsFalse(hero.Consequences[1].IsTaken);
+
+            Console.WriteLine(GameEventsLogger.Next);
         }
     }
 }

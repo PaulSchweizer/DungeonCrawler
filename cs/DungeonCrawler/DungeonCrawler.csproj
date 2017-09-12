@@ -75,11 +75,12 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if not exist "C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\dlls" mkdir C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\dlls
+    <PostBuildEvent>if not exist C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\dlls mkdir C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\dlls
 
 xcopy /y /c $(TargetPath) C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\dlls
 
-xcopy /y /c C:\PROJECTS\DungeonCrawler\cs\DungeonCrawler.NUnit.Tests\Resources C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\json</PostBuildEvent>
+if not exist C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\json\TestData mkdir C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\json\TestData
+xcopy /y /c C:\PROJECTS\DungeonCrawler\cs\DungeonCrawler.NUnit.Tests\Resources C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\json\TestData</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

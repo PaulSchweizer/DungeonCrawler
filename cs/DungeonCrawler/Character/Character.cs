@@ -99,12 +99,12 @@ namespace DungeonCrawler.Character
 
         public int SkillValue(string skill, string[] tags)
         {
-            if (!Skills.ContainsKey(skill))
+            int value = 0;
+            if (Skills.ContainsKey(skill))
             {
-                return 0;
+                value = Skills[skill];
             }
             int[] modifiers = SkillValueModifiers(skill, tags);
-            int value = Skills[skill];
             foreach (var item in modifiers)
             {
                 value += item;
@@ -461,6 +461,20 @@ namespace DungeonCrawler.Character
             }
 
             return shifts;
+        }
+
+        public void Heal(Character patient, Consequence consequence)
+        {
+            int skillValue = SkillValue("Healing", GameMaster.CurrentTags);
+            int diceValue = Dice.Roll();
+            int totalValue = skillValue + diceValue;
+            bool success = false;
+            if (totalValue >= consequence.Capacity)
+            {
+                consequence.IsTaken = false;
+                success = true;
+            }
+            GameEventsLogger.LogHealing(this, patient, consequence, totalValue, skillValue, diceValue, success);
         }
 
         #endregion

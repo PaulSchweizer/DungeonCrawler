@@ -14,10 +14,10 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
 
 # Todos
 - [ ] GameMaster
-    - [ ] Location
+    - [x] Location
     - [x] Cell
     - [ ] Situation
-    - [ ] LoadRulebook
+    - [x] LoadRulebook
 - [x] Tags
 - [x] Aspects
 
@@ -85,12 +85,6 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
         - [ ] Cost
         - [ ] FatePoints / ActionPoints etc.
 
-- [ ] Aspect & Tag System
-    - [ ] Actions
-        - [ ] Combat
-        - [ ] Magic
-        - [ ] Trading
-
 - Quest System
 (- Conversation System)
 
@@ -108,6 +102,7 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
 - [ ] Heal
     - [ ] Stress
     - [ ] Consequence
+    - [ ] Bug Consequence adds empty Aspects to the List when healing ???
 - [ ] Move
 
 # Actions that a Player can perform
@@ -136,12 +131,12 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
 
 # Unity
 - [ ] Levelbuilder
-    - [ ] Read Json and build the level
-    - [ ] Testing tiles are forest, clearing and cliffs for now
+    - [x] Read Json and build the level
+    - [x] Testing tiles are forest and clearing for now
+    - [x] Dynamically build levels
     - [ ] Add enemies to the tiles
     - [ ] Add treasure to the tiles
     - [ ] Add Quest things to the tiles
-    - [ ] Dynamically build levels
 
 # Different interaction levels in the game
 Worldmap

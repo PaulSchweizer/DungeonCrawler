@@ -8,3 +8,20 @@ Item:
   ☐ amount
   ☐ health
  ☐ EquipmentSlots
+
+
+ ☐ Load the Character from json
+ ☐ Play
+ ☐ Serialize back to json
+ ☐ Discard the PlayerCharacter object
+
+
+
+ ☐ Initialize
+  ☐ Load Rulebook
+  ☐ Load
+
+ ☐ Connection Objects
+  ☐
+
+

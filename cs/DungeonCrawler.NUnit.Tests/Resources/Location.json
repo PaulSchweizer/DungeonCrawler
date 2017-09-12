@@ -1,5 +1,5 @@
 ﻿{
-	"Name": "Forest",
+	"Name": "Dark Forest",
 	"Description": "A #dark #forest.",
 	"Tags": [
 		"dark",
@@ -19,6 +19,30 @@
 		{
 			"Position": [
 				1,
+				0
+			],
+			"Type": "Clearing",
+			"Tags": []
+		},
+		{
+			"Position": [
+				2,
+				0
+			],
+			"Type": "Clearing",
+			"Tags": []
+		},
+		{
+			"Position": [
+				3,
+				0
+			],
+			"Type": "Clearing",
+			"Tags": []
+		},
+		{
+			"Position": [
+				4,
 				0
 			],
 			"Type": "Clearing",

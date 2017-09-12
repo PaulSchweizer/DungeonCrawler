@@ -21,8 +21,7 @@ namespace DungeonCrawler.NUnit.Tests.IntegrationTests
             weapon = Utilities.Weapon();
             armour = Utilities.Armour();
             Utilities.LoadRulebook();
-            Dice.Distribution = new Dictionary<int, int>() { { -4, -4 }, { -3, -3 }, { -2, -2 }, { -1, -1 }, { 0, 0 },
-                                                             { 1, 1 }, { 2, 2 }, { 3, 3 }, { 4, 4 }};
+            Utilities.SetupTestDice();
             Dice.Die = new NonRandomDie(0);
             hero.Aspects = new List<Aspect>();
             rat.Equipment["RightHand"] = null;

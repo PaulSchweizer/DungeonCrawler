@@ -23,6 +23,8 @@ namespace DungeonCrawler.Core
         private static string UsesSpinTemplate = "\u2A39 __{0}__ uses {1} __Spin__";
         private static string ReceivesXPTemplate = "\u2795 __{0}__ receives {1} __XP__";
         private static string ReachesNextLevelTemplate = "\u2191 __{0}__ reaches __Level__ {1}";
+        private static string HealingSuccessTemplate = "__{0}__ _heals_ __{1}__ of _{2}_ with {3} ({4}+D{5})";
+        private static string HealingFailTemplate = "__{0}__ fails at _healing_ __{1}__ of _{2}_ with {3} ({4}+D{5})";
 
         public static string Next
         {
@@ -109,6 +111,21 @@ namespace DungeonCrawler.Core
         public static void LogReachesNextLevel(Character.Character character)
         {
             Log.Add(string.Format(ReachesNextLevelTemplate, character.Name, character.Level));
+        }
+
+        public static void LogHealing(Character.Character character, Character.Character patient,
+            Consequence consequence, int totalValue, int skillValue, int diceValue, bool success)
+        {
+            if (success)
+            {
+                Log.Add(string.Format(HealingSuccessTemplate, character.Name, patient.Name,
+                          consequence.Name, totalValue, skillValue, diceValue));
+            }
+            else
+            {
+                Log.Add(string.Format(HealingFailTemplate, character.Name, patient.Name,
+                          consequence.Name, totalValue, skillValue, diceValue));
+            }
         }
     }
 }
