@@ -59,6 +59,9 @@ namespace DungeonCrawler.Character
         public bool IsTakenOut;
 
         [JsonIgnore]
+        public GridPoint Position = new GridPoint(0, 0);
+
+        [JsonIgnore]
         public int Spin;
 
         [JsonIgnore]
@@ -81,6 +84,20 @@ namespace DungeonCrawler.Character
                 return cost;
             }
         }
+
+        #region Transform
+        
+        public void MoveTo(int x, int y)
+        {
+            Cell targetCell = GameMaster.CurrentLocation.CellAt(x, y);
+            if (targetCell != null)
+            {
+                Position.X = x;
+                Position.Y = y;
+            }
+        }
+
+        #endregion
 
         #region Aspects and Skills
 

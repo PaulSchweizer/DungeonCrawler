@@ -6,7 +6,10 @@ namespace DungeonCrawler.Core
 {
     public static class GameMaster
     {
+        public static Location CurrentLocation;
         public static Cell CurrentCell;
+
+        public static Character.Character Characters;
 
         public static string[] CurrentTags
         {

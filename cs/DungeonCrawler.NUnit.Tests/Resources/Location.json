@@ -5,48 +5,34 @@
 		"dark",
 		"forest"
 	],
-	"Floorplan": [
+	"Cells": [
 		{
-			"Position": [
-				0,
-				0
-			],
+			"Position": [ 0, 0 ],
 			"Type": "Forest",
-			"Tags": [
-				"dark"
-			]
 		},
 		{
-			"Position": [
-				1,
-				0
-			],
-			"Type": "Clearing",
-			"Tags": []
+			"Position": [ 1, 0 ],
+			"Type": "Clearing"
 		},
 		{
-			"Position": [
-				2,
-				0
-			],
-			"Type": "Clearing",
-			"Tags": []
+			"Position": [ 2, 0 ],
+			"Type": "Clearing"
 		},
 		{
-			"Position": [
-				3,
-				0
-			],
-			"Type": "Clearing",
-			"Tags": []
+			"Position": [ 0, 1 ],
+			"Type": "Clearing"
 		},
 		{
-			"Position": [
-				4,
-				0
-			],
-			"Type": "Clearing",
-			"Tags": []
+			"Position": [ 0, 2 ],
+			"Type": "Clearing"
+		},
+		{
+			"Position": [ -1, 0 ],
+			"Type": "Clearing"
+		},
+		{
+			"Position": [ 0, -1 ],
+			"Type": "Clearing"
 		}
 	]
 }

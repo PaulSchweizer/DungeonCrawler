@@ -20,6 +20,11 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
     - [x] LoadRulebook
 - [x] Tags
 - [x] Aspects
+    - [ ] Negative Aspects
+    - [ ] Pos/Neg Aspects
+    - [ ] Levels of Aspects?
+    - [ ] Aspects add to other values too:
+        - [ ] Range of Attack
 
 # Rulebook
 - [x] All Available Skills
@@ -52,9 +57,8 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
                 - [x] Might not remove the correct item
             - [x] Armour provides Protection
             - [x] Item has to be in the Inventory to be taken into account when being equipped
-
             - [ ] What if serialized and then equipped???
-              Item should be unique
+                  Item should be unique
 
     - [x] Skills
     - [x] Inventory
@@ -85,8 +89,98 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
         - [ ] Cost
         - [ ] FatePoints / ActionPoints etc.
 
-- Quest System
-(- Conversation System)
+- [ ] Quest System
+- [ ] Conversation System
+
+- [ ] GameController => GameMaster
+    - [ ] Wait for input
+    - [ ] Organize Combat
+        - [ ] Combat Sequence Controller
+            - [ ] Load Protagonists
+            - [ ] Determine their positions
+            - [ ] Determine their Order
+            - [ ] Hand the Action to each Character in turn
+            - [ ] Return to the Combat Sequence Controller and start next round
+            - [ ] Determine break scenarios
+
+# Where are we?
+Location -> Cell -> Grid
+
+1. Grid on the Location
+    - [x] GridPoint(int x int y) GridPoint is in world space
+    - [x] IsValidPoint(x, y)
+    - [x] Character.MoveTo(Position)
+        - Get target Cell
+        - Set Position on the Grid
+        - Register on that Position or on that GridPoint?
+
+# How do Characters and their PositionalInteraction Work?
+
+----------------------------------
+
+- GameMaster knows all Characters
+- Character wants to know whether a Character is in reach
+    - Ask the GameMaster for who is on the given Position
+        - Loop over all of them and return the matches
+- The Character knows about it's Cell
+    - Take the currentCell from the Character to determine the Tags
+
+----------------------------------
+
+
+    - [ ] GameMaster.Characters
+        - [ ] GameMaster.PlayerCharacters?
+        - [ ] GameMaster.Enemies?
+
+    - [ ] GameMaster.CharactersOnCell(Cell)
+
+    - [ ] GameMaster.CharactersOnPosition(Position)
+        - [ ] CharactersRegisterInCell
+        - [ ] CharacterRegistersInPosition
+
+    - [ ] GameMaster.CurrentCell.Characters?
+        - [ ] Revisit the CurrentCell, rather get the CurrentCell per Character
+
+    - [ ] PositionIsWalkable(Position)
+        - [ ] For no all GridPositions on Cells are walkable
+
+    - [ ] Character.Attack()
+            directionOfCharacter 0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75 PI
+            positionOfCharacter x, y
+            AttackShape of Attack
+                - the origin is at character pos
+                - then transform the attack points to get the WorldSpace GridPoints
+                e.g. [[0, 1], [1, 1], [1, 0]] results in an sweeping blow from left to right:
+                   [1][2]   [1]
+                   [C][3]   [C]
+                            [2]
+                - Attacks are executed in the order of the list
+            TimeOffset of Attack
+            ScheduleAttackOnGridPoints([...], timeOffset, Character, Attack)
+                --> TimeOffset ...
+                    { Things can end the Attack during this time,
+                      e.g. getting hit, or moving away. }
+                    ApplyAttackOnGridPoints([...])
+
+
+# Who are we?
+Player -> Characters
+
+# What is happening?
+Situation
+
+## Combat
+    1. Attack one or multiple GridPoints
+    2. Countdown until Attack takes Effect
+    3. Check if Enemies on the GridPoints
+    4. Apply Damage to the Enemies
+
+# Save State
+- [ ] Party
+    - [ ] Characters
+- [ ] GameMaster
+    - [ ] CurrentLocation
+    - [ ] CurrentCell
 
 # Actions that a Character can perform
 - [ ] Attack
@@ -101,16 +195,23 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
     - [ ] Item
 - [ ] Heal
     - [ ] Stress
-    - [ ] Consequence
-    - [ ] Bug Consequence adds empty Aspects to the List when healing ???
+    - [x] Consequence
+    - [x] Bug Consequence adds empty Aspects to the List when healing ???
 - [ ] Move
+    - [ ] Hit the surface
+        - [ ] Get the closest Grid Point
+            - [ ] Set the position
 
 # Actions that a Player can perform
 - [x] Attack(skill, attacker, defender)
     - [x] Add Weapon Damage
+    - [ ] Ranges and Zones on the battlefield
+        - [ ] Combat Grid
+        - [ ] Range of Weapons
+        - [ ] Aspects that add to the Range
 - [ ] Move(destination)
 - [ ] Repair(item)
-- [ ] Heal(character)
+- [x] Heal(character)
 - [x] Equip(item)
 - [x] UnEquip(item)
 - [ ] ImproveSkill(skill)
@@ -119,17 +220,18 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
 - [ ] EditAspect(aspect)
 
 # Skills
-- [ ] MeleeWeapons
+- [x] MeleeWeapons
     - Attack
     - Defend
 - [ ] RangedWeapons
     - Attack
 - [ ] Craftsmanship
     - Repair
-- [ ] Healing
+- [x] Healing
     - Heal
 
 # Unity
+- [ ] Mock up UI for the player stats
 - [ ] Levelbuilder
     - [x] Read Json and build the level
     - [x] Testing tiles are forest and clearing for now
@@ -137,6 +239,20 @@ Docs: https://paulschweizer.github.io/DungeonCrawler/
     - [ ] Add enemies to the tiles
     - [ ] Add treasure to the tiles
     - [ ] Add Quest things to the tiles
+- [ ] Worldmap
+    - [ ] Location
+        - [ ] Cell
+            - [ ] Grid
+
+
+- [ ] Game Startup Procedure
+    - [ ] Init Rulebook
+    - [ ] If New Game
+        - [ ] Load Default Environment
+    - [ ] If Load
+        - [ ] Load Saved Game State
+    - [ ] Wait for user input
+
 
 # Different interaction levels in the game
 Worldmap
