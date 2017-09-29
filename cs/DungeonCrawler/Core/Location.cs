@@ -90,11 +90,6 @@ namespace DungeonCrawler.Core
             return null;
         }
 
-        public Character.Character[] CharactersOnCell(Cell cell)
-        {
-            // Get all Characters that are on that cell
-        }
-
         public override string ToString()
         {
             string cellText = "[{0}]";

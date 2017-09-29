@@ -113,6 +113,9 @@ Location -> Cell -> Grid
         - Get target Cell
         - Set Position on the Grid
         - Register on that Position or on that GridPoint?
+    - [ ] Remove current cell
+    - [ ] Remove CurrentTags
+
 
 # How do Characters and their PositionalInteraction Work?
 

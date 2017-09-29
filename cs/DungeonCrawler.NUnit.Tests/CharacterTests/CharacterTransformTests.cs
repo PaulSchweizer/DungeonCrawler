@@ -30,8 +30,8 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         [Test]
         public void Character_registers_on_Cell()
         {
-
-            Assert.IsTrue(false);
+            hero.MoveTo(11, 0);
+            Assert.AreEqual(GameMaster.CurrentLocation.CellAt(11, 0), hero.CurrentCell);
         }
     }
 }

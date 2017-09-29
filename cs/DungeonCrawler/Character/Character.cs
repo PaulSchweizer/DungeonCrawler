@@ -62,6 +62,9 @@ namespace DungeonCrawler.Character
         public GridPoint Position = new GridPoint(0, 0);
 
         [JsonIgnore]
+        public Cell CurrentCell;
+
+        [JsonIgnore]
         public int Spin;
 
         [JsonIgnore]
@@ -94,6 +97,7 @@ namespace DungeonCrawler.Character
             {
                 Position.X = x;
                 Position.Y = y;
+                CurrentCell = targetCell;
             }
         }
 
