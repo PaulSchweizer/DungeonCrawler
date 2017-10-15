@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['skill',['Skill',['../dc/ddd/class_dungeon_crawler_1_1_core_1_1_skill.html',1,'DungeonCrawler::Core']]]
+  ['rulebook',['Rulebook',['../d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html',1,'DungeonCrawler::Core']]]
 ];

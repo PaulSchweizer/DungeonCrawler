@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['name',['Name',['../dc/d1f/class_dungeon_crawler_1_1_character_1_1_consequence.html#a7ee9065718e6628dc7791b756fa6c0f9',1,'DungeonCrawler.Character.Consequence.Name()'],['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a7ee9065718e6628dc7791b756fa6c0f9',1,'DungeonCrawler.Character.Character.Name()'],['../da/d43/class_dungeon_crawler_1_1_core_1_1_aspect.html#a7ee9065718e6628dc7791b756fa6c0f9',1,'DungeonCrawler.Core.Aspect.Name()'],['../d6/daa/class_dungeon_crawler_1_1_core_1_1_item.html#a7ee9065718e6628dc7791b756fa6c0f9',1,'DungeonCrawler.Core.Item.Name()'],['../dc/ddd/class_dungeon_crawler_1_1_core_1_1_skill.html#a7ee9065718e6628dc7791b756fa6c0f9',1,'DungeonCrawler.Core.Skill.Name()']]],
-  ['next',['Next',['../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a0ffb32950b251fe55d7e944ac949d101',1,'DungeonCrawler::Core::GameEventsLogger']]],
-  ['nextlevelreached',['NextLevelReached',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a6c2d494086f3091db98b8b22489977c0',1,'DungeonCrawler::Character::Character']]]
+  ['map',['Map',['../d2/d3a/class_dungeon_crawler_1_1_utility_1_1_transform.html#a7e710e576abb41a37bb893e35982f806',1,'DungeonCrawler.Utility.Transform.Map(int x, int y)'],['../d2/d3a/class_dungeon_crawler_1_1_utility_1_1_transform.html#afa8555d2b04ebc3224586db01e83fa9d',1,'DungeonCrawler.Utility.Transform.Map(int[] point)']]],
+  ['matches',['Matches',['../da/d43/class_dungeon_crawler_1_1_core_1_1_aspect.html#a69ffd7ce053ccd12d0b0125ce17a0ec2',1,'DungeonCrawler::Core::Aspect']]],
+  ['maxvalue',['MaxValue',['../d9/dca/class_dungeon_crawler_1_1_character_1_1_attribute.html#aa00f84309248b8fbc4b48b4eaaaf64f6',1,'DungeonCrawler::Character::Attribute']]],
+  ['minvalue',['MinValue',['../d9/dca/class_dungeon_crawler_1_1_character_1_1_attribute.html#ae0fe10b69e5c30219b303cdb6a38708a',1,'DungeonCrawler::Character::Attribute']]],
+  ['moveto',['MoveTo',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#ac4bd95637698186a3cebdd2c42823a82',1,'DungeonCrawler::Character::Character']]]
 ];

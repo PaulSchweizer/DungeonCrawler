@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['weapons',['Weapons',['../d1/d04/class_dungeon_crawler_1_1_character_1_1_inventory.html#ab60710d7964d6e68d6068a4e3cdd4ece',1,'DungeonCrawler.Character.Inventory.Weapons()'],['../d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html#ab60710d7964d6e68d6068a4e3cdd4ece',1,'DungeonCrawler.Core.Rulebook.Weapons()']]]
+  ['usesspintemplate',['UsesSpinTemplate',['../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#aea2eb6807fcb9ee45d2e02b7f069f536',1,'DungeonCrawler::Core::GameEventsLogger']]],
+  ['usesstunttemplate',['UsesStuntTemplate',['../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#af081111806bc35b563a4916ea1cc7c63',1,'DungeonCrawler::Core::GameEventsLogger']]]
 ];

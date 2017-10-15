@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['value',['Value',['../d9/dca/class_dungeon_crawler_1_1_character_1_1_attribute.html#aca5c8bf6cfb5ea8d150d4b2f394fd552',1,'DungeonCrawler::Character::Attribute']]]
+  ['tags',['Tags',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a784aca4af01c8b245cf91b5dc351dc0c',1,'DungeonCrawler.Character.Character.Tags()'],['../da/d43/class_dungeon_crawler_1_1_core_1_1_aspect.html#a784aca4af01c8b245cf91b5dc351dc0c',1,'DungeonCrawler.Core.Aspect.Tags()'],['../d6/daa/class_dungeon_crawler_1_1_core_1_1_item.html#a784aca4af01c8b245cf91b5dc351dc0c',1,'DungeonCrawler.Core.Item.Tags()'],['../db/d7b/class_dungeon_crawler_1_1_core_1_1_cell.html#a784aca4af01c8b245cf91b5dc351dc0c',1,'DungeonCrawler.Core.Cell.Tags()'],['../d1/dd1/class_dungeon_crawler_1_1_core_1_1_location.html#a784aca4af01c8b245cf91b5dc351dc0c',1,'DungeonCrawler.Core.Location.Tags()'],['../d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html#ab9b2b6545058f0bd05a0084b66999e00',1,'DungeonCrawler.Core.Rulebook.Tags()']]],
+  ['takeconsequencetemplate',['TakeConsequenceTemplate',['../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a4a58a6fb1ebfec975df311c6a800efb1',1,'DungeonCrawler::Core::GameEventsLogger']]],
+  ['transform',['Transform',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#ab9cc49cbbd8c46b0d577bec380d3a428',1,'DungeonCrawler::Character::Character']]],
+  ['type',['Type',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a651a3c9de2e16ff0deca8d09dedbda58',1,'DungeonCrawler.Character.Character.Type()'],['../db/d7b/class_dungeon_crawler_1_1_core_1_1_cell.html#a651a3c9de2e16ff0deca8d09dedbda58',1,'DungeonCrawler.Core.Cell.Type()']]]
 ];

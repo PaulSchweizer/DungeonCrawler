@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['next',['Next',['../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a0ffb32950b251fe55d7e944ac949d101',1,'DungeonCrawler::Core::GameEventsLogger']]]
+  ['level',['Level',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a879a93f9d2ab803bb4ca7f9bd55e52f8',1,'DungeonCrawler::Character::Character']]]
 ];

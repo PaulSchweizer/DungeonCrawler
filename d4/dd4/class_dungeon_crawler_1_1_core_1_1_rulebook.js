@@ -11,6 +11,7 @@ var class_dungeon_crawler_1_1_core_1_1_rulebook =
     [ "Items", "d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html#a66a74231c54c21ea20992eeb55d80ba5", null ],
     [ "Weapons", "d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html#ab60710d7964d6e68d6068a4e3cdd4ece", null ],
     [ "Armours", "d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html#adc56d84883348290da5883f8236b10ca", null ],
+    [ "Stunts", "d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html#a789bbb4b3125303232b844d02ba874df", null ],
     [ "_instance", "d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html#a8c3fda6611324093b1bc77687f67fb29", null ],
     [ "Instance", "d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html#a9fb56002bbf3526612e4ab6da16d3e87", null ]
 ];

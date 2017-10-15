@@ -5,15 +5,19 @@ var searchData=
   ['allaspects',['AllAspects',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#ae8df92e2d2fc257b8d196e3d34932383',1,'DungeonCrawler::Character::Character']]],
   ['allconsequences',['AllConsequences',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a950bd42269d7cb7497047ea77ec74cbc',1,'DungeonCrawler::Character::Character']]],
   ['amounts',['Amounts',['../d1/d04/class_dungeon_crawler_1_1_character_1_1_inventory.html#a9dffc8de5b17282639871d37e38bec54',1,'DungeonCrawler::Character::Inventory']]],
-  ['armour',['Armour',['../d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html#a914ecd08eca95802ef432935abf84d35',1,'DungeonCrawler::Core::Rulebook']]],
   ['armour',['Armour',['../da/d1f/class_dungeon_crawler_1_1_core_1_1_armour.html',1,'DungeonCrawler::Core']]],
+  ['armour',['Armour',['../d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html#a914ecd08eca95802ef432935abf84d35',1,'DungeonCrawler::Core::Rulebook']]],
   ['armours',['Armours',['../d1/d04/class_dungeon_crawler_1_1_character_1_1_inventory.html#adc56d84883348290da5883f8236b10ca',1,'DungeonCrawler.Character.Inventory.Armours()'],['../d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html#adc56d84883348290da5883f8236b10ca',1,'DungeonCrawler.Core.Rulebook.Armours()']]],
   ['aspect',['Aspect',['../da/d43/class_dungeon_crawler_1_1_core_1_1_aspect.html',1,'DungeonCrawler::Core']]],
   ['aspect',['Aspect',['../da/d43/class_dungeon_crawler_1_1_core_1_1_aspect.html#aaad785b95a30dc3d15307642da99ba91',1,'DungeonCrawler::Core::Aspect']]],
   ['aspects',['Aspects',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#ad70407da0f1cbc947ccb32e546380958',1,'DungeonCrawler.Character.Character.Aspects()'],['../d6/daa/class_dungeon_crawler_1_1_core_1_1_item.html#aad0115bc26f84338f70d3d3cc57b61b0',1,'DungeonCrawler.Core.Item.Aspects()']]],
   ['aspectsaffectingskill',['AspectsAffectingSkill',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a7034b4ae12f7182781e776423a9fb578',1,'DungeonCrawler::Character::Character']]],
-  ['attack',['Attack',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#af143ee0bb4c1def39ffc11fabbc11a80',1,'DungeonCrawler::Character::Character']]],
+  ['attack',['Attack',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a5e182add99e601a4c5ccdfaced979513',1,'DungeonCrawler::Character::Character']]],
+  ['attackmarker',['AttackMarker',['../d6/db3/struct_dungeon_crawler_1_1_character_1_1_attack_marker.html#a31290ade9bbb3d2c9d6b1ff0c2aa0fb8',1,'DungeonCrawler::Character::AttackMarker']]],
+  ['attackmarker',['AttackMarker',['../d6/db3/struct_dungeon_crawler_1_1_character_1_1_attack_marker.html',1,'DungeonCrawler::Character']]],
+  ['attackshape',['AttackShape',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#ad3c13a72bef8c13b2aab7a3d67d00038',1,'DungeonCrawler.Character.Character.AttackShape()'],['../d4/dbf/class_dungeon_crawler_1_1_core_1_1_weapon.html#ad3c13a72bef8c13b2aab7a3d67d00038',1,'DungeonCrawler.Core.Weapon.AttackShape()']]],
+  ['attackspeed',['AttackSpeed',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#ab2d0a5e0c26df15ad785e3dacd32c861',1,'DungeonCrawler::Character::Character']]],
   ['attacktemplate',['AttackTemplate',['../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a4a281e3b973f1c0fcf6ffc0242a2e099',1,'DungeonCrawler::Core::GameEventsLogger']]],
-  ['attribute',['Attribute',['../d9/dca/class_dungeon_crawler_1_1_character_1_1_attribute.html#ac5f933d04604d007a4837411489599fd',1,'DungeonCrawler::Character::Attribute']]],
-  ['attribute',['Attribute',['../d9/dca/class_dungeon_crawler_1_1_character_1_1_attribute.html',1,'DungeonCrawler::Character']]]
+  ['attribute',['Attribute',['../d9/dca/class_dungeon_crawler_1_1_character_1_1_attribute.html',1,'DungeonCrawler::Character']]],
+  ['attribute',['Attribute',['../d9/dca/class_dungeon_crawler_1_1_character_1_1_attribute.html#ac5f933d04604d007a4837411489599fd',1,'DungeonCrawler::Character::Attribute']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['level',['Level',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a879a93f9d2ab803bb4ca7f9bd55e52f8',1,'DungeonCrawler::Character::Character']]]
+  ['instance',['Instance',['../d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html#a9fb56002bbf3526612e4ab6da16d3e87',1,'DungeonCrawler::Core::Rulebook']]]
 ];

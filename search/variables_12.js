@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['xp',['XP',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a5e1020522c8d579da6c3b74ba5507ca9',1,'DungeonCrawler::Character::Character']]]
+  ['value',['Value',['../d9/dca/class_dungeon_crawler_1_1_character_1_1_attribute.html#aca5c8bf6cfb5ea8d150d4b2f394fd552',1,'DungeonCrawler::Character::Attribute']]]
 ];
