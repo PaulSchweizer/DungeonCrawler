@@ -1,5 +1,6 @@
 ﻿using DungeonCrawler.Core;
 using NUnit.Framework;
+using System;
 
 namespace DungeonCrawler.NUnit.Tests.CharacterTests
 {
@@ -19,12 +20,12 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         public void Character_can_only_move_to_valid_GridPoints()
         {
             hero.MoveTo(10000, 10000);
-            Assert.AreEqual(0, hero.Position.X);
-            Assert.AreEqual(0, hero.Position.Y);
+            Assert.AreEqual(0, hero.Transform.Position.X);
+            Assert.AreEqual(0, hero.Transform.Position.Y);
 
             hero.MoveTo(1, 0);
-            Assert.AreEqual(1, hero.Position.X);
-            Assert.AreEqual(0, hero.Position.Y);
+            Assert.AreEqual(1, hero.Transform.Position.X);
+            Assert.AreEqual(0, hero.Transform.Position.Y);
         }
 
         [Test]

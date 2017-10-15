@@ -2,6 +2,12 @@
     "Name": "Weapon",
     "Skills": ["MeleeWeapons"],
     "Damage": 3,
+	"AttackShape": [
+		[0, 1], 
+		[1, 1],
+		[1, 0]
+	],
+	"Speed": 1,
     "Aspects": [
         {
             "Name": "Extinguisher of #rats.",

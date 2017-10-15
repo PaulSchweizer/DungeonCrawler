@@ -36,13 +36,15 @@ namespace DungeonCrawler.Core
     {
         public string[] Skills;
         public int Damage;
+        public int[][] AttackShape;
+        public float Speed;
 
         public override int Cost
         {
             get
             {
                 int cost = base.Cost;
-                cost += Damage;
+                cost += Damage * AttackShape.Length;
                 return cost;
             }
         }

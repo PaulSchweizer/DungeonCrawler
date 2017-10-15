@@ -1,5 +1,6 @@
 ﻿{
     "Id": 1,
+    "Type": "Monster",
     "Name": "Rat",
     "PhysicalStress": {
         "Value": 0,
@@ -20,9 +21,12 @@
         "rat"
     ],
     "Aspects": [],
-	"Equipment": {},
+    "Equipment": {},
     "IsTakenOut": false,
-	"Inventory":
+    "Inventory":
     {
-    }
+    },
+    "Enemies": [
+        "Player"
+    ]
 }

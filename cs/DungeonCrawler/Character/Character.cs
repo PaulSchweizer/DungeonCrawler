@@ -1,4 +1,5 @@
 ﻿using DungeonCrawler.Core;
+using DungeonCrawler.Utility;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -42,9 +43,31 @@ namespace DungeonCrawler.Character
         }
     }
 
+    public struct AttackMarker
+    {
+        public int[][] Shape;
+        public float Countdown;
+        public string Skill;
+
+        public AttackMarker(int[][] shape, float countdown, string skill)
+        {
+            Shape = shape;
+            Countdown = countdown;
+            Skill = skill;
+        }
+
+        public void Schedule(int[][] shape, float countdown, string skill)
+        {
+            Shape = shape;
+            Countdown = countdown;
+            Skill = skill;
+        }
+    }
+
     public class Character
     {
         public int Id;
+        public string Type;
         public string Name;
         public int XP;
         public int SkillPoints;
@@ -57,9 +80,13 @@ namespace DungeonCrawler.Character
         public Dictionary<string, string> Equipment;
         public Inventory Inventory;
         public bool IsTakenOut;
+        public string[] Enemies;
 
         [JsonIgnore]
-        public GridPoint Position = new GridPoint(0, 0);
+        public AttackMarker ScheduledAttack = new AttackMarker();
+
+        [JsonIgnore]
+        public Transform Transform = new Transform(0, 0, 0);
 
         [JsonIgnore]
         public Cell CurrentCell;
@@ -73,11 +100,11 @@ namespace DungeonCrawler.Character
             get
             {
                 int cost = 0;
-                foreach(int skillValue in Skills.Values)
+                foreach (int skillValue in Skills.Values)
                 {
                     cost += skillValue;
                 }
-                foreach(Consequence consequence in AllConsequences)
+                foreach (Consequence consequence in AllConsequences)
                 {
                     cost += consequence.Capacity;
                 }
@@ -88,15 +115,39 @@ namespace DungeonCrawler.Character
             }
         }
 
+        [JsonIgnore]
+        public int[][] AttackShape
+        {
+            get
+            {
+                List<int[]> attackShape = new List<int[]>();
+                foreach (Weapon weapon in Weapons)
+                {
+                    foreach (int[] shape in weapon.AttackShape)
+                    {
+                        if (!attackShape.Contains(shape))
+                        {
+                            attackShape.Add(shape);
+                        }
+                    }
+                }
+                if (attackShape.Count == 0)
+                {
+                    attackShape.Add(new int[] { 1, 0 });
+                }
+                return attackShape.ToArray();
+            }
+        }
+
         #region Transform
-        
+
         public void MoveTo(int x, int y)
         {
             Cell targetCell = GameMaster.CurrentLocation.CellAt(x, y);
             if (targetCell != null)
             {
-                Position.X = x;
-                Position.Y = y;
+                Transform.Position.X = x;
+                Transform.Position.Y = y;
                 CurrentCell = targetCell;
             }
         }
@@ -273,6 +324,24 @@ namespace DungeonCrawler.Character
             }
         }
 
+        [JsonIgnore]
+        public Weapon[] Weapons
+        {
+            get
+            {
+                List<Weapon> weapons = new List<Weapon>();
+                foreach (string itemName in Equipment.Values)
+                {
+                    Item item = Inventory.Item(itemName);
+                    if (item is Weapon)
+                    {
+                        weapons.Add(item as Weapon);
+                    }
+                }
+                return weapons.ToArray();
+            }
+        }
+
         #endregion
 
         #region Damage and Consequences
@@ -293,7 +362,7 @@ namespace DungeonCrawler.Character
                         if (item is Armour)
                         {
                             Armour armour = (Armour)item;
-                            foreach(Consequence consequence in armour.Consequences)
+                            foreach (Consequence consequence in armour.Consequences)
                             {
                                 consequences.Add(consequence);
                             }
@@ -340,16 +409,28 @@ namespace DungeonCrawler.Character
             get
             {
                 int damage = 0;
-                foreach (string itemName in Equipment.Values)
+                foreach (Weapon weapon in Weapons)
                 {
-                    Item item = Inventory.Item(itemName);
-                    if (item is Weapon)
-                    {
-                        Weapon weapon = item as Weapon;
-                        damage += weapon.Damage;
-                    }
+                    damage += weapon.Damage;
                 }
                 return damage;
+            }
+        }
+
+        [JsonIgnore]
+        public float AttackSpeed
+        {
+            get
+            {
+                float speed = 0;
+                foreach (Weapon weapon in Weapons)
+                {
+                    if (weapon.Speed > speed)
+                    {
+                        speed = weapon.Speed;
+                    }
+                }
+                return speed + 1;
             }
         }
 
@@ -391,7 +472,35 @@ namespace DungeonCrawler.Character
 
         #endregion
 
-        #region Actions
+        #region Combat
+
+        public Character[] EnemiesInReach()
+        {
+            List<Character> enemies = new List<Character>();
+            for (int i = 0; i < AttackShape.Length; i++)
+            {
+                GridPoint point = new GridPoint(Transform.Map(AttackShape[i]));
+                foreach (Character enemy in GameMaster.CharactersOnGridPoint(point, Enemies))
+                {
+                    enemies.Add(enemy);
+                }
+            }
+            return enemies.ToArray();
+        }
+
+        public void ScheduleAttack(string attackSkill = "MeleeWeapons")
+        {
+            int[][] attackShape = new int[AttackShape.Length][];
+            for(int i = 0; i < attackShape.Length; i++)
+            {
+                attackShape[i] = Transform.Map(AttackShape[i][0], AttackShape[i][1]);
+            }
+            float countdown = 1 / AttackSpeed;
+            ScheduledAttack.Schedule(attackShape, countdown, attackSkill);
+        }
+
+
+
 
         public void Attack(Character defender, string attackSkill = "MeleeWeapons", Stunt stunt = null)
         {
@@ -483,6 +592,10 @@ namespace DungeonCrawler.Character
 
             return shifts;
         }
+
+        #endregion
+        
+        #region Actions
 
         public void Heal(Character patient, Consequence consequence)
         {
