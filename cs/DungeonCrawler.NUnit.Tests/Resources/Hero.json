@@ -1,5 +1,6 @@
 ﻿{
     "Id": 0,
+    "Type": "Player",
     "Name": "Hero",
     "XP": 0,
     "SkillPoints": 0,
@@ -56,5 +57,8 @@
         "Armours": [],
         "Amounts": {}
     },
-    "IsTakenOut": false
+    "IsTakenOut": false,
+    "Enemies": [
+        "Monster"
+    ]
 }

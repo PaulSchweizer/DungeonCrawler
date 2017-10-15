@@ -17,5 +17,15 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
             Assert.Contains("dark", GameMaster.CurrentTags);
             Assert.Contains("cavern", GameMaster.CurrentTags);
         }
+
+        [Test]
+        public void Characters_can_only_be_registered_once()
+        {
+            Assert.AreEqual(0, GameMaster.Characters.Count);
+            Character.Character character = new Character.Character(); 
+            GameMaster.RegisterCharacter(character);
+            GameMaster.RegisterCharacter(character);
+            Assert.AreEqual(1, GameMaster.Characters.Count);
+        }
     }
 }

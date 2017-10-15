@@ -113,6 +113,9 @@ Location -> Cell -> Grid
         - Get target Cell
         - Set Position on the Grid
         - Register on that Position or on that GridPoint?
+    - [ ] Remove current cell
+    - [ ] Remove CurrentTags
+
 
 # How do Characters and their PositionalInteraction Work?
 
@@ -128,11 +131,16 @@ Location -> Cell -> Grid
 ----------------------------------
 
 
+    - [ ] Move also get the target rotation (target transform)
+    - [ ] Chase get the target Transform
+
+    - [ ] Mask of Enemies, use the defined tags on the Character
+
     - [ ] GameMaster.Characters
         - [ ] GameMaster.PlayerCharacters?
         - [ ] GameMaster.Enemies?
 
-    - [ ] GameMaster.CharactersOnCell(Cell)
+    - [x] GameMaster.CharactersOnCell(Cell)
 
     - [ ] GameMaster.CharactersOnPosition(Position)
         - [ ] CharactersRegisterInCell
@@ -141,12 +149,21 @@ Location -> Cell -> Grid
     - [ ] GameMaster.CurrentCell.Characters?
         - [ ] Revisit the CurrentCell, rather get the CurrentCell per Character
 
-    - [ ] PositionIsWalkable(Position)
-        - [ ] For no all GridPositions on Cells are walkable
+    - [x] PositionIsWalkable(Position)
+        - [x] For now all GridPositions on Cells are walkable
+
+    - [x] Visualize the Grid ...
+    - [x] ... and the Character on the Grid
+
+    - [x] Map Rotation properly
+    - [x] Char Rotates the opposite way
+    - [x] Default AttackShape
+
+    - [ ] Place the Characters on the Grid properly, find a good spot for each
 
     - [ ] Character.Attack()
-            directionOfCharacter 0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75 PI
-            positionOfCharacter x, y
+            - [x] positionOfCharacter x, y
+            - [x] directionOfCharacter 0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75 PI
             AttackShape of Attack
                 - the origin is at character pos
                 - then transform the attack points to get the WorldSpace GridPoints
@@ -161,6 +178,23 @@ Location -> Cell -> Grid
                     { Things can end the Attack during this time,
                       e.g. getting hit, or moving away. }
                     ApplyAttackOnGridPoints([...])
+
+    Attack {
+        "PreTime": 1,
+        "PostTime": 0,
+        "Shape": [
+            [1, 0],
+            [1, 1],
+            [0, 1]
+        ],
+        "Value": 3
+    }
+
+    Attack {
+        Attacker
+        Skill
+        Stunt
+    }
 
 
 # Who are we?

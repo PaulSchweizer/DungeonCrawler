@@ -60,6 +60,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Utility\Transform.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

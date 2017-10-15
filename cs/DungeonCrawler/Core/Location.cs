@@ -6,17 +6,6 @@ using System.Collections.Generic;
 namespace DungeonCrawler.Core
 {
 
-    public struct GridPoint
-    {
-        public int X;
-        public int Y;
-        public GridPoint(int x, int y)
-        {
-            X = x;
-            Y = y;
-        }
-    }
-
     public class Cell
     {
         public static float GridSize = 3;
@@ -88,11 +77,6 @@ namespace DungeonCrawler.Core
                 }
             }
             return null;
-        }
-
-        public Character.Character[] CharactersOnCell(Cell cell)
-        {
-            // Get all Characters that are on that cell
         }
 
         public override string ToString()

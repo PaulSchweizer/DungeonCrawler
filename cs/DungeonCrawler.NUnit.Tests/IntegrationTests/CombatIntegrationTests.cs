@@ -158,5 +158,14 @@ namespace DungeonCrawler.NUnit.Tests.IntegrationTests
 
             Console.WriteLine(GameEventsLogger.Next);
         }
+
+        [Test]
+        public void Combat_on_grid()
+        {
+            // Place Attack on grid points
+            // Countdown
+            // Check if Characters on GridPoint
+            // Apply Attack
+        }
     }
 }
