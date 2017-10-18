@@ -39,6 +39,12 @@ namespace DungeonCrawler.NUnit.Tests.UtilityTests
             GridPoint c = new GridPoint(new int[] { 12, 6 });
             Assert.AreEqual(a, b);
             Assert.AreNotEqual(a, c);
+            Assert.True(a == b);
+            Assert.False(a == c);
+            Assert.True(a == a);
+            Assert.True(a != c);
+            Assert.True(a != null);
+            Assert.AreNotEqual(a, "some other object");
         }
 
         [Test]
@@ -48,6 +54,12 @@ namespace DungeonCrawler.NUnit.Tests.UtilityTests
             Transform transformB = new Transform(transformA);
             Assert.AreEqual(transformA.Position, transformB.Position);
             Assert.AreEqual(transformA.Rotation, transformB.Rotation);
+        }
+
+        [Test]
+        public void Transforms_as_pretty_strings()
+        {
+            Console.WriteLine(new Transform(new GridPoint(6, 6), 0.5f));
         }
     }
 }
