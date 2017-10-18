@@ -7,6 +7,9 @@ var hierarchy =
     [ "Character", "d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html", null ],
     [ "Consequence", "dc/d1f/class_dungeon_crawler_1_1_character_1_1_consequence.html", null ],
     [ "Dice", "d1/ddc/class_dungeon_crawler_1_1_core_1_1_dice.html", null ],
+    [ "EventArgs", null, [
+      [ "GameEventArgs", "dc/dd5/class_dungeon_crawler_1_1_core_1_1_game_event_args.html", null ]
+    ] ],
     [ "GameEventsLogger", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html", null ],
     [ "GameMaster", "d3/ded/class_dungeon_crawler_1_1_core_1_1_game_master.html", null ],
     [ "GridPoint", "df/d8a/struct_dungeon_crawler_1_1_utility_1_1_grid_point.html", null ],

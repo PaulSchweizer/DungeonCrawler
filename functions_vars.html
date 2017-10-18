@@ -80,7 +80,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li class="current"><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
+      <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
       <li><a href="functions_prop.html"><span>Properties</span></a></li>
+      <li><a href="functions_evnt.html"><span>Events</span></a></li>
     </ul>
   </div>
   <div id="navrow4" class="tabs3">
@@ -91,6 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_c"><span>c</span></a></li>
       <li><a href="#index_d"><span>d</span></a></li>
       <li><a href="#index_e"><span>e</span></a></li>
+      <li><a href="#index_f"><span>f</span></a></li>
       <li><a href="#index_g"><span>g</span></a></li>
       <li><a href="#index_h"><span>h</span></a></li>
       <li><a href="#index_i"><span>i</span></a></li>
@@ -169,6 +173,9 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 : <a class="el" href="d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#ad70407da0f1cbc947ccb32e546380958">Character</a>
 , <a class="el" href="d6/daa/class_dungeon_crawler_1_1_core_1_1_item.html#aad0115bc26f84338f70d3d3cc57b61b0">Item</a>
 </li>
+<li>Attacker
+: <a class="el" href="d6/db3/struct_dungeon_crawler_1_1_character_1_1_attack_marker.html#ac5da79d20f5088cfe5a41698c0ce8366">AttackMarker</a>
+</li>
 <li>AttackShape
 : <a class="el" href="d4/dbf/class_dungeon_crawler_1_1_core_1_1_weapon.html#ad3c13a72bef8c13b2aab7a3d67d00038">Weapon</a>
 </li>
@@ -203,15 +210,15 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <li>Cost
 : <a class="el" href="de/df3/class_dungeon_crawler_1_1_core_1_1_stunt.html#a5e3f1e27eedd97bb9074ab4f976c8c97">Stunt</a>
 </li>
-<li>Countdown
-: <a class="el" href="d6/db3/struct_dungeon_crawler_1_1_character_1_1_attack_marker.html#a390b679b797c7faaf329b04ce0c88bb2">AttackMarker</a>
-</li>
 <li>CurrentCell
 : <a class="el" href="d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a9b3f239a676c8afd6893a0638fe25b54">Character</a>
 , <a class="el" href="d3/ded/class_dungeon_crawler_1_1_core_1_1_game_master.html#a9b3f239a676c8afd6893a0638fe25b54">GameMaster</a>
 </li>
 <li>CurrentLocation
 : <a class="el" href="d3/ded/class_dungeon_crawler_1_1_core_1_1_game_master.html#a6dd3887ef3661227f187bb700eea33f2">GameMaster</a>
+</li>
+<li>CurrentTime
+: <a class="el" href="d6/db3/struct_dungeon_crawler_1_1_character_1_1_attack_marker.html#ab064655f1eb25fab02a422d151754c2b">AttackMarker</a>
 </li>
 </ul>
 
@@ -252,6 +259,13 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 </ul>
 
 
+<h3><a class="anchor" id="index_f"></a>- f -</h3><ul>
+<li>Format
+: <a class="el" href="d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#ac149992c1361623f1aced2e7b75a4549">GameEventsLogger</a>
+</li>
+</ul>
+
+
 <h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
 <li>GainsSpinTemplate
 : <a class="el" href="d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a99471557797e1e946cce9acac69feef9">GameEventsLogger</a>
@@ -272,6 +286,9 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <li>HealingSuccessTemplate
 : <a class="el" href="d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a45250cb64d6f63c8f10a581a681593c1">GameEventsLogger</a>
 </li>
+<li>HitOccurred
+: <a class="el" href="d6/db3/struct_dungeon_crawler_1_1_character_1_1_attack_marker.html#a6b22518beeda37ad9a54d1e2e446e210">AttackMarker</a>
+</li>
 </ul>
 
 
@@ -284,6 +301,9 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 </li>
 <li>Inventory
 : <a class="el" href="d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a7d5e3b6814312c93af7174c9f481936e">Character</a>
+</li>
+<li>IsActive
+: <a class="el" href="d6/db3/struct_dungeon_crawler_1_1_character_1_1_attack_marker.html#a92c6b1cf703f9e064f5efc0907f80379">AttackMarker</a>
 </li>
 <li>IsTaken
 : <a class="el" href="dc/d1f/class_dungeon_crawler_1_1_character_1_1_consequence.html#a75299a78058b0bce0e298f27df2b6e68">Consequence</a>
@@ -345,6 +365,12 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <li>Position
 : <a class="el" href="db/d7b/class_dungeon_crawler_1_1_core_1_1_cell.html#a15133b9d76f25e2d58f7e0fbb481ca84">Cell</a>
 , <a class="el" href="d2/d3a/class_dungeon_crawler_1_1_utility_1_1_transform.html#ab899b26078ed7ae4250fa3dafc5a7d71">Transform</a>
+</li>
+<li>PostTime
+: <a class="el" href="d6/db3/struct_dungeon_crawler_1_1_character_1_1_attack_marker.html#afd932d4f358f56a06836af446a7449a8">AttackMarker</a>
+</li>
+<li>PreTime
+: <a class="el" href="d6/db3/struct_dungeon_crawler_1_1_character_1_1_attack_marker.html#ac29b8ce18899e06d3c976c6fdc948749">AttackMarker</a>
 </li>
 <li>Protection
 : <a class="el" href="da/d1f/class_dungeon_crawler_1_1_core_1_1_armour.html#a99d02b34256687df1d554a73bea6bd83">Armour</a>
@@ -468,7 +494,7 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Oct 15 2017 11:12:16 for Dungeon Crawler by
+    <li class="footer">Generated on Wed Oct 18 2017 22:29:24 for Dungeon Crawler by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

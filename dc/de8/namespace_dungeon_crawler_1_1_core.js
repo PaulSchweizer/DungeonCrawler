@@ -4,6 +4,7 @@ var namespace_dungeon_crawler_1_1_core =
     [ "Aspect", "da/d43/class_dungeon_crawler_1_1_core_1_1_aspect.html", "da/d43/class_dungeon_crawler_1_1_core_1_1_aspect" ],
     [ "Cell", "db/d7b/class_dungeon_crawler_1_1_core_1_1_cell.html", "db/d7b/class_dungeon_crawler_1_1_core_1_1_cell" ],
     [ "Dice", "d1/ddc/class_dungeon_crawler_1_1_core_1_1_dice.html", "d1/ddc/class_dungeon_crawler_1_1_core_1_1_dice" ],
+    [ "GameEventArgs", "dc/dd5/class_dungeon_crawler_1_1_core_1_1_game_event_args.html", "dc/dd5/class_dungeon_crawler_1_1_core_1_1_game_event_args" ],
     [ "GameEventsLogger", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger" ],
     [ "GameMaster", "d3/ded/class_dungeon_crawler_1_1_core_1_1_game_master.html", "d3/ded/class_dungeon_crawler_1_1_core_1_1_game_master" ],
     [ "Item", "d6/daa/class_dungeon_crawler_1_1_core_1_1_item.html", "d6/daa/class_dungeon_crawler_1_1_core_1_1_item" ],

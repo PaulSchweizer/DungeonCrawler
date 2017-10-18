@@ -1,20 +1,14 @@
 var searchData=
 [
-  ['schedule',['Schedule',['../d6/db3/struct_dungeon_crawler_1_1_character_1_1_attack_marker.html#a6b391027500b12cd142b7e73d53ced8f',1,'DungeonCrawler::Character::AttackMarker']]],
-  ['scheduleattack',['ScheduleAttack',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#aa952a384c761e503962a39f4c0ea7b1c',1,'DungeonCrawler::Character::Character']]],
-  ['scheduledattack',['ScheduledAttack',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a32938cf3ffe3acf4407edfe1bf567dc1',1,'DungeonCrawler::Character::Character']]],
-  ['serializetojson',['SerializeToJson',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#ac98e78b0e0cd9baa3e17e379b696b9ed',1,'DungeonCrawler.Character.Character.SerializeToJson()'],['../d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html#a288bab79d0048c170965d080cd0b166f',1,'DungeonCrawler.Core.Rulebook.SerializeToJson()']]],
-  ['shape',['Shape',['../d6/db3/struct_dungeon_crawler_1_1_character_1_1_attack_marker.html#ac86bcef212314a6bf9614a2bb2cb14c9',1,'DungeonCrawler::Character::AttackMarker']]],
-  ['skill',['Skill',['../d6/db3/struct_dungeon_crawler_1_1_character_1_1_attack_marker.html#a5b6ef9b13e839f8ba27530a66b963cb1',1,'DungeonCrawler::Character::AttackMarker']]],
-  ['skill',['Skill',['../dc/ddd/class_dungeon_crawler_1_1_core_1_1_skill.html',1,'DungeonCrawler::Core']]],
-  ['skillpoints',['SkillPoints',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a3ef88925bc76254f4de29ace926b2704',1,'DungeonCrawler::Character::Character']]],
-  ['skills',['Skills',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a0760c835bb0073e53c1aecfb10886e11',1,'DungeonCrawler.Character.Character.Skills()'],['../da/d43/class_dungeon_crawler_1_1_core_1_1_aspect.html#a16ed3985b11a1e43626f5966891714e2',1,'DungeonCrawler.Core.Aspect.Skills()'],['../d4/dbf/class_dungeon_crawler_1_1_core_1_1_weapon.html#a16ed3985b11a1e43626f5966891714e2',1,'DungeonCrawler.Core.Weapon.Skills()'],['../d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html#adce6a3e9893f697cdc6c48aba902355d',1,'DungeonCrawler.Core.Rulebook.Skills()'],['../de/df3/class_dungeon_crawler_1_1_core_1_1_stunt.html#a16ed3985b11a1e43626f5966891714e2',1,'DungeonCrawler.Core.Stunt.Skills()']]],
-  ['skillvalue',['SkillValue',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a892ccf713e4eb6ea24ab2e195f6271a8',1,'DungeonCrawler::Character::Character']]],
-  ['skillvaluemodifiers',['SkillValueModifiers',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a1d549d75e90bfa2b88fe7207c2312dbe',1,'DungeonCrawler::Character::Character']]],
-  ['spearatortemplate',['SpearatorTemplate',['../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a0f756adf8af7ab286145a0492bd05d11',1,'DungeonCrawler::Core::GameEventsLogger']]],
-  ['speed',['Speed',['../d4/dbf/class_dungeon_crawler_1_1_core_1_1_weapon.html#a61efabcca15cccefe7d85ea6da6af5e3',1,'DungeonCrawler::Core::Weapon']]],
-  ['spin',['Spin',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#ad3f59ba302f141aeedbc095f3402094d',1,'DungeonCrawler::Character::Character']]],
-  ['stunt',['Stunt',['../de/df3/class_dungeon_crawler_1_1_core_1_1_stunt.html',1,'DungeonCrawler::Core']]],
-  ['stunts',['Stunts',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a789bbb4b3125303232b844d02ba874df',1,'DungeonCrawler.Character.Character.Stunts()'],['../d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html#a789bbb4b3125303232b844d02ba874df',1,'DungeonCrawler.Core.Rulebook.Stunts()']]],
-  ['synonymsof',['SynonymsOf',['../d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html#a08ce28f3ab13a2aeacb04439769f2a44',1,'DungeonCrawler::Core::Rulebook']]]
+  ['reachesnextleveltemplate',['ReachesNextLevelTemplate',['../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#ae19aecc2c0cb52d39e013a1bbf13b281',1,'DungeonCrawler::Core::GameEventsLogger']]],
+  ['receivedamage',['ReceiveDamage',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a37d7f2252fe1a1cdc6869818f90bb298',1,'DungeonCrawler::Character::Character']]],
+  ['receivephysicalstresstemplate',['ReceivePhysicalStressTemplate',['../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#acd8b73c244156761823ac422bbab7862',1,'DungeonCrawler::Core::GameEventsLogger']]],
+  ['receivesxptemplate',['ReceivesXPTemplate',['../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#ac8d53786acf99cec8f079832b0c2b3c8',1,'DungeonCrawler::Core::GameEventsLogger']]],
+  ['receivexp',['ReceiveXP',['../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a560d909d0a279a1618acf04d7750d184',1,'DungeonCrawler::Character::Character']]],
+  ['registercharacter',['RegisterCharacter',['../d3/ded/class_dungeon_crawler_1_1_core_1_1_game_master.html#ab606d8a1edc0be69dad5eea434e4d557',1,'DungeonCrawler::Core::GameMaster']]],
+  ['removeitem',['RemoveItem',['../d1/d04/class_dungeon_crawler_1_1_character_1_1_inventory.html#a4061b7150aa53e3470613ccafbccfe50',1,'DungeonCrawler::Character::Inventory']]],
+  ['reset',['Reset',['../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a77ad624cc83a2a71aa4d5ad991d811d7',1,'DungeonCrawler::Core::GameEventsLogger']]],
+  ['roll',['Roll',['../d1/ddc/class_dungeon_crawler_1_1_core_1_1_dice.html#a28880ef2aabdbd0b671b9f67d1b4ccff',1,'DungeonCrawler::Core::Dice']]],
+  ['rotation',['Rotation',['../d2/d3a/class_dungeon_crawler_1_1_utility_1_1_transform.html#a693e81fdfaa7cfd5371cb7c09c5f0b9c',1,'DungeonCrawler::Utility::Transform']]],
+  ['rulebook',['Rulebook',['../d4/dd4/class_dungeon_crawler_1_1_core_1_1_rulebook.html',1,'DungeonCrawler::Core']]]
 ];

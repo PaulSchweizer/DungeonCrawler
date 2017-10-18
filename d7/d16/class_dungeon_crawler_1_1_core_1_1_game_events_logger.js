@@ -1,5 +1,10 @@
 var class_dungeon_crawler_1_1_core_1_1_game_events_logger =
 [
+    [ "LogFormat", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a043aa97de3c71ad015852f46ec4cc6ad", [
+      [ "terminal", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a043aa97de3c71ad015852f46ec4cc6adaede997b0caf2ec398110d79d9eba38bb", null ],
+      [ "markup", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a043aa97de3c71ad015852f46ec4cc6ada196a2bc96aabaa99c050aa336d01469b", null ]
+    ] ],
+    [ "AddLog", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a393c086c7f6a786d8ae4fc43415ea951", null ],
     [ "Reset", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a77ad624cc83a2a71aa4d5ad991d811d7", null ],
     [ "LogSeparator", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#ac7b78383a05c57c9e6b466bdeb8f1064", null ],
     [ "LogAttack", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#ac6045b959d66ce8ce769c739eccb78e7", null ],
@@ -13,6 +18,7 @@ var class_dungeon_crawler_1_1_core_1_1_game_events_logger =
     [ "LogReceivesXP", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a34f01d685ebd056f854d4ead4141c837", null ],
     [ "LogReachesNextLevel", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#aed269afc62f017d6abfd9293b1d41d3b", null ],
     [ "LogHealing", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a00322aba30745fb551a0abfd225ef625", null ],
+    [ "Format", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#ac149992c1361623f1aced2e7b75a4549", null ],
     [ "Log", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a06712a1c8dec792865a961869c7acf59", null ],
     [ "index", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a750b5d744c39a06bfb13e6eb010e35d0", null ],
     [ "SpearatorTemplate", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a0f756adf8af7ab286145a0492bd05d11", null ],
@@ -28,5 +34,6 @@ var class_dungeon_crawler_1_1_core_1_1_game_events_logger =
     [ "ReachesNextLevelTemplate", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#ae19aecc2c0cb52d39e013a1bbf13b281", null ],
     [ "HealingSuccessTemplate", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a45250cb64d6f63c8f10a581a681593c1", null ],
     [ "HealingFailTemplate", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#ac15891c0a65944ea029fb801bc65e116", null ],
-    [ "Next", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a0ffb32950b251fe55d7e944ac949d101", null ]
+    [ "Next", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a0ffb32950b251fe55d7e944ac949d101", null ],
+    [ "OnEventLogged", "d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a9d498a09094cb4c6ac921f6c9a4d265d", null ]
 ];

@@ -106,8 +106,12 @@ $(document).ready(function(){initNavTree('d7/d16/class_dungeon_crawler_1_1_core_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
+<a href="#events">Events</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
 <a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="../../d0/d30/class_dungeon_crawler_1_1_core_1_1_game_events_logger-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -115,6 +119,13 @@ $(document).ready(function(){initNavTree('d7/d16/class_dungeon_crawler_1_1_core_
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a043aa97de3c71ad015852f46ec4cc6ad"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a043aa97de3c71ad015852f46ec4cc6ad">LogFormat</a> { <a class="el" href="../../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a043aa97de3c71ad015852f46ec4cc6adaede997b0caf2ec398110d79d9eba38bb">terminal</a> = 0, 
+<a class="el" href="../../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a043aa97de3c71ad015852f46ec4cc6ada196a2bc96aabaa99c050aa336d01469b">markup</a> = 1
+ }</td></tr>
+<tr class="separator:a043aa97de3c71ad015852f46ec4cc6ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a77ad624cc83a2a71aa4d5ad991d811d7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a77ad624cc83a2a71aa4d5ad991d811d7">Reset</a> ()</td></tr>
@@ -144,10 +155,25 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a00322aba30745fb551a0abfd225ef625"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a00322aba30745fb551a0abfd225ef625">LogHealing</a> (<a class="el" href="../../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html">Character.Character</a> character, <a class="el" href="../../d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html">Character.Character</a> patient, <a class="el" href="../../dc/d1f/class_dungeon_crawler_1_1_character_1_1_consequence.html">Consequence</a> consequence, int totalValue, int skillValue, int diceValue, bool success)</td></tr>
 <tr class="separator:a00322aba30745fb551a0abfd225ef625"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ac149992c1361623f1aced2e7b75a4549"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a043aa97de3c71ad015852f46ec4cc6ad">LogFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#ac149992c1361623f1aced2e7b75a4549">Format</a> = LogFormat.terminal</td></tr>
+<tr class="separator:ac149992c1361623f1aced2e7b75a4549"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a0ffb32950b251fe55d7e944ac949d101"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a0ffb32950b251fe55d7e944ac949d101">Next</a><code> [get]</code></td></tr>
 <tr class="separator:a0ffb32950b251fe55d7e944ac949d101"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="events"></a>
+Events</h2></td></tr>
+<tr class="memitem:a9d498a09094cb4c6ac921f6c9a4d265d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../dc/de8/namespace_dungeon_crawler_1_1_core.html#a9254401fbc89d769ae36781c1ed928b5">EventLoggedHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a9d498a09094cb4c6ac921f6c9a4d265d">OnEventLogged</a></td></tr>
+<tr class="separator:a9d498a09094cb4c6ac921f6c9a4d265d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:a393c086c7f6a786d8ae4fc43415ea951"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a393c086c7f6a786d8ae4fc43415ea951">AddLog</a> (string log, string name=&quot;Log&quot;, bool emitEvent=true)</td></tr>
+<tr class="separator:a393c086c7f6a786d8ae4fc43415ea951"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
@@ -182,7 +208,66 @@ Static Private Attributes</h2></td></tr>
 <tr class="memitem:ac15891c0a65944ea029fb801bc65e116"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#ac15891c0a65944ea029fb801bc65e116">HealingFailTemplate</a> = &quot;__{0}__ fails at _healing_ __{1}__ of _{2}_ with {3} ({4}+D{5})&quot;</td></tr>
 <tr class="separator:ac15891c0a65944ea029fb801bc65e116"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="a043aa97de3c71ad015852f46ec4cc6ad"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a043aa97de3c71ad015852f46ec4cc6ad">LogFormat</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a043aa97de3c71ad015852f46ec4cc6adaede997b0caf2ec398110d79d9eba38bb"></a>terminal&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a043aa97de3c71ad015852f46ec4cc6ada196a2bc96aabaa99c050aa336d01469b"></a>markup&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a393c086c7f6a786d8ae4fc43415ea951"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void AddLog </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>log</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em> = <code>&quot;Log&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>emitEvent</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a77ad624cc83a2a71aa4d5ad991d811d7"></a>
 <div class="memitem">
 <div class="memproto">
@@ -663,6 +748,26 @@ Static Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ac149992c1361623f1aced2e7b75a4549"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a043aa97de3c71ad015852f46ec4cc6ad">LogFormat</a> Format = LogFormat.terminal</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a06712a1c8dec792865a961869c7acf59"></a>
 <div class="memitem">
 <div class="memproto">
@@ -984,6 +1089,27 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Event Documentation</h2>
+<a class="anchor" id="a9d498a09094cb4c6ac921f6c9a4d265d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dc/de8/namespace_dungeon_crawler_1_1_core.html#a9254401fbc89d769ae36781c1ed928b5">EventLoggedHandler</a> OnEventLogged</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>C:/projects/dungeoncrawler/cs/DungeonCrawler/Core/GameEventsLogger.cs</li>
 </ul>
@@ -993,7 +1119,7 @@ Static Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d3/dbe/namespace_dungeon_crawler.html">DungeonCrawler</a></li><li class="navelem"><a class="el" href="../../dc/de8/namespace_dungeon_crawler_1_1_core.html">Core</a></li><li class="navelem"><a class="el" href="../../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html">GameEventsLogger</a></li>
-    <li class="footer">Generated on Sun Oct 15 2017 11:12:16 for Dungeon Crawler by
+    <li class="footer">Generated on Wed Oct 18 2017 22:29:24 for Dungeon Crawler by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

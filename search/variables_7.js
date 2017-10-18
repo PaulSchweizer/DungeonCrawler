@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['healingfailtemplate',['HealingFailTemplate',['../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#ac15891c0a65944ea029fb801bc65e116',1,'DungeonCrawler::Core::GameEventsLogger']]],
-  ['healingsuccesstemplate',['HealingSuccessTemplate',['../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a45250cb64d6f63c8f10a581a681593c1',1,'DungeonCrawler::Core::GameEventsLogger']]]
+  ['gainsspintemplate',['GainsSpinTemplate',['../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#a99471557797e1e946cce9acac69feef9',1,'DungeonCrawler::Core::GameEventsLogger']]],
+  ['getstakenouttemplate',['GetsTakenOutTemplate',['../d7/d16/class_dungeon_crawler_1_1_core_1_1_game_events_logger.html#add6e45b94209e1734c88e775b575cee6',1,'DungeonCrawler::Core::GameEventsLogger']]],
+  ['gridsize',['GridSize',['../db/d7b/class_dungeon_crawler_1_1_core_1_1_cell.html#a765ecdad07a2a8b23749a223ccd08197',1,'DungeonCrawler::Core::Cell']]]
 ];

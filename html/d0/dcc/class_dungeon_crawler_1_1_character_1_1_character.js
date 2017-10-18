@@ -1,5 +1,6 @@
 var class_dungeon_crawler_1_1_character_1_1_character =
 [
+    [ "Character", "d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a21069a5c2c7dd2c066344530cce82123", null ],
     [ "MoveTo", "d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#ac4bd95637698186a3cebdd2c42823a82", null ],
     [ "SkillValueModifiers", "d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a1d549d75e90bfa2b88fe7207c2312dbe", null ],
     [ "SkillValue", "d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a892ccf713e4eb6ea24ab2e195f6271a8", null ],
@@ -46,5 +47,8 @@ var class_dungeon_crawler_1_1_character_1_1_character =
     [ "AllConsequences", "d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a950bd42269d7cb7497047ea77ec74cbc", null ],
     [ "Protection", "d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a99d02b34256687df1d554a73bea6bd83", null ],
     [ "Damage", "d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#ab16a3ebb727a38f50223c1be2ecd111d", null ],
-    [ "AttackSpeed", "d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#ab2d0a5e0c26df15ad785e3dacd32c861", null ]
+    [ "AttackSpeed", "d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#ab2d0a5e0c26df15ad785e3dacd32c861", null ],
+    [ "OnPhysicalStressChanged", "d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a88ec497e4c619a21e931741d72307a27", null ],
+    [ "OnAttackScheduled", "d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#a469ddefa87c13b912db00ec19bbef881", null ],
+    [ "OnTakenOut", "d0/dcc/class_dungeon_crawler_1_1_character_1_1_character.html#aa2e1d37f125b5b5285a4765474d0163d", null ]
 ];
