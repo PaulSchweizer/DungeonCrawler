@@ -1,27 +1,107 @@
-Situation:
- ☐ Tags
+ ✔ Character.AttackMarker Pre and Post time @done (17-10-15 20:28)
+ ✔ Assign the AttackMarker in Constructor @done (17-10-15 20:28)
+ ✔ Attack by using the AttackMarker @done (17-10-15 20:35)
+ ✔ RuleBook in Unity @done (17-10-15 21:01)
+ ✔ Character SignalSystem @done (17-10-15 21:23)
+ ✔ OnPhysicalStressTaken @done (17-10-15 21:39)
+ ✔ LifeBarVisualizer @done (17-10-15 21:47)
+ ✔ Character.AttackMarker Pre and Post time visualizer in Unity @done (17-10-15 22:44)
+ ✔ PhysicalDamage Seems to be applied multiple times, also backwards @done (17-10-15 22:44)
+ ✔ Log what's happening with the log observer -> on every update, costly, so only in debug mode @done (17-10-18 15:02)
+ ✔ Format the logs for the console @done (17-10-18 15:04)
+ ✔ Format logs for markup @done (17-10-18 15:04)
+ ✔ ChaseState: Don't move if already able to attack the character @done (17-10-18 15:18)
+ ✔ Knob on the Tabletop to show/hide logs @done (17-10-18 15:35)
+ ✔ Merge Tabletop and Level in the Unity Hierarchy @done (17-10-18 15:38)
+ ✔ Mask of Enemies, use the defined tags on the Character -> on startup set the tag according to the CharacterData type @done (17-10-18 15:44)
+ ✔ Character types Player, Monster ... @done (17-10-18 20:57)
+ ✔ Try out the Analytics logger @done (17-10-18 22:53)
+ ✔ Don't move if already possible to attack the enemy -> Check if enemy is on the attackshape  first @done (17-10-18 23:02)
+ ✔ DefeatedState @done (17-10-18 23:22)
+  ✔ Disable the Character @done (17-10-18 23:23)
+  ☐ De-register from the pool
+ ☐ Unittests!
+
+
+I///////////////////////////////////////////:
+Backlog:
+
+Unity:
+ ☐ "CharacterData" replace with "Data"?
+ ☐ Show a damage number for the Attack
+ ☐ Game Startup Procedure
+  ☐ Init Rulebook
+  ☐ If New Game
+   ☐ Load Default Environment
+  ☐ If Load
+   ☐ Load Saved Game State
+ ☐ Place the Characters on the Grid properly, find a good spot for each
+ ☐ When moving slider: SendMessage cannot be called during Awake, CheckConsistency, or OnValidate
+UnityEngine.GUIUtility:ProcessEvent(Int32, IntPtr)
+ ☐ Visualize the currently active tags
+
+Aspect:
+ ☐ Negative Aspect
+ ☐ Equilibrium Aspect
+ ☐ Levels of Aspects
+ ☐ Make possible to add Aspects to other values too, e.g. Range of Attack
+
+Character:
+ ☐ Reverse PhysicalStress -> empty the slider bar
+ ☐ Character.Transform -> AttackShape rotate until faces the character to attack
+ ☐ AttackMarker.Stunt
+ ☐ Multiple AttackMarkers per Character?
+ ☐ Loot!
+ ☐ Party
+  ☐ Partyleader
+ ☐ Attack
+  ☐ RangedWeapons
+  ☐ Magic
+ ☐ Defend
+  ☐ RangedWeapons
+  ☐ Magic
+ ☐ Repair
+  ☐ Item
+ ☐ Heal
+  ☐ Stress
+ ☐ ImproveSkill(skill)
+ ☐ LearnSkill(skill)
+ ☐ AddNewAspect(aspect)
+ ☐ EditAspect(aspect)
+ ☐ Skills -> Rework the current tags
+ Signals:
+  ☐ OnAttack
+  ☐ OnDefend
+  ☐ OnConsequenceTaken
+
+GameMaster:
+ ☐ CharactersOnGridPoint: Option to Exclude the Caller
+ ☐ Remove CurrentCell
+ ☐ Remove CurrentTags
+ ☐ GameMaster.CurrentCell.Characters: Revisit the CurrentCell, rather get the CurrentCell per Character
 
 Item:
- ☐ MeleeWeapon : Item
- ☐ Armour : Item
- ☐ Inventory
-  ☐ amount
-  ☐ health
- ☐ EquipmentSlots
+ ☐ Replace Item in Equipment with a stand-in object later that only holds the necessary, changeable attributes
+ ☐ Serialize, What if serialized and then equipped??? -> Item should be unique
 
+Levelbuilder:
+ ☐ Add enemies to the Tiles
+ ☐ Add treasure to the Tiles
+ ☐ Add Quest things to the Tiles
 
- ☐ Load the Character from json
- ☐ Play
- ☐ Serialize back to json
- ☐ Discard the PlayerCharacter object
+LogObserver:
+ ☐ Have an option to disable the log observer (when building for production maybe?)
 
+Quest System:
 
+Conversation System:
 
- ☐ Initialize
-  ☐ Load Rulebook
-  ☐ Load
+Save:
+ ☐ CurrentLocation of Character
+ ☐ CurrentCell of Character
+ ☐ Party
+ ☐ Contents of the Cells
 
- ☐ Connection Objects
-  ☐
-
-
+Stunt:
+ ☐ Cost
+ ☐ FatePoints / ActionPoints

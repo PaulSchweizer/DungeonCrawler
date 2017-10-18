@@ -20,6 +20,14 @@ namespace DungeonCrawler.Core
             }
         }
 
+        public static void DeRegisterCharacter(Character.Character character)
+        {
+            if (Characters.Contains(character))
+            {
+                Characters.Remove(character);
+            }
+        }
+
         public static string[] CurrentTags
         {
             get
@@ -48,21 +56,33 @@ namespace DungeonCrawler.Core
             return characters.ToArray();
         }
 
-        public static Character.Character[] CharactersOnGridPoint(GridPoint point, string[] types = null)
+        public static Character.Character[] CharactersOnGridPoint(GridPoint point, string[] types = null, Character.Character[] excludes = null)
         {
-            return CharactersOnGridPoint(new int[] { point.X, point.Y }, types);
+            return CharactersOnGridPoint(new int[] { point.X, point.Y }, types, excludes);
         }
 
-        public static Character.Character[] CharactersOnGridPoint(int[] point, string[] types = null)
+        public static Character.Character[] CharactersOnGridPoint(int[] point, string[] types = null, Character.Character[] excludes = null)
+        {
+            return CharactersOnGridPoint(point[0], point[1], types, excludes);
+        }
+
+        public static Character.Character[] CharactersOnGridPoint(int x, int y, string[] types = null, Character.Character[] excludes = null)
         {
             List<Character.Character> characters = new List<Character.Character>();
             foreach (Character.Character character in Characters)
             {
-                if (character.Transform.Position.X == point[0] && character.Transform.Position.Y == point[1])
+                if (character.Transform.Position.X == x && character.Transform.Position.Y == y)
                 {
                     if (types != null)
                     {
                         if (!Array.Exists(types, element => element == character.Type))
+                        {
+                            continue;
+                        }
+                    }
+                    if (excludes != null)
+                    {
+                        if (Array.Exists(excludes, element => element == character))
                         {
                             continue;
                         }
@@ -72,5 +92,6 @@ namespace DungeonCrawler.Core
             }
             return characters.ToArray();
         }
+
     }
 }

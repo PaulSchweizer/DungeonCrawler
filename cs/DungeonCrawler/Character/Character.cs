@@ -45,24 +45,84 @@ namespace DungeonCrawler.Character
 
     public struct AttackMarker
     {
+        public Character Attacker;
         public int[][] Shape;
-        public float Countdown;
         public string Skill;
+        public float PreTime;
+        public float PostTime;
+        public bool HitOccurred;
+        public float CurrentTime;
+        public bool IsActive;
 
-        public AttackMarker(int[][] shape, float countdown, string skill)
+        public float TotalTime
         {
-            Shape = shape;
-            Countdown = countdown;
-            Skill = skill;
+            get
+            {
+                return PreTime + PostTime;
+            }
         }
 
-        public void Schedule(int[][] shape, float countdown, string skill)
+        public AttackMarker(Character attacker)
+        {
+            Attacker = attacker;
+            Shape = null;
+            Skill = null;
+            PreTime = 0;
+            PostTime = 0;
+            CurrentTime = 0;
+            IsActive = false;
+            HitOccurred = false;
+        }
+
+        public void Start(int[][] shape, string skill, float preTime, float postTime)
         {
             Shape = shape;
-            Countdown = countdown;
             Skill = skill;
+            PreTime = preTime;
+            PostTime = postTime;
+            CurrentTime = 0;
+            IsActive = true;
+            HitOccurred = false;
+        }
+
+        public void Hit()
+        {
+            HitOccurred = true;
+            foreach (int[] point in Shape)
+            {
+                foreach (Character enemy in GameMaster.CharactersOnGridPoint(point, Attacker.Enemies, new Character[] { Attacker }))
+                {
+                    Attacker.Attack(enemy, Skill);
+                }
+            }
+        }
+
+        public void Stop()
+        {
+            CurrentTime = 0;
+            IsActive = false;
+        }
+
+        public float Progress()
+        {
+            if (CurrentTime <= PreTime)
+            {
+                return (CurrentTime / PreTime) * 0.5f;
+            }
+            else
+            {
+                return 0.5f + ((CurrentTime - PreTime) / PostTime) * 0.5f;
+            }
         }
     }
+
+    #region Delegates
+
+    public delegate void PhysicalStressChangedHandler(object sender, EventArgs e);
+    public delegate void AttackScheduledHandler(object sender, EventArgs e);
+    public delegate void TakenOutHandler(object sender, EventArgs e);
+
+    #endregion
 
     public class Character
     {
@@ -82,11 +142,19 @@ namespace DungeonCrawler.Character
         public bool IsTakenOut;
         public string[] Enemies;
 
-        [JsonIgnore]
-        public AttackMarker ScheduledAttack = new AttackMarker();
+        #region Events
+
+        public event PhysicalStressChangedHandler OnPhysicalStressChanged;
+        public event AttackScheduledHandler OnAttackScheduled;
+        public event TakenOutHandler OnTakenOut;
+
+        #endregion
 
         [JsonIgnore]
-        public Transform Transform = new Transform(0, 0, 0);
+        public AttackMarker ScheduledAttack;
+
+        [JsonIgnore]
+        public Transform Transform;
 
         [JsonIgnore]
         public Cell CurrentCell;
@@ -137,6 +205,12 @@ namespace DungeonCrawler.Character
                 }
                 return attackShape.ToArray();
             }
+        }
+
+        public Character()
+        {
+            ScheduledAttack = new AttackMarker(this);
+            Transform = new Transform(0, 0, 0);
         }
 
         #region Transform
@@ -445,8 +519,9 @@ namespace DungeonCrawler.Character
             }
             else
             {
-                GameEventsLogger.LogReceivePhysicalStress(this, damage);
                 PhysicalStress.Value += damage;
+                GameEventsLogger.LogReceivePhysicalStress(this, damage);
+                OnPhysicalStressChanged?.Invoke(this, null);
             }
         }
 
@@ -468,6 +543,7 @@ namespace DungeonCrawler.Character
         {
             IsTakenOut = true;
             GameEventsLogger.LogGetsTakenOut(this);
+            OnTakenOut?.Invoke(this, null);
         }
 
         #endregion
@@ -490,17 +566,19 @@ namespace DungeonCrawler.Character
 
         public void ScheduleAttack(string attackSkill = "MeleeWeapons")
         {
+            if (ScheduledAttack.IsActive)
+            {
+                return;
+            }
             int[][] attackShape = new int[AttackShape.Length][];
             for(int i = 0; i < attackShape.Length; i++)
             {
                 attackShape[i] = Transform.Map(AttackShape[i][0], AttackShape[i][1]);
             }
-            float countdown = 1 / AttackSpeed;
-            ScheduledAttack.Schedule(attackShape, countdown, attackSkill);
+            float speed = 1 / AttackSpeed;
+            ScheduledAttack.Start(attackShape, attackSkill, speed * 0.5f, speed * 0.5f);
+            OnAttackScheduled?.Invoke(this, null);
         }
-
-
-
 
         public void Attack(Character defender, string attackSkill = "MeleeWeapons", Stunt stunt = null)
         {

@@ -5,8 +5,29 @@ using System.Text;
 
 namespace DungeonCrawler.Core
 {
+
+    public class GameEventArgs : EventArgs
+    {
+        public string Name { get; set; }
+        public string Details { get; set; }
+
+        public GameEventArgs(string name, string details)
+        {
+            Name = name;
+            Details = details;
+        }
+    }
+
+    public delegate void EventLoggedHandler(object sender, GameEventArgs e);
+
     public static class GameEventsLogger
     {
+
+        public enum LogFormat { terminal = 0, markup = 1 };
+
+        public static LogFormat Format = LogFormat.terminal;
+
+        public static event EventLoggedHandler OnEventLogged;
 
         private static List<string> Log = new List<string>();
 
@@ -48,6 +69,19 @@ namespace DungeonCrawler.Core
             }
         }
 
+        private static void AddLog(string log, string name = "Log", bool emitEvent = true)
+        {
+            if (Format == LogFormat.terminal)
+            {
+                log = log.Replace("_", "").Replace("#", "");
+            }
+            Log.Add(log);
+            if (emitEvent)
+            {
+                OnEventLogged?.Invoke(name, new GameEventArgs(name, log));
+            }
+        }
+
         public static void Reset()
         {
             Log = new List<string>();
@@ -56,61 +90,61 @@ namespace DungeonCrawler.Core
 
         public static void LogSeparator(string title = "")
         {
-            Log.Add(string.Format(SpearatorTemplate, title));
+            AddLog(string.Format(SpearatorTemplate, title), emitEvent: false);
         }
 
         public static void LogAttack(Character.Character attacker, Character.Character defender, 
             string skill, int totalValue, int skillValue, int diceValue)
         {
-            Log.Add(string.Format(AttackTemplate, attacker.Name, defender.Name, 
-                                  skill, totalValue, skillValue, diceValue));
+            AddLog(string.Format(AttackTemplate, attacker.Name, defender.Name,
+                                 skill, totalValue, skillValue, diceValue), "Attack");
         }
 
         public static void LogDefend(Character.Character attacker, Character.Character defender,
             string skill, int totalDefendValue, int defendValue, int diceValue)
         {
-            Log.Add(string.Format(DefendTemplate, defender.Name, attacker.Name,
-                                  skill, totalDefendValue, defendValue, diceValue));
+            AddLog(string.Format(DefendTemplate, defender.Name, attacker.Name,
+                                  skill, totalDefendValue, defendValue, diceValue), "Defend");
         }
 
         public static void LogReceivePhysicalStress(Character.Character character, int damage)
         {
-            Log.Add(string.Format(ReceivePhysicalStressTemplate, character.Name, damage));
+            AddLog(string.Format(ReceivePhysicalStressTemplate, character.Name, damage), "ReceivePhysicalStress");
         }
 
         public static void LogTakeConsequence(Character.Character character, Consequence consequence)
         {
-            Log.Add(string.Format(TakeConsequenceTemplate, character.Name, consequence.Name, consequence.Capacity));
+            AddLog(string.Format(TakeConsequenceTemplate, character.Name, consequence.Name, consequence.Capacity), "TakePhysicalStress");
         }
 
         public static void LogGetsTakenOut(Character.Character character)
         {
-            Log.Add(string.Format(GetsTakenOutTemplate, character.Name));
+            AddLog(string.Format(GetsTakenOutTemplate, character.Name), "TakenOut");
         }
 
         public static void LogGainsSpin(Character.Character character, int spin)
         {
-            Log.Add(string.Format(GainsSpinTemplate, character.Name, spin));
+            AddLog(string.Format(GainsSpinTemplate, character.Name, spin), "GainsSpin");
         }
 
         public static void LogUsesStunt(Character.Character character, Stunt stunt)
         {
-            Log.Add(string.Format(UsesStuntTemplate, character.Name, stunt.Name, stunt.Bonus));
+            AddLog(string.Format(UsesStuntTemplate, character.Name, stunt.Name, stunt.Bonus), "UsesStunt");
         }
 
         public static void LogUsesSpin(Character.Character character, int spin)
         {
-            Log.Add(string.Format(UsesSpinTemplate, character.Name, spin));
+            AddLog(string.Format(UsesSpinTemplate, character.Name, spin), "UsesSpin");
         }
 
         public static void LogReceivesXP(Character.Character character, int xp)
         {
-            Log.Add(string.Format(ReceivesXPTemplate, character.Name, xp));
+            AddLog(string.Format(ReceivesXPTemplate, character.Name, xp), "ReceivesXP");
         }
 
         public static void LogReachesNextLevel(Character.Character character)
         {
-            Log.Add(string.Format(ReachesNextLevelTemplate, character.Name, character.Level));
+            AddLog(string.Format(ReachesNextLevelTemplate, character.Name, character.Level), "ReachesNextLevel");
         }
 
         public static void LogHealing(Character.Character character, Character.Character patient,
@@ -118,13 +152,13 @@ namespace DungeonCrawler.Core
         {
             if (success)
             {
-                Log.Add(string.Format(HealingSuccessTemplate, character.Name, patient.Name,
-                          consequence.Name, totalValue, skillValue, diceValue));
+                AddLog(string.Format(HealingSuccessTemplate, character.Name, patient.Name,
+                          consequence.Name, totalValue, skillValue, diceValue), "HealingSuccess");
             }
             else
             {
-                Log.Add(string.Format(HealingFailTemplate, character.Name, patient.Name,
-                          consequence.Name, totalValue, skillValue, diceValue));
+                AddLog(string.Format(HealingFailTemplate, character.Name, patient.Name,
+                          consequence.Name, totalValue, skillValue, diceValue), "HealingFailure");
             }
         }
     }
