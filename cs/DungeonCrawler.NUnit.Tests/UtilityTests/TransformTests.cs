@@ -26,9 +26,28 @@ namespace DungeonCrawler.NUnit.Tests.UtilityTests
             transform.Position.X = 0;
             transform.Position.Y = 0;
             transform.Rotation = (float)(Math.PI);
-            mapped = transform.Map(point[0], point[1]);
+            mapped = transform.Map(point);
             Assert.AreEqual(0, mapped[0]);
             Assert.AreEqual(-1, mapped[1]);
+        }
+
+        [Test]
+        public void GridPoints_equality()
+        {
+            GridPoint a = new GridPoint(6, 6);
+            GridPoint b = new GridPoint(a);
+            GridPoint c = new GridPoint(new int[] { 12, 6 });
+            Assert.AreEqual(a, b);
+            Assert.AreNotEqual(a, c);
+        }
+
+        [Test]
+        public void Initialize_Transform_options()
+        {
+            Transform transformA = new Transform(new GridPoint(6, 6), 0.5f);
+            Transform transformB = new Transform(transformA);
+            Assert.AreEqual(transformA.Position, transformB.Position);
+            Assert.AreEqual(transformA.Rotation, transformB.Rotation);
         }
     }
 }

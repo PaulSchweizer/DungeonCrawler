@@ -19,7 +19,7 @@
  ✔ Don't move if already possible to attack the enemy -> Check if enemy is on the attackshape  first @done (17-10-18 23:02)
  ✔ DefeatedState @done (17-10-18 23:22)
   ✔ Disable the Character @done (17-10-18 23:23)
-  ☐ De-register from the pool
+  ✔ De-register from the pool @done (17-10-18 23:43)
  ☐ Unittests!
 
 

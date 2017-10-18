@@ -22,6 +22,12 @@ namespace DungeonCrawler.Utility
             Y = point[1];
         }
 
+        public GridPoint(GridPoint point)
+        {
+            X = point.X;
+            Y = point.Y;
+        }
+
         public override bool Equals(object obj)
         {
             if (obj is GridPoint)
@@ -63,7 +69,8 @@ namespace DungeonCrawler.Utility
 
     public class Transform
     {
-        public GridPoint Position = new GridPoint(0, 0);
+        public GridPoint Position;
+
         public float Rotation
         {
             get
