@@ -2,6 +2,7 @@ var struct_dungeon_crawler_1_1_utility_1_1_grid_point =
 [
     [ "GridPoint", "df/d8a/struct_dungeon_crawler_1_1_utility_1_1_grid_point.html#a0c5d438160c4dc7b8cb75fdfbbb305a9", null ],
     [ "GridPoint", "df/d8a/struct_dungeon_crawler_1_1_utility_1_1_grid_point.html#ad58c5513e7509dd4f401b0a9ff2d9882", null ],
+    [ "GridPoint", "df/d8a/struct_dungeon_crawler_1_1_utility_1_1_grid_point.html#a954fd7a1ed59650c4e3763120b79cb02", null ],
     [ "Equals", "df/d8a/struct_dungeon_crawler_1_1_utility_1_1_grid_point.html#aadf763f0213fc2f3875230b06bb0b6cf", null ],
     [ "operator==", "df/d8a/struct_dungeon_crawler_1_1_utility_1_1_grid_point.html#a205910dc81346913cfc61929d84aa875", null ],
     [ "operator!=", "df/d8a/struct_dungeon_crawler_1_1_utility_1_1_grid_point.html#af3b9f0c608c63785c8af859667755546", null ],
