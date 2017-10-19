@@ -15,6 +15,7 @@ namespace DungeonCrawler.Core
         public static int Roll()
         {
             int die = Die.Next(0, 82);
+
             foreach (int key in Distribution.Keys)
             {
                 if (die <= key)

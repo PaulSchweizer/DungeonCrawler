@@ -51,6 +51,7 @@
     <Compile Include="CharacterTests\CharacterSkillsTests.cs" />
     <Compile Include="CharacterTests\InventoryTests.cs" />
     <Compile Include="CoreTests\AspectTests.cs" />
+    <Compile Include="CoreTests\DiceTests.cs" />
     <Compile Include="CoreTests\GameMasterTests.cs" />
     <Compile Include="CoreTests\ItemTests.cs" />
     <Compile Include="CoreTests\GameEventsLoggerTests.cs" />

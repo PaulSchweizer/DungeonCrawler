@@ -8,10 +8,18 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
     [TestFixture]
     public class GameMasterTests
     {
+
+        Character.Character characterA = new Character.Character();
+        Character.Character characterB = new Character.Character();
+
         [SetUp]
         public void SetUp()
         {
             GameMaster.Characters = new List<Character.Character>();
+            GameMaster.RegisterCharacter(characterA);
+            GameMaster.RegisterCharacter(characterB);
+            characterA.Transform.Position = new GridPoint(0, 0);
+            characterB.Transform.Position = new GridPoint(0, 0);
         }
 
         [Test]
@@ -20,7 +28,6 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
             Cell cell = new Cell();
             cell.Tags = new string[] { "dark", "cavern" };
             GameMaster.CurrentCell = cell;
-
             Assert.AreEqual(2, GameMaster.CurrentTags.Length);
             Assert.Contains("dark", GameMaster.CurrentTags);
             Assert.Contains("cavern", GameMaster.CurrentTags);
@@ -29,6 +36,7 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         [Test]
         public void Characters_can_only_be_registered_once()
         {
+            GameMaster.Characters = new List<Character.Character>();
             Assert.AreEqual(0, GameMaster.Characters.Count);
             Character.Character character = new Character.Character(); 
             GameMaster.RegisterCharacter(character);
@@ -39,9 +47,8 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         [Test]
         public void Only_registered_Characters_Can_be_removed()
         {
+            GameMaster.Characters = new List<Character.Character>();
             Assert.AreEqual(0, GameMaster.Characters.Count);
-            Character.Character characterA = new Character.Character();
-            Character.Character characterB = new Character.Character();
             GameMaster.RegisterCharacter(characterA);
             Assert.AreEqual(1, GameMaster.Characters.Count);
             GameMaster.DeRegisterCharacter(characterB);
@@ -53,10 +60,6 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         [Test]
         public void Characters_found_on_GridPoints()
         {
-            Character.Character characterA = new Character.Character();
-            Character.Character characterB = new Character.Character();
-            GameMaster.RegisterCharacter(characterA);
-            GameMaster.RegisterCharacter(characterB);
             characterA.Transform.Position = new GridPoint(6, 6);
             characterB.Transform.Position = new GridPoint(6, 6);
             Assert.AreEqual(2, GameMaster.CharactersOnGridPoint(new GridPoint(6, 6)).Length);
@@ -65,13 +68,24 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         }
 
         [Test]
+        public void Exclude_Characters_when_searching_on_GridPoints()
+        {
+            Assert.AreEqual(1, GameMaster.CharactersOnGridPoint(new GridPoint(0, 0), 
+                excludes: new Character.Character[] { characterA }).Length);
+        }
+
+        [Test]
+        public void Only_find_characters_of_type_on_GridPoints()
+        {
+            characterA.Type = "TypeToFind";
+            Assert.AreEqual(1, GameMaster.CharactersOnGridPoint(new GridPoint(0, 0),
+                types: new string[] { "TypeToFind" }).Length);
+        }
+
+        [Test]
         public void Characters_found_on_Cell()
         {
             GameMaster.CurrentLocation = Utilities.Location(); 
-            Character.Character characterA = new Character.Character();
-            Character.Character characterB = new Character.Character();
-            GameMaster.RegisterCharacter(characterA);
-            GameMaster.RegisterCharacter(characterB);
             characterA.MoveTo(6, 6);
             characterB.MoveTo(6, 6);
             Assert.AreEqual(2, GameMaster.CharactersOnCell(GameMaster.CurrentLocation.CellAt(6, 6)).Length);
