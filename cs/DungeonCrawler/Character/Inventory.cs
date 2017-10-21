@@ -41,10 +41,6 @@ namespace DungeonCrawler.Character
             {
                 Items.Add(item);
             }
-            else
-            {
-                return;
-            }
 
             if (Amounts.ContainsKey(item.Name))
             {

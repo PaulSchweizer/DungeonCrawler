@@ -66,6 +66,7 @@
 			"Name": "Weapon",
 			"Skills": ["MeleeWeapons"],
 			"Damage": 3,
+			"Speed": 2,
 			"Aspects": [
 				{
 					"Name": "Extinguisher of #rats.",

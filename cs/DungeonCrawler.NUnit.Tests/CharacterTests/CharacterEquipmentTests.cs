@@ -104,5 +104,14 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             hero.Equip("Weapon2", "RightHand");
             Assert.AreEqual("Weapon2", hero.Equipment["RightHand"]);
         }
+
+        [Test]
+        public void Equipped_weapon_changes_attack_speed()
+        {
+            hero.UnEquip("Weapon");
+            Assert.AreEqual(1, hero.AttackSpeed);
+            hero.Equip("Weapon", "RightHand");
+            Assert.AreEqual(2, hero.AttackSpeed);
+        }
     }
 }
