@@ -84,5 +84,25 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             bool equipped = hero.Equip(armour.Name, "WrongSlot");
             Assert.IsFalse(equipped);
         }
+
+        [Test]
+        public void Equipped_weapon_changes_attack_shape()
+        {
+            Assert.AreEqual(1, hero.AttackShape.Length);
+            hero.Equip("Weapon", "RightHand");
+            // Results in this Shape
+            // [X][X]
+            // [C][X]
+            Assert.AreEqual(3, hero.AttackShape.Length);
+        }
+
+        [Test]
+        public void Equipping_item_unequips_equipped_in_that_slot()
+        {
+            hero.Inventory.AddItem(Rulebook.Weapon("Weapon2"));
+            hero.Equip("Weapon", "RightHand");
+            hero.Equip("Weapon2", "RightHand");
+            Assert.AreEqual("Weapon2", hero.Equipment["RightHand"]);
+        }
     }
 }

@@ -76,6 +76,15 @@
 			"Tags": [],
 			"EquipmentSlot": "RightHand",
 			"IsUnique": true
+		},
+		{
+			"Name": "Weapon2",
+			"Skills": ["MeleeWeapons"],
+			"Damage": 3,
+			"Aspects": [],
+			"Tags": [],
+			"EquipmentSlot": "RightHand",
+			"IsUnique": true
 		}
 	],
 	"Armours": [
