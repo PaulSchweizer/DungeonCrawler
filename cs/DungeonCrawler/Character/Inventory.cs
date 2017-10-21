@@ -103,10 +103,6 @@ namespace DungeonCrawler.Character
                     }
                 }
             }
-            else
-            {
-                throw new Exception(string.Format("Item {0} not in the Inventory.", item.Name));
-            }
         }
     }
 }

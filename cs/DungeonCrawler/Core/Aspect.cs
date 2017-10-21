@@ -7,13 +7,6 @@ namespace DungeonCrawler.Core
 {
     public class Aspect
     {
-        //{
-        //    "Name": "I used to kill #rats for living.",
-        //    "Skills": [
-        //        "MeleeWeapons"
-        //    ],
-        //    "Bonus": 1
-        //}
         public string Name;
         public string[] Skills;
         public int Bonus;
