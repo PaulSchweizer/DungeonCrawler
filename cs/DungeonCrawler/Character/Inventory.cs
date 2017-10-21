@@ -104,5 +104,30 @@ namespace DungeonCrawler.Character
                 }
             }
         }
+
+        public static Inventory operator +(Inventory thisInventory, Inventory thatInventory)
+        {
+            // Add all items to this inventory
+            foreach(Item item in thatInventory.Items)
+            {
+                thisInventory.AddItem(item, thatInventory.Amounts[item.Name]);
+            }
+            foreach (Weapon weapon in thatInventory.Weapons)
+            {
+                thisInventory.AddItem(weapon, thatInventory.Amounts[weapon.Name]);
+            }
+            foreach (Armour armour in thatInventory.Armours)
+            {
+                thisInventory.AddItem(armour, thatInventory.Amounts[armour.Name]);
+            }
+
+            // Remove items from other inventory
+            thatInventory.Items = new List<Item>();
+            thatInventory.Weapons = new List<Weapon>();
+            thatInventory.Armours = new List<Armour>();
+            thatInventory.Amounts = new Dictionary<string, int>();
+
+            return thisInventory;
+        }
     }
 }

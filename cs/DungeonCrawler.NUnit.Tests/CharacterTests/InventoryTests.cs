@@ -74,5 +74,26 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             Assert.AreEqual(1, inventory.Weapons.Count);
             Assert.AreSame(inventory.Weapons[0], weapon2);
         }
+
+        [Test]
+        public void Move_Inventory_to_another_inventory_by_adding_them()
+        {
+            Inventory thisInventory = new Inventory();
+            Inventory thatInventory = new Inventory();
+
+            thatInventory.AddItem(Rulebook.Item("Item"), 1);
+            thatInventory.AddItem(Rulebook.Item("Weapon"), 2);
+            thatInventory.AddItem(Rulebook.Item("Armour"), 3);
+
+            thisInventory += thatInventory;
+
+            Assert.AreEqual(1, thisInventory.Amounts["Item"]);
+            Assert.AreEqual(2, thisInventory.Amounts["Weapon"]);
+            Assert.AreEqual(3, thisInventory.Amounts["Armour"]);
+            
+            Assert.IsFalse(thatInventory.Amounts.ContainsKey("Item"));
+            Assert.IsFalse(thatInventory.Amounts.ContainsKey("Weapon"));
+            Assert.IsFalse(thatInventory.Amounts.ContainsKey("Armour"));
+        }
     }
 }
