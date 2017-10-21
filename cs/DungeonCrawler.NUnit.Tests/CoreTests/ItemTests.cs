@@ -20,7 +20,11 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         public void Item_cost_depends_on_its_parameters()
         {
             Weapon weapon = Utilities.Weapon();
-            Console.WriteLine(weapon.Cost);
+            Assert.AreEqual(13, weapon.Cost);
+
+            Armour armour = Utilities.Armour();
+            Console.WriteLine(armour.Cost);
+            Assert.AreEqual(8, armour.Cost);
         }
     }
 }

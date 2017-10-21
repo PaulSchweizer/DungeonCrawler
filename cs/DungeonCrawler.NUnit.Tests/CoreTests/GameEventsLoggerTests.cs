@@ -13,6 +13,8 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         Weapon weapon;
         Armour armour;
 
+        int logged = 0;
+
         [SetUp]
         public void SetUp()
         {
@@ -46,5 +48,18 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
             Assert.AreEqual("", GameEventsLogger.Next);
         }
 
+        [Test]
+        public void Logged_event()
+        {
+            logged = 0;
+            GameEventsLogger.OnEventLogged += TestLog;
+            GameEventsLogger.LogReachesNextLevel(hero);
+            Assert.AreEqual(1, logged);
+        }
+
+        public void TestLog(object sender, EventArgs e)
+        {
+            logged += 1;
+        }
     }
 }

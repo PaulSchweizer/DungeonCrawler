@@ -8,6 +8,13 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
     public class RulebookTests
     {
         [Test]
+        public void Rulebook_initializes_itself()
+        {
+            Rulebook.Instance = null;
+            Assert.IsNotNull(Rulebook.Instance);
+        }
+
+        [Test]
         public void DeserializeRulebook()
         {
             string json = Utilities.JsonResource("Rulebook");
@@ -34,6 +41,10 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
             armour = Rulebook.Armour("Armour");
             Assert.AreEqual(3, weapon.Damage);
             Assert.AreEqual(1, armour.Protection);
+
+            // Item does not exist
+            Item item = Rulebook.Item("DoesNotExist");
+            Assert.IsNull(item);
         }
     }
 }

@@ -66,6 +66,10 @@ namespace DungeonCrawler.Core
             {
                 int cost = base.Cost;
                 cost += Protection;
+                foreach(Character.Consequence consequence in Consequences)
+                {
+                    cost += consequence.Capacity;
+                }
                 return cost;
             }
         }
