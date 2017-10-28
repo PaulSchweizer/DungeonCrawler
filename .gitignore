@@ -4,11 +4,33 @@ __old
 _trash
 
 #################
+## Unity
+#################
+unity/DungeonCrawler/Library
+unity/DungeonCrawler/ProjectSettings
+unity/DungeonCrawler/Temp
+unity/DungeonCrawler/Assets/__temp
+unity/DungeonCrawler/Assets/cs/DebugDrawingExtension
+unity/DungeonCrawler/Assets/dlls
+unity/DungeonCrawler/Assets/Examples
+unity/DungeonCrawler/Assets/fbx
+unity/DungeonCrawler/Assets/Gizmos
+unity/DungeonCrawler/Assets/ink
+unity/DungeonCrawler/Assets/json
+unity/DungeonCrawler/Assets/NavMeshComponents
+unity/DungeonCrawler/Assets/Plugins
+unity/DungeonCrawler/Assets/prefabs
+unity/DungeonCrawler/Assets/InkLibrary*
+unity/DungeonCrawler/Assets/InkSettings*
+unity/DungeonCrawler/DungeonCrawler*
+*.meta
+*.asset
+
+#################
 ## c#
 #################
 
 packages
-unity
 python/dialog_graph
 python/pygraphml
 doc

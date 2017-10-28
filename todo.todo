@@ -20,14 +20,38 @@
  ✔ DefeatedState @done (17-10-18 23:22)
   ✔ Disable the Character @done (17-10-18 23:23)
   ✔ De-register from the pool @done (17-10-18 23:43)
- ☐ Unittests!
+ ✔ Unittests! @done (17-10-21 21:04)
   ✔ GameMaster types and excludes unittests @done (17-10-19 22:52)
+  ✔ Cost on Items @done (17-10-21 19:00)
+  ✔ Inventory Tests @done (17-10-21 19:00)
+ ✔ Loot @done (17-10-21 22:42)
+  ✔ DropLoot @done (17-10-21 22:42)
+  ✔ PickUpLoot @done (17-10-21 22:42)
+ ✔ Negative Aspect @done (17-10-21 22:52)
 
+Conversation System:
+ ✔ Inkle system @done (17-10-22 23:01)
+ ✔ Click on NPC @done (17-10-22 23:01)
+ ✔ Start the Conversation of the NPC @done (17-10-22 22:59)
+ ✔ Exit the conversation @done (17-10-27 21:36)
+ ✔ put state on github @done (17-10-28 18:04)
+
+ ☐ Enemy AI
+  ☐ AlertnessRadius in units
+   ☐ Infer from the CharacterData
+  ☐ AttackShape to Radius and Angle, can have multiple shapes
+
+  ☐ ChasePersistency in sec
+  ☐ Trigger them when being attacked
 
 I///////////////////////////////////////////:
 Backlog:
 
 Unity:
+ ☐ In InputController, use the list of enemies to detect hit
+ ☐ Load Level in Editor
+ ☐ Change the rotation system for the other states as well, take it from MoveToNPC
+ ☐ Shorten names of classes, e.g. NPCCharacter to NPC
  ☐ "CharacterData" replace with "Data"?
  ☐ Show a damage number for the Attack
  ☐ Game Startup Procedure
@@ -41,18 +65,26 @@ Unity:
 UnityEngine.GUIUtility:ProcessEvent(Int32, IntPtr)
  ☐ Visualize the currently active tags
 
+Inkle:
+ ☐ Stepwise through the dialog
+ ☐ Show the response
+ ☐ Update the image
+ ☐ Set to Conversation Mode
+   ☐ Block everything until conversation is ending
+ ☐ Attach callbacks
+ ☐ Use the tags
+
 Aspect:
- ☐ Negative Aspect
- ☐ Equilibrium Aspect
  ☐ Levels of Aspects
+ ☐ Equilibrium Aspect
  ☐ Make possible to add Aspects to other values too, e.g. Range of Attack
 
 Character:
+ ☐ Pickup of Items needs a Signal
  ☐ Reverse PhysicalStress -> empty the slider bar
  ☐ Character.Transform -> AttackShape rotate until faces the character to attack
  ☐ AttackMarker.Stunt
  ☐ Multiple AttackMarkers per Character?
- ☐ Loot!
  ☐ Party
   ☐ Partyleader
  ☐ Attack
@@ -94,8 +126,6 @@ LogObserver:
  ☐ Have an option to disable the log observer (when building for production maybe?)
 
 Quest System:
-
-Conversation System:
 
 Save:
  ☐ CurrentLocation of Character
