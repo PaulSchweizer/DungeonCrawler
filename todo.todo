@@ -35,6 +35,7 @@ Conversation System:
  ✔ Start the Conversation of the NPC @done (17-10-22 22:59)
  ✔ Exit the conversation @done (17-10-27 21:36)
  ✔ put state on github @done (17-10-28 18:04)
+ ☐ Focus on the enemy that was targeted by the Player
 
  ☐ Enemy AI
   ☐ AlertnessRadius in units
@@ -48,6 +49,7 @@ I///////////////////////////////////////////:
 Backlog:
 
 Unity:
+ ☐ Pick up loot when dropped
  ☐ In InputController, use the list of enemies to detect hit
  ☐ Load Level in Editor
  ☐ Change the rotation system for the other states as well, take it from MoveToNPC

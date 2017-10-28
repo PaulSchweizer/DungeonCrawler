@@ -93,7 +93,17 @@ public class BaseCharacter : MonoBehaviour
 
     /// <summary>
     /// Collect the Loot on collision.</summary>
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
+    {
+        Looted(other);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        Looted(other);
+    }
+
+    private void Looted(Collider other)
     {
         if (isLoot)
         {
