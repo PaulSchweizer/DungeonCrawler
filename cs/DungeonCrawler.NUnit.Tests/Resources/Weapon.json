@@ -3,9 +3,11 @@
     "Skills": ["MeleeWeapons"],
     "Damage": 3,
 	"AttackShape": [
-		[0, 1], 
-		[1, 1],
-		[1, 0]
+		{
+			"Position": [0, 0],
+			"Radius": 2,
+			"Angle": 90
+		}
 	],
 	"Speed": 1,
     "Aspects": [

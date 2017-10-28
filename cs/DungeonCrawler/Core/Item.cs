@@ -36,7 +36,7 @@ namespace DungeonCrawler.Core
     {
         public string[] Skills;
         public int Damage;
-        public int[][] AttackShape;
+        public Character.AttackShapeMarker[] AttackShape;
         public float Speed;
 
         public override int Cost
@@ -44,7 +44,10 @@ namespace DungeonCrawler.Core
             get
             {
                 int cost = base.Cost;
-                cost += Damage * AttackShape.Length;
+                foreach(Character.AttackShapeMarker shape in AttackShape)
+                {
+                    cost += (int)shape.Area();
+                }
                 return cost;
             }
         }

@@ -43,10 +43,31 @@ namespace DungeonCrawler.Character
         }
     }
 
+    public struct AttackShapeMarker
+    {
+        public int[] Position;
+        public int Radius;
+        public int Angle;
+
+        public static AttackShapeMarker Default = new AttackShapeMarker(new int[] { 0, 0 }, 1, 45);
+
+        public AttackShapeMarker(int[] position, int radius, int angle)
+        {
+            Position = position;
+            Radius = radius;
+            Angle = angle;
+        }
+
+        public float Area()
+        {
+            return (float)(Math.PI * Radius * Radius * (Angle / 360f));
+        }
+    }
+
     public struct AttackMarker
     {
         public Character Attacker;
-        public int[][] Shape;
+        public AttackShapeMarker[] Shape;
         public string Skill;
         public float PreTime;
         public float PostTime;
@@ -74,7 +95,7 @@ namespace DungeonCrawler.Character
             HitOccurred = false;
         }
 
-        public void Start(int[][] shape, string skill, float preTime, float postTime)
+        public void Start(AttackShapeMarker[] shape, string skill, float preTime, float postTime)
         {
             Shape = shape;
             Skill = skill;
@@ -88,9 +109,9 @@ namespace DungeonCrawler.Character
         public void Hit()
         {
             HitOccurred = true;
-            foreach (int[] point in Shape)
+            foreach (AttackShapeMarker shape in Shape)
             {
-                foreach (Character enemy in GameMaster.CharactersOnGridPoint(point, Attacker.Enemies, new Character[] { Attacker }))
+                foreach (Character enemy in GameMaster.CharactersOnGridPoint(shape.Position, Attacker.Enemies, new Character[] { Attacker }))
                 {
                     Attacker.Attack(enemy, Skill);
                 }
@@ -184,24 +205,21 @@ namespace DungeonCrawler.Character
         }
 
         [JsonIgnore]
-        public int[][] AttackShape
+        public AttackShapeMarker[] AttackShape
         {
             get
             {
-                List<int[]> attackShape = new List<int[]>();
+                List<AttackShapeMarker> attackShape = new List<AttackShapeMarker>();
                 foreach (Weapon weapon in Weapons)
                 {
-                    foreach (int[] shape in weapon.AttackShape)
+                    foreach (AttackShapeMarker shape in weapon.AttackShape)
                     {
-                        if (!attackShape.Contains(shape))
-                        {
-                            attackShape.Add(shape);
-                        }
+                        attackShape.Add(shape);
                     }
                 }
                 if (attackShape.Count == 0)
                 {
-                    attackShape.Add(new int[] { 1, 0 });
+                    attackShape.Add(AttackShapeMarker.Default);
                 }
                 return attackShape.ToArray();
             }
@@ -550,33 +568,19 @@ namespace DungeonCrawler.Character
 
         #region Combat
 
-        public Character[] EnemiesInReach()
-        {
-            List<Character> enemies = new List<Character>();
-            for (int i = 0; i < AttackShape.Length; i++)
-            {
-                GridPoint point = new GridPoint(Transform.Map(AttackShape[i]));
-                foreach (Character enemy in GameMaster.CharactersOnGridPoint(point, Enemies))
-                {
-                    enemies.Add(enemy);
-                }
-            }
-            return enemies.ToArray();
-        }
-
         public void ScheduleAttack(string attackSkill = "MeleeWeapons")
         {
             if (ScheduledAttack.IsActive)
             {
                 return;
             }
-            int[][] attackShape = new int[AttackShape.Length][];
-            for(int i = 0; i < attackShape.Length; i++)
-            {
-                attackShape[i] = Transform.Map(AttackShape[i][0], AttackShape[i][1]);
-            }
+            //int[][] attackShape = new int[AttackShape.Length][];
+            //for(int i = 0; i < attackShape.Length; i++)
+            //{
+            //    attackShape[i] = Transform.Map(AttackShape[i][0], AttackShape[i][1]);
+            //}
             float speed = 1 / AttackSpeed;
-            ScheduledAttack.Start(attackShape, attackSkill, speed * 0.5f, speed * 0.5f);
+            ScheduledAttack.Start(AttackShape, attackSkill, speed * 0.5f, speed * 0.5f);
             OnAttackScheduled?.Invoke(this, null);
         }
 

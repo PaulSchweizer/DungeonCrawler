@@ -35,19 +35,19 @@ Conversation System:
  ✔ Start the Conversation of the NPC @done (17-10-22 22:59)
  ✔ Exit the conversation @done (17-10-27 21:36)
  ✔ put state on github @done (17-10-28 18:04)
-
- ☐ Enemy AI
-  ☐ AlertnessRadius in units
-   ☐ Infer from the CharacterData
+ ☐ AttackShape to circles and angles
   ☐ AttackShape to Radius and Angle, can have multiple shapes
-
-  ☐ ChasePersistency in sec
-  ☐ Trigger them when being attacked
+  ☐ Characters on gridpoints -> default exclude the caller
+ ☐ AlertnessRadius in units
+  ☐ Infer from the CharacterData
 
 I///////////////////////////////////////////:
 Backlog:
 
 Unity:
+ ☐ Enemy AI
+  ☐ ChasePersistency in sec
+  ☐ Trigger them when being attacked
  ☐ In InputController, use the list of enemies to detect hit
  ☐ Load Level in Editor
  ☐ Change the rotation system for the other states as well, take it from MoveToNPC
@@ -136,3 +136,23 @@ Save:
 Stunt:
  ☐ Cost
  ☐ FatePoints / ActionPoints
+
+
+
+
+
+
+        public Character[] EnemiesInReach()
+        {
+            List<Character> enemies = new List<Character>();
+            for (int i = 0; i < AttackShape.Length; i++)
+            {
+                GridPoint point = new GridPoint(Transform.Map(AttackShape[i]));
+                foreach (Character enemy in GameMaster.CharactersOnGridPoint(point, Enemies))
+                {
+                    enemies.Add(enemy);
+                }
+            }
+            return enemies.ToArray();
+        }
+
