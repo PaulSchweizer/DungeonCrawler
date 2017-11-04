@@ -68,7 +68,7 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             GameMaster.RegisterCharacter(hero);
             GameMaster.RegisterCharacter(rat);
             hero.MoveTo(0, 0);
-            rat.MoveTo(0, 1);
+            rat.MoveTo(1, 0);
 
             AttackMarker marker = new AttackMarker(hero);
             marker.Start(new AttackShapeMarker[] { AttackShapeMarker.Default }, "MeleeWeapons", 1, 2);

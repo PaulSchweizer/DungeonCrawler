@@ -10,10 +10,10 @@ namespace DungeonCrawler.NUnit.Tests.UtilityTests
         [Test]
         public void Map_GridPoint_to_Transform()
         {
-            int[] point = new int[] { 0, 1 };
+            float[] point = new float[] { 0, 1 };
             Transform transform = new Transform(0, 0, 0);
 
-            int[] mapped = transform.Map(point[0], point[1]);
+            float[] mapped = transform.Map(point[0], point[1]);
 
             Assert.AreEqual(point, mapped);
 
@@ -34,9 +34,9 @@ namespace DungeonCrawler.NUnit.Tests.UtilityTests
         [Test]
         public void GridPoints_equality()
         {
-            GridPoint a = new GridPoint(6, 6);
-            GridPoint b = new GridPoint(a);
-            GridPoint c = new GridPoint(new int[] { 12, 6 });
+            Point a = new Point(6, 6);
+            Point b = new Point(a);
+            Point c = new Point(new float[] { 12, 6 });
             Assert.AreEqual(a, b);
             Assert.AreNotEqual(a, c);
             Assert.True(a == b);
@@ -50,7 +50,7 @@ namespace DungeonCrawler.NUnit.Tests.UtilityTests
         [Test]
         public void Initialize_Transform_options()
         {
-            Transform transformA = new Transform(new GridPoint(6, 6), 0.5f);
+            Transform transformA = new Transform(new Point(6, 6), 0.5f);
             Transform transformB = new Transform(transformA);
             Assert.AreEqual(transformA.Position, transformB.Position);
             Assert.AreEqual(transformA.Rotation, transformB.Rotation);
@@ -59,7 +59,15 @@ namespace DungeonCrawler.NUnit.Tests.UtilityTests
         [Test]
         public void Transforms_as_pretty_strings()
         {
-            Console.WriteLine(new Transform(new GridPoint(6, 6), 0.5f));
+            Console.WriteLine(new Transform(new Point(6, 6), 0.5f));
+        }
+
+        [Test]
+        public void RotateVector_expects_radians()
+        {
+            float[] vector = Transform.RotateVector(1, 0, (float)(Math.PI * 1.5));
+            Assert.AreEqual(0, Math.Round(vector[0], 2));
+            Assert.AreEqual(-1, vector[1]);
         }
     }
 }

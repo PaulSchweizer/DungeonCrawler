@@ -5,24 +5,24 @@ using System.Text;
 namespace DungeonCrawler.Utility
 {
 
-    public struct GridPoint
+    public struct Point
     {
-        public int X;
-        public int Y;
+        public float X;
+        public float Y;
 
-        public GridPoint(int x, int y)
+        public Point(float x, float y)
         {
             X = x;
             Y = y;
         }
 
-        public GridPoint(int[] point)
+        public Point(float[] point)
         {
             X = point[0];
             Y = point[1];
         }
 
-        public GridPoint(GridPoint point)
+        public Point(Point point)
         {
             X = point.X;
             Y = point.Y;
@@ -30,15 +30,14 @@ namespace DungeonCrawler.Utility
 
         public override bool Equals(object obj)
         {
-            if (obj is GridPoint)
+            if (obj is Point other)
             {
-                GridPoint other = (GridPoint)obj;
                 return other.X == X && other.Y == Y;
             }
             return false;
         }
 
-        public static bool operator ==(GridPoint a, GridPoint b)
+        public static bool operator ==(Point a, Point b)
         {
             if (ReferenceEquals(a, b))
             {
@@ -51,7 +50,7 @@ namespace DungeonCrawler.Utility
             return a.X == b.X && a.Y == b.Y;
         }
 
-        public static bool operator !=(GridPoint a, GridPoint b)
+        public static bool operator !=(Point a, Point b)
         {
             return !(a == b);
         }
@@ -69,7 +68,27 @@ namespace DungeonCrawler.Utility
 
     public class Transform
     {
-        public GridPoint Position;
+        public Point Position;
+
+        public static float[] RotateVector(float x, float y, float degrees)
+        {
+            float[] result = new float[2];
+            result[0] = (float)(x * Math.Cos(degrees) - y * Math.Sin(degrees));
+            result[1] = (float)(x * Math.Sin(degrees) + y * Math.Cos(degrees));
+            return result;
+        }
+
+        public static float AngleBetween(float[] fromVector, float[] toVector)
+        {
+            float dot = fromVector[0] * toVector[0] + fromVector[1] * toVector[1];
+            float mags = (float)Math.Sqrt(fromVector[0] * fromVector[0] + fromVector[1] * fromVector[1]) * 
+                (float)Math.Sqrt(toVector[0] * toVector[0] + toVector[1] * toVector[1]);
+            if(mags == 0)
+            {
+                return 0;
+            }
+            return (float)Math.Acos(dot / mags);
+        }
 
         public float Rotation
         {
@@ -79,19 +98,19 @@ namespace DungeonCrawler.Utility
             }
             set
             {
-                _rotation = (float)(Math.Floor(((value * 4) / Math.PI)) * Math.PI * 0.25);
+                _rotation = value; // (float)(Math.Floor(((value * 4) / Math.PI)) * Math.PI * 0.25);
             }
         }
         private float _rotation;
 
-        public Transform(int x, int y, float rotation)
+        public Transform(float x, float y, float rotation)
         {
             Position.X = x;
             Position.Y = y;
             Rotation = rotation;
         }
 
-        public Transform(GridPoint position, float rotation)
+        public Transform(Point position, float rotation)
         {
             Position.X = position.X;
             Position.Y = position.Y;
@@ -105,12 +124,12 @@ namespace DungeonCrawler.Utility
             Rotation = transform.Rotation;
         }
 
-        public int[] Map(int x, int y)
+        public float[] Map(float x, float y)
         {
             double new_x = ((x * Math.Cos(Rotation) + y * Math.Sin(Rotation)));
             double new_y = ((- x * Math.Sin(Rotation) + y * Math.Cos(Rotation)));
 
-            int mag = x;
+            float mag = x;
             if (y > x)
             {
                 mag = y;
@@ -119,13 +138,13 @@ namespace DungeonCrawler.Utility
             new_x = (new_x / Math.Sqrt(new_x * new_x + new_y * new_y)) * mag;
             new_y = (new_y / Math.Sqrt(new_x * new_x + new_y * new_y)) * mag;
 
-            return new int[] {
-                Position.X + (int)(Math.Ceiling(Math.Abs(Math.Round(new_x, 3))) * Math.Sign(new_x)),
-                Position.Y + (int)(Math.Ceiling(Math.Abs(Math.Round(new_y, 3))) * Math.Sign(new_y))
+            return new float[] {
+                Position.X + (float)(Math.Ceiling(Math.Abs(Math.Round(new_x, 3))) * Math.Sign(new_x)),
+                Position.Y + (float)(Math.Ceiling(Math.Abs(Math.Round(new_y, 3))) * Math.Sign(new_y))
             };
         }
 
-        public int[] Map(int[] point)
+        public float[] Map(float[] point)
         {
             return Map(point[0], point[1]);
         }

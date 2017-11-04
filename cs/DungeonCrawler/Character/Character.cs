@@ -45,22 +45,53 @@ namespace DungeonCrawler.Character
 
     public struct AttackShapeMarker
     {
-        public int[] Position;
+        public Utility.Transform Transform;
         public int Radius;
-        public int Angle;
+        public float Angle;
+        private float[] _forward;
 
         public static AttackShapeMarker Default = new AttackShapeMarker(new int[] { 0, 0 }, 1, 45);
 
         public AttackShapeMarker(int[] position, int radius, int angle)
         {
-            Position = position;
+            Transform = new Transform(position[0], position[1], 0);
             Radius = radius;
-            Angle = angle;
+            Angle = (float)Math.Round(((angle * Math.PI) / 180f), 3);
+            _forward = new float[] { 1, 0 };
         }
 
         public float Area()
         {
             return (float)(Math.PI * Radius * Radius * (Angle / 360f));
+        }
+
+        /// <summary>
+        /// Apply shape with the current Transform values.
+        /// This occurs when the Attack has been scheduled.
+        /// </summary>
+        public void Apply()
+        {
+            _forward = Transform.RotateVector(1, 0, Transform.Rotation);
+        }
+
+        public bool PointInArea(Point point)
+        {
+            // Check if in range
+            if (Math.Pow(point.X - Transform.Position.X, 2) + Math.Pow(point.Y - Transform.Position.Y, 2) > Radius * Radius)
+            {
+                return false;
+            }
+
+            // Check if in circle sector
+            float[] vector = new float[] { point.X - Transform.Position.X, point.Y - Transform.Position.Y };
+            float angle = (float)Math.Round(Transform.AngleBetween(_forward, vector), 3);
+            Console.WriteLine((float)Math.Round(Angle / 2f));
+            Console.WriteLine(angle);
+            if (angle <= (float)Math.Round(Angle / 2f))
+            {
+                return true;
+            }
+            return false;
         }
     }
 
@@ -111,9 +142,13 @@ namespace DungeonCrawler.Character
             HitOccurred = true;
             foreach (AttackShapeMarker shape in Shape)
             {
-                foreach (Character enemy in GameMaster.CharactersOnGridPoint(shape.Position, Attacker.Enemies, new Character[] { Attacker }))
+                shape.Apply();
+                foreach (Character enemy in GameMaster.CharactersOfType(Attacker.Enemies))
                 {
-                    Attacker.Attack(enemy, Skill);
+                    if (shape.PointInArea(enemy.Transform.Position))
+                    {
+                        Attacker.Attack(enemy, Skill);
+                    }
                 }
             }
         }
