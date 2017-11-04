@@ -35,11 +35,36 @@ Conversation System:
  ✔ Start the Conversation of the NPC @done (17-10-22 22:59)
  ✔ Exit the conversation @done (17-10-27 21:36)
  ✔ put state on github @done (17-10-28 18:04)
- ☐ AttackShape to circles and angles
-  ☐ AttackShape to Radius and Angle, can have multiple shapes
-  ☐ Characters on gridpoints -> default exclude the caller
- ☐ AlertnessRadius in units
-  ☐ Infer from the CharacterData
+ ✔ Only the forward vector is necessary in the AttackShape @done (17-10-30 19:13)
+ ✔ Use the distance in the check as well @done (17-10-30 19:34)
+ ✔ Change GridPoint to (Float)Point @done (17-10-31 22:45)
+ ✔ Remove the stepped rotation approach for the Transform @done (17-10-31 22:45)
+ ✔ Tests for GridPoint @done (17-10-31 22:54)
+ ✔ Transform to float @done (17-11-04 13:59)
+ ✔ Keep the AttackShapeMarker in line with the Characters position when checking @done (17-11-04 14:26)
+ ✔ Just compare the distance with a range!!!! @done (17-11-04 17:59)
+ ✔ Get the rotation of the chars in unit right @done (17-11-04 19:46)
+ ✔ Radius on Characters @done (17-11-04 19:46)
+ ✔ For radius, take the radius of the Character into account @done (17-11-04 19:46)
+ ✔ AlertnessRadius @done (17-11-04 20:01)
+ ✔ Unity AttackState has to be fixed @done (17-11-04 20:01)
+ ✔ AttackShape to circles and angles @done (17-11-04 20:02)
+  ✔ AttackShape to Radius and Angle, can have multiple shapes @done (17-11-04 20:02)
+  ✔ Characters on gridpoints -> default exclude the caller @done (17-11-04 20:02)
+ ✔ AlertnessRadius in units @done (17-11-04 20:02)
+  ✔ Infer from the CharacterData @done (17-11-04 20:02)
+ ☐ Add the Attacker radius as well
+
+ ☐ Set default values for AttackShape
+
+Simple Code Refactor:
+ ☐ Rename Point to Vector
+ ☐ Return only Point Structs
+ ☐ Location not necessary, point not necessary
+ ☐ CharactersOnGridPoint is obsolete
+ ☐ Tests for the distance check
+ ☐ Tests for the segment check
+
 
 I///////////////////////////////////////////:
 Backlog:
