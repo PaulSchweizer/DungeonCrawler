@@ -28,6 +28,41 @@ namespace DungeonCrawler.Utility
             Y = point.Y;
         }
 
+        public void Normalize()
+        {
+            var magnitude = Magnitude();
+            if (magnitude > 0)
+            {
+                X = X / magnitude;
+                Y = Y / magnitude;
+            }
+        }
+
+        public float Magnitude()
+        {
+            return (float)Math.Sqrt(X * X + Y * Y);
+        }
+
+        public static Point operator -(Point a, Point b)
+        {
+            return new Point(a.X - b.X, a.Y - b.Y);
+        }
+
+        public static Point operator +(Point a, Point b)
+        {
+            return new Point(a.X + b.X, a.Y + b.Y);
+        }
+
+        public static Point operator /(Point point, float divisor)
+        {
+            return new Point(point.X / divisor, point.Y / divisor);
+        }
+
+        public static Point operator *(Point point, float multiplier)
+        {
+            return new Point(point.X * multiplier, point.Y * multiplier);
+        }
+
         public override bool Equals(object obj)
         {
             if (obj is Point other)
@@ -69,15 +104,26 @@ namespace DungeonCrawler.Utility
     public class Transform
     {
         public Point Position;
+        public float Rotation;
 
-        public static float[] RotateVector(float x, float y, float degrees)
+        // Expects Degrees
+        public static float[] RotateVector(float x, float y, float degrees, bool clockwise = true)
         {
             float[] result = new float[2];
-            result[0] = (float)(x * Math.Cos(degrees) - y * Math.Sin(degrees));
-            result[1] = (float)(x * Math.Sin(degrees) + y * Math.Cos(degrees));
+            if (clockwise)
+            {
+                result[0] = (float)(x * Math.Cos(degrees) - y * Math.Sin(degrees));
+                result[1] = (float)(x * Math.Sin(degrees) + y * Math.Cos(degrees));
+            }
+            else
+            {
+                result[0] = (float)(x * Math.Cos(degrees) + y * Math.Sin(degrees));
+                result[1] = (float)(-x * Math.Sin(degrees) + y * Math.Cos(degrees));
+            }
             return result;
         }
 
+        // Returns Radians
         public static float AngleBetween(float[] fromVector, float[] toVector)
         {
             float dot = fromVector[0] * toVector[0] + fromVector[1] * toVector[1];
@@ -89,19 +135,6 @@ namespace DungeonCrawler.Utility
             }
             return (float)Math.Acos(dot / mags);
         }
-
-        public float Rotation
-        {
-            get
-            {
-                return _rotation;
-            }
-            set
-            {
-                _rotation = value; // (float)(Math.Floor(((value * 4) / Math.PI)) * Math.PI * 0.25);
-            }
-        }
-        private float _rotation;
 
         public Transform(float x, float y, float rotation)
         {
@@ -126,6 +159,7 @@ namespace DungeonCrawler.Utility
 
         public float[] Map(float x, float y)
         {
+
             double new_x = ((x * Math.Cos(Rotation) + y * Math.Sin(Rotation)));
             double new_y = ((- x * Math.Sin(Rotation) + y * Math.Cos(Rotation)));
 
@@ -138,15 +172,29 @@ namespace DungeonCrawler.Utility
             new_x = (new_x / Math.Sqrt(new_x * new_x + new_y * new_y)) * mag;
             new_y = (new_y / Math.Sqrt(new_x * new_x + new_y * new_y)) * mag;
 
+            if (double.IsNaN(new_x))
+            {
+                new_x = 0;
+            }
+            if (double.IsNaN(new_y))
+            {
+                new_y = 0;
+            }
+
             return new float[] {
-                Position.X + (float)(Math.Ceiling(Math.Abs(Math.Round(new_x, 3))) * Math.Sign(new_x)),
-                Position.Y + (float)(Math.Ceiling(Math.Abs(Math.Round(new_y, 3))) * Math.Sign(new_y))
+                Position.X + (float)new_x, // (float)(Math.Ceiling(Math.Abs(Math.Round(new_x, 3))) * Math.Sign(new_x)),
+                Position.Y + (float)new_y // (float)(Math.Ceiling(Math.Abs(Math.Round(new_y, 3))) * Math.Sign(new_y))
             };
         }
 
         public float[] Map(float[] point)
         {
             return Map(point[0], point[1]);
+        }
+
+        public float[] Map(Point point)
+        {
+            return Map(point.X, point.Y);
         }
 
         public override string ToString()

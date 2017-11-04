@@ -48,7 +48,7 @@ namespace DungeonCrawler.Character
         public Utility.Transform Transform;
         public int Radius;
         public float Angle;
-        private float[] _forward;
+        public float[] Forward;
 
         public static AttackShapeMarker Default = new AttackShapeMarker(new int[] { 0, 0 }, 1, 45);
 
@@ -56,8 +56,8 @@ namespace DungeonCrawler.Character
         {
             Transform = new Transform(position[0], position[1], 0);
             Radius = radius;
-            Angle = (float)Math.Round(((angle * Math.PI) / 180f), 3);
-            _forward = new float[] { 1, 0 };
+            Angle = angle;
+            Forward = new float[] { 1, 0 };
         }
 
         public float Area()
@@ -69,24 +69,21 @@ namespace DungeonCrawler.Character
         /// Apply shape with the current Transform values.
         /// This occurs when the Attack has been scheduled.
         /// </summary>
-        public void Apply()
+        public void Apply(float rotation)
         {
-            _forward = Transform.RotateVector(1, 0, Transform.Rotation);
+            Forward = Transform.RotateVector(1, 0, rotation, clockwise: false);
         }
 
-        public bool PointInArea(Point point)
+        public bool PointInArea(Point parent, Point point, float range = 0)
         {
             // Check if in range
-            if (Math.Pow(point.X - Transform.Position.X, 2) + Math.Pow(point.Y - Transform.Position.Y, 2) > Radius * Radius)
+            if (Math.Pow(point.X - parent.X + Transform.Position.X, 2) + Math.Pow(point.Y - parent.Y + Transform.Position.Y, 2) > (Radius + range) * (Radius + range))
             {
                 return false;
             }
-
             // Check if in circle sector
-            float[] vector = new float[] { point.X - Transform.Position.X, point.Y - Transform.Position.Y };
-            float angle = (float)Math.Round(Transform.AngleBetween(_forward, vector), 3);
-            Console.WriteLine((float)Math.Round(Angle / 2f));
-            Console.WriteLine(angle);
+            float[] vector = new float[] { point.X - parent.X + Transform.Position.X, point.Y - parent.Y + Transform.Position.Y };
+            float angle = (float)(Math.Round(Transform.AngleBetween(Forward, vector), 3) * (180 / Math.PI));
             if (angle <= (float)Math.Round(Angle / 2f))
             {
                 return true;
@@ -140,16 +137,9 @@ namespace DungeonCrawler.Character
         public void Hit()
         {
             HitOccurred = true;
-            foreach (AttackShapeMarker shape in Shape)
+            foreach(Character enemy in Attacker.EnemiesInAttackShape())
             {
-                shape.Apply();
-                foreach (Character enemy in GameMaster.CharactersOfType(Attacker.Enemies))
-                {
-                    if (shape.PointInArea(enemy.Transform.Position))
-                    {
-                        Attacker.Attack(enemy, Skill);
-                    }
-                }
+                Attacker.Attack(enemy, Skill);
             }
         }
 
@@ -185,6 +175,8 @@ namespace DungeonCrawler.Character
         public int Id;
         public string Type;
         public string Name;
+        public float Radius;
+        public float AlertnessRadius;
         public int XP;
         public int SkillPoints;
         public Attribute PhysicalStress;
@@ -268,15 +260,10 @@ namespace DungeonCrawler.Character
 
         #region Transform
 
-        public void MoveTo(int x, int y)
+        public void MoveTo(float x, float y)
         {
-            Cell targetCell = GameMaster.CurrentLocation.CellAt(x, y);
-            if (targetCell != null)
-            {
-                Transform.Position.X = x;
-                Transform.Position.Y = y;
-                CurrentCell = targetCell;
-            }
+            Transform.Position.X = x;
+            Transform.Position.Y = y;
         }
 
         #endregion
@@ -472,6 +459,24 @@ namespace DungeonCrawler.Character
         #endregion
 
         #region Damage and Consequences
+
+        public Character[] EnemiesInAttackShape()
+        {
+            List<Character> characters = new List<Character>();
+            foreach (Character enemy in GameMaster.CharactersOfType(Enemies))
+            {
+                foreach (AttackShapeMarker shape in AttackShape)
+                {
+                    shape.Apply(Transform.Rotation);
+                    if (shape.PointInArea(Transform.Position, enemy.Transform.Position, enemy.Radius))
+                    {
+                        characters.Add(enemy);
+                        break;
+                    }
+                }
+            }
+            return characters.ToArray();
+        }
 
         [JsonIgnore]
         public List<Consequence> AllConsequences

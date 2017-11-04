@@ -27,8 +27,17 @@ namespace DungeonCrawler.NUnit.Tests.UtilityTests
             transform.Position.Y = 0;
             transform.Rotation = (float)(Math.PI);
             mapped = transform.Map(point);
-            Assert.AreEqual(0, mapped[0]);
+            Assert.AreEqual(0, mapped[0], 0.0000001);
             Assert.AreEqual(-1, mapped[1]);
+        }
+
+        [Test]
+        public void Map_Point_with_zero_zero()
+        {
+            float[] point = new float[] { 0, 0 };
+            Transform transform = new Transform(0, 0, 0);
+            Assert.AreEqual(0, transform.Map(point)[0]);
+            Assert.AreEqual(0, transform.Map(point)[1]);
         }
 
         [Test]
@@ -68,6 +77,18 @@ namespace DungeonCrawler.NUnit.Tests.UtilityTests
             float[] vector = Transform.RotateVector(1, 0, (float)(Math.PI * 1.5));
             Assert.AreEqual(0, Math.Round(vector[0], 2));
             Assert.AreEqual(-1, vector[1]);
+        }
+
+        [Test]
+        public void AngleBetween()
+        {
+            float[] v1 = new float[] { 1, 0 };
+            float[] v2 = new float[] { 0, 1 };
+            Console.WriteLine(Transform.AngleBetween(v1, v2) * (180 / Math.PI));
+
+            v1 = new float[] { -0.5f, -0.5f };
+            v2 = new float[] { 0, 1 };
+            Console.WriteLine(Transform.AngleBetween(v1, v2) * (180 / Math.PI));
         }
     }
 }

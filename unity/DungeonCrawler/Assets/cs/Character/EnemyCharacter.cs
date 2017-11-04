@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DungeonCrawler.Character;
+using DungeonCrawler.Core;
 
 public class EnemyCharacter : BaseCharacter
 {
@@ -32,14 +33,12 @@ public class EnemyIdleState : CharacterState
     {
         foreach (PlayerCharacter pc in Tabletop.PlayerParty)
         {
-            if (Vector3.Distance(character.transform.position, pc.transform.position) < character.AlertnessRadius)
+            if (Vector3.Distance(character.transform.position, pc.transform.position) < character.CharacterData.AlertnessRadius)
             {
-
                 // Angle Rotation 
                 Vector3 pos = new Vector3(character.transform.position.x, 0, character.transform.position.z);
                 Vector3 rotation = Vector3.RotateTowards(character.transform.forward, pc.transform.position - pos, 2 * Mathf.PI, 1);
                 character.SetDestination(pc.transform.position, rotation);
-
                 character.NavMeshAgent.SetDestination(pc.transform.position);
                 character.ChangeState(character.Chase);
                 return;
@@ -70,22 +69,25 @@ public class EnemyChaseState : CharacterState
 
     public override void Update(BaseCharacter character)
     {
+        if (character.CharacterData.EnemiesInAttackShape().Length > 0)
+        {
+            character.ChangeState(character.Attack);
+            return;
+        }
         if (character.NavMeshAgent.remainingDistance > character.NavMeshAgent.stoppingDistance)
         {
             foreach (PlayerCharacter pc in Tabletop.PlayerParty)
             {
-                if (Vector3.Distance(character.transform.position, pc.transform.position) < character.AlertnessRadius)
+                if (Vector3.Distance(character.transform.position, pc.transform.position) < character.CharacterData.AlertnessRadius)
                 {
                     Vector3 pos = new Vector3(character.transform.position.x, 0, character.transform.position.z);
                     Vector3 rotation = Vector3.RotateTowards(character.transform.forward, pc.transform.position - pos, 2 * Mathf.PI, 1);
                     character.SetDestination(pc.transform.position, rotation);
-
                     character.NavMeshAgent.SetDestination(pc.transform.position);
                     break;
                 }
             }
         }
-        new ChaseState().Update(character);
     }
 
     public override void Exit(BaseCharacter character)

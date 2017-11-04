@@ -67,14 +67,26 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             GameMaster.CurrentLocation = Utilities.Location();
             GameMaster.RegisterCharacter(hero);
             GameMaster.RegisterCharacter(rat);
-            hero.MoveTo(0, 0);
-            rat.MoveTo(1, 0);
+            hero.MoveTo(10, 10);
+            rat.MoveTo(11, 10);
 
             AttackMarker marker = new AttackMarker(hero);
             marker.Start(new AttackShapeMarker[] { AttackShapeMarker.Default }, "MeleeWeapons", 1, 2);
             marker.Hit();
             Assert.AreEqual(2, rat.PhysicalStress.Value);
             Assert.IsTrue(marker.HitOccurred);
+        }
+
+        [Test]
+        public void CharacterInArea_takes_radiuses_of_both_Characters_into_account()
+        {
+            Character.Character hero = Utilities.Hero();
+            Character.Character rat = Utilities.Rat();
+            Utilities.LoadRulebook();
+            GameMaster.RegisterCharacter(hero);
+            GameMaster.RegisterCharacter(rat);
+            rat.MoveTo(1.5f, 0);
+            Assert.AreEqual(1, hero.EnemiesInAttackShape().Length);
         }
     }
 }

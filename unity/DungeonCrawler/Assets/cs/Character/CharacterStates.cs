@@ -114,46 +114,93 @@ public class ChaseState : CharacterState
             return;
         }
 
-        if (character.NavMeshAgent.remainingDistance <= character.NavMeshAgent.stoppingDistance)
+
+
+
+
+        if (character.NavMeshAgent.remainingDistance > character.NavMeshAgent.stoppingDistance)
         {
             if (Vector3.Angle(character.transform.forward, character.DestinationRotation) < rotationThreshold)
             {
-                foreach (int[] point in character.CharacterData.AttackShape)
+
+                if (character.CharacterData.EnemiesInAttackShape().Length > 0)
                 {
-                    if (GameMaster.CharactersOnGridPoint(character.CharacterData.Transform.Map(point), 
-                                                         types: character.CharacterData.Enemies).Length > 0)
-                    {
-                        character.ChangeState(character.Attack);
-                        return;
-                    }
+                    character.ChangeState(character.Attack);
+                    return;
                 }
                 character.ChangeState(character.Idle);
             }
             else
             {
-                Debug.Log(Vector3.Angle(character.transform.forward, character.DestinationRotation));
                 float step = (float)((character.NavMeshAgent.angularSpeed * Time.deltaTime * Math.PI) / 180);
                 Vector3 newDir = Vector3.RotateTowards(character.transform.forward, character.DestinationRotation, step, 0);
                 character.transform.rotation = Quaternion.LookRotation(newDir);
             }
+
+
+            //foreach (PlayerCharacter pc in Tabletop.PlayerParty)
+            //{
+            //    if (Vector3.Distance(character.transform.position, pc.transform.position) < character.CharacterData.AlertnessRadius)
+            //    {
+            //        Vector3 pos = new Vector3(character.transform.position.x, 0, character.transform.position.z);
+            //        Vector3 rotation = Vector3.RotateTowards(character.transform.forward, pc.transform.position - pos, 2 * Mathf.PI, 1);
+            //        character.SetDestination(pc.transform.position, rotation);
+            //        character.NavMeshAgent.SetDestination(pc.transform.position);
+            //        break;
+            //    }
+            //}
         }
-        else
-        {
-            if (character.NavMeshAgent.remainingDistance <= character.NavMeshAgent.stoppingDistance + character.NavMeshAgent.radius + 1)
-            {
-                Character[] chars = GameMaster.CharactersOnGridPoint(Mathf.RoundToInt(character.DestinationPosition.x),
-                                                                     Mathf.RoundToInt(character.DestinationPosition.y),
-                                                                     excludes: new Character[] { character.CharacterData });
-                if (chars.Length > 0)
-                {
-                    character.NavMeshAgent.SetDestination(character.transform.position);
-                }
-            }
-            else
-            {
-                character.NavMeshAgent.isStopped = false;
-            }
-        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //if (character.NavMeshAgent.remainingDistance <= character.NavMeshAgent.stoppingDistance)
+        //{
+
+        //    if (Vector3.Angle(character.transform.forward, character.DestinationRotation) < rotationThreshold)
+        //    {
+
+        //        if (character.CharacterData.EnemiesInAttackShape().Length > 0)
+        //        {
+        //            character.ChangeState(character.Attack);
+        //            return;
+        //        }
+        //        character.ChangeState(character.Idle);
+        //    }
+        //    else
+        //    {
+        //        float step = (float)((character.NavMeshAgent.angularSpeed * Time.deltaTime * Math.PI) / 180);
+        //        Vector3 newDir = Vector3.RotateTowards(character.transform.forward, character.DestinationRotation, step, 0);
+        //        character.transform.rotation = Quaternion.LookRotation(newDir);
+        //    }
+        //}
+        //else
+        //{
+        //    if (character.NavMeshAgent.remainingDistance <= character.NavMeshAgent.stoppingDistance + character.NavMeshAgent.radius + 1)
+        //    {
+        //        Character[] chars = GameMaster.CharactersOnGridPoint(Mathf.RoundToInt(character.DestinationPosition.x),
+        //                                                             Mathf.RoundToInt(character.DestinationPosition.y),
+        //                                                             excludes: new Character[] { character.CharacterData });
+        //        if (chars.Length > 0)
+        //        {
+        //            character.NavMeshAgent.SetDestination(character.transform.position);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        character.NavMeshAgent.isStopped = false;
+        //    }
+        //}
     }
 
     public override void Exit(BaseCharacter character)
