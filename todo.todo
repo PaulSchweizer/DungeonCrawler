@@ -55,14 +55,30 @@ Conversation System:
  ✔ AlertnessRadius in units @done (17-11-04 20:02)
   ✔ Infer from the CharacterData @done (17-11-04 20:02)
  ✔ Pick up loot when dropped @done (17-11-04 21:30)
- ☐ avoid the pushing of agents on navmesh
-  ☐ try using nacMesh obstacle, enable on enter attack, disable when leaving attack
-https://www.gamedev.net/articles/programming/general-and-gameplay-programming/pathfinding-and-local-avoidance-for-rpgrts-games-using-unity-r3703
- ☐ Add the Attacker radius as well
- ☐ Focus on the enemy that was targeted by the Player
- ☐ Improve the attack
+ ✔ Improve the target positioning if clicked on enemy @done (17-11-05 14:09)
+ ✔ avoid the pushing of agents on navmesh @done (17-11-05 14:09)
+  ✘ try using nacMesh obstacle, enable on enter attack, disable when leaving attack @cancelled (17-11-05 14:09)
+  https://www.gamedev.net/articles/programming/general-and-gameplay-programming/pathfinding-and-local-avoidance-for-rpgrts-games-using-unity-r3703
+ ✔ Improve the attack @done (17-11-05 14:11)
 
- ☐ Set default values for AttackShape
+ ☐ Character UI
+  ☐ Raise the Menu
+  ☐ Toggle between Views
+  ☐ Display the Items in the grid
+
+ ☐ Items in the game?
+  ☐ Display Items in a simple list view
+ ☐ Pickup of Items needs a Signal
+
+
+
+
+
+I///////////////////////////////////////////:
+Backlog:
+
+ ☐ Focus on the enemy that was targeted by the Player
+ ☐ Add the Attacker radius as well
 
 Simple Code Refactor:
  ☐ Rename Point to Vector
@@ -71,10 +87,7 @@ Simple Code Refactor:
  ☐ CharactersOnGridPoint is obsolete
  ☐ Tests for the distance check
  ☐ Tests for the segment check
-
-
-I///////////////////////////////////////////:
-Backlog:
+ ☐ Input controller -> position player characters, change to single input instead of constructing a list
 
 Unity:
  ☐ Enemy AI
@@ -112,7 +125,8 @@ Aspect:
  ☐ Make possible to add Aspects to other values too, e.g. Range of Attack
 
 Character:
- ☐ Pickup of Items needs a Signal
+ ☐ Set default values for AttackShape
+
  ☐ Reverse PhysicalStress -> empty the slider bar
  ☐ Character.Transform -> AttackShape rotate until faces the character to attack
  ☐ AttackMarker.Stunt

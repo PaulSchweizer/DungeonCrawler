@@ -105,7 +105,10 @@ public class ChaseState : CharacterState
         DebugColor = Color.magenta;
     }
 
-    public override void Enter(BaseCharacter character) { }
+    public override void Enter(BaseCharacter character)
+    {
+        character.NavMeshAgent.enabled = true;
+    }
 
     public override void Update(BaseCharacter character)
     {
@@ -114,7 +117,7 @@ public class ChaseState : CharacterState
             return;
         }
 
-        if (character.NavMeshAgent.remainingDistance <= character.NavMeshAgent.stoppingDistance + character.NavMeshAgent.radius*2)
+        if (character.NavMeshAgent.remainingDistance <= character.NavMeshAgent.stoppingDistance + character.NavMeshAgent.radius * 2)
         {
             if (Vector3.Angle(character.transform.forward, character.DestinationRotation) < rotationThreshold)
             {
@@ -131,71 +134,7 @@ public class ChaseState : CharacterState
                 Vector3 newDir = Vector3.RotateTowards(character.transform.forward, character.DestinationRotation, step, 0);
                 character.transform.rotation = Quaternion.LookRotation(newDir);
             }
-
-
-            //foreach (PlayerCharacter pc in Tabletop.PlayerParty)
-            //{
-            //    if (Vector3.Distance(character.transform.position, pc.transform.position) < character.CharacterData.AlertnessRadius)
-            //    {
-            //        Vector3 pos = new Vector3(character.transform.position.x, 0, character.transform.position.z);
-            //        Vector3 rotation = Vector3.RotateTowards(character.transform.forward, pc.transform.position - pos, 2 * Mathf.PI, 1);
-            //        character.SetDestination(pc.transform.position, rotation);
-            //        character.NavMeshAgent.SetDestination(pc.transform.position);
-            //        break;
-            //    }
-            //}
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //if (character.NavMeshAgent.remainingDistance <= character.NavMeshAgent.stoppingDistance)
-        //{
-
-        //    if (Vector3.Angle(character.transform.forward, character.DestinationRotation) < rotationThreshold)
-        //    {
-
-        //        if (character.CharacterData.EnemiesInAttackShape().Length > 0)
-        //        {
-        //            character.ChangeState(character.Attack);
-        //            return;
-        //        }
-        //        character.ChangeState(character.Idle);
-        //    }
-        //    else
-        //    {
-        //        float step = (float)((character.NavMeshAgent.angularSpeed * Time.deltaTime * Math.PI) / 180);
-        //        Vector3 newDir = Vector3.RotateTowards(character.transform.forward, character.DestinationRotation, step, 0);
-        //        character.transform.rotation = Quaternion.LookRotation(newDir);
-        //    }
-        //}
-        //else
-        //{
-        //    if (character.NavMeshAgent.remainingDistance <= character.NavMeshAgent.stoppingDistance + character.NavMeshAgent.radius + 1)
-        //    {
-        //        Character[] chars = GameMaster.CharactersOnGridPoint(Mathf.RoundToInt(character.DestinationPosition.x),
-        //                                                             Mathf.RoundToInt(character.DestinationPosition.y),
-        //                                                             excludes: new Character[] { character.CharacterData });
-        //        if (chars.Length > 0)
-        //        {
-        //            character.NavMeshAgent.SetDestination(character.transform.position);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        character.NavMeshAgent.isStopped = false;
-        //    }
-        //}
     }
 
     public override void Exit(BaseCharacter character)
@@ -204,7 +143,7 @@ public class ChaseState : CharacterState
     }
 }
 
-public sealed class AttackState : CharacterState
+public class AttackState : CharacterState
 {
     public static readonly AttackState Instance = new AttackState();
 
@@ -216,16 +155,12 @@ public sealed class AttackState : CharacterState
     public override void Enter(BaseCharacter character)
     {
         character.NavMeshAgent.isStopped = true;
-        character.NavMeshAgent.enabled = false;
-        character.NavMeshObstacle.enabled = true;
     }
 
     public override void Exit(BaseCharacter character)
     {
         character.CharacterData.ScheduledAttack.Stop();
         character.AttackSlider.value = 0;
-        character.NavMeshObstacle.enabled = false;
-        character.NavMeshAgent.enabled = true;
     }
 
     public override void Update(BaseCharacter character)

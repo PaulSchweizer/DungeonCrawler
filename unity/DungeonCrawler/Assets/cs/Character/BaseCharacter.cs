@@ -12,7 +12,6 @@ public class BaseCharacter : MonoBehaviour
     public TextAsset JsonFile;
     public Character CharacterData;
     public UnityEngine.AI.NavMeshAgent NavMeshAgent;
-    public UnityEngine.AI.NavMeshObstacle NavMeshObstacle;
 
     [HideInInspector]
     public Vector3 DestinationPosition;
