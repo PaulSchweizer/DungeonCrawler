@@ -12,6 +12,7 @@ public class BaseCharacter : MonoBehaviour
     public TextAsset JsonFile;
     public Character CharacterData;
     public UnityEngine.AI.NavMeshAgent NavMeshAgent;
+    public UnityEngine.AI.NavMeshObstacle NavMeshObstacle;
 
     [HideInInspector]
     public Vector3 DestinationPosition;
@@ -91,7 +92,17 @@ public class BaseCharacter : MonoBehaviour
 
     /// <summary>
     /// Collect the Loot on collision.</summary>
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
+    {
+        Looted(other);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        Looted(other);
+    }
+
+    private void Looted(Collider other)
     {
         if (isLoot)
         {

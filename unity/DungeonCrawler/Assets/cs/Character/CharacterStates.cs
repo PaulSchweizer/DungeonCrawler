@@ -67,7 +67,7 @@ public class MoveState : CharacterState
             }
             else
             {
-                float step = (float)((character.NavMeshAgent.angularSpeed * Time.deltaTime * Math.PI) / 180);
+                float step = (character.NavMeshAgent.angularSpeed * Time.deltaTime * Mathf.PI) / 180;
                 Vector3 newDir = Vector3.RotateTowards(character.transform.forward, character.DestinationRotation, step, 0);
                 character.transform.rotation = Quaternion.LookRotation(newDir);
             }
@@ -114,15 +114,10 @@ public class ChaseState : CharacterState
             return;
         }
 
-
-
-
-
-        if (character.NavMeshAgent.remainingDistance > character.NavMeshAgent.stoppingDistance)
+        if (character.NavMeshAgent.remainingDistance <= character.NavMeshAgent.stoppingDistance + character.NavMeshAgent.radius*2)
         {
             if (Vector3.Angle(character.transform.forward, character.DestinationRotation) < rotationThreshold)
             {
-
                 if (character.CharacterData.EnemiesInAttackShape().Length > 0)
                 {
                     character.ChangeState(character.Attack);
@@ -130,7 +125,7 @@ public class ChaseState : CharacterState
                 }
                 character.ChangeState(character.Idle);
             }
-            else
+            if (character.NavMeshAgent.remainingDistance <= character.NavMeshAgent.stoppingDistance)
             {
                 float step = (float)((character.NavMeshAgent.angularSpeed * Time.deltaTime * Math.PI) / 180);
                 Vector3 newDir = Vector3.RotateTowards(character.transform.forward, character.DestinationRotation, step, 0);
@@ -221,12 +216,16 @@ public sealed class AttackState : CharacterState
     public override void Enter(BaseCharacter character)
     {
         character.NavMeshAgent.isStopped = true;
+        character.NavMeshAgent.enabled = false;
+        character.NavMeshObstacle.enabled = true;
     }
 
     public override void Exit(BaseCharacter character)
     {
         character.CharacterData.ScheduledAttack.Stop();
         character.AttackSlider.value = 0;
+        character.NavMeshObstacle.enabled = false;
+        character.NavMeshAgent.enabled = true;
     }
 
     public override void Update(BaseCharacter character)
@@ -265,8 +264,8 @@ public class TakenOutState : CharacterState
     public override void Enter(BaseCharacter character)
     {
         character.NavMeshAgent.enabled = false;
-        GameMaster.DeRegisterCharacter(character.CharacterData);
         character.DropLoot();
+        GameMaster.DeRegisterCharacter(character.CharacterData);
     }
 
     public override void Update(BaseCharacter character) { }

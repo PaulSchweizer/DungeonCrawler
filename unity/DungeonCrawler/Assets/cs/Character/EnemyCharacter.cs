@@ -56,7 +56,7 @@ public class EnemyIdleState : CharacterState
 public class EnemyChaseState : CharacterState
 {
 
-    private float rotationThreshold = 0.1f;
+    private float rotationThreshold = 4f;
 
     public static EnemyChaseState Instance = new EnemyChaseState();
 
@@ -84,10 +84,12 @@ public class EnemyChaseState : CharacterState
                     Vector3 rotation = Vector3.RotateTowards(character.transform.forward, pc.transform.position - pos, 2 * Mathf.PI, 1);
                     character.SetDestination(pc.transform.position, rotation);
                     character.NavMeshAgent.SetDestination(pc.transform.position);
-                    break;
+                    return;
                 }
             }
+
         }
+        character.ChangeState(character.Idle);
     }
 
     public override void Exit(BaseCharacter character)

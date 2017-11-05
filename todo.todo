@@ -35,6 +35,7 @@ Conversation System:
  ✔ Start the Conversation of the NPC @done (17-10-22 22:59)
  ✔ Exit the conversation @done (17-10-27 21:36)
  ✔ put state on github @done (17-10-28 18:04)
+<<<<<<< HEAD
  ✔ Only the forward vector is necessary in the AttackShape @done (17-10-30 19:13)
  ✔ Use the distance in the check as well @done (17-10-30 19:34)
  ✔ Change GridPoint to (Float)Point @done (17-10-31 22:45)
@@ -53,7 +54,13 @@ Conversation System:
   ✔ Characters on gridpoints -> default exclude the caller @done (17-11-04 20:02)
  ✔ AlertnessRadius in units @done (17-11-04 20:02)
   ✔ Infer from the CharacterData @done (17-11-04 20:02)
+ ✔ Pick up loot when dropped @done (17-11-04 21:30)
+ ☐ avoid the pushing of agents on navmesh
+  ☐ try using nacMesh obstacle, enable on enter attack, disable when leaving attack
+https://www.gamedev.net/articles/programming/general-and-gameplay-programming/pathfinding-and-local-avoidance-for-rpgrts-games-using-unity-r3703
  ☐ Add the Attacker radius as well
+ ☐ Focus on the enemy that was targeted by the Player
+ ☐ Improve the attack
 
  ☐ Set default values for AttackShape
 
@@ -71,7 +78,7 @@ Backlog:
 
 Unity:
  ☐ Enemy AI
-  ☐ ChasePersistency in sec
+  ✘ ChasePersistency in sec @cancelled (17-11-04 21:30)
   ☐ Trigger them when being attacked
  ☐ In InputController, use the list of enemies to detect hit
  ☐ Load Level in Editor
