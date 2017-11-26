@@ -35,15 +35,15 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             Assert.AreEqual(3, hero.SkillValue(skill: "MeleeWeapons", tags: new string[] { "rat" }));
 
             // Equipped weapon raises the MeleeWeapons skill
-            hero.Equip(weapon.Name, "RightHand");
+            hero.Equip(weapon.Identifier, "RightHand");
             Assert.AreEqual(4, hero.SkillValue(skill: "MeleeWeapons", tags: new string[] { "rat" }));
 
             // Equipped armour raises the MeleeWeapons skill as well
-            hero.Equip(armour.Name, "Torso");
+            hero.Equip(armour.Identifier, "Torso");
             Assert.AreEqual(5, hero.SkillValue(skill: "MeleeWeapons", tags: new string[] { "rat" }));
 
             // Unequip the weapon 
-            hero.UnEquip(weapon.Name);
+            hero.UnEquip(weapon.Identifier);
             Assert.AreEqual(4, hero.SkillValue(skill: "MeleeWeapons", tags: new string[] { "rat" }));
         }
 
@@ -54,27 +54,28 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             Assert.AreEqual(2, hero.AllConsequences.Count);
 
             // Equipped armour increases the consequences
-            hero.Equip(armour.Name, "Torso");
+            hero.Equip(armour.Identifier, "Torso");
             Assert.AreEqual(3, hero.AllConsequences.Count);
 
             // Unequip the armour 
-            hero.UnEquip(armour.Name);
+            hero.UnEquip(armour.Identifier);
             Assert.AreEqual(2, hero.AllConsequences.Count);
         }
 
         [Test]
         public void Consequence_order_puts_armour_first()
         {
-            hero.Equip(armour.Name, "Torso");
+            hero.Equip(armour.Identifier, "Torso");
             Assert.AreEqual(3, hero.AllConsequences.Count);
-            Assert.AreSame(hero.AllConsequences[0], Rulebook.Armour(armour.Name).Consequences[0]);
+            Assert.AreSame(hero.AllConsequences[0], armour.Consequences[0]);
         }
 
         [Test]
         public void Item_has_to_be_in_inventory_to_be_equippable()
         {
-            hero.Inventory.RemoveItem(armour);
-            hero.Equip(armour.Name, "Torso");
+            Armour assigned_armour = (Armour)hero.Inventory.Item(armour.Identifier);
+            hero.Inventory.RemoveItem(assigned_armour);
+            hero.Equip(armour.Identifier, "Torso");
             Assert.IsNull(hero.Equipment["Torso"]);
         }
 
@@ -89,7 +90,7 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         public void Equipped_weapon_changes_attack_shape()
         {
             Assert.AreEqual(Character.AttackShapeMarker.Default, hero.AttackShape[0]);
-            hero.Equip("Weapon", "RightHand");
+            hero.Equip(weapon.Identifier, "RightHand");
             Assert.AreEqual(weapon.AttackShape[0], hero.AttackShape[0]);
         }
 
@@ -97,18 +98,28 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         public void Equipping_item_unequips_equipped_in_that_slot()
         {
             hero.Inventory.AddItem(Rulebook.Weapon("Weapon2"));
-            hero.Equip("Weapon", "RightHand");
-            hero.Equip("Weapon2", "RightHand");
-            Assert.AreEqual("Weapon2", hero.Equipment["RightHand"]);
+            hero.Equip(weapon.Identifier, "RightHand");
+            hero.Equip(Rulebook.Weapon("Weapon2").Identifier, "RightHand");
+            Assert.AreEqual(Rulebook.Weapon("Weapon2").Identifier, hero.Equipment["RightHand"]);
         }
 
         [Test]
         public void Equipped_weapon_changes_attack_speed()
         {
-            hero.UnEquip("Weapon");
+            hero.UnEquip(weapon.Identifier);
             Assert.AreEqual(1, hero.AttackSpeed);
-            hero.Equip("Weapon", "RightHand");
+            hero.Equip(weapon.Identifier, "RightHand");
             Assert.AreEqual(2, hero.AttackSpeed);
+        }
+
+        [Test]
+        public void Equipment_deserialized_correctly()
+        {
+            hero.Equip(armour.Identifier, "Torso");
+            string json = Character.Character.SerializeToJson(hero);
+            Character.Character deserializedHero = Character.Character.DeserializeFromJson(json);
+
+
         }
     }
 }

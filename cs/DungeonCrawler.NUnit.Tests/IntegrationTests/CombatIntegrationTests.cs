@@ -39,7 +39,7 @@ namespace DungeonCrawler.NUnit.Tests.IntegrationTests
             Assert.AreEqual(1, hero.PhysicalStress.Value);
 
             rat.Inventory.AddItem(weapon);
-            rat.Equip(weapon.Name, "RightHand");
+            rat.Equip(weapon.Identifier, "RightHand");
 
             rat.Attack(hero);
             Assert.AreEqual(1 + 1 + weapon.Damage, hero.PhysicalStress.Value);

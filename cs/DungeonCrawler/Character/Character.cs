@@ -74,7 +74,7 @@ namespace DungeonCrawler.Character
             Forward = Transform.RotateVector(1, 0, rotation, clockwise: false);
         }
 
-        public bool PointInArea(Point parent, Point point, float range = 0)
+        public bool PointInArea(Vector parent, Vector point, float range = 0)
         {
             // Check if in range
             if (Math.Pow(point.X - parent.X + Transform.Position.X, 2) + Math.Pow(point.Y - parent.Y + Transform.Position.Y, 2) > (Radius + range) * (Radius + range))
@@ -337,11 +337,11 @@ namespace DungeonCrawler.Character
                 }
 
                 // Aspects from the equipped Items
-                foreach (string itemName in Equipment.Values)
+                foreach (string itemIdentifier in Equipment.Values)
                 {
-                    if (itemName != null)
+                    if (itemIdentifier != null)
                     {
-                        foreach (Aspect aspect in Rulebook.Item(itemName).Aspects)
+                        foreach (Aspect aspect in Inventory.Item(itemIdentifier).Aspects)
                         {
                             aspects.Add(aspect);
                         }
@@ -486,14 +486,13 @@ namespace DungeonCrawler.Character
                 List<Consequence> consequences = new List<Consequence>();
 
                 // 1. All the Consequences that equipped armour provides
-                foreach (string itemName in Equipment.Values)
+                foreach (string itemIdentifier in Equipment.Values)
                 {
-                    if (itemName != null)
+                    if (itemIdentifier != null)
                     {
-                        Item item = Rulebook.Item(itemName);
-                        if (item is Armour)
+                        Item item = Inventory.Item(itemIdentifier);
+                        if (item is Armour armour)
                         {
-                            Armour armour = (Armour)item;
                             foreach (Consequence consequence in armour.Consequences)
                             {
                                 consequences.Add(consequence);
@@ -568,7 +567,6 @@ namespace DungeonCrawler.Character
 
         public void ReceiveDamage(int damage)
         {
-            // Subtract Protection by Armour
             damage = Math.Max(damage - Protection, 0);
 
             if (PhysicalStress.Value + damage > PhysicalStress.MaxValue)

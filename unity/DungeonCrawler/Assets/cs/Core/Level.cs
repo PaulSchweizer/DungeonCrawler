@@ -56,6 +56,12 @@ public class Level : MonoBehaviour
         {
             enemy.transform.parent = transform;
         }
+
+        PlayerCharacter[] pcs = GameObject.FindObjectsOfType<PlayerCharacter>();
+        foreach (PlayerCharacter pc in pcs)
+        {
+            pc.transform.parent = transform;
+        }
     }
 
 #if UNITY_EDITOR

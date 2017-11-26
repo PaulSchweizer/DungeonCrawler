@@ -201,6 +201,7 @@ public class TakenOutState : CharacterState
         character.NavMeshAgent.enabled = false;
         character.DropLoot();
         GameMaster.DeRegisterCharacter(character.CharacterData);
+        character.tag = "Untagged";
     }
 
     public override void Update(BaseCharacter character) { }

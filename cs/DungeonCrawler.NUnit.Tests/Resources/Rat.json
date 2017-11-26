@@ -27,6 +27,15 @@
     "IsTakenOut": false,
     "Inventory":
     {
+		"Items": [
+			{
+				"Name": "Item"
+			}
+		],
+		"Amounts":
+		{
+			"Item": 12
+		}
     },
     "Enemies": [
         "Player"

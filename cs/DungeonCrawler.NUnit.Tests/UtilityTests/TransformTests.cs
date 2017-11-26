@@ -43,9 +43,9 @@ namespace DungeonCrawler.NUnit.Tests.UtilityTests
         [Test]
         public void GridPoints_equality()
         {
-            Point a = new Point(6, 6);
-            Point b = new Point(a);
-            Point c = new Point(new float[] { 12, 6 });
+            Vector a = new Vector(6, 6);
+            Vector b = new Vector(a);
+            Vector c = new Vector(new float[] { 12, 6 });
             Assert.AreEqual(a, b);
             Assert.AreNotEqual(a, c);
             Assert.True(a == b);
@@ -59,7 +59,7 @@ namespace DungeonCrawler.NUnit.Tests.UtilityTests
         [Test]
         public void Initialize_Transform_options()
         {
-            Transform transformA = new Transform(new Point(6, 6), 0.5f);
+            Transform transformA = new Transform(new Vector(6, 6), 0.5f);
             Transform transformB = new Transform(transformA);
             Assert.AreEqual(transformA.Position, transformB.Position);
             Assert.AreEqual(transformA.Rotation, transformB.Rotation);
@@ -68,7 +68,7 @@ namespace DungeonCrawler.NUnit.Tests.UtilityTests
         [Test]
         public void Transforms_as_pretty_strings()
         {
-            Console.WriteLine(new Transform(new Point(6, 6), 0.5f));
+            Console.WriteLine(new Transform(new Vector(6, 6), 0.5f));
         }
 
         [Test]

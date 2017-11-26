@@ -1,15 +1,26 @@
 ﻿using DungeonCrawler.Core;
 using Newtonsoft.Json;
+using System;
 
 namespace DungeonCrawler.Core
 {
     public class Item
     {
+        public string Id;
         public string Name;
         public Aspect[] Aspects;
         public string[] Tags;
         public string EquipmentSlot;
         public bool IsUnique;
+
+        [JsonIgnore]
+        public string Identifier
+        {
+            get
+            {
+                return string.Format("{0}-{1}", Name, Id);
+            }
+        }
 
         [JsonIgnore]
         public virtual int Cost
@@ -24,6 +35,11 @@ namespace DungeonCrawler.Core
                 cost += Tags.Length;
                 return cost;
             }
+        }
+
+        public Item ()
+        {
+            Id = Guid.NewGuid().ToString("N");
         }
 
         public static Item DeserializeFromJson(string json)

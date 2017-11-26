@@ -20,7 +20,7 @@ public class BaseCharacter : MonoBehaviour
     [HideInInspector]
     public NPCCharacter DestinationNPC;
 
-    private bool isLoot;
+    public bool isLoot;
 
     public CharacterState Idle = IdleState.Instance;
     public CharacterState Move = MoveState.Instance;
@@ -58,7 +58,7 @@ public class BaseCharacter : MonoBehaviour
         NavMeshAgent.updateRotation = true;
     }
 
-    private void Update()
+    public virtual void Update()
     {
         CharacterData.Transform.Position.X = transform.position.x;
         CharacterData.Transform.Position.Y = transform.position.z;
@@ -109,6 +109,7 @@ public class BaseCharacter : MonoBehaviour
             {
                 BaseCharacter character = other.gameObject.GetComponent<BaseCharacter>();
                 character.CharacterData.Inventory += CharacterData.Inventory;
+                isLoot = false;
                 gameObject.SetActive(false);
             }
         }

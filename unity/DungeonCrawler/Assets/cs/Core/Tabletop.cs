@@ -4,6 +4,7 @@ using UnityEngine;
 using DungeonCrawler.Core;
 using UnityEngine.Analytics;
 using System;
+using DungeonCrawler.Character;
 
 public class Tabletop : MonoBehaviour
 {
@@ -19,12 +20,17 @@ public class Tabletop : MonoBehaviour
 
     private void Start()
     {
-        PlayerParty = GameObject.FindObjectsOfType<PlayerCharacter>(); ; 
+        PlayerParty = GameObject.FindObjectsOfType<PlayerCharacter>();
+        foreach(PlayerCharacter character in PlayerParty)
+        {
+            character.CharacterData.OnTakenOut += new TakenOutHandler(PlayerGotTakenOut);
+        }
+        PlayerUI.Instance.Initialize();
     }
 
     #region Debug
 
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
 
     public bool ShowLogs;
 
@@ -48,4 +54,31 @@ public class Tabletop : MonoBehaviour
     {
         Analytics.CustomEvent(e.Name, new Dictionary<string, object> { { "details", e.Details} });
     }
+
+    #region Events
+
+    public void PlayerGotTakenOut(object sender, EventArgs e)
+    {
+        bool allTakenOut = true;
+        foreach(PlayerCharacter character in PlayerParty)
+        {
+            if (!character.CharacterData.IsTakenOut)
+            {
+                allTakenOut = false;
+                break;
+            }
+        }
+
+        if(allTakenOut)
+        {
+            // Disable the Character controls
+            InputController.Instance.enabled = false;
+
+            // Show GameOverDialog
+            PlayerUI.Instance.gameObject.SetActive(false);
+            GameOverUI.Instance.gameObject.SetActive(true);
+        }
+    }
+
+    #endregion
 }

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using DungeonCrawler.Core;
+using NUnit.Framework;
 
 namespace DungeonCrawler.NUnit.Tests.CharacterTests
 {
@@ -36,8 +37,8 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         public void AllAspects_contains_Equipment()
         {
             Assert.AreEqual(1, hero.AllAspects.Count);
-            hero.Equip("Weapon", "RightHand");
-            hero.Equip("Armour", "Torso");
+            hero.Equip(hero.Inventory.Weapons[0].Identifier, "RightHand");
+            hero.Equip(hero.Inventory.Armour[0].Identifier, "Torso");
             Assert.AreEqual(3, hero.AllAspects.Count);
         }
 

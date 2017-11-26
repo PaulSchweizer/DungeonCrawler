@@ -26,5 +26,15 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
             Console.WriteLine(armour.Cost);
             Assert.AreEqual(8, armour.Cost);
         }
+
+        [Test]
+        public void Ids_are_assigned_if_not_given()
+        {
+            Item item = Utilities.Item();
+            Assert.AreEqual("0", item.Id);
+
+            Weapon weapon = Utilities.Weapon();
+            Assert.IsNotNull(item.Id);
+        }
     }
 }

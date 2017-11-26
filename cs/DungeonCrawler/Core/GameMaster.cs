@@ -68,7 +68,7 @@ namespace DungeonCrawler.Core
             return characters.ToArray();
         }
 
-        public static Character.Character[] CharactersOnGridPoint(Point point, string[] types = null, Character.Character[] excludes = null)
+        public static Character.Character[] CharactersOnGridPoint(Vector point, string[] types = null, Character.Character[] excludes = null)
         {
             return CharactersOnGridPoint(new float[] { point.X, point.Y }, types, excludes);
         }

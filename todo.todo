@@ -60,18 +60,31 @@ Conversation System:
   ✘ try using nacMesh obstacle, enable on enter attack, disable when leaving attack @cancelled (17-11-05 14:09)
   https://www.gamedev.net/articles/programming/general-and-gameplay-programming/pathfinding-and-local-avoidance-for-rpgrts-games-using-unity-r3703
  ✔ Improve the attack @done (17-11-05 14:11)
-
  ☐ Character UI
-  ☐ Raise the Menu
-  ☐ Toggle between Views
-  ☐ Display the Items in the grid
-
- ☐ Items in the game?
-  ☐ Display Items in a simple list view
- ☐ Pickup of Items needs a Signal
-
-
-
+  ✔ Raise the Menu @done (17-11-05 16:55)
+  ✔ Transfer SlotSystem @done (17-11-05 18:50)
+ ✔ inventory.Armour instead of Armours @done (17-11-18 14:18)
+ ✔ Bug:  Serialize, What if serialized and then equipped??? -> Correct Item should be unique! @done (17-11-18 17:52)
+ ✔ Add Id to Items @done (17-11-18 16:28)
+ ✔ Identifier: <Name>-<Id> @done (17-11-18 17:51)
+String UUID = Guid.NewGuid().ToString("N")
+ ✔ GetItem has to change @done (17-11-18 17:51)
+ ✔ Unique Items not in the Amounts @done (17-11-18 17:52)
+  ✔ Display the Items in the grid @done (17-11-19 14:06)
+  ✔ SlotView @done (17-11-19 14:06)
+   ✔ Show only ItemsOfType(string type) @done (17-11-19 14:06)
+   ✔ Switch between views @done (17-11-19 14:06)
+  ✔ Toggle between Views @done (17-11-19 14:06)
+ ✔ Bug: Sometimes defeated chars don't get picked up? -> PLayer is dead! @done (17-11-19 15:44)
+ ✔ End the game when the player is dead @done (17-11-19 15:44)
+  ✘ Have the player be invincible, provide a toggle @cancelled (17-11-19 15:03)
+ ✔ Bug: Avoid Player when doing the raycast when clicking @done (17-11-19 15:51)
+ ✔ OnInventoryChanged @done (17-11-19 17:09)
+ ✔ Pickup of Items needs a Signal @done (17-11-19 17:10)
+ ✔ Inventory gets added items twice, Is the Item on the Rat not the same as the one from the Rulebook? @done (17-11-26 21:13)
+ ✔ Unittest for that! @done (17-11-26 21:13)
+ ✔ Recycle the inventory items, instead of deleting them @done (17-11-26 21:13)
+ ✔ Rename Point to Vector @done (17-11-26 21:25)
 
 
 I///////////////////////////////////////////:
@@ -81,10 +94,9 @@ Backlog:
  ☐ Add the Attacker radius as well
 
 Simple Code Refactor:
- ☐ Rename Point to Vector
- ☐ Return only Point Structs
- ☐ Location not necessary, point not necessary
  ☐ CharactersOnGridPoint is obsolete
+ ☐ Return only Vector Structs
+ ☐ Location not necessary, point not necessary
  ☐ Tests for the distance check
  ☐ Tests for the segment check
  ☐ Input controller -> position player characters, change to single input instead of constructing a list
@@ -126,7 +138,6 @@ Aspect:
 
 Character:
  ☐ Set default values for AttackShape
-
  ☐ Reverse PhysicalStress -> empty the slider bar
  ☐ Character.Transform -> AttackShape rotate until faces the character to attack
  ☐ AttackMarker.Stunt
@@ -148,6 +159,8 @@ Character:
  ☐ AddNewAspect(aspect)
  ☐ EditAspect(aspect)
  ☐ Skills -> Rework the current tags
+ ☐ Max Amount of Spin, 2, can be upgraded with Skills
+
  Signals:
   ☐ OnAttack
   ☐ OnDefend
@@ -161,7 +174,7 @@ GameMaster:
 
 Item:
  ☐ Replace Item in Equipment with a stand-in object later that only holds the necessary, changeable attributes
- ☐ Serialize, What if serialized and then equipped??? -> Item should be unique
+
 
 Levelbuilder:
  ☐ Add enemies to the Tiles

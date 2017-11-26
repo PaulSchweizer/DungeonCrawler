@@ -5,27 +5,27 @@ using System.Text;
 namespace DungeonCrawler.Utility
 {
 
-    public struct Point
+    public struct Vector
     {
         public float X;
         public float Y;
 
-        public Point(float x, float y)
+        public Vector(float x, float y)
         {
             X = x;
             Y = y;
         }
 
-        public Point(float[] point)
+        public Vector(float[] vector)
         {
-            X = point[0];
-            Y = point[1];
+            X = vector[0];
+            Y = vector[1];
         }
 
-        public Point(Point point)
+        public Vector(Vector vector)
         {
-            X = point.X;
-            Y = point.Y;
+            X = vector.X;
+            Y = vector.Y;
         }
 
         public void Normalize()
@@ -43,36 +43,36 @@ namespace DungeonCrawler.Utility
             return (float)Math.Sqrt(X * X + Y * Y);
         }
 
-        public static Point operator -(Point a, Point b)
+        public static Vector operator -(Vector a, Vector b)
         {
-            return new Point(a.X - b.X, a.Y - b.Y);
+            return new Vector(a.X - b.X, a.Y - b.Y);
         }
 
-        public static Point operator +(Point a, Point b)
+        public static Vector operator +(Vector a, Vector b)
         {
-            return new Point(a.X + b.X, a.Y + b.Y);
+            return new Vector(a.X + b.X, a.Y + b.Y);
         }
 
-        public static Point operator /(Point point, float divisor)
+        public static Vector operator /(Vector vector, float divisor)
         {
-            return new Point(point.X / divisor, point.Y / divisor);
+            return new Vector(vector.X / divisor, vector.Y / divisor);
         }
 
-        public static Point operator *(Point point, float multiplier)
+        public static Vector operator *(Vector vector, float multiplier)
         {
-            return new Point(point.X * multiplier, point.Y * multiplier);
+            return new Vector(vector.X * multiplier, vector.Y * multiplier);
         }
 
         public override bool Equals(object obj)
         {
-            if (obj is Point other)
+            if (obj is Vector other)
             {
                 return other.X == X && other.Y == Y;
             }
             return false;
         }
 
-        public static bool operator ==(Point a, Point b)
+        public static bool operator ==(Vector a, Vector b)
         {
             if (ReferenceEquals(a, b))
             {
@@ -85,7 +85,7 @@ namespace DungeonCrawler.Utility
             return a.X == b.X && a.Y == b.Y;
         }
 
-        public static bool operator !=(Point a, Point b)
+        public static bool operator !=(Vector a, Vector b)
         {
             return !(a == b);
         }
@@ -103,7 +103,7 @@ namespace DungeonCrawler.Utility
 
     public class Transform
     {
-        public Point Position;
+        public Vector Position;
         public float Rotation;
 
         // Expects Degrees
@@ -143,7 +143,7 @@ namespace DungeonCrawler.Utility
             Rotation = rotation;
         }
 
-        public Transform(Point position, float rotation)
+        public Transform(Vector position, float rotation)
         {
             Position.X = position.X;
             Position.Y = position.Y;
@@ -192,7 +192,7 @@ namespace DungeonCrawler.Utility
             return Map(point[0], point[1]);
         }
 
-        public float[] Map(Point point)
+        public float[] Map(Vector point)
         {
             return Map(point.X, point.Y);
         }

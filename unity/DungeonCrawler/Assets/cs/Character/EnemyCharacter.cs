@@ -33,7 +33,7 @@ public class EnemyIdleState : CharacterState
     {
         foreach (PlayerCharacter pc in Tabletop.PlayerParty)
         {
-            if (Vector3.Distance(character.transform.position, pc.transform.position) < character.CharacterData.AlertnessRadius)
+            if (Vector3.Distance(character.transform.position, pc.transform.position) < character.CharacterData.AlertnessRadius && !pc.CharacterData.IsTakenOut)
             {
                 // Angle Rotation 
                 Vector3 pos = new Vector3(character.transform.position.x, 0, character.transform.position.z);
@@ -78,7 +78,7 @@ public class EnemyChaseState : CharacterState
         {
             foreach (PlayerCharacter pc in Tabletop.PlayerParty)
             {
-                if (Vector3.Distance(character.transform.position, pc.transform.position) < character.CharacterData.AlertnessRadius)
+                if (Vector3.Distance(character.transform.position, pc.transform.position) < character.CharacterData.AlertnessRadius && !pc.CharacterData.IsTakenOut)
                 {
                     Vector3 pos = new Vector3(character.transform.position.x, 0, character.transform.position.z);
                     Vector3 rotation = Vector3.RotateTowards(character.transform.forward, pc.transform.position - pos, 2 * Mathf.PI, 1);
