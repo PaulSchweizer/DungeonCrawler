@@ -27,14 +27,14 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             inventory.AddItem(weapon);
 
             Assert.AreEqual(1, inventory.Weapons.Count);
-            Assert.AreEqual(1, inventory.Amounts[weapon.Name]);
+            Assert.AreEqual(1, inventory.Amount(weapon.Identifier));
 
             // Add another, new Weapon
             weapon = Utilities.Weapon();
             inventory.AddItem(weapon);
 
             Assert.AreEqual(2, inventory.Weapons.Count);
-            Assert.AreEqual(2, inventory.Amounts[weapon.Name]);
+            Assert.AreEqual(1, inventory.Amount(weapon.Identifier));
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
 
             Weapon weapon = Utilities.Weapon();
             inventory.AddItem(weapon);
-            Assert.AreSame(weapon, inventory.Item("Weapon") as Weapon);
+            Assert.AreSame(weapon, inventory.Item(weapon.Identifier) as Weapon);
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
 
             inventory.RemoveItem(item, 1);
             Assert.AreEqual(1, inventory.Items.Count);
-            Assert.AreEqual(9, inventory.Amounts[item.Name]);
+            Assert.AreEqual(9, inventory.Amount(item.Name));
 
             inventory.RemoveItem(item, 9);
             Assert.AreEqual(0, inventory.Items.Count);
@@ -81,19 +81,17 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             Inventory thisInventory = new Inventory();
             Inventory thatInventory = new Inventory();
 
+            thisInventory.AddItem(Rulebook.Item("Item"), 1);
+
             thatInventory.AddItem(Rulebook.Item("Item"), 1);
             thatInventory.AddItem(Rulebook.Item("Weapon"), 2);
             thatInventory.AddItem(Rulebook.Item("Armour"), 3);
 
             thisInventory += thatInventory;
 
-            Assert.AreEqual(1, thisInventory.Amounts["Item"]);
-            Assert.AreEqual(2, thisInventory.Amounts["Weapon"]);
-            Assert.AreEqual(3, thisInventory.Amounts["Armour"]);
-            
-            Assert.IsFalse(thatInventory.Amounts.ContainsKey("Item"));
-            Assert.IsFalse(thatInventory.Amounts.ContainsKey("Weapon"));
-            Assert.IsFalse(thatInventory.Amounts.ContainsKey("Armour"));
+            Assert.AreEqual(2, thisInventory.Amount("Item"));
+            Assert.AreEqual(1, thisInventory.Weapons.Count);
+            Assert.AreEqual(1, thisInventory.Armour.Count);
         }
     }
 }

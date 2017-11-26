@@ -57,7 +57,7 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         public void Armored_hero_receives_damage()
         {
             hero.Inventory.AddItem(armour);
-            hero.Equip(armour.Name, "Torso");
+            hero.Equip(armour.Identifier, "Torso");
 
             // 0 Damage will NOT result in a stress value of -1
             hero.ReceiveDamage(0);

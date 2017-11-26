@@ -35,21 +35,76 @@ Conversation System:
  ✔ Start the Conversation of the NPC @done (17-10-22 22:59)
  ✔ Exit the conversation @done (17-10-27 21:36)
  ✔ put state on github @done (17-10-28 18:04)
- ☐ Focus on the enemy that was targeted by the Player
+<<<<<<< HEAD
+ ✔ Only the forward vector is necessary in the AttackShape @done (17-10-30 19:13)
+ ✔ Use the distance in the check as well @done (17-10-30 19:34)
+ ✔ Change GridPoint to (Float)Point @done (17-10-31 22:45)
+ ✔ Remove the stepped rotation approach for the Transform @done (17-10-31 22:45)
+ ✔ Tests for GridPoint @done (17-10-31 22:54)
+ ✔ Transform to float @done (17-11-04 13:59)
+ ✔ Keep the AttackShapeMarker in line with the Characters position when checking @done (17-11-04 14:26)
+ ✔ Just compare the distance with a range!!!! @done (17-11-04 17:59)
+ ✔ Get the rotation of the chars in unit right @done (17-11-04 19:46)
+ ✔ Radius on Characters @done (17-11-04 19:46)
+ ✔ For radius, take the radius of the Character into account @done (17-11-04 19:46)
+ ✔ AlertnessRadius @done (17-11-04 20:01)
+ ✔ Unity AttackState has to be fixed @done (17-11-04 20:01)
+ ✔ AttackShape to circles and angles @done (17-11-04 20:02)
+  ✔ AttackShape to Radius and Angle, can have multiple shapes @done (17-11-04 20:02)
+  ✔ Characters on gridpoints -> default exclude the caller @done (17-11-04 20:02)
+ ✔ AlertnessRadius in units @done (17-11-04 20:02)
+  ✔ Infer from the CharacterData @done (17-11-04 20:02)
+ ✔ Pick up loot when dropped @done (17-11-04 21:30)
+ ✔ Improve the target positioning if clicked on enemy @done (17-11-05 14:09)
+ ✔ avoid the pushing of agents on navmesh @done (17-11-05 14:09)
+  ✘ try using nacMesh obstacle, enable on enter attack, disable when leaving attack @cancelled (17-11-05 14:09)
+  https://www.gamedev.net/articles/programming/general-and-gameplay-programming/pathfinding-and-local-avoidance-for-rpgrts-games-using-unity-r3703
+ ✔ Improve the attack @done (17-11-05 14:11)
+ ☐ Character UI
+  ✔ Raise the Menu @done (17-11-05 16:55)
+  ✔ Transfer SlotSystem @done (17-11-05 18:50)
+ ✔ inventory.Armour instead of Armours @done (17-11-18 14:18)
+ ✔ Bug:  Serialize, What if serialized and then equipped??? -> Correct Item should be unique! @done (17-11-18 17:52)
+ ✔ Add Id to Items @done (17-11-18 16:28)
+ ✔ Identifier: <Name>-<Id> @done (17-11-18 17:51)
+String UUID = Guid.NewGuid().ToString("N")
+ ✔ GetItem has to change @done (17-11-18 17:51)
+ ✔ Unique Items not in the Amounts @done (17-11-18 17:52)
+  ✔ Display the Items in the grid @done (17-11-19 14:06)
+  ✔ SlotView @done (17-11-19 14:06)
+   ✔ Show only ItemsOfType(string type) @done (17-11-19 14:06)
+   ✔ Switch between views @done (17-11-19 14:06)
+  ✔ Toggle between Views @done (17-11-19 14:06)
+ ✔ Bug: Sometimes defeated chars don't get picked up? -> PLayer is dead! @done (17-11-19 15:44)
+ ✔ End the game when the player is dead @done (17-11-19 15:44)
+  ✘ Have the player be invincible, provide a toggle @cancelled (17-11-19 15:03)
+ ✔ Bug: Avoid Player when doing the raycast when clicking @done (17-11-19 15:51)
+ ✔ OnInventoryChanged @done (17-11-19 17:09)
+ ✔ Pickup of Items needs a Signal @done (17-11-19 17:10)
+ ✔ Inventory gets added items twice, Is the Item on the Rat not the same as the one from the Rulebook? @done (17-11-26 21:13)
+ ✔ Unittest for that! @done (17-11-26 21:13)
+ ✔ Recycle the inventory items, instead of deleting them @done (17-11-26 21:13)
+ ✔ Rename Point to Vector @done (17-11-26 21:25)
 
- ☐ Enemy AI
-  ☐ AlertnessRadius in units
-   ☐ Infer from the CharacterData
-  ☐ AttackShape to Radius and Angle, can have multiple shapes
-
-  ☐ ChasePersistency in sec
-  ☐ Trigger them when being attacked
 
 I///////////////////////////////////////////:
 Backlog:
 
+ ☐ Focus on the enemy that was targeted by the Player
+ ☐ Add the Attacker radius as well
+
+Simple Code Refactor:
+ ☐ CharactersOnGridPoint is obsolete
+ ☐ Return only Vector Structs
+ ☐ Location not necessary, point not necessary
+ ☐ Tests for the distance check
+ ☐ Tests for the segment check
+ ☐ Input controller -> position player characters, change to single input instead of constructing a list
+
 Unity:
- ☐ Pick up loot when dropped
+ ☐ Enemy AI
+  ✘ ChasePersistency in sec @cancelled (17-11-04 21:30)
+  ☐ Trigger them when being attacked
  ☐ In InputController, use the list of enemies to detect hit
  ☐ Load Level in Editor
  ☐ Change the rotation system for the other states as well, take it from MoveToNPC
@@ -82,7 +137,7 @@ Aspect:
  ☐ Make possible to add Aspects to other values too, e.g. Range of Attack
 
 Character:
- ☐ Pickup of Items needs a Signal
+ ☐ Set default values for AttackShape
  ☐ Reverse PhysicalStress -> empty the slider bar
  ☐ Character.Transform -> AttackShape rotate until faces the character to attack
  ☐ AttackMarker.Stunt
@@ -104,6 +159,8 @@ Character:
  ☐ AddNewAspect(aspect)
  ☐ EditAspect(aspect)
  ☐ Skills -> Rework the current tags
+ ☐ Max Amount of Spin, 2, can be upgraded with Skills
+
  Signals:
   ☐ OnAttack
   ☐ OnDefend
@@ -117,7 +174,7 @@ GameMaster:
 
 Item:
  ☐ Replace Item in Equipment with a stand-in object later that only holds the necessary, changeable attributes
- ☐ Serialize, What if serialized and then equipped??? -> Item should be unique
+
 
 Levelbuilder:
  ☐ Add enemies to the Tiles
@@ -138,3 +195,23 @@ Save:
 Stunt:
  ☐ Cost
  ☐ FatePoints / ActionPoints
+
+
+
+
+
+
+        public Character[] EnemiesInReach()
+        {
+            List<Character> enemies = new List<Character>();
+            for (int i = 0; i < AttackShape.Length; i++)
+            {
+                GridPoint point = new GridPoint(Transform.Map(AttackShape[i]));
+                foreach (Character enemy in GameMaster.CharactersOnGridPoint(point, Enemies))
+                {
+                    enemies.Add(enemy);
+                }
+            }
+            return enemies.ToArray();
+        }
+

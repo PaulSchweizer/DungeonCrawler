@@ -15,9 +15,9 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         {
             hero = Utilities.Hero();
             rat = Utilities.Rat();
-            hero.Inventory.AddItem(Utilities.Weapon());
-            hero.Inventory.AddItem(Utilities.Armour());
             Utilities.LoadRulebook();
+            hero.Inventory.AddItem(Rulebook.Weapon("Weapon"));
+            hero.Inventory.AddItem(Rulebook.Armour("Armour"));
         }
 
         [Test]
@@ -26,8 +26,8 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             Assert.AreEqual(13, hero.Cost);
             Assert.AreEqual(8, rat.Cost);
 
-            hero.Equip("Weapon", "RightHand");
-            hero.Equip("Armour", "Torso");
+            hero.Equip(Rulebook.Weapon("Weapon").Identifier, "RightHand");
+            hero.Equip(Rulebook.Armour("Armour").Identifier, "Torso");
             Assert.AreEqual(19, hero.Cost);
         }
 

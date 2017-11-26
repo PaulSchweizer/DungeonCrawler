@@ -43,10 +43,59 @@ namespace DungeonCrawler.Character
         }
     }
 
+    public struct AttackShapeMarker
+    {
+        public Utility.Transform Transform;
+        public int Radius;
+        public float Angle;
+        public float[] Forward;
+
+        public static AttackShapeMarker Default = new AttackShapeMarker(new int[] { 0, 0 }, 1, 45);
+
+        public AttackShapeMarker(int[] position, int radius, int angle)
+        {
+            Transform = new Transform(position[0], position[1], 0);
+            Radius = radius;
+            Angle = angle;
+            Forward = new float[] { 1, 0 };
+        }
+
+        public float Area()
+        {
+            return (float)(Math.PI * Radius * Radius * (Angle / 360f));
+        }
+
+        /// <summary>
+        /// Apply shape with the current Transform values.
+        /// This occurs when the Attack has been scheduled.
+        /// </summary>
+        public void Apply(float rotation)
+        {
+            Forward = Transform.RotateVector(1, 0, rotation, clockwise: false);
+        }
+
+        public bool PointInArea(Vector parent, Vector point, float range = 0)
+        {
+            // Check if in range
+            if (Math.Pow(point.X - parent.X + Transform.Position.X, 2) + Math.Pow(point.Y - parent.Y + Transform.Position.Y, 2) > (Radius + range) * (Radius + range))
+            {
+                return false;
+            }
+            // Check if in circle sector
+            float[] vector = new float[] { point.X - parent.X + Transform.Position.X, point.Y - parent.Y + Transform.Position.Y };
+            float angle = (float)(Math.Round(Transform.AngleBetween(Forward, vector), 3) * (180 / Math.PI));
+            if (angle <= (float)Math.Round(Angle / 2f))
+            {
+                return true;
+            }
+            return false;
+        }
+    }
+
     public struct AttackMarker
     {
         public Character Attacker;
-        public int[][] Shape;
+        public AttackShapeMarker[] Shape;
         public string Skill;
         public float PreTime;
         public float PostTime;
@@ -74,7 +123,7 @@ namespace DungeonCrawler.Character
             HitOccurred = false;
         }
 
-        public void Start(int[][] shape, string skill, float preTime, float postTime)
+        public void Start(AttackShapeMarker[] shape, string skill, float preTime, float postTime)
         {
             Shape = shape;
             Skill = skill;
@@ -88,12 +137,9 @@ namespace DungeonCrawler.Character
         public void Hit()
         {
             HitOccurred = true;
-            foreach (int[] point in Shape)
+            foreach(Character enemy in Attacker.EnemiesInAttackShape())
             {
-                foreach (Character enemy in GameMaster.CharactersOnGridPoint(point, Attacker.Enemies, new Character[] { Attacker }))
-                {
-                    Attacker.Attack(enemy, Skill);
-                }
+                Attacker.Attack(enemy, Skill);
             }
         }
 
@@ -129,6 +175,8 @@ namespace DungeonCrawler.Character
         public int Id;
         public string Type;
         public string Name;
+        public float Radius;
+        public float AlertnessRadius;
         public int XP;
         public int SkillPoints;
         public Attribute PhysicalStress;
@@ -184,24 +232,21 @@ namespace DungeonCrawler.Character
         }
 
         [JsonIgnore]
-        public int[][] AttackShape
+        public AttackShapeMarker[] AttackShape
         {
             get
             {
-                List<int[]> attackShape = new List<int[]>();
+                List<AttackShapeMarker> attackShape = new List<AttackShapeMarker>();
                 foreach (Weapon weapon in Weapons)
                 {
-                    foreach (int[] shape in weapon.AttackShape)
+                    foreach (AttackShapeMarker shape in weapon.AttackShape)
                     {
-                        if (!attackShape.Contains(shape))
-                        {
-                            attackShape.Add(shape);
-                        }
+                        attackShape.Add(shape);
                     }
                 }
                 if (attackShape.Count == 0)
                 {
-                    attackShape.Add(new int[] { 1, 0 });
+                    attackShape.Add(AttackShapeMarker.Default);
                 }
                 return attackShape.ToArray();
             }
@@ -215,15 +260,10 @@ namespace DungeonCrawler.Character
 
         #region Transform
 
-        public void MoveTo(int x, int y)
+        public void MoveTo(float x, float y)
         {
-            Cell targetCell = GameMaster.CurrentLocation.CellAt(x, y);
-            if (targetCell != null)
-            {
-                Transform.Position.X = x;
-                Transform.Position.Y = y;
-                CurrentCell = targetCell;
-            }
+            Transform.Position.X = x;
+            Transform.Position.Y = y;
         }
 
         #endregion
@@ -297,11 +337,11 @@ namespace DungeonCrawler.Character
                 }
 
                 // Aspects from the equipped Items
-                foreach (string itemName in Equipment.Values)
+                foreach (string itemIdentifier in Equipment.Values)
                 {
-                    if (itemName != null)
+                    if (itemIdentifier != null)
                     {
-                        foreach (Aspect aspect in Rulebook.Item(itemName).Aspects)
+                        foreach (Aspect aspect in Inventory.Item(itemIdentifier).Aspects)
                         {
                             aspects.Add(aspect);
                         }
@@ -420,6 +460,24 @@ namespace DungeonCrawler.Character
 
         #region Damage and Consequences
 
+        public Character[] EnemiesInAttackShape()
+        {
+            List<Character> characters = new List<Character>();
+            foreach (Character enemy in GameMaster.CharactersOfType(Enemies))
+            {
+                foreach (AttackShapeMarker shape in AttackShape)
+                {
+                    shape.Apply(Transform.Rotation);
+                    if (shape.PointInArea(Transform.Position, enemy.Transform.Position, enemy.Radius))
+                    {
+                        characters.Add(enemy);
+                        break;
+                    }
+                }
+            }
+            return characters.ToArray();
+        }
+
         [JsonIgnore]
         public List<Consequence> AllConsequences
         {
@@ -428,14 +486,13 @@ namespace DungeonCrawler.Character
                 List<Consequence> consequences = new List<Consequence>();
 
                 // 1. All the Consequences that equipped armour provides
-                foreach (string itemName in Equipment.Values)
+                foreach (string itemIdentifier in Equipment.Values)
                 {
-                    if (itemName != null)
+                    if (itemIdentifier != null)
                     {
-                        Item item = Rulebook.Item(itemName);
-                        if (item is Armour)
+                        Item item = Inventory.Item(itemIdentifier);
+                        if (item is Armour armour)
                         {
-                            Armour armour = (Armour)item;
                             foreach (Consequence consequence in armour.Consequences)
                             {
                                 consequences.Add(consequence);
@@ -510,7 +567,6 @@ namespace DungeonCrawler.Character
 
         public void ReceiveDamage(int damage)
         {
-            // Subtract Protection by Armour
             damage = Math.Max(damage - Protection, 0);
 
             if (PhysicalStress.Value + damage > PhysicalStress.MaxValue)
@@ -550,33 +606,19 @@ namespace DungeonCrawler.Character
 
         #region Combat
 
-        public Character[] EnemiesInReach()
-        {
-            List<Character> enemies = new List<Character>();
-            for (int i = 0; i < AttackShape.Length; i++)
-            {
-                GridPoint point = new GridPoint(Transform.Map(AttackShape[i]));
-                foreach (Character enemy in GameMaster.CharactersOnGridPoint(point, Enemies))
-                {
-                    enemies.Add(enemy);
-                }
-            }
-            return enemies.ToArray();
-        }
-
         public void ScheduleAttack(string attackSkill = "MeleeWeapons")
         {
             if (ScheduledAttack.IsActive)
             {
                 return;
             }
-            int[][] attackShape = new int[AttackShape.Length][];
-            for(int i = 0; i < attackShape.Length; i++)
-            {
-                attackShape[i] = Transform.Map(AttackShape[i][0], AttackShape[i][1]);
-            }
+            //int[][] attackShape = new int[AttackShape.Length][];
+            //for(int i = 0; i < attackShape.Length; i++)
+            //{
+            //    attackShape[i] = Transform.Map(AttackShape[i][0], AttackShape[i][1]);
+            //}
             float speed = 1 / AttackSpeed;
-            ScheduledAttack.Start(attackShape, attackSkill, speed * 0.5f, speed * 0.5f);
+            ScheduledAttack.Start(AttackShape, attackSkill, speed * 0.5f, speed * 0.5f);
             OnAttackScheduled?.Invoke(this, null);
         }
 

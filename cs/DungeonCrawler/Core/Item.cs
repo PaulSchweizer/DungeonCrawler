@@ -1,15 +1,26 @@
 ﻿using DungeonCrawler.Core;
 using Newtonsoft.Json;
+using System;
 
 namespace DungeonCrawler.Core
 {
     public class Item
     {
+        public string Id;
         public string Name;
         public Aspect[] Aspects;
         public string[] Tags;
         public string EquipmentSlot;
         public bool IsUnique;
+
+        [JsonIgnore]
+        public string Identifier
+        {
+            get
+            {
+                return string.Format("{0}-{1}", Name, Id);
+            }
+        }
 
         [JsonIgnore]
         public virtual int Cost
@@ -26,6 +37,11 @@ namespace DungeonCrawler.Core
             }
         }
 
+        public Item ()
+        {
+            Id = Guid.NewGuid().ToString("N");
+        }
+
         public static Item DeserializeFromJson(string json)
         {
             return JsonConvert.DeserializeObject<Item>(json);
@@ -36,7 +52,7 @@ namespace DungeonCrawler.Core
     {
         public string[] Skills;
         public int Damage;
-        public int[][] AttackShape;
+        public Character.AttackShapeMarker[] AttackShape;
         public float Speed;
 
         public override int Cost
@@ -44,7 +60,10 @@ namespace DungeonCrawler.Core
             get
             {
                 int cost = base.Cost;
-                cost += Damage * AttackShape.Length;
+                foreach(Character.AttackShapeMarker shape in AttackShape)
+                {
+                    cost += (int)shape.Area();
+                }
                 return cost;
             }
         }

@@ -19,5 +19,20 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
 
             Assert.AreEqual(json.Replace("\r", ""), deserialized.Replace("\r", ""));
         }
+
+        [Test]
+        public void Deserialized_Items_are_replaced_with_objects_from_Rulebook_if_possible()
+        {
+            //Utilities.LoadRulebook();
+            Character.Character hero = Utilities.Hero();
+            Character.Character rat = Utilities.Rat();
+
+            Assert.AreEqual(1, hero.Inventory.Items.Count);
+
+            hero.Inventory += rat.Inventory;
+
+            Assert.AreEqual(1, hero.Inventory.Items.Count);
+
+        }
     }
 }

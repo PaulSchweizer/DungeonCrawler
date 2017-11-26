@@ -20,7 +20,7 @@ public class BaseCharacter : MonoBehaviour
     [HideInInspector]
     public NPCCharacter DestinationNPC;
 
-    private bool isLoot;
+    public bool isLoot;
 
     public CharacterState Idle = IdleState.Instance;
     public CharacterState Move = MoveState.Instance;
@@ -30,9 +30,6 @@ public class BaseCharacter : MonoBehaviour
     public CharacterState MoveToNPC = MoveToNPCState.Instance;
     public CharacterState Conversation = ConversationState.Instance;
     protected CharacterState CurrentState;
-
-    // Additional Character Attributes
-    public int AlertnessRadius = 0;
 
     // UI
     public Slider PhysicalStressSlider;
@@ -46,6 +43,7 @@ public class BaseCharacter : MonoBehaviour
         // Unity 
         tag = CharacterData.Type;
         CurrentState = Idle;
+        NavMeshAgent.radius = CharacterData.Radius;
         ResetUI();
 
         // Connect Events
@@ -60,11 +58,11 @@ public class BaseCharacter : MonoBehaviour
         NavMeshAgent.updateRotation = true;
     }
 
-    private void Update()
+    public virtual void Update()
     {
-        CharacterData.Transform.Position.X = Mathf.RoundToInt(transform.position.x);
-        CharacterData.Transform.Position.Y = Mathf.RoundToInt(transform.position.z);
-        CharacterData.Transform.Rotation = (float)((Math.PI / 180f) * (transform.eulerAngles.y - 67.5));
+        CharacterData.Transform.Position.X = transform.position.x;
+        CharacterData.Transform.Position.Y = transform.position.z;
+        CharacterData.Transform.Rotation = (float)((Math.PI / 180f) * (transform.eulerAngles.y - 90));
         CurrentState.Update(this);
     }
 
@@ -111,6 +109,7 @@ public class BaseCharacter : MonoBehaviour
             {
                 BaseCharacter character = other.gameObject.GetComponent<BaseCharacter>();
                 character.CharacterData.Inventory += CharacterData.Inventory;
+                isLoot = false;
                 gameObject.SetActive(false);
             }
         }
@@ -136,16 +135,28 @@ public class BaseCharacter : MonoBehaviour
 
             // AttackShape
             Gizmos.color = Color.red;
-            foreach(int[] shape in CharacterData.AttackShape)
+            foreach(AttackShapeMarker shape in CharacterData.AttackShape)
             {
-                int[] mapped = CharacterData.Transform.Map(shape);
-                center = new Vector3(mapped[0], 0, mapped[1]);
+                float[] mapped = CharacterData.Transform.Map(shape.Transform.Position);
+                center = new Vector3(mapped[0], 0.01f, mapped[1]);
                 size = new Vector3(1, 0.01f, 1);
-                Gizmos.DrawCube(center, size);
+                DebugExtension.DebugCircle(center, Gizmos.color, shape.Radius);
+
+                //shape.Transform.Rotation
+                float angle = shape.Angle * Mathf.Rad2Deg;
+                Vector3 to = Quaternion.AngleAxis(angle / 2 + CharacterData.Transform.Rotation * Mathf.Rad2Deg, Vector3.up) * Vector3.left;
+                Gizmos.DrawLine(center, center + to);
+                to = Quaternion.AngleAxis(-angle / 2 + CharacterData.Transform.Rotation * Mathf.Rad2Deg, Vector3.up) * Vector3.left;
+                Gizmos.DrawLine(center, center + to);
+
+                // Forward
+                shape.Apply(CharacterData.Transform.Rotation);
+                to = new Vector3(shape.Forward[0], 0, shape.Forward[1]);
+                Gizmos.DrawLine(center, center + to);
             }
 
             // AlertnessRadius
-            DebugExtension.DebugCircle(transform.position, Gizmos.color, AlertnessRadius);
+            DebugExtension.DebugCircle(transform.position, Gizmos.color, CharacterData.AlertnessRadius);
 
             // States
             DebugExtension.DebugCircle(transform.position, CurrentState.DebugColor, NavMeshAgent.radius);

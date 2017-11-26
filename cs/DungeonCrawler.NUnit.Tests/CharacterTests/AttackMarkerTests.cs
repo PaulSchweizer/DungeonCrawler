@@ -13,7 +13,7 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         {
             Character.Character attacker = new Character.Character();
             AttackMarker marker = new AttackMarker(attacker);
-            marker.Start(new int[][] { new int[] { 0, 1 } }, "MeleeWeapons", 1, 2);
+            marker.Start(new AttackShapeMarker[] { AttackShapeMarker.Default }, "MeleeWeapons", 1, 2);
             Assert.AreEqual(0f, marker.Progress());
 
             marker.CurrentTime = 0.5f;
@@ -50,7 +50,7 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         {
             Character.Character attacker = new Character.Character();
             AttackMarker marker = new AttackMarker(attacker);
-            marker.Start(new int[][] { new int[] { 0, 1 } }, "MeleeWeapons", 1, 2);
+            marker.Start(new AttackShapeMarker[] { AttackShapeMarker.Default }, "MeleeWeapons", 1, 2);
             marker.CurrentTime = 1f;
             marker.Stop();
             Assert.AreEqual(0, marker.CurrentTime);
@@ -67,14 +67,26 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             GameMaster.CurrentLocation = Utilities.Location();
             GameMaster.RegisterCharacter(hero);
             GameMaster.RegisterCharacter(rat);
-            hero.MoveTo(0, 0);
-            rat.MoveTo(0, 1);
+            hero.MoveTo(10, 10);
+            rat.MoveTo(11, 10);
 
             AttackMarker marker = new AttackMarker(hero);
-            marker.Start(new int[][] { new int[] { 0, 1 } }, "MeleeWeapons", 1, 2);
+            marker.Start(new AttackShapeMarker[] { AttackShapeMarker.Default }, "MeleeWeapons", 1, 2);
             marker.Hit();
             Assert.AreEqual(2, rat.PhysicalStress.Value);
             Assert.IsTrue(marker.HitOccurred);
+        }
+
+        [Test]
+        public void CharacterInArea_takes_radiuses_of_both_Characters_into_account()
+        {
+            Character.Character hero = Utilities.Hero();
+            Character.Character rat = Utilities.Rat();
+            Utilities.LoadRulebook();
+            GameMaster.RegisterCharacter(hero);
+            GameMaster.RegisterCharacter(rat);
+            rat.MoveTo(1.5f, 0);
+            Assert.AreEqual(1, hero.EnemiesInAttackShape().Length);
         }
     }
 }

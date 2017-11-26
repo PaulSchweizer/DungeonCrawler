@@ -33,14 +33,12 @@ public class EnemyIdleState : CharacterState
     {
         foreach (PlayerCharacter pc in Tabletop.PlayerParty)
         {
-            if (Vector3.Distance(character.transform.position, pc.transform.position) < character.AlertnessRadius)
+            if (Vector3.Distance(character.transform.position, pc.transform.position) < character.CharacterData.AlertnessRadius && !pc.CharacterData.IsTakenOut)
             {
-
                 // Angle Rotation 
                 Vector3 pos = new Vector3(character.transform.position.x, 0, character.transform.position.z);
                 Vector3 rotation = Vector3.RotateTowards(character.transform.forward, pc.transform.position - pos, 2 * Mathf.PI, 1);
                 character.SetDestination(pc.transform.position, rotation);
-
                 character.NavMeshAgent.SetDestination(pc.transform.position);
                 character.ChangeState(character.Chase);
                 return;
@@ -71,26 +69,16 @@ public class EnemyChaseState : CharacterState
 
     public override void Update(BaseCharacter character)
     {
-        if (character.NavMeshAgent.pathPending)
+        if (character.CharacterData.EnemiesInAttackShape().Length > 0)
         {
+            character.ChangeState(character.Attack);
             return;
         }
-
-        foreach (int[] point in character.CharacterData.AttackShape)
-        {
-            if (GameMaster.CharactersOnGridPoint(character.CharacterData.Transform.Map(point),
-                                                 types: character.CharacterData.Enemies).Length > 0)
-            {
-                character.ChangeState(character.Attack);
-                return;
-            }
-        }
-
-        if (character.NavMeshAgent.remainingDistance > character.NavMeshAgent.stoppingDistance + character.NavMeshAgent.radius + 1)
+        if (character.NavMeshAgent.remainingDistance > character.NavMeshAgent.stoppingDistance)
         {
             foreach (PlayerCharacter pc in Tabletop.PlayerParty)
             {
-                if (Vector3.Distance(character.transform.position, pc.transform.position) < character.AlertnessRadius)
+                if (Vector3.Distance(character.transform.position, pc.transform.position) < character.CharacterData.AlertnessRadius && !pc.CharacterData.IsTakenOut)
                 {
                     Vector3 pos = new Vector3(character.transform.position.x, 0, character.transform.position.z);
                     Vector3 rotation = Vector3.RotateTowards(character.transform.forward, pc.transform.position - pos, 2 * Mathf.PI, 1);

@@ -105,7 +105,10 @@ public class ChaseState : CharacterState
         DebugColor = Color.magenta;
     }
 
-    public override void Enter(BaseCharacter character) { }
+    public override void Enter(BaseCharacter character)
+    {
+        character.NavMeshAgent.enabled = true;
+    }
 
     public override void Update(BaseCharacter character)
     {
@@ -114,54 +117,22 @@ public class ChaseState : CharacterState
             return;
         }
 
-        foreach (int[] point in character.CharacterData.AttackShape)
-        {
-            if (GameMaster.CharactersOnGridPoint(character.CharacterData.Transform.Map(point),
-                                                 types: character.CharacterData.Enemies).Length > 0)
-            {
-                character.ChangeState(character.Attack);
-                return;
-            }
-        }
-
-        if (character.NavMeshAgent.remainingDistance <= character.NavMeshAgent.stoppingDistance)
+        if (character.NavMeshAgent.remainingDistance <= character.NavMeshAgent.stoppingDistance + character.NavMeshAgent.radius * 2)
         {
             if (Vector3.Angle(character.transform.forward, character.DestinationRotation) < rotationThreshold)
             {
-                foreach (int[] point in character.CharacterData.AttackShape)
+                if (character.CharacterData.EnemiesInAttackShape().Length > 0)
                 {
-                    if (GameMaster.CharactersOnGridPoint(character.CharacterData.Transform.Map(point), 
-                                                         types: character.CharacterData.Enemies).Length > 0)
-                    {
-                        character.ChangeState(character.Attack);
-                        return;
-                    }
+                    character.ChangeState(character.Attack);
+                    return;
                 }
                 character.ChangeState(character.Idle);
             }
-            else
+            if (character.NavMeshAgent.remainingDistance <= character.NavMeshAgent.stoppingDistance)
             {
-                Debug.Log(Vector3.Angle(character.transform.forward, character.DestinationRotation));
                 float step = (float)((character.NavMeshAgent.angularSpeed * Time.deltaTime * Math.PI) / 180);
                 Vector3 newDir = Vector3.RotateTowards(character.transform.forward, character.DestinationRotation, step, 0);
                 character.transform.rotation = Quaternion.LookRotation(newDir);
-            }
-        }
-        else
-        {
-            if (character.NavMeshAgent.remainingDistance <= character.NavMeshAgent.stoppingDistance + character.NavMeshAgent.radius + 1)
-            {
-                Character[] chars = GameMaster.CharactersOnGridPoint(Mathf.RoundToInt(character.DestinationPosition.x),
-                                                                     Mathf.RoundToInt(character.DestinationPosition.y),
-                                                                     excludes: new Character[] { character.CharacterData });
-                if (chars.Length > 0)
-                {
-                    character.NavMeshAgent.SetDestination(character.transform.position);
-                }
-            }
-            else
-            {
-                character.NavMeshAgent.isStopped = false;
             }
         }
     }
@@ -172,7 +143,7 @@ public class ChaseState : CharacterState
     }
 }
 
-public sealed class AttackState : CharacterState
+public class AttackState : CharacterState
 {
     public static readonly AttackState Instance = new AttackState();
 
@@ -230,6 +201,7 @@ public class TakenOutState : CharacterState
         character.NavMeshAgent.enabled = false;
         character.DropLoot();
         GameMaster.DeRegisterCharacter(character.CharacterData);
+        character.tag = "Untagged";
     }
 
     public override void Update(BaseCharacter character) { }

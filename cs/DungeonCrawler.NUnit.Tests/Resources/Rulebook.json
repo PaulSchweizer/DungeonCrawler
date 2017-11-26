@@ -54,6 +54,7 @@
     },
 	"Items" : [
 		{
+			"Id": "0",
 			"Name": "Item",
 			"Aspects": [],
 			"Tags": [],

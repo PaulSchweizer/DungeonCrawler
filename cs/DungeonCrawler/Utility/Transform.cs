@@ -5,40 +5,74 @@ using System.Text;
 namespace DungeonCrawler.Utility
 {
 
-    public struct GridPoint
+    public struct Vector
     {
-        public int X;
-        public int Y;
+        public float X;
+        public float Y;
 
-        public GridPoint(int x, int y)
+        public Vector(float x, float y)
         {
             X = x;
             Y = y;
         }
 
-        public GridPoint(int[] point)
+        public Vector(float[] vector)
         {
-            X = point[0];
-            Y = point[1];
+            X = vector[0];
+            Y = vector[1];
         }
 
-        public GridPoint(GridPoint point)
+        public Vector(Vector vector)
         {
-            X = point.X;
-            Y = point.Y;
+            X = vector.X;
+            Y = vector.Y;
+        }
+
+        public void Normalize()
+        {
+            var magnitude = Magnitude();
+            if (magnitude > 0)
+            {
+                X = X / magnitude;
+                Y = Y / magnitude;
+            }
+        }
+
+        public float Magnitude()
+        {
+            return (float)Math.Sqrt(X * X + Y * Y);
+        }
+
+        public static Vector operator -(Vector a, Vector b)
+        {
+            return new Vector(a.X - b.X, a.Y - b.Y);
+        }
+
+        public static Vector operator +(Vector a, Vector b)
+        {
+            return new Vector(a.X + b.X, a.Y + b.Y);
+        }
+
+        public static Vector operator /(Vector vector, float divisor)
+        {
+            return new Vector(vector.X / divisor, vector.Y / divisor);
+        }
+
+        public static Vector operator *(Vector vector, float multiplier)
+        {
+            return new Vector(vector.X * multiplier, vector.Y * multiplier);
         }
 
         public override bool Equals(object obj)
         {
-            if (obj is GridPoint)
+            if (obj is Vector other)
             {
-                GridPoint other = (GridPoint)obj;
                 return other.X == X && other.Y == Y;
             }
             return false;
         }
 
-        public static bool operator ==(GridPoint a, GridPoint b)
+        public static bool operator ==(Vector a, Vector b)
         {
             if (ReferenceEquals(a, b))
             {
@@ -51,7 +85,7 @@ namespace DungeonCrawler.Utility
             return a.X == b.X && a.Y == b.Y;
         }
 
-        public static bool operator !=(GridPoint a, GridPoint b)
+        public static bool operator !=(Vector a, Vector b)
         {
             return !(a == b);
         }
@@ -69,29 +103,47 @@ namespace DungeonCrawler.Utility
 
     public class Transform
     {
-        public GridPoint Position;
+        public Vector Position;
+        public float Rotation;
 
-        public float Rotation
+        // Expects Degrees
+        public static float[] RotateVector(float x, float y, float degrees, bool clockwise = true)
         {
-            get
+            float[] result = new float[2];
+            if (clockwise)
             {
-                return _rotation;
+                result[0] = (float)(x * Math.Cos(degrees) - y * Math.Sin(degrees));
+                result[1] = (float)(x * Math.Sin(degrees) + y * Math.Cos(degrees));
             }
-            set
+            else
             {
-                _rotation = (float)(Math.Floor(((value * 4) / Math.PI)) * Math.PI * 0.25);
+                result[0] = (float)(x * Math.Cos(degrees) + y * Math.Sin(degrees));
+                result[1] = (float)(-x * Math.Sin(degrees) + y * Math.Cos(degrees));
             }
+            return result;
         }
-        private float _rotation;
 
-        public Transform(int x, int y, float rotation)
+        // Returns Radians
+        public static float AngleBetween(float[] fromVector, float[] toVector)
+        {
+            float dot = fromVector[0] * toVector[0] + fromVector[1] * toVector[1];
+            float mags = (float)Math.Sqrt(fromVector[0] * fromVector[0] + fromVector[1] * fromVector[1]) * 
+                (float)Math.Sqrt(toVector[0] * toVector[0] + toVector[1] * toVector[1]);
+            if(mags == 0)
+            {
+                return 0;
+            }
+            return (float)Math.Acos(dot / mags);
+        }
+
+        public Transform(float x, float y, float rotation)
         {
             Position.X = x;
             Position.Y = y;
             Rotation = rotation;
         }
 
-        public Transform(GridPoint position, float rotation)
+        public Transform(Vector position, float rotation)
         {
             Position.X = position.X;
             Position.Y = position.Y;
@@ -105,12 +157,13 @@ namespace DungeonCrawler.Utility
             Rotation = transform.Rotation;
         }
 
-        public int[] Map(int x, int y)
+        public float[] Map(float x, float y)
         {
+
             double new_x = ((x * Math.Cos(Rotation) + y * Math.Sin(Rotation)));
             double new_y = ((- x * Math.Sin(Rotation) + y * Math.Cos(Rotation)));
 
-            int mag = x;
+            float mag = x;
             if (y > x)
             {
                 mag = y;
@@ -119,15 +172,29 @@ namespace DungeonCrawler.Utility
             new_x = (new_x / Math.Sqrt(new_x * new_x + new_y * new_y)) * mag;
             new_y = (new_y / Math.Sqrt(new_x * new_x + new_y * new_y)) * mag;
 
-            return new int[] {
-                Position.X + (int)(Math.Ceiling(Math.Abs(Math.Round(new_x, 3))) * Math.Sign(new_x)),
-                Position.Y + (int)(Math.Ceiling(Math.Abs(Math.Round(new_y, 3))) * Math.Sign(new_y))
+            if (double.IsNaN(new_x))
+            {
+                new_x = 0;
+            }
+            if (double.IsNaN(new_y))
+            {
+                new_y = 0;
+            }
+
+            return new float[] {
+                Position.X + (float)new_x, // (float)(Math.Ceiling(Math.Abs(Math.Round(new_x, 3))) * Math.Sign(new_x)),
+                Position.Y + (float)new_y // (float)(Math.Ceiling(Math.Abs(Math.Round(new_y, 3))) * Math.Sign(new_y))
             };
         }
 
-        public int[] Map(int[] point)
+        public float[] Map(float[] point)
         {
             return Map(point[0], point[1]);
+        }
+
+        public float[] Map(Vector point)
+        {
+            return Map(point.X, point.Y);
         }
 
         public override string ToString()

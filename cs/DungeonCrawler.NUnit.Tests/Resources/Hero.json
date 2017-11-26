@@ -2,6 +2,8 @@
     "Id": 0,
     "Type": "Player",
     "Name": "Hero",
+    "Radius": 0.5,
+    "AlertnessRadius": 6.0,
     "XP": 0,
     "SkillPoints": 0,
     "PhysicalStress": {
@@ -52,10 +54,47 @@
         "Torso": null
     },
     "Inventory": {
-        "Items": [],
+        "Items": [
+            {
+                "Id": "0",
+                "Name": "Item",
+                "Aspects": [],
+                "Tags": [],
+                "IsUnique": false
+            }
+        ],
         "Weapons": [],
-        "Armours": [],
-        "Amounts": {}
+        "Armour": [
+            {
+                "Protection": 1,
+                "Consequences": [
+                    {
+                        "Name": "Iron studs for better protection.",
+                        "Capacity": 2,
+                        "IsTaken": false
+                    }
+                ],
+                "Id": "Armour1",
+                "Name": "Armour",
+                "Aspects": [
+                    {
+                        "Name": "Good protection against #rats.",
+                        "Skills": [
+                            "MeleeWeapons"
+                        ],
+                        "Bonus": 1
+                    }
+                ],
+                "Tags": [
+                    "cursed"
+                ],
+                "EquipmentSlot": "Torso",
+                "IsUnique": true
+            }
+        ],
+        "Amounts": {
+            "Item": 12
+        }
     },
     "IsTakenOut": false,
     "Enemies": [

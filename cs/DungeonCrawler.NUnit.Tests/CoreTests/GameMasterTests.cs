@@ -18,8 +18,8 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
             GameMaster.Characters = new List<Character.Character>();
             GameMaster.RegisterCharacter(characterA);
             GameMaster.RegisterCharacter(characterB);
-            characterA.Transform.Position = new GridPoint(0, 0);
-            characterB.Transform.Position = new GridPoint(0, 0);
+            characterA.Transform.Position = new Vector(0, 0);
+            characterB.Transform.Position = new Vector(0, 0);
         }
 
         [Test]
@@ -60,17 +60,17 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         [Test]
         public void Characters_found_on_GridPoints()
         {
-            characterA.Transform.Position = new GridPoint(6, 6);
-            characterB.Transform.Position = new GridPoint(6, 6);
-            Assert.AreEqual(2, GameMaster.CharactersOnGridPoint(new GridPoint(6, 6)).Length);
+            characterA.Transform.Position = new Vector(6, 6);
+            characterB.Transform.Position = new Vector(6, 6);
+            Assert.AreEqual(2, GameMaster.CharactersOnGridPoint(new Vector(6, 6)).Length);
             Assert.AreEqual(2, GameMaster.CharactersOnGridPoint(6, 6).Length);
-            Assert.AreEqual(2, GameMaster.CharactersOnGridPoint(new int[] { 6, 6 }).Length);
+            Assert.AreEqual(2, GameMaster.CharactersOnGridPoint(new float[] { 6, 6 }).Length);
         }
 
         [Test]
         public void Exclude_Characters_when_searching_on_GridPoints()
         {
-            Assert.AreEqual(1, GameMaster.CharactersOnGridPoint(new GridPoint(0, 0), 
+            Assert.AreEqual(1, GameMaster.CharactersOnGridPoint(new Vector(0, 0), 
                 excludes: new Character.Character[] { characterA }).Length);
         }
 
@@ -78,7 +78,7 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         public void Only_find_characters_of_type_on_GridPoints()
         {
             characterA.Type = "TypeToFind";
-            Assert.AreEqual(1, GameMaster.CharactersOnGridPoint(new GridPoint(0, 0),
+            Assert.AreEqual(1, GameMaster.CharactersOnGridPoint(new Vector(0, 0),
                 types: new string[] { "TypeToFind" }).Length);
         }
 

@@ -12,9 +12,9 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         public void SetUp()
         {
             hero = Utilities.Hero();
-            hero.Inventory.AddItem(Utilities.Weapon());
-            hero.Inventory.AddItem(Utilities.Armour());
             Utilities.LoadRulebook();
+            hero.Inventory.AddItem(Rulebook.Weapon("Weapon"));
+            hero.Inventory.AddItem(Rulebook.Armour("Armour"));
         }
 
         [Test]
@@ -29,8 +29,8 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             Assert.AreEqual(new int[] { 1 }, modifiers);
 
             // Add some Equipment
-            hero.Equip(Rulebook.Weapon("Weapon").Name, "RightHand");
-            hero.Equip(Rulebook.Armour("Armour").Name, "Torso");
+            hero.Equip(Rulebook.Weapon("Weapon").Identifier, "RightHand");
+            hero.Equip(Rulebook.Armour("Armour").Identifier, "Torso");
             modifiers = hero.SkillValueModifiers(skill: "MeleeWeapons", tags: new string[] { "rat" });
             Assert.AreEqual(new int[] { 1, 1, 1 }, modifiers);
         }
