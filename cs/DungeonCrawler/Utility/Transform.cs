@@ -157,7 +157,7 @@ namespace DungeonCrawler.Utility
             Rotation = transform.Rotation;
         }
 
-        public float[] Map(float x, float y)
+        public Vector Map(float x, float y)
         {
 
             double new_x = ((x * Math.Cos(Rotation) + y * Math.Sin(Rotation)));
@@ -181,18 +181,15 @@ namespace DungeonCrawler.Utility
                 new_y = 0;
             }
 
-            return new float[] {
-                Position.X + (float)new_x, // (float)(Math.Ceiling(Math.Abs(Math.Round(new_x, 3))) * Math.Sign(new_x)),
-                Position.Y + (float)new_y // (float)(Math.Ceiling(Math.Abs(Math.Round(new_y, 3))) * Math.Sign(new_y))
-            };
+            return new Vector(Position.X + (float)new_x, Position.Y + (float)new_y);
         }
 
-        public float[] Map(float[] point)
+        public Vector Map(float[] point)
         {
             return Map(point[0], point[1]);
         }
 
-        public float[] Map(Vector point)
+        public Vector Map(Vector point)
         {
             return Map(point.X, point.Y);
         }

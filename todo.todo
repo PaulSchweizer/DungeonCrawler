@@ -87,7 +87,7 @@ String UUID = Guid.NewGuid().ToString("N")
  ✔ Rename Point to Vector @done (17-11-26 21:25)
  ✔ CharactersOnGridPoint is obsolete @done (17-11-26 22:04)
  ✘ Location not necessary, point not necessary @cancelled (17-11-26 22:06)
- ☐ Return only Vector Structs
+ ✔ Return only Vector Structs @done (17-11-26 22:30)
 
 
 I///////////////////////////////////////////:

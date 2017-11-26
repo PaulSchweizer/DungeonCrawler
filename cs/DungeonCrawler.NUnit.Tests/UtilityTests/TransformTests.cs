@@ -10,34 +10,34 @@ namespace DungeonCrawler.NUnit.Tests.UtilityTests
         [Test]
         public void Map_GridPoint_to_Transform()
         {
-            float[] point = new float[] { 0, 1 };
+            Vector vector = new Vector( 0, 1 );
             Transform transform = new Transform(0, 0, 0);
 
-            float[] mapped = transform.Map(point[0], point[1]);
+            Vector mapped = transform.Map(vector.X, vector.Y);
 
-            Assert.AreEqual(point, mapped);
+            Assert.AreEqual(vector, mapped);
 
             transform.Position.X = 10;
             transform.Position.Y = 20;
-            mapped = transform.Map(point[0], point[1]);
-            Assert.AreEqual(10, mapped[0]);
-            Assert.AreEqual(21, mapped[1]);
+            mapped = transform.Map(vector.X, vector.Y);
+            Assert.AreEqual(10, mapped.X);
+            Assert.AreEqual(21, mapped.Y);
 
             transform.Position.X = 0;
             transform.Position.Y = 0;
             transform.Rotation = (float)(Math.PI);
-            mapped = transform.Map(point);
-            Assert.AreEqual(0, mapped[0], 0.0000001);
-            Assert.AreEqual(-1, mapped[1]);
+            mapped = transform.Map(vector);
+            Assert.AreEqual(0, mapped.X, 0.0000001);
+            Assert.AreEqual(-1, mapped.Y);
         }
 
         [Test]
         public void Map_Point_with_zero_zero()
         {
-            float[] point = new float[] { 0, 0 };
+            Vector vector = new Vector( 0, 0 );
             Transform transform = new Transform(0, 0, 0);
-            Assert.AreEqual(0, transform.Map(point)[0]);
-            Assert.AreEqual(0, transform.Map(point)[1]);
+            Assert.AreEqual(0, transform.Map(vector).X);
+            Assert.AreEqual(0, transform.Map(vector).Y);
         }
 
         [Test]
