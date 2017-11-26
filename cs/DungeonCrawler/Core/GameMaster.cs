@@ -43,7 +43,8 @@ namespace DungeonCrawler.Core
             }
         }
 
-        public static Character.Character[] CharactersOfType(string[] types){
+        public static Character.Character[] CharactersOfType(string[] types)
+        {
             List<Character.Character> characters = new List<Character.Character>();
             foreach (Character.Character character in Characters)
             {
@@ -54,56 +55,5 @@ namespace DungeonCrawler.Core
             }
             return characters.ToArray();
         }
-
-        public static Character.Character[] CharactersOnCell(Cell cell)
-        {
-            List<Character.Character> characters = new List<Character.Character>();
-            foreach (Character.Character character in Characters)
-            {
-                if (character.CurrentCell == cell)
-                {
-                    characters.Add(character);
-                }
-            }
-            return characters.ToArray();
-        }
-
-        public static Character.Character[] CharactersOnGridPoint(Vector point, string[] types = null, Character.Character[] excludes = null)
-        {
-            return CharactersOnGridPoint(new float[] { point.X, point.Y }, types, excludes);
-        }
-
-        public static Character.Character[] CharactersOnGridPoint(float[] point, string[] types = null, Character.Character[] excludes = null)
-        {
-            return CharactersOnGridPoint(point[0], point[1], types, excludes);
-        }
-
-        public static Character.Character[] CharactersOnGridPoint(float x, float y, string[] types = null, Character.Character[] excludes = null)
-        {
-            List<Character.Character> characters = new List<Character.Character>();
-            foreach (Character.Character character in Characters)
-            {
-                if (character.Transform.Position.X == x && character.Transform.Position.Y == y)
-                {
-                    if (types != null)
-                    {
-                        if (!Array.Exists(types, element => element == character.Type))
-                        {
-                            continue;
-                        }
-                    }
-                    if (excludes != null)
-                    {
-                        if (Array.Exists(excludes, element => element == character))
-                        {
-                            continue;
-                        }
-                    }
-                    characters.Add(character);
-                }
-            }
-            return characters.ToArray();
-        }
-
     }
 }

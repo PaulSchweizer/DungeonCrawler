@@ -85,6 +85,9 @@ String UUID = Guid.NewGuid().ToString("N")
  ✔ Unittest for that! @done (17-11-26 21:13)
  ✔ Recycle the inventory items, instead of deleting them @done (17-11-26 21:13)
  ✔ Rename Point to Vector @done (17-11-26 21:25)
+ ✔ CharactersOnGridPoint is obsolete @done (17-11-26 22:04)
+ ✘ Location not necessary, point not necessary @cancelled (17-11-26 22:06)
+ ☐ Return only Vector Structs
 
 
 I///////////////////////////////////////////:
@@ -94,9 +97,6 @@ Backlog:
  ☐ Add the Attacker radius as well
 
 Simple Code Refactor:
- ☐ CharactersOnGridPoint is obsolete
- ☐ Return only Vector Structs
- ☐ Location not necessary, point not necessary
  ☐ Tests for the distance check
  ☐ Tests for the segment check
  ☐ Input controller -> position player characters, change to single input instead of constructing a list

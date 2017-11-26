@@ -72,19 +72,6 @@ public class MoveState : CharacterState
                 character.transform.rotation = Quaternion.LookRotation(newDir);
             }
         }
-        else
-        {
-            if (character.NavMeshAgent.remainingDistance <= character.NavMeshAgent.stoppingDistance + character.NavMeshAgent.radius)
-            {
-                Character[] chars = GameMaster.CharactersOnGridPoint(Mathf.RoundToInt(character.DestinationPosition.x),
-                                                                     Mathf.RoundToInt(character.DestinationPosition.y),
-                                                                     excludes: new Character[] { character.CharacterData });
-                if (chars.Length > 0)
-                {
-                    character.NavMeshAgent.SetDestination(character.transform.position);
-                }
-            }
-        }
     }
 
     public override void Exit(BaseCharacter character)

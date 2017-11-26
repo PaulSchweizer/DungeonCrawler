@@ -56,39 +56,5 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
             GameMaster.DeRegisterCharacter(characterA);
             Assert.AreEqual(0, GameMaster.Characters.Count);
         }
-
-        [Test]
-        public void Characters_found_on_GridPoints()
-        {
-            characterA.Transform.Position = new Vector(6, 6);
-            characterB.Transform.Position = new Vector(6, 6);
-            Assert.AreEqual(2, GameMaster.CharactersOnGridPoint(new Vector(6, 6)).Length);
-            Assert.AreEqual(2, GameMaster.CharactersOnGridPoint(6, 6).Length);
-            Assert.AreEqual(2, GameMaster.CharactersOnGridPoint(new float[] { 6, 6 }).Length);
-        }
-
-        [Test]
-        public void Exclude_Characters_when_searching_on_GridPoints()
-        {
-            Assert.AreEqual(1, GameMaster.CharactersOnGridPoint(new Vector(0, 0), 
-                excludes: new Character.Character[] { characterA }).Length);
-        }
-
-        [Test]
-        public void Only_find_characters_of_type_on_GridPoints()
-        {
-            characterA.Type = "TypeToFind";
-            Assert.AreEqual(1, GameMaster.CharactersOnGridPoint(new Vector(0, 0),
-                types: new string[] { "TypeToFind" }).Length);
-        }
-
-        [Test]
-        public void Characters_found_on_Cell()
-        {
-            GameMaster.CurrentLocation = Utilities.Location(); 
-            characterA.MoveTo(6, 6);
-            characterB.MoveTo(6, 6);
-            Assert.AreEqual(2, GameMaster.CharactersOnCell(GameMaster.CurrentLocation.CellAt(6, 6)).Length);
-        }
     }
 }
