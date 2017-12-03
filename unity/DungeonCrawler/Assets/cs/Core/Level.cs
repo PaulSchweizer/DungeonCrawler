@@ -39,7 +39,8 @@ public class Level : MonoBehaviour
                 continue;
             }
             instance.name = string.Format("{0}_{1}_{2}", cell.Type, cell.Position[0], cell.Position[1]);
-            instance.transform.position = new Vector3(-cell.Position[0]* ScalingFactor, 0, cell.Position[1]* ScalingFactor);
+            instance.transform.localScale = new Vector3(ScalingFactor / 10, ScalingFactor / 10, ScalingFactor / 10 );
+            instance.transform.position = new Vector3(-cell.Position[0] * ScalingFactor, 0, cell.Position[1] * ScalingFactor);
             Cells.Add(instance);
         }
 

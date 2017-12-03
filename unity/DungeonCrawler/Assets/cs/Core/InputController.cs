@@ -4,6 +4,9 @@ using UnityEngine.EventSystems;
 
 public class InputController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    [Header("Data")]
+    public PlayerParty Party;
+
     public static InputController Instance;
     private bool _pointerIsDown;
 
@@ -86,11 +89,11 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     private void HitEnemy(RaycastHit hit)
     {
         BaseCharacter enemy = hit.transform.GetComponent<BaseCharacter>();
-        Vector3 point = new Vector3(enemy.CharacterData.Transform.Position.X, 0, enemy.CharacterData.Transform.Position.Y); 
+        Vector3 point = new Vector3(enemy.Character.Data.Transform.Position.X, 0, enemy.Character.Data.Transform.Position.Y); 
         for (int i = 0; i < Tabletop.PlayerParty.Length; i++)
         {
             PlayerCharacter pc = Tabletop.PlayerParty[i];
-            if (!pc.CharacterData.ScheduledAttack.IsActive)
+            if (!pc.Character.Data.ScheduledAttack.IsActive)
             {
                 Vector3 from_pc_to_enemy = point - pc.transform.position;
                 float mag = from_pc_to_enemy.magnitude;
@@ -117,18 +120,12 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     private void ApplyCharacterDestinations(PlayerCharacter[] characters, Vector3 position)
     {
         position = new Vector3(position.x, 0, position.z);
-        Vector3 point = new Vector3(Mathf.RoundToInt(position.x), 0, Mathf.RoundToInt(position.z));
         for (int i = 0; i < characters.Length; i++)
         {
             PlayerCharacter pc = characters[i];
             if (!pc.NavMeshAgent.isOnNavMesh)
             {
                 continue;
-            }
-            if (i != 0)
-            {
-                point = new Vector3(Mathf.RoundToInt(position.x) + Mathf.Sign((i % 2) - 0.5f), 0,
-                                    Mathf.RoundToInt(position.z) + Mathf.Sign((i % 2) - 0.5f));
             }
 
             // Angle Rotation 

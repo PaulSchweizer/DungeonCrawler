@@ -64,7 +64,6 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             Character.Character hero = Utilities.Hero();
             Character.Character rat = Utilities.Rat();
             Utilities.LoadRulebook();
-            GameMaster.CurrentLocation = Utilities.Location();
             GameMaster.RegisterCharacter(hero);
             GameMaster.RegisterCharacter(rat);
             hero.MoveTo(10, 10);

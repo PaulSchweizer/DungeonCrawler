@@ -6,11 +6,14 @@ using UnityEngine;
 using DungeonCrawler.Character;
 using DungeonCrawler.Core;
 using UnityEngine.UI;
+using DungeonCrawler.Utility;
 
 public class BaseCharacter : MonoBehaviour
 {
-    public TextAsset JsonFile;
-    public Character CharacterData;
+    [Header("Data")]
+    public CharacterData Character;
+
+    [Header("References")]
     public UnityEngine.AI.NavMeshAgent NavMeshAgent;
 
     [HideInInspector]
@@ -20,6 +23,7 @@ public class BaseCharacter : MonoBehaviour
     [HideInInspector]
     public NPCCharacter DestinationNPC;
 
+    [Header("Attributes")]
     public bool isLoot;
 
     public CharacterState Idle = IdleState.Instance;
@@ -31,25 +35,22 @@ public class BaseCharacter : MonoBehaviour
     public CharacterState Conversation = ConversationState.Instance;
     protected CharacterState CurrentState;
 
-    // UI
+    [Header("UI")]
     public Slider PhysicalStressSlider;
     public Slider AttackSlider;
 
     public virtual void Awake()
     {
-        CharacterData = Character.DeserializeFromJson(JsonFile.text);
-        GameMaster.RegisterCharacter(CharacterData);
-
         // Unity 
-        tag = CharacterData.Type;
+        tag = Character.Data.Type;
         CurrentState = Idle;
-        NavMeshAgent.radius = CharacterData.Radius;
+        NavMeshAgent.radius = Character.Data.Radius;
         ResetUI();
 
         // Connect Events
-        CharacterData.OnPhysicalStressChanged += new PhysicalStressChangedHandler(PhysicalStressChanged);
-        CharacterData.OnAttackScheduled += new AttackScheduledHandler(AttackScheduled);
-        CharacterData.OnTakenOut += new TakenOutHandler(GotTakenOut);
+        Character.Data.OnPhysicalStressChanged += new PhysicalStressChangedHandler(PhysicalStressChanged);
+        Character.Data.OnAttackScheduled += new AttackScheduledHandler(AttackScheduled);
+        Character.Data.OnTakenOut += new TakenOutHandler(GotTakenOut);
     }
 
     private void Start()
@@ -60,9 +61,9 @@ public class BaseCharacter : MonoBehaviour
 
     public virtual void Update()
     {
-        CharacterData.Transform.Position.X = transform.position.x;
-        CharacterData.Transform.Position.Y = transform.position.z;
-        CharacterData.Transform.Rotation = (float)((Math.PI / 180f) * (transform.eulerAngles.y - 90));
+        Character.Data.Transform.Position.X = transform.position.x;
+        Character.Data.Transform.Position.Y = transform.position.z;
+        Character.Data.Transform.Rotation = (float)((Math.PI / 180f) * (transform.eulerAngles.y - 90));
         CurrentState.Update(this);
     }
 
@@ -108,7 +109,7 @@ public class BaseCharacter : MonoBehaviour
             if (other.gameObject.tag == "Player")
             {
                 BaseCharacter character = other.gameObject.GetComponent<BaseCharacter>();
-                character.CharacterData.Inventory += CharacterData.Inventory;
+                character.Character.Data.Inventory += Character.Data.Inventory;
                 isLoot = false;
                 gameObject.SetActive(false);
             }
@@ -129,34 +130,34 @@ public class BaseCharacter : MonoBehaviour
 
             // Position
             Gizmos.color = DebugColor;
-            Vector3 center = new Vector3(CharacterData.Transform.Position.X, 0, CharacterData.Transform.Position.Y);
+            Vector3 center = new Vector3(Character.Data.Transform.Position.X, 0, Character.Data.Transform.Position.Y);
             Vector3 size = new Vector3(1, 0.01f, 1);
             Gizmos.DrawCube(center, size);
 
             // AttackShape
             Gizmos.color = Color.red;
-            foreach(AttackShapeMarker shape in CharacterData.AttackShape)
+            foreach(AttackShapeMarker shape in Character.Data.AttackShape)
             {
-                float[] mapped = CharacterData.Transform.Map(shape.Transform.Position);
-                center = new Vector3(mapped[0], 0.01f, mapped[1]);
+                Vector mapped = Character.Data.Transform.Map(shape.Transform.Position);
+                center = new Vector3(mapped.X, 0.01f, mapped.Y);
                 size = new Vector3(1, 0.01f, 1);
                 DebugExtension.DebugCircle(center, Gizmos.color, shape.Radius);
 
                 //shape.Transform.Rotation
                 float angle = shape.Angle * Mathf.Rad2Deg;
-                Vector3 to = Quaternion.AngleAxis(angle / 2 + CharacterData.Transform.Rotation * Mathf.Rad2Deg, Vector3.up) * Vector3.left;
+                Vector3 to = Quaternion.AngleAxis(angle / 2 + Character.Data.Transform.Rotation * Mathf.Rad2Deg, Vector3.up) * Vector3.left;
                 Gizmos.DrawLine(center, center + to);
-                to = Quaternion.AngleAxis(-angle / 2 + CharacterData.Transform.Rotation * Mathf.Rad2Deg, Vector3.up) * Vector3.left;
+                to = Quaternion.AngleAxis(-angle / 2 + Character.Data.Transform.Rotation * Mathf.Rad2Deg, Vector3.up) * Vector3.left;
                 Gizmos.DrawLine(center, center + to);
 
                 // Forward
-                shape.Apply(CharacterData.Transform.Rotation);
+                shape.Apply(Character.Data.Transform.Rotation);
                 to = new Vector3(shape.Forward[0], 0, shape.Forward[1]);
                 Gizmos.DrawLine(center, center + to);
             }
 
             // AlertnessRadius
-            DebugExtension.DebugCircle(transform.position, Gizmos.color, CharacterData.AlertnessRadius);
+            DebugExtension.DebugCircle(transform.position, Gizmos.color, Character.Data.AlertnessRadius);
 
             // States
             DebugExtension.DebugCircle(transform.position, CurrentState.DebugColor, NavMeshAgent.radius);
@@ -173,15 +174,15 @@ public class BaseCharacter : MonoBehaviour
 
     private void ResetUI()
     {
-        PhysicalStressSlider.maxValue = CharacterData.PhysicalStress.MaxValue;
-        PhysicalStressSlider.minValue = CharacterData.PhysicalStress.MinValue;
-        PhysicalStressSlider.value = CharacterData.PhysicalStress.Value;
+        PhysicalStressSlider.maxValue = Character.Data.PhysicalStress.MaxValue;
+        PhysicalStressSlider.minValue = Character.Data.PhysicalStress.MinValue;
+        PhysicalStressSlider.value = Character.Data.PhysicalStress.Value;
         AttackSlider.value = 0;
     }
 
     private void PhysicalStressChanged(object sender, EventArgs e)
     {
-        PhysicalStressSlider.value = CharacterData.PhysicalStress.Value;
+        PhysicalStressSlider.value = Character.Data.PhysicalStress.Value;
     }
 
     private void AttackScheduled(object sender, EventArgs e)

@@ -8,6 +8,8 @@ using DungeonCrawler.Character;
 
 public class Tabletop : MonoBehaviour
 {
+    [Header("Data")]
+    public PlayerParty Party;
     public TextAsset RulebookJsonFile;
 
     public static PlayerCharacter[] PlayerParty = new PlayerCharacter[] { };
@@ -21,11 +23,10 @@ public class Tabletop : MonoBehaviour
     private void Start()
     {
         PlayerParty = GameObject.FindObjectsOfType<PlayerCharacter>();
-        foreach(PlayerCharacter character in PlayerParty)
+        foreach(CharacterData character in Party.Characters)
         {
-            character.CharacterData.OnTakenOut += new TakenOutHandler(PlayerGotTakenOut);
+            character.Data.OnTakenOut += new TakenOutHandler(PlayerGotTakenOut);
         }
-        PlayerUI.Instance.Initialize();
     }
 
     #region Debug
@@ -60,9 +61,9 @@ public class Tabletop : MonoBehaviour
     public void PlayerGotTakenOut(object sender, EventArgs e)
     {
         bool allTakenOut = true;
-        foreach(PlayerCharacter character in PlayerParty)
+        foreach(CharacterData character in Party.Characters)
         {
-            if (!character.CharacterData.IsTakenOut)
+            if (!character.Data.IsTakenOut)
             {
                 allTakenOut = false;
                 break;
@@ -73,10 +74,6 @@ public class Tabletop : MonoBehaviour
         {
             // Disable the Character controls
             InputController.Instance.enabled = false;
-
-            // Show GameOverDialog
-            PlayerUI.Instance.gameObject.SetActive(false);
-            GameOverUI.Instance.gameObject.SetActive(true);
         }
     }
 
