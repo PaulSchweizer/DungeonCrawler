@@ -97,6 +97,10 @@ String UUID = Guid.NewGuid().ToString("N")
  ✔ Instantiate the SOs per Enemy Character @done (17-12-03 15:02)
   ✔ Remove CurrentLocation @done (17-12-03 15:20)
 
+ ☐ GameMaster.SaveGame() -> GameState.json
+ ☐ GameMaster.LoadGame(GameState.json)
+   ☐ GameState: Characters, Location, GobalValues
+
 I///////////////////////////////////////////:
 Backlog:
 
@@ -146,8 +150,7 @@ Aspect:
  ☐ Make possible to add Aspects to other values too, e.g. Range of Attack
 
 Character:
- ☐ GameState.load
-   ☐ GameState: Characters, Location, GobalValues
+
  ☐ Set default values for AttackShape
  ☐ Reverse PhysicalStress -> empty the slider bar
  ☐ Character.Transform -> AttackShape rotate until faces the character to attack
