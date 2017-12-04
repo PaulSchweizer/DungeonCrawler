@@ -49,6 +49,7 @@
     <Compile Include="Core\Dice.cs" />
     <Compile Include="Core\GameEventsLogger.cs" />
     <Compile Include="Core\GameMaster.cs" />
+    <Compile Include="Core\GameState.cs" />
     <Compile Include="Core\Item.cs" />
     <Compile Include="Core\Location.cs" />
     <Compile Include="Core\Rulebook.cs" />

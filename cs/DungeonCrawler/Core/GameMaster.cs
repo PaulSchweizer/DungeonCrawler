@@ -7,6 +7,8 @@ namespace DungeonCrawler.Core
 {
     public static class GameMaster
     {
+        public static Location CurrentLocation;
+
         public static Cell CurrentCell;
 
         public static List<Character.Character> Characters = new List<Character.Character>();
@@ -42,7 +44,7 @@ namespace DungeonCrawler.Core
             }
         }
 
-        public static Character.Character[] CharactersOfType(string[] types)
+        public static List<Character.Character> CharactersOfType(string[] types)
         {
             List<Character.Character> characters = new List<Character.Character>();
             foreach (Character.Character character in Characters)
@@ -52,7 +54,21 @@ namespace DungeonCrawler.Core
                     characters.Add(character);
                 }
             }
-            return characters.ToArray();
+            return characters;
         }
+
+        #region Serialization
+
+        public static GameState SaveCurrentGame()
+        {
+            GameState gameState = new GameState();
+
+            gameState.CurrentLocation = CurrentLocation.Name;
+            gameState.PlayerCharacters = CharactersOfType(new string[] { "Player" });
+
+            return gameState;
+        }
+
+        #endregion
     }
 }

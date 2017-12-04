@@ -96,8 +96,8 @@ String UUID = Guid.NewGuid().ToString("N")
   ✘ PartyAllTakenOut signal @cancelled (17-12-03 14:51)
  ✔ Instantiate the SOs per Enemy Character @done (17-12-03 15:02)
   ✔ Remove CurrentLocation @done (17-12-03 15:20)
-
  ☐ GameMaster.SaveGame() -> GameState.json
+ ☐ Only Lists not Arrays wherever applicable
  ☐ GameMaster.LoadGame(GameState.json)
    ☐ GameState: Characters, Location, GobalValues
 

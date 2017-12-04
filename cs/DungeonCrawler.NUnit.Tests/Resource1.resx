@@ -139,6 +139,9 @@
   <data name="Rulebook" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\rulebook.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="SavedGame" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\savedgame.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Stunt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\stunt.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
