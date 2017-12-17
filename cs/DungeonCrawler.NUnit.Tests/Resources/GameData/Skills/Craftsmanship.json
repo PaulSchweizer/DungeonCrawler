@@ -1,0 +1,8 @@
+﻿{
+    "Name": "Craftsmanship",
+    "Description": "Repair broken or damaged items.",
+    "OpposingSkills": [],
+    "Actions": [
+        "Repair"
+    ]
+}

@@ -1,0 +1,43 @@
+﻿{
+    "Id": 1,
+    "Type": "Monster",
+    "Name": "Rat",
+	"Radius": 0.5,
+	"AlertnessRadius": 6,
+    "PhysicalStress": {
+        "Value": 0,
+        "MaxValue": 5,
+        "MinValue": 0
+    },
+    "Consequences": [
+        {
+            "Name": "Rats are hard to kill.",
+            "Capacity": 2,
+            "IsTaken": false
+        }
+    ],
+    "Skills": {
+        "MeleeWeapons": 1
+    },
+    "Tags": [
+        "rat"
+    ],
+    "Aspects": [],
+    "Equipment": {},
+    "IsTakenOut": false,
+    "Inventory":
+    {
+		"Items": [
+			{
+				"Name": "Item"
+			}
+		],
+		"Amounts":
+		{
+			"Item": 12
+		}
+    },
+    "Enemies": [
+        "Player"
+    ]
+}

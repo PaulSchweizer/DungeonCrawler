@@ -9,5 +9,10 @@ namespace DungeonCrawler.Core
         public string Description;
         public string[] OpposingSkills;
         public string[] Actions;
+
+        public static Skill DeserializeFromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<Skill>(json);
+        }
     }
 }

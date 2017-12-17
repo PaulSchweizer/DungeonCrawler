@@ -1,5 +1,5 @@
 ﻿{
-    "CurrentLocation": "Dark Forest",
+    "CurrentLocation": "Location",
     "PlayerCharacters": [
         {
             "Id": 0,
@@ -102,7 +102,14 @@
             "IsTakenOut": false,
             "Enemies": [
                 "Monster"
-            ]
+            ],
+            "Transform": {
+                "Position": {
+                    "X": 100.0,
+                    "Y": 100.0
+                },
+                "Rotation": 66.6
+            }
         }
     ]
 }

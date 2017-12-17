@@ -1,0 +1,10 @@
+﻿{
+    "Name": "RangedWeapons",
+    "Description": "All sorts of ranged weaponry.",
+    "OpposingSkills": [
+        "Athletics"
+    ],
+    "Actions": [
+        "Attack"
+    ]
+}

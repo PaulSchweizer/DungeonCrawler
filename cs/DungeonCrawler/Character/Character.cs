@@ -198,11 +198,10 @@ namespace DungeonCrawler.Character
 
         #endregion
 
-        [JsonIgnore]
-        public AttackMarker ScheduledAttack;
+        public Transform Transform;
 
         [JsonIgnore]
-        public Transform Transform;
+        public AttackMarker ScheduledAttack;
 
         [JsonIgnore]
         public Cell CurrentCell;

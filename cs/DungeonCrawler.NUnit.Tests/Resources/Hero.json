@@ -99,5 +99,12 @@
     "IsTakenOut": false,
     "Enemies": [
         "Monster"
-    ]
+    ],
+    "Transform": {
+        "Position": {
+            "X": 0.0,
+            "Y": 0.0
+        },
+        "Rotation": 0.0
+    }
 }

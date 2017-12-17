@@ -1,0 +1,8 @@
+﻿{
+    "Name": "Athletics",
+    "Description": "Avoid danger.",
+    "OpposingSkills": [],
+    "Actions": [
+        "Defend"
+    ]
+}

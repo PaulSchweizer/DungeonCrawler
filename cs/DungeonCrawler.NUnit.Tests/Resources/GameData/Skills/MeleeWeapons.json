@@ -1,0 +1,12 @@
+﻿{
+    "Name": "MeleeWeapons",
+    "Description": "Fight in close range.",
+    "OpposingSkills": [
+        "MeleeWeapons", 
+        "Athletics"
+    ],
+    "Actions": [
+        "Attack", 
+        "Defend"
+    ]
+}

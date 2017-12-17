@@ -22,7 +22,6 @@ namespace DungeonCrawler.Core
         {
             string json = JsonConvert.SerializeObject(gameState, Formatting.Indented,
                 new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-
             using (var stringReader = new StringReader(json))
             using (var stringWriter = new StringWriter())
             {

@@ -8,6 +8,7 @@ namespace DungeonCrawler.NUnit.Tests
 {
     internal static class Utilities
     {
+        public static string RootDataPath = @"..\..\Resources\GameData";
 
         public static string JsonResource(string file)
         {

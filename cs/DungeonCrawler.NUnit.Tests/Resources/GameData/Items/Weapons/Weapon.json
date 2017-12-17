@@ -1,0 +1,23 @@
+﻿{
+    "Name": "Weapon",
+    "Skills": ["MeleeWeapons"],
+    "Damage": 3,
+	"AttackShape": [
+		{
+			"Position": [0, 0],
+			"Radius": 2,
+			"Angle": 90
+		}
+	],
+	"Speed": 1,
+    "Aspects": [
+        {
+            "Name": "Extinguisher of #rats.",
+            "Bonus": 1,
+            "Skills": ["MeleeWeapons"]
+        }
+    ],
+    "Tags": [],
+    "EquipmentSlot": "RightHand",
+	"IsUnique": true
+}

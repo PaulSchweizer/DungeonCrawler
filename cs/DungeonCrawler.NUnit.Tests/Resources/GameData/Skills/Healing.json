@@ -1,0 +1,8 @@
+﻿{
+    "Name": "Healing",
+    "Description": "Heal consequences.",
+    "OpposingSkills": [],
+    "Actions": [
+        "Heal"
+    ]
+}

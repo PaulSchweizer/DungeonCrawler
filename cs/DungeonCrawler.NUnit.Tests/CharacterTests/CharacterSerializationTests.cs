@@ -17,7 +17,7 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             Console.WriteLine(json);
             Console.WriteLine(deserialized);
 
-            Assert.AreEqual(json.Replace("\r", ""), deserialized.Replace("\r", ""));
+            Assert.AreEqual(json.Replace("\n", "").Replace("\r", ""), deserialized.Replace("\n", "").Replace("\r", ""));
         }
 
         [Test]

@@ -52,6 +52,7 @@
     <Compile Include="CoreTests\AspectTests.cs" />
     <Compile Include="CoreTests\DiceTests.cs" />
     <Compile Include="CoreTests\GameMasterTests.cs" />
+    <Compile Include="CoreTests\GameSetupTests.cs" />
     <Compile Include="CoreTests\GameStateTests.cs" />
     <Compile Include="CoreTests\ItemTests.cs" />
     <Compile Include="CoreTests\GameEventsLoggerTests.cs" />
@@ -85,8 +86,18 @@
     <EmbeddedResource Include="Resources\Rulebook.json" />
     <EmbeddedResource Include="Resources\TestCharacter.json" />
     <EmbeddedResource Include="Resources\Location.json" />
+    <EmbeddedResource Include="Resources\GameData\Items\Items\Item.json" />
+    <EmbeddedResource Include="Resources\GameData\Locations\Location.json" />
+    <EmbeddedResource Include="Resources\GameData\Items\Armour\Armour.json" />
+    <EmbeddedResource Include="Resources\GameData\Items\Weapons\Weapon.json" />
+    <EmbeddedResource Include="Resources\GameData\Rulebook.json" />
+    <EmbeddedResource Include="Resources\GameData\Monsters\Rat.json" />
+    <EmbeddedResource Include="Resources\GameData\Skills\MeleeWeapons.json" />
+    <EmbeddedResource Include="Resources\GameData\Skills\RangedWeapons.json" />
+    <EmbeddedResource Include="Resources\GameData\Skills\Craftsmanship.json" />
+    <EmbeddedResource Include="Resources\GameData\Skills\Healing.json" />
+    <EmbeddedResource Include="Resources\GameData\Skills\Athletics.json" />
     <EmbeddedResource Include="Resources\SavedGame.json" />
-    <None Include="Resources\SavedGame.json" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -95,7 +106,11 @@
     <EmbeddedResource Include="Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\GameData\NPCs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -34,6 +34,11 @@ namespace DungeonCrawler.Core
             }
         }
 
+        public Rulebook()
+        {
+            Instance = this;
+        }
+
         #endregion 
 
         #region Tags
