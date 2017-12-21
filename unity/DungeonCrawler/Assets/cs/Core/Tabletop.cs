@@ -10,13 +10,11 @@ public class Tabletop : MonoBehaviour
 {
     [Header("Data")]
     public PlayerParty Party;
-    public TextAsset RulebookJsonFile;
 
     public static PlayerCharacter[] PlayerParty = new PlayerCharacter[] { };
 
     private void Awake ()
     {
-        Rulebook.DeserializeFromJson(RulebookJsonFile.text);
         GameEventsLogger.OnEventLogged += LogAnalytics;
     }
 

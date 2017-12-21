@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace DungeonCrawler.NUnit.Tests.CoreTests
@@ -12,12 +13,13 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         public void Initialize_game_from_json_files()
         {
             GameMaster.RootDataPath = Utilities.RootDataPath;
+
             GameMaster.InitializeGame();
 
             Assert.Contains("rats", Rulebook.Instance.Tags["rat"]);
 
             Assert.AreEqual(1, Rulebook.Instance.Items.Count);
-            Assert.AreEqual(1, Rulebook.Instance.Weapons.Count);
+            Assert.AreEqual(2, Rulebook.Instance.Weapons.Count);
             Assert.AreEqual(1, Rulebook.Instance.Armours.Count);
 
             Assert.AreEqual("Athletics", Rulebook.Instance.Skills["Athletics"].Name);

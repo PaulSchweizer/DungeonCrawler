@@ -17,7 +17,7 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         [Test]
         public void DeserializeRulebook()
         {
-            string json = Utilities.JsonResource("Rulebook");
+            string json = Utilities.JsonResource("GameData.Rulebook");
             Rulebook.DeserializeFromJson(json);
             Console.WriteLine(Rulebook.SerializeToJson());
         }
@@ -29,9 +29,9 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
             Utilities.LoadRulebook();
 
             // Add some Items
-            string json = Utilities.JsonResource("Weapon");
+            string json = Utilities.JsonResource("GameData.Items.Weapons.Weapon");
             Weapon weapon = Weapon.DeserializeFromJson(json);
-            json = Utilities.JsonResource("Armour");
+            json = Utilities.JsonResource("GameData.Items.Armour.Armour");
             Armour armour = Armour.DeserializeFromJson(json);
             Rulebook.Instance.Weapons.Add(weapon);
             Rulebook.Instance.Armours.Add(armour);

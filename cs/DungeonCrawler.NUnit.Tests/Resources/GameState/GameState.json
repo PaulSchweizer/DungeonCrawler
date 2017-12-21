@@ -1,0 +1,7 @@
+﻿{
+    "Location": "Location",
+	"PlayerCharacters": [
+		"PCs\\Hero.json"
+		],
+	"GlobalState": "GlobalState.json"
+}

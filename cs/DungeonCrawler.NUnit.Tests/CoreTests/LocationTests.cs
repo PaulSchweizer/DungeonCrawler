@@ -14,7 +14,7 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         [SetUp]
         public void SetUp()
         {
-            string json = Utilities.JsonResource("Location");
+            string json = Utilities.JsonResource("GameData.Locations.Location");
             location = Location.DeserializeFromJson(json);
         }
 

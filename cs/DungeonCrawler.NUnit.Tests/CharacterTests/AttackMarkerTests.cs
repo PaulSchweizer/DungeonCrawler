@@ -8,6 +8,7 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
     [TestFixture]
     public class AttackMarkerTests
     {
+
         [Test]
         public void Progress_of_Attack()
         {

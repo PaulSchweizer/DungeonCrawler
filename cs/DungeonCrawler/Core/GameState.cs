@@ -8,8 +8,50 @@ namespace DungeonCrawler.Core
 {
     public class GameState
     {
-        public string CurrentLocation;
-        public List<Character.Character> PlayerCharacters;
+        public string Location;
+        public List<string> PlayerCharacters;
+        public string GlobalState;
+
+        public GameState()
+        {
+            PlayerCharacters = new List<string>();
+        }
+
+        #region Save and Load
+
+        public static void Save(string name)
+        {
+            string rootPath = Path.Combine(GameMaster.RootDataPath, name);
+            Directory.CreateDirectory(rootPath);
+            Directory.CreateDirectory(Path.Combine(rootPath, "PCs"));
+
+            GameState gameState = new GameState();
+            gameState.Location = GameMaster.CurrentLocation.Name;
+            foreach (Character.Character character in GameMaster.CharactersOfType(new string[] { "Player" }))
+            {
+                gameState.PlayerCharacters.Add(Path.Combine("PCs", character.Name));
+                File.WriteAllText(Path.Combine(rootPath, Path.Combine("PCs", string.Format("{0}.json", character.Name))),
+                    Character.Character.SerializeToJson(character));
+            }
+            File.WriteAllText(Path.Combine(rootPath, "GameState.json"), SerializeToJson(gameState));
+            File.WriteAllText(Path.Combine(rootPath, "GlobalState.json"), Core.GlobalState.SerializeToJson());
+        }
+
+        public static void Load(string name)
+        {
+            string rootPath = Path.Combine(GameMaster.RootDataPath, name);
+            GameState gameState = DeserializeFromJson(File.ReadAllText(Path.Combine(rootPath, "GameState.json")));
+            string json = "";
+            foreach (string path in gameState.PlayerCharacters)
+            {
+                json = File.ReadAllText(Path.Combine(GameMaster.RootDataPath, string.Format("{0}.json", path)));
+                GameMaster.RegisterCharacter(Character.Character.DeserializeFromJson(json));
+            }
+            json = File.ReadAllText(Path.Combine(Path.Combine(GameMaster.RootDataPath, "Locations"), string.Format("{0}.json", gameState.Location)));
+            GameMaster.CurrentLocation = Core.Location.DeserializeFromJson(json);
+        }
+
+        #endregion
 
         #region Serialization
 

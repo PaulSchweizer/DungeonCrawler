@@ -10,9 +10,9 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         [Test]
         public void Deserialize_items_to_the_correct_type()
         {
-            string json = Utilities.JsonResource("Weapon");
+            string json = Utilities.JsonResource("GameData.Items.Weapons.Weapon");
             Weapon weapon = Weapon.DeserializeFromJson(json);
-            json = Utilities.JsonResource("Armour");
+            json = Utilities.JsonResource("GameData.Items.Armour.Armour");
             Armour armour = Armour.DeserializeFromJson(json);
         }
 

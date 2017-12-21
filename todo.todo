@@ -97,6 +97,12 @@ String UUID = Guid.NewGuid().ToString("N")
  ✔ Instantiate the SOs per Enemy Character @done (17-12-03 15:02)
   ✔ Remove CurrentLocation @done (17-12-03 15:20)
  ✔ GameMaster.SaveGame() -> GameState.json @done (17-12-11 18:57)
+ ✔ Rulebook needs to Load all from Disk! @done (17-12-21 00:12)
+ ✔ Move Data to correct subfolder @done (17-12-21 00:12)
+
+
+ ☐ Clash of item ids? When serializing Armour and Weapons
+
  ☐ Load Game
    ✔ Paths to the .json Game Files @done (17-12-11 19:58)
     ✔ RootPath @done (17-12-11 19:58)
@@ -105,11 +111,89 @@ String UUID = Guid.NewGuid().ToString("N")
      ✔ Items @done (17-12-11 19:58)
      ✔ Skills @done (17-12-11 19:58)
      ✔ TagsMapping @done (17-12-11 20:05)
-    ☐ GlobalGameState
-   ☐ Add Saved Game State
+    ✔ GlobalGameState @done (17-12-21 00:13)
+   ✔ Add Saved Game State @done (17-12-21 00:13)
     ✔ Player Characters @done (17-12-11 20:54)
     ✔ Current Location -> Set Current Location @done (17-12-11 20:55)
-    ☐ GlobalGameState
+    ✔ GlobalGameState @done (17-12-21 00:13)
+
+
+ ☐ Use the GameMaster.Characters.CharactersOfType(string)
+ ☐ Is the shipped Resource.GameState even necessary?
+
+
+
+
+Quest
+{
+"Name": "FirstQuest",
+"Description": "Solve the quest!",
+"Requirements": {
+"Condition1": true,
+"Condition2": false
+},
+"Status": "Inactive|Active|Success",
+"XP": 100,
+"Objectives": [
+{
+"Name": "Find stuff",
+"Type": "FindItems",
+"ItemsToFind": {
+"ItemA": 12,
+"ItemB": 2
+},
+"Status": false
+},
+{
+"Name": "Do something",
+"Type": "Conditional",
+"Conditions": {
+"Condition3": true
+},
+"Status": false
+}
+]
+}
+Quest.StartQuest()
+Quest.CheckProgress()
+Quest.CompleteQuestSuccessfully()
+Objective.CompleteObjective()
+
+OnQuestStarted
+OnQuestSuccess
+OnObjectiveSuccess
+Update:
+for quest in quests if quast.Status == Active:
+quest.CheckProgress() ->
+for objective in Quest.Objectives:
+objective.CheckConditions()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  ☐ Only Lists not Arrays wherever applicable
  ☐ GameMaster.LoadGame(GameState.json)

@@ -54,19 +54,19 @@
     <Compile Include="CoreTests\GameMasterTests.cs" />
     <Compile Include="CoreTests\GameSetupTests.cs" />
     <Compile Include="CoreTests\GameStateTests.cs" />
+    <Compile Include="CoreTests\GlobalStateTests.cs" />
     <Compile Include="CoreTests\ItemTests.cs" />
     <Compile Include="CoreTests\GameEventsLoggerTests.cs" />
     <Compile Include="CoreTests\LocationTests.cs" />
     <Compile Include="CoreTests\RulebookTests.cs" />
     <Compile Include="IntegrationTests\CombatIntegrationTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UtilityTests\TransformTests.cs" />
-    <EmbeddedResource Include="Resources\Item.json" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -77,15 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <EmbeddedResource Include="Resources\TagsTable.json" />
-    <EmbeddedResource Include="Resources\Hero.json" />
-    <EmbeddedResource Include="Resources\Rat.json" />
-    <EmbeddedResource Include="Resources\Weapon.json" />
-    <EmbeddedResource Include="Resources\Armour.json" />
-    <EmbeddedResource Include="Resources\GameMaster.json" />
-    <EmbeddedResource Include="Resources\Rulebook.json" />
-    <EmbeddedResource Include="Resources\TestCharacter.json" />
-    <EmbeddedResource Include="Resources\Location.json" />
+    <EmbeddedResource Include="Resources\GameData\GameMaster.json" />
     <EmbeddedResource Include="Resources\GameData\Items\Items\Item.json" />
     <EmbeddedResource Include="Resources\GameData\Locations\Location.json" />
     <EmbeddedResource Include="Resources\GameData\Items\Armour\Armour.json" />
@@ -97,7 +89,12 @@
     <EmbeddedResource Include="Resources\GameData\Skills\Craftsmanship.json" />
     <EmbeddedResource Include="Resources\GameData\Skills\Healing.json" />
     <EmbeddedResource Include="Resources\GameData\Skills\Athletics.json" />
-    <EmbeddedResource Include="Resources\SavedGame.json" />
+    <EmbeddedResource Include="Resources\GameState\GameState.json" />
+    <EmbeddedResource Include="Resources\GameData\GlobalState.json" />
+    <EmbeddedResource Include="Resources\GameState\PCs\Hero.json" />
+    <EmbeddedResource Include="Resources\GameState\GlobalState.json" />
+    <EmbeddedResource Include="Resources\GameData\PCs\Hero.json" />
+    <EmbeddedResource Include="Resources\GameData\Items\Weapons\Weapon2.json" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -105,8 +102,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

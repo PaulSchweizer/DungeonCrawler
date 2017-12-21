@@ -73,9 +73,29 @@ namespace DungeonCrawler.NUnit.Tests {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] GameMaster {
+        internal static byte[] Athletics {
             get {
-                object obj = ResourceManager.GetObject("GameMaster", resourceCulture);
+                object obj = ResourceManager.GetObject("Athletics", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Craftsmanship {
+            get {
+                object obj = ResourceManager.GetObject("Craftsmanship", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Healing {
+            get {
+                object obj = ResourceManager.GetObject("Healing", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -113,6 +133,26 @@ namespace DungeonCrawler.NUnit.Tests {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] MeleeWeapons {
+            get {
+                object obj = ResourceManager.GetObject("MeleeWeapons", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] RangedWeapons {
+            get {
+                object obj = ResourceManager.GetObject("RangedWeapons", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Rat {
             get {
                 object obj = ResourceManager.GetObject("Rat", resourceCulture);
@@ -123,39 +163,9 @@ namespace DungeonCrawler.NUnit.Tests {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Rulebook {
-            get {
-                object obj = ResourceManager.GetObject("Rulebook", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
         internal static byte[] SavedGame {
             get {
                 object obj = ResourceManager.GetObject("SavedGame", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] Stunt {
-            get {
-                object obj = ResourceManager.GetObject("Stunt", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] TagsTable {
-            get {
-                object obj = ResourceManager.GetObject("TagsTable", resourceCulture);
                 return ((byte[])(obj));
             }
         }

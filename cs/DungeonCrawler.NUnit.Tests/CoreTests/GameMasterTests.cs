@@ -38,7 +38,7 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         {
             GameMaster.Characters = new List<Character.Character>();
             Assert.AreEqual(0, GameMaster.Characters.Count);
-            Character.Character character = new Character.Character(); 
+            Character.Character character = new Character.Character();
             GameMaster.RegisterCharacter(character);
             GameMaster.RegisterCharacter(character);
             Assert.AreEqual(1, GameMaster.Characters.Count);

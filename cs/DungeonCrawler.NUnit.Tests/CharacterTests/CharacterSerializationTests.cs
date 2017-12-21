@@ -9,7 +9,7 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
         [Test]
         public void Serialize_deserialize_Character()
         {
-            string json = Utilities.JsonResource("Hero");
+            string json = Utilities.JsonResource("GameData.PCs.Hero");
 
             Character.Character deserializedChar = Character.Character.DeserializeFromJson(json);
             string deserialized = Character.Character.SerializeToJson(deserializedChar);

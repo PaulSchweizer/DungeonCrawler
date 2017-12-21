@@ -1,5 +1,6 @@
 ﻿using DungeonCrawler.Core;
 using NUnit.Framework;
+using System;
 
 namespace DungeonCrawler.NUnit.Tests.CharacterTests
 {
@@ -17,6 +18,7 @@ namespace DungeonCrawler.NUnit.Tests.CharacterTests
             hero.Inventory.AddItem(Utilities.Armour());
             rat = Utilities.Rat();
             Utilities.LoadRulebook();
+            Console.WriteLine(Rulebook.SerializeToJson());
         }
 
         [Test]

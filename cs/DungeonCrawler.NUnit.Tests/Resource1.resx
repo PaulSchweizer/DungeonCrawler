@@ -119,36 +119,39 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Armour" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>resources\armour.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>resources\gamedata\items\armour\armour.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="GameMaster" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>resources\gamemaster.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Athletics" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\gamedata\skills\athletics.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Craftsmanship" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\gamedata\skills\craftsmanship.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Healing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\gamedata\skills\healing.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Hero" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>resources\hero.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>resources\gamedata\pcs\hero.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Item" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>resources\item.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>resources\gamedata\items\items\item.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Location" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>resources\location.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>resources\gamedata\locations\location.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MeleeWeapons" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\gamedata\skills\meleeweapons.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RangedWeapons" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\gamedata\skills\rangedweapons.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Rat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>resources\rat.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Rulebook" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>resources\rulebook.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>resources\gamedata\monsters\rat.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SavedGame" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>resources\savedgame.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Stunt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>resources\stunt.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="TagsTable" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\TagsTable.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>resources\gamestate\gamestate.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Weapon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>resources\weapon.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>resources\gamedata\items\weapons\weapon.json;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

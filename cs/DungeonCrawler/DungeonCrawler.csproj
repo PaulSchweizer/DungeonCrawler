@@ -50,6 +50,7 @@
     <Compile Include="Core\GameEventsLogger.cs" />
     <Compile Include="Core\GameMaster.cs" />
     <Compile Include="Core\GameState.cs" />
+    <Compile Include="Core\GlobalState.cs" />
     <Compile Include="Core\Item.cs" />
     <Compile Include="Core\Location.cs" />
     <Compile Include="Core\Rulebook.cs" />
@@ -81,7 +82,7 @@
 xcopy /y /c $(TargetPath) C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\dlls
 
 if not exist C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\json\TestData mkdir C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\json\TestData
-xcopy /y /c C:\PROJECTS\DungeonCrawler\cs\DungeonCrawler.NUnit.Tests\Resources C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\json\TestData</PostBuildEvent>
+xcopy /y /s /c C:\PROJECTS\DungeonCrawler\cs\DungeonCrawler.NUnit.Tests\Resources C:\PROJECTS\DungeonCrawler\unity\DungeonCrawler\Assets\json\TestData</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
