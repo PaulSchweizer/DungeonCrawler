@@ -100,16 +100,30 @@ String UUID = Guid.NewGuid().ToString("N")
  ✔ Rulebook needs to Load all from Disk! @done (17-12-21 00:12)
  ✔ Move Data to correct subfolder @done (17-12-21 00:12)
  ✔ Save GameData somewhere else @done (17-12-21 17:41)
+ ✔ Location @done (17-12-23 16:48)
+  ✔ Destination @done (17-12-23 16:48)
+   ✔ WorldMap @done (17-12-23 16:48)
+  ✔ Monsters @done (17-12-23 16:48)
+ ✔ World map Scene @done (17-12-23 17:59)
+ ✔ Camera Rig @done (17-12-23 19:24)
+  ✔ Set Target @done (17-12-23 19:24)
+ ☐ MainController
+  ☐ _loadAction -> Use Delegate to define the load action, has to differ if:
+   ☐ game load
+   ☐ location switch
+
+
+
+ ☐ CharacterData to CharacterData, delete the ScriptableObject?
 
  ☐ MainController
-  ☐ NewGame()
-   ☐ Load the default Game content
-
+  ✔ NewGame() @done (17-12-23 19:52)
+   ✔ Load the default Game content @done (17-12-23 19:52)
   ☐ Load Game(string name)
    ☐ Load the Saved Game
 
-
   ☐ Level Switch
+    ☐ Exit Points
     ☐ Same as "Load Game"
     ☐ Except that the PCs are being kept in memory, everything else is being deleted
 

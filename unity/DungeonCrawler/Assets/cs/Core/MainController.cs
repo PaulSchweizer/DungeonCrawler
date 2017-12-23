@@ -1,4 +1,5 @@
-﻿using DungeonCrawler.Core;
+﻿using DungeonCrawler.Character;
+using DungeonCrawler.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,36 +24,43 @@ public class MainController : MonoBehaviour
 
     [Header("Prefabs")]
     public GameObject TabletopPrefab;
+    public GameObject PlayerCharacterPrefab;
 
     [Header("Internal Data")]
     public string CurrentSceneName;
     public string NextSceneName;
 
+    // Internals
     private string _rootDataPath;
     private string _gameToLoad;
+    private string _loadAction;
 
     private AsyncOperation resourceUnloadTask;
     private AsyncOperation sceneLoadTask;
-    private enum SceneState { FadeOut, Reset, Preload, Load, Unload, Postload, Ready, Run, FadeIn, Count };
+    private enum SceneState { FadeOut, Preload, Load, Unload, Run, FadeIn, Count };
     private SceneState sceneState;
     private delegate void UpdateDelegate();
     private UpdateDelegate[] updateDelegates;
 
-    void Awake ()
+    private void Awake ()
     {
         DontDestroyOnLoad(transform.gameObject);
         updateDelegates = new UpdateDelegate[(int)SceneState.Count];
         updateDelegates[(int)SceneState.FadeOut] = UpdateSceneFadeOut;
-        updateDelegates[(int)SceneState.Reset] = UpdateSceneReset;
         updateDelegates[(int)SceneState.Preload] = UpdateScenePreload;
         updateDelegates[(int)SceneState.Load] = UpdateSceneLoad;
         updateDelegates[(int)SceneState.Unload] = UpdateSceneUnload;
-        updateDelegates[(int)SceneState.Postload] = UpdateScenePostload;
-        updateDelegates[(int)SceneState.Ready] = UpdateSceneReady;
         updateDelegates[(int)SceneState.FadeIn] = UpdateSceneFadeIn;
         updateDelegates[(int)SceneState.Run] = UpdateSceneRun;
-        sceneState = SceneState.Ready;
+        sceneState = SceneState.Run;
     }
+
+    private void Update()
+    {
+        updateDelegates[(int)sceneState]();
+    }
+
+    #region Actions
 
     public void NewGame()
     {
@@ -66,49 +74,55 @@ public class MainController : MonoBehaviour
         InitializeGame(Application.persistentDataPath, name);
     }
 
+    private void InitializeGame(string path, string name)
+    {
+        _rootDataPath = path;
+        _gameToLoad = name;
+
+        _loadAction =;
+
+        sceneState = SceneState.FadeOut;
+    }
+
     public void SaveGame(string name)
     {
         GameMaster.RootDataPath = Path.Combine(Application.persistentDataPath, SavedGamesPath);
         GameMaster.SaveCurrentGame(name);
     }
 
-# region InitializeGame
-
-    private void InitializeGame(string path, string name)
+    public void SwitchLocation(string location)
     {
-        _rootDataPath = path;
-        _gameToLoad = name;
-
-        sceneState = SceneState.FadeOut;
+        // 1. Make the PlayerCharacters undeletable
+        // 2. FadeOut
+        // 3. Unload
+        // 4. Load
+        // 5. FadeOut
     }
 
-    protected void Update()
-    {
-        updateDelegates[(int)sceneState]();
-    }
+    #endregion
+
+    #region SwitchLocationSequence
+
+
+    #endregion
+
+    #region InitializationSequence
 
     private void UpdateSceneFadeOut()
     {
         if (FadingScreen.color.a < 1)
         {
-            FadingCanvas.sortingOrder = 999;
-            FadingCanvas.enabled = true;
-            FadingScreen.color = new Color(0, 0, 0, FadingScreen.color.a + Time.deltaTime * FadingSpeed);
+            Fade(1);
         }
         else
         {
-            sceneState = SceneState.Reset;
+            sceneState = SceneState.Preload;
         }
-    }
-
-    private void UpdateSceneReset()
-    {
-        GC.Collect();
-        sceneState = SceneState.Preload;
     }
 
     private void UpdateScenePreload()
     {
+        GC.Collect();
         sceneLoadTask = SceneManager.LoadSceneAsync(NextSceneName);
         sceneState = SceneState.Unload;
         if (sceneLoadTask.isDone)
@@ -152,22 +166,19 @@ public class MainController : MonoBehaviour
         level.Location = GameMaster.CurrentLocation;
         level.Create();
 
-        // Entrance Points
+        // Camera
+        CameraRig camera = FindObjectOfType<CameraRig>();
 
-        // Load the Monsters
-        
-        // Load the PCs
+        // Load the PCs  
+        List<Character> players = GameMaster.CharactersOfType("Player");
+        foreach (Character character in players)
+        {
+            GameObject player = Instantiate(PlayerCharacterPrefab);
+            PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
+            playerCharacter.Character.Data = character;
+            camera.Target = player.transform;
+        }
 
-        sceneState = SceneState.Postload;
-    }
-
-    private void UpdateScenePostload()
-    {
-        sceneState = SceneState.Ready;
-    }
-
-    private void UpdateSceneReady()
-    {
         sceneState = SceneState.FadeIn;
     }
 
@@ -175,7 +186,7 @@ public class MainController : MonoBehaviour
     {
         if (FadingScreen.color.a > 0)
         {
-            FadingScreen.color = new Color(0, 0, 0, FadingScreen.color.a - Time.deltaTime * FadingSpeed);
+            Fade(-1);
         }
         else
         {
@@ -186,6 +197,17 @@ public class MainController : MonoBehaviour
 
     private void UpdateSceneRun()
     {
+    }
+
+    #endregion
+
+    #region Internals
+
+    private void Fade(int direction)
+    {
+        FadingCanvas.sortingOrder = 999;
+        FadingCanvas.enabled = true;
+        FadingScreen.color = new Color(0, 0, 0, FadingScreen.color.a + direction * Time.deltaTime * FadingSpeed);
     }
 
     #endregion

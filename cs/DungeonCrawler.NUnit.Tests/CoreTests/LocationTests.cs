@@ -50,5 +50,13 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         {
             Console.WriteLine(location.ToString());
         }
+
+        [Test]
+        public void Cells_can_have_Destinations_and_Monsters()
+        {
+            Cell cell = location.CellAt(0, 0);
+            Console.WriteLine(cell.Destination);
+            Console.WriteLine(cell.Monsters.Keys);
+        }
     }
 }

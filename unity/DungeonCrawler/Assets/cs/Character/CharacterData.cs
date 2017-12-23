@@ -15,6 +15,9 @@ public class CharacterData : ScriptableObject
     private void OnEnable()
     {
         Data = Character.DeserializeFromJson(JsonFile.text);
-        GameMaster.RegisterCharacter(Data);
+        if(Data.Type != "Player")
+        {
+            GameMaster.RegisterCharacter(Data);
+        }
     }
 }

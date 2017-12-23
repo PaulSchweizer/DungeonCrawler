@@ -12,6 +12,8 @@ namespace DungeonCrawler.Core
         public string Type;
         public string[] Tags;
         public int[] Position;
+        public string Destination;
+        public Dictionary<string, int> Monsters;
 
         public Cell()
         {

@@ -5,23 +5,29 @@ using UnityEngine.AI;
 using DungeonCrawler;
 using DungeonCrawler.Core;
 using System.IO;
+using System;
 
 public class Level : MonoBehaviour
 {
+    public int ScalingFactor;
+
+    [Header("Cells")]
     public TextAsset JsonFile;
     public GameObject ForestPrefab;
     public GameObject ClearingPrefab;
-
     public List<GameObject> Cells = new List<GameObject>();
 
-    public Location Location;
+    [Header("Monsters")]
+    public GameObject[] MonsterPrefabs;
+    public string[] MonsterNames;
 
-    public int ScalingFactor;
+    // Internals
+    public Location Location;
 
     private void Awake() {
         Location = Location.DeserializeFromJson(JsonFile.text);
         GameMaster.CurrentLocation = Location;
-        Create();
+        //Create();
     }
     
     public void Create()
@@ -47,6 +53,18 @@ public class Level : MonoBehaviour
             instance.transform.localScale = new Vector3(ScalingFactor / 10, ScalingFactor / 10, ScalingFactor / 10);
             instance.transform.position = new Vector3(-cell.Position[0] * ScalingFactor, 0, cell.Position[1] * ScalingFactor);
             Cells.Add(instance);
+
+            if (cell.Monsters != null)
+            {
+                foreach (KeyValuePair<string, int> entry in cell.Monsters)
+                {
+                    GameObject prefab = MonsterPrefabs[Array.IndexOf(MonsterNames, entry.Key)];
+                    for (int i = 0; i < entry.Value; i++)
+                    {
+                        Instantiate(prefab, transform);
+                    }
+                }
+            }
         }
 
         NPCCharacter[] npcs = GameObject.FindObjectsOfType<NPCCharacter>();
