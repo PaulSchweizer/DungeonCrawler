@@ -1,4 +1,4 @@
-﻿{
+{
     "Id": 0,
     "Type": "Player",
     "Name": "Hero",
@@ -102,9 +102,9 @@
     ],
     "Transform": {
         "Position": {
-            "X": 0.0,
-            "Y": 0.0
+            "X": 100.0,
+            "Y": 100.0
         },
-        "Rotation": 0.0
+        "Rotation": 66.6
     }
 }

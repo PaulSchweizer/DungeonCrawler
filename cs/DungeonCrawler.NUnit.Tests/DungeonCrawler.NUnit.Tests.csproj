@@ -89,10 +89,7 @@
     <EmbeddedResource Include="Resources\GameData\Skills\Craftsmanship.json" />
     <EmbeddedResource Include="Resources\GameData\Skills\Healing.json" />
     <EmbeddedResource Include="Resources\GameData\Skills\Athletics.json" />
-    <EmbeddedResource Include="Resources\GameState\GameState.json" />
     <EmbeddedResource Include="Resources\GameData\GlobalState.json" />
-    <EmbeddedResource Include="Resources\GameState\PCs\Hero.json" />
-    <EmbeddedResource Include="Resources\GameState\GlobalState.json" />
     <EmbeddedResource Include="Resources\GameData\PCs\Hero.json" />
     <EmbeddedResource Include="Resources\GameData\Items\Weapons\Weapon2.json" />
   </ItemGroup>

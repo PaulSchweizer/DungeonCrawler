@@ -60,7 +60,7 @@ Conversation System:
   ✘ try using nacMesh obstacle, enable on enter attack, disable when leaving attack @cancelled (17-11-05 14:09)
   https://www.gamedev.net/articles/programming/general-and-gameplay-programming/pathfinding-and-local-avoidance-for-rpgrts-games-using-unity-r3703
  ✔ Improve the attack @done (17-11-05 14:11)
- ☐ Character UI
+ ✔ Character UI @done (17-12-23 10:07)
   ✔ Raise the Menu @done (17-11-05 16:55)
   ✔ Transfer SlotSystem @done (17-11-05 18:50)
  ✔ inventory.Armour instead of Armours @done (17-11-18 14:18)
@@ -99,6 +99,22 @@ String UUID = Guid.NewGuid().ToString("N")
  ✔ GameMaster.SaveGame() -> GameState.json @done (17-12-11 18:57)
  ✔ Rulebook needs to Load all from Disk! @done (17-12-21 00:12)
  ✔ Move Data to correct subfolder @done (17-12-21 00:12)
+ ✔ Save GameData somewhere else @done (17-12-21 17:41)
+
+ ☐ MainController
+  ☐ NewGame()
+   ☐ Load the default Game content
+
+  ☐ Load Game(string name)
+   ☐ Load the Saved Game
+
+
+  ☐ Level Switch
+    ☐ Same as "Load Game"
+    ☐ Except that the PCs are being kept in memory, everything else is being deleted
+
+ ☐ SaveGame()
+
 
 
  ☐ Clash of item ids? When serializing Armour and Weapons

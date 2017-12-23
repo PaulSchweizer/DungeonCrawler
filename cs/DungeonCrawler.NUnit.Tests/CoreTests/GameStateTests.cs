@@ -22,14 +22,14 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
             hero.Transform.Rotation = 66.6f;
 
             // Save
-            GameMaster.SaveCurrentGame("Test");
+            GameMaster.SaveCurrentGame("TestSave");
 
             // Reset the Game
             GameMaster.DeRegisterCharacter(hero);
             GameMaster.CurrentLocation = null;
 
             // Load
-            GameMaster.LoadGame("Test");
+            GameMaster.LoadGame("TestSave");
 
             Assert.AreEqual(1, GameMaster.CharactersOfType("Player").Count);
             Assert.AreEqual(hero.Name, GameMaster.CharactersOfType("Player")[0].Name);

@@ -18,9 +18,14 @@ public class Level : MonoBehaviour
 
     public int ScalingFactor;
 
-    private void Awake () {
+    private void Awake() {
         Location = Location.DeserializeFromJson(JsonFile.text);
-
+        GameMaster.CurrentLocation = Location;
+        Create();
+    }
+    
+    public void Create()
+    {
         name = Location.Name;
 
         foreach (Cell cell in Location.Cells)
@@ -39,7 +44,7 @@ public class Level : MonoBehaviour
                 continue;
             }
             instance.name = string.Format("{0}_{1}_{2}", cell.Type, cell.Position[0], cell.Position[1]);
-            instance.transform.localScale = new Vector3(ScalingFactor / 10, ScalingFactor / 10, ScalingFactor / 10 );
+            instance.transform.localScale = new Vector3(ScalingFactor / 10, ScalingFactor / 10, ScalingFactor / 10);
             instance.transform.position = new Vector3(-cell.Position[0] * ScalingFactor, 0, cell.Position[1] * ScalingFactor);
             Cells.Add(instance);
         }

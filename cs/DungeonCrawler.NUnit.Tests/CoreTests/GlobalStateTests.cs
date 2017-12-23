@@ -10,7 +10,7 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         [Test]
         public void Test_GlobalGameState_is_serializable()
         {
-            GlobalState.DeserializeFromJson(Utilities.JsonResource("GameState.GlobalState"));
+            GlobalState.DeserializeFromJson(Utilities.JsonResource("GameData.GlobalState"));
             Console.WriteLine(GlobalState.SerializeToJson());
             Assert.IsTrue(GlobalState.Get("TrueCondition"));
             Assert.IsFalse(GlobalState.Get("FalseCondition"));
