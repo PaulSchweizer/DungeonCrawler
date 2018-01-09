@@ -107,11 +107,16 @@ String UUID = Guid.NewGuid().ToString("N")
  ✔ World map Scene @done (17-12-23 17:59)
  ✔ Camera Rig @done (17-12-23 19:24)
   ✔ Set Target @done (17-12-23 19:24)
+
+
+ ☐ Restructure the shit: Add all the json files as TextAssets ...
+
  ☐ MainController
   ☐ _loadAction -> Use Delegate to define the load action, has to differ if:
-   ☐ game load
+    ☐ game load
    ☐ location switch
 
+ ☐ Empty space in location names? File names don't have the empty space? Build into the retrieval?
 
 
  ☐ CharacterData to CharacterData, delete the ScriptableObject?

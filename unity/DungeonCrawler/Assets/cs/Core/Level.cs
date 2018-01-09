@@ -23,12 +23,6 @@ public class Level : MonoBehaviour
 
     // Internals
     public Location Location;
-
-    private void Awake() {
-        Location = Location.DeserializeFromJson(JsonFile.text);
-        GameMaster.CurrentLocation = Location;
-        //Create();
-    }
     
     public void Create()
     {
@@ -112,5 +106,6 @@ public class Level : MonoBehaviour
         }
         Gizmos.color = oldColor;
     }
+
 #endif
 }

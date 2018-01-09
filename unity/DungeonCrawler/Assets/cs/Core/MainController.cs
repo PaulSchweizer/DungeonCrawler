@@ -10,6 +10,8 @@ using UnityEngine.UI;
 
 public class MainController : MonoBehaviour
 {
+    public static MainController Instance;
+
     [Header("Game Data")]
     public string GameDataPath = "json/TestData/GameData";
     public string SavedGamesPath = "SavedGames";
@@ -33,7 +35,8 @@ public class MainController : MonoBehaviour
     // Internals
     private string _rootDataPath;
     private string _gameToLoad;
-    private string _loadAction;
+    private string _locationToLoad;
+    private LoadAction _loadAction;
 
     private AsyncOperation resourceUnloadTask;
     private AsyncOperation sceneLoadTask;
@@ -42,8 +45,22 @@ public class MainController : MonoBehaviour
     private delegate void UpdateDelegate();
     private UpdateDelegate[] updateDelegates;
 
+    private enum LoadAction { StartGame, LoadLocation, Count };
+    private delegate void LoadActionDelegate();
+    private LoadActionDelegate[] loadActionDelegates;
+
     private void Awake ()
     {
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+
         DontDestroyOnLoad(transform.gameObject);
         updateDelegates = new UpdateDelegate[(int)SceneState.Count];
         updateDelegates[(int)SceneState.FadeOut] = UpdateSceneFadeOut;
@@ -53,11 +70,11 @@ public class MainController : MonoBehaviour
         updateDelegates[(int)SceneState.FadeIn] = UpdateSceneFadeIn;
         updateDelegates[(int)SceneState.Run] = UpdateSceneRun;
         sceneState = SceneState.Run;
-    }
 
-    private void Update()
-    {
-        updateDelegates[(int)sceneState]();
+        loadActionDelegates = new LoadActionDelegate[(int)LoadAction.Count];
+        loadActionDelegates[(int)LoadAction.StartGame] = StartGame;
+        loadActionDelegates[(int)LoadAction.LoadLocation] = LoadLocation;
+        _loadAction = LoadAction.StartGame;
     }
 
     #region Actions
@@ -74,39 +91,41 @@ public class MainController : MonoBehaviour
         InitializeGame(Application.persistentDataPath, name);
     }
 
-    private void InitializeGame(string path, string name)
-    {
-        _rootDataPath = path;
-        _gameToLoad = name;
-
-        _loadAction =;
-
-        sceneState = SceneState.FadeOut;
-    }
-
     public void SaveGame(string name)
     {
         GameMaster.RootDataPath = Path.Combine(Application.persistentDataPath, SavedGamesPath);
         GameMaster.SaveCurrentGame(name);
     }
 
-    public void SwitchLocation(string location)
+    private void InitializeGame(string path, string name)
+    {
+        _rootDataPath = path;
+        _gameToLoad = name;
+        _loadAction = LoadAction.StartGame;
+        sceneState = SceneState.FadeOut;
+    }
+
+    public static void SwitchLocation(string location)
     {
         // 1. Make the PlayerCharacters undeletable
+
         // 2. FadeOut
-        // 3. Unload
-        // 4. Load
-        // 5. FadeOut
+        Instance.NextSceneName = "LevelTemplate";
+        Instance.sceneState = SceneState.FadeOut;
+
+        // Load the next Location
+        Instance._locationToLoad = location;
+        Instance._loadAction = LoadAction.LoadLocation;
     }
 
     #endregion
 
-    #region SwitchLocationSequence
-
-
-    #endregion
-
     #region InitializationSequence
+
+    private void Update()
+    {
+        updateDelegates[(int)sceneState]();
+    }
 
     private void UpdateSceneFadeOut()
     {
@@ -153,7 +172,34 @@ public class MainController : MonoBehaviour
 
     private void UpdateSceneLoad()
     {
-        GameMaster.RootDataPath = Path.Combine(Application.dataPath, GameDataPath); 
+        loadActionDelegates[(int)_loadAction]();
+        sceneState = SceneState.FadeIn;
+    }
+
+    private void UpdateSceneFadeIn()
+    {
+        if (FadingScreen.color.a > 0)
+        {
+            Fade(-1);
+        }
+        else
+        {
+            FadingCanvas.enabled = false;
+            sceneState = SceneState.Run;
+        }
+    }
+
+    private void UpdateSceneRun()
+    {
+    }
+
+    #endregion
+
+    #region Load Actions
+
+    private void StartGame()
+    {
+        GameMaster.RootDataPath = Path.Combine(Application.dataPath, GameDataPath);
         GameMaster.InitializeGame();
 
         // Load the Game
@@ -178,30 +224,16 @@ public class MainController : MonoBehaviour
             playerCharacter.Character.Data = character;
             camera.Target = player.transform;
         }
-
-        sceneState = SceneState.FadeIn;
     }
 
-    private void UpdateSceneFadeIn()
+    private void LoadLocation()
     {
-        if (FadingScreen.color.a > 0)
-        {
-            Fade(-1);
-        }
-        else
-        {
-            FadingCanvas.enabled = false;
-            sceneState = SceneState.Run;
-        }
-    }
-
-    private void UpdateSceneRun()
-    {
+        Debug.Log("Switching Location to: " + _locationToLoad);
     }
 
     #endregion
 
-    #region Internals
+    #region Utility
 
     private void Fade(int direction)
     {
