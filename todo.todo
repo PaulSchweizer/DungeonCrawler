@@ -111,6 +111,14 @@ String UUID = Guid.NewGuid().ToString("N")
 
  ☐ Restructure the shit: Add all the json files as TextAssets ...
 
+ Continue Here:
+  ☐ Use the TextAsset on the ScriptabelObject to create a struct of strings that hold all the json information for the game, this goes for loading games
+  ☐ Find the correct place to store save data
+  ☐ Exchange to feed the GameMaster with the contents of the TextAssets instead!
+
+
+
+
  ☐ MainController
   ☐ _loadAction -> Use Delegate to define the load action, has to differ if:
     ☐ game load

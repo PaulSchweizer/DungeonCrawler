@@ -13,10 +13,12 @@ public class MainController : MonoBehaviour
     public static MainController Instance;
 
     [Header("Game Data")]
-    public string GameDataPath = "json/TestData/GameData";
-    public string SavedGamesPath = "SavedGames";
-    public string DefaultGamePath = "json/TestData/GameData";
-    public string DefaultGame = "TestSave";
+    //public string GameDataPath = "json/TestData/GameData";
+    //public string SavedGamesPath = "SavedGames";
+    //public string DefaultGamePath = "json/TestData/GameData";
+    //public string DefaultGame = "TestSave";
+    public JsonDatabase GameData;
+    public JsonSavedGame DefaultGame;
 
     [Header("Fading Screen")]
     public Canvas FadingCanvas;
@@ -82,25 +84,32 @@ public class MainController : MonoBehaviour
     public void NewGame()
     {
         NextSceneName = "LevelTemplate";
-        InitializeGame(Path.Combine(Application.dataPath, DefaultGamePath), DefaultGame);
+        InitializeGame(DefaultGame); // Path.Combine(Application.dataPath, DefaultGamePath), DefaultGame);
     }
 
     public void LoadGame(string name)
     {
         NextSceneName = "LevelTemplate";
-        InitializeGame(Application.persistentDataPath, name);
+        //
+        // Use the TextAsset on the ScriptabelObject to create a struct of strings that hold all the json information 
+        // for the game, this goes for loading games
+        //
+        //InitializeGame(Application.persistentDataPath, name);
     }
 
     public void SaveGame(string name)
     {
-        GameMaster.RootDataPath = Path.Combine(Application.persistentDataPath, SavedGamesPath);
+        //
+        // Find the correct place to store save data
+        //
+        //GameMaster.RootDataPath = Path.Combine(Application.persistentDataPath, SavedGamesPath);
         GameMaster.SaveCurrentGame(name);
     }
 
-    private void InitializeGame(string path, string name)
+    private void InitializeGame(JsonSavedGame savedGame)
     {
-        _rootDataPath = path;
-        _gameToLoad = name;
+        //_rootDataPath = path;
+        //_gameToLoad = name;
         _loadAction = LoadAction.StartGame;
         sceneState = SceneState.FadeOut;
     }
@@ -199,6 +208,9 @@ public class MainController : MonoBehaviour
 
     private void StartGame()
     {
+        //
+        // Exchange to feed the GameMaster with the contents of the TextAssets instead!
+        //
         GameMaster.RootDataPath = Path.Combine(Application.dataPath, GameDataPath);
         GameMaster.InitializeGame();
 
