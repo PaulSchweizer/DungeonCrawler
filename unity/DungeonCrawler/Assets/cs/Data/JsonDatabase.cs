@@ -21,8 +21,117 @@ public class JsonDatabase : ScriptableObject
     public TextAsset[] Skills;
 
     [Header("Global")]
-    public TextAsset GameMaster;
     public TextAsset GlobalState;
     public TextAsset Rulebook;
 
+    #region Data
+
+    public string[] ArmoursData
+    {
+        get
+        {
+            string[] data = new string[Armour.Length];
+            for (int i = 0; i < Armour.Length; i++)
+            {
+                data[i] = Armour[i].text;
+            }
+            return data;
+        }
+    }
+
+    public string[] ItemsData
+    {
+        get
+        {
+            string[] data = new string[Items.Length];
+            for (int i = 0; i < Items.Length; i++)
+            {
+                data[i] = Items[i].text;
+            }
+            return data;
+        }
+    }
+
+    public string[] WeaponsData
+    {
+        get
+        {
+            string[] data = new string[Weapons.Length];
+            for (int i = 0; i < Weapons.Length; i++)
+            {
+                data[i] = Weapons[i].text;
+            }
+            return data;
+        }
+    }
+
+    public string[] LocationsData
+    {
+        get
+        {
+            string[] data = new string[Locations.Length];
+            for (int i = 0; i < Locations.Length; i++)
+            {
+                data[i] = Locations[i].text;
+            }
+            return data;
+        }
+    }
+
+    public string[] MonstersData
+    {
+        get
+        {
+            string[] data = new string[Monsters.Length];
+            for (int i = 0; i < Monsters.Length; i++)
+            {
+                data[i] = Monsters[i].text;
+            }
+            return data;
+        }
+    }
+
+    public string[] PCsData
+    {
+        get
+        {
+            string[] data = new string[PCs.Length];
+            for (int i = 0; i < PCs.Length; i++)
+            {
+                data[i] = PCs[i].text;
+            }
+            return data;
+        }
+    }
+
+    public string[] SkillsData
+    {
+        get
+        {
+            string[] data = new string[Skills.Length];
+            for (int i = 0; i < Skills.Length; i++)
+            {
+                data[i] = Skills[i].text;
+            }
+            return data;
+        }
+    }
+
+    public string GlobalStateData
+    {
+        get
+        {
+            return GlobalState.text;
+        }
+    }
+
+    public string RulebookData
+    {
+        get
+        {
+            return Rulebook.text;
+        }
+    }
+
+    #endregion
 }

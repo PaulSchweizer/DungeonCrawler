@@ -37,20 +37,6 @@ namespace DungeonCrawler.Core
             File.WriteAllText(Path.Combine(rootPath, "GlobalState.json"), Core.GlobalState.SerializeToJson());
         }
 
-        public static void Load(string name)
-        {
-            string rootPath = Path.Combine(GameMaster.RootDataPath, name);
-            GameState gameState = DeserializeFromJson(File.ReadAllText(Path.Combine(rootPath, "GameState.json")));
-            string json = "";
-            foreach (string path in gameState.PlayerCharacters)
-            {
-                json = File.ReadAllText(Path.Combine(GameMaster.RootDataPath, string.Format("{0}.json", path)));
-                GameMaster.RegisterCharacter(Character.Character.DeserializeFromJson(json));
-            }
-            json = File.ReadAllText(Path.Combine(Path.Combine(GameMaster.RootDataPath, "Locations"), string.Format("{0}.json", gameState.Location)));
-            GameMaster.CurrentLocation = Core.Location.DeserializeFromJson(json);
-        }
-
         #endregion
 
         #region Serialization

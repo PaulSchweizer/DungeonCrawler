@@ -12,14 +12,12 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         [Test]
         public void Initialize_game_from_json_files()
         {
-            GameMaster.RootDataPath = Utilities.RootDataPath;
-
-            GameMaster.InitializeGame();
+            Utilities.InitializeGame();
 
             Assert.Contains("rats", Rulebook.Instance.Tags["rat"]);
 
             Assert.AreEqual(1, Rulebook.Instance.Items.Count);
-            Assert.AreEqual(2, Rulebook.Instance.Weapons.Count);
+            Assert.AreEqual(2, Rulebook.Instance.Weapons.Count, "Weapons don't match");
             Assert.AreEqual(1, Rulebook.Instance.Armours.Count);
 
             Assert.AreEqual("Athletics", Rulebook.Instance.Skills["Athletics"].Name);

@@ -107,24 +107,27 @@ String UUID = Guid.NewGuid().ToString("N")
  ✔ World map Scene @done (17-12-23 17:59)
  ✔ Camera Rig @done (17-12-23 19:24)
   ✔ Set Target @done (17-12-23 19:24)
+ ✔ Restructure the shit: Add all the json files as TextAssets ... @done (18-01-13 19:58)
+  ✘ Use the TextAsset on the ScriptabelObject to create a struct of strings that hold all the json information for the game, this goes for loading games @cancelled (18-01-12 23:25)
+  ✔ "GameMaster.InitializeGame" takes json string inputs @done (18-01-13 19:58)
+  ✔ Exchange to feed the GameMaster with the contents of the TextAssets instead! @done (18-01-13 19:59)
+  ✔ Find the correct place to store save data @done (18-01-13 20:48)
+  ✔ Set GameMaster.RootDataPath @done (18-01-13 20:48)
+ ✔ MainController @done (18-01-14 11:22)
+  ✔ _loadAction -> Use Delegate to define the load action, has to differ if: @done (18-01-13 20:48)
+    ✔ game load SavedGame @done (18-01-13 21:31)
+ ✔ Why does the DarkForest not load? @done (18-01-14 11:28)
+ ✘ Empty space in location names? File names don't have the empty space? Build into the retrieval? @cancelled (18-01-14 13:04)
+ ☐ MainController.LocationSwitch
+  ☐ Implement Exit tile
+   ☐ Add button to trigger the exit -> Show the button when the player is on the tile
+
+ ☐ Make the level layout from excel to unity have the same orientation
 
 
- ☐ Restructure the shit: Add all the json files as TextAssets ...
-
- Continue Here:
-  ☐ Use the TextAsset on the ScriptabelObject to create a struct of strings that hold all the json information for the game, this goes for loading games
-  ☐ Find the correct place to store save data
-  ☐ Exchange to feed the GameMaster with the contents of the TextAssets instead!
-
-
-
-
- ☐ MainController
-  ☐ _loadAction -> Use Delegate to define the load action, has to differ if:
-    ☐ game load
-   ☐ location switch
-
- ☐ Empty space in location names? File names don't have the empty space? Build into the retrieval?
+ ☐ Cleanup the data
+  ☐ Get rid of the "test" folder in the gamedata?
+  ☐ Use the excel data to drive the game instead of the test data -> sync them up
 
 
  ☐ CharacterData to CharacterData, delete the ScriptableObject?
@@ -132,13 +135,13 @@ String UUID = Guid.NewGuid().ToString("N")
  ☐ MainController
   ✔ NewGame() @done (17-12-23 19:52)
    ✔ Load the default Game content @done (17-12-23 19:52)
-  ☐ Load Game(string name)
-   ☐ Load the Saved Game
+  ✔ Load Game(string name) @done (18-01-14 19:48)
+   ✔ Load the Saved Game @done (18-01-14 19:48)
 
   ☐ Level Switch
-    ☐ Exit Points
+    ✔ Exit Points @done (18-01-14 19:48)
     ☐ Same as "Load Game"
-    ☐ Except that the PCs are being kept in memory, everything else is being deleted
+    ✔ Except that the PCs are being kept in memory, everything else is being deleted @done (18-01-14 19:48)
 
  ☐ SaveGame()
 
@@ -146,10 +149,10 @@ String UUID = Guid.NewGuid().ToString("N")
 
  ☐ Clash of item ids? When serializing Armour and Weapons
 
- ☐ Load Game
+ ✔ Load Game @done (18-01-14 19:48)
    ✔ Paths to the .json Game Files @done (17-12-11 19:58)
     ✔ RootPath @done (17-12-11 19:58)
-   ☐ Init Blank Game
+   ✔ Init Blank Game @done (18-01-14 19:48)
     ✔ Rulebook @done (17-12-11 20:05)
      ✔ Items @done (17-12-11 19:58)
      ✔ Skills @done (17-12-11 19:58)
@@ -162,8 +165,7 @@ String UUID = Guid.NewGuid().ToString("N")
 
 
  ☐ Use the GameMaster.Characters.CharactersOfType(string)
- ☐ Is the shipped Resource.GameState even necessary?
-
+ ✘ Is the shipped Resource.GameState even necessary? @cancelled (18-01-14 19:49)
 
 
 
@@ -210,24 +212,6 @@ for quest in quests if quast.Status == Active:
 quest.CheckProgress() ->
 for objective in Quest.Objectives:
 objective.CheckConditions()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

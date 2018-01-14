@@ -10,6 +10,9 @@ public class Exit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        MainController.SwitchLocation(Destination);
+        if (other.CompareTag("Player"))
+        {
+            MainController.SwitchLocation(Destination);
+        }
     }
 }

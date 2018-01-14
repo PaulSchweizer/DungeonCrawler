@@ -9,7 +9,6 @@
         {
             "Position": [ 0, 0 ],
             "Type": "Clearing",
-			"Destination": "Location2",
 			"Monsters":
 			{
 				"Rat": 2
@@ -17,8 +16,7 @@
         },
         {
             "Position": [ 1, 0 ],
-            "Type": "Clearing",
-			"Destination": "WorldMap"
+            "Type": "Clearing"
         },
         {
             "Position": [ 2, 0 ],
@@ -30,11 +28,13 @@
         },
         {
             "Position": [ 0, 2 ],
-            "Type": "Clearing"
+            "Type": "Clearing",
+			"Destination": "Location2"
         },
         {
             "Position": [ -1, 0 ],
-            "Type": "Clearing"
+            "Type": "Clearing",
+			"Destination": "WorldMap"
         },
         {
             "Position": [ 0, -1 ],

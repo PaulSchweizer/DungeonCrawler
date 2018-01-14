@@ -75,43 +75,43 @@ namespace DungeonCrawler.Core
 
         #region Initialize
 
-        public static void InitializeGame()
+        public static void InitializeGame(string rulebook, string[] armours, string[] items, string[] weapons, 
+                                          string[] skills, string[] monsters, string[] locations)
         {
             // Initialize Rulebook, including Aspects - Tags Mapping
-            Rulebook.DeserializeFromJson(File.ReadAllText(Path.Combine(RootDataPath, "Rulebook.json")));
+            Rulebook.DeserializeFromJson(rulebook);
 
             // Items, Weapons and Armour
-            foreach (string json in Directory.GetFiles(Path.Combine(Path.Combine(RootDataPath, "Items"), "Items")))
+            foreach (string item in items)
             {
-                if (json.EndsWith(".json"))
-                {
-                    Rulebook.Instance.Items.Add(Item.DeserializeFromJson(File.ReadAllText(json)));
-                }
+                Rulebook.Instance.Items.Add(Item.DeserializeFromJson(item));
             }
-            foreach (string json in Directory.GetFiles(Path.Combine(Path.Combine(RootDataPath, "Items"), "Weapons")))
+            foreach (string weapon in weapons)
             {
-                if (json.EndsWith(".json"))
-                {
-                    Rulebook.Instance.Weapons.Add(Weapon.DeserializeFromJson(File.ReadAllText(json)));
-                }
+                Rulebook.Instance.Weapons.Add(Weapon.DeserializeFromJson(weapon));
             }
-            foreach (string json in Directory.GetFiles(Path.Combine(Path.Combine(RootDataPath, "Items"), "Armour")))
+            foreach (string armour in armours)
             {
-                if (json.EndsWith(".json"))
-                {
-                    Rulebook.Instance.Armours.Add(Armour.DeserializeFromJson(File.ReadAllText(json)));
-                }
+                Rulebook.Instance.Armours.Add(Armour.DeserializeFromJson(armour));
             }
 
             // Skills
-            foreach (string json in Directory.GetFiles(Path.Combine(RootDataPath, "Skills")))
+            foreach (string skillData in skills)
             {
-                if (json.EndsWith(".json"))
-                {
-                    Skill skill = Skill.DeserializeFromJson(File.ReadAllText(json));
-                    Rulebook.Instance.Skills[skill.Name] = skill;
-                }
+                Skill skill = Skill.DeserializeFromJson(skillData);
+                Rulebook.Instance.Skills[skill.Name] = skill;
             }
+
+            // Monsters - omitted for now
+            //
+
+            // Locations
+            foreach (string locationData in locations)
+            {
+                Location location = Location.DeserializeFromJson(locationData);
+                Rulebook.Instance.Locations[location.Name] = location;
+            }
+            
         }
 
         #endregion
@@ -123,9 +123,14 @@ namespace DungeonCrawler.Core
             GameState.Save(name);
         }
 
-        public static void LoadGame(string name)
+        public static void LoadGame(string[] pcs, string location, string globalState)
         {
-            GameState.Load(name);
+            foreach (string pc in pcs)
+            {
+                RegisterCharacter(Character.Character.DeserializeFromJson(pc));
+            }
+            CurrentLocation = Rulebook.Instance.Locations[location];
+            GlobalState.Instance = GlobalState.DeserializeFromJson(globalState);
         }
 
         #endregion

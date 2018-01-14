@@ -18,8 +18,9 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
             Character.Character hero = Utilities.Hero();
             GameMaster.RegisterCharacter(hero);
             GameMaster.CurrentLocation = Utilities.Location();
-            hero.Transform.Position = new Utility.Vector(100, 100);
+            hero.Transform.Position = new Utility.Vector(1, 1);
             hero.Transform.Rotation = 66.6f;
+            GlobalState.DeserializeFromJson(Utilities.JsonResourceFromFile("GlobalState"));
 
             // Save
             GameMaster.SaveCurrentGame("TestSave");
@@ -29,7 +30,10 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
             GameMaster.CurrentLocation = null;
 
             // Load
-            GameMaster.LoadGame("TestSave");
+            Utilities.InitializeGame();
+            GameMaster.LoadGame(pcs: new string[] { Character.Character.SerializeToJson(hero) },
+                                location: "Location",
+                                globalState: GlobalState.SerializeToJson());
 
             Assert.AreEqual(1, GameMaster.CharactersOfType("Player").Count);
             Assert.AreEqual(hero.Name, GameMaster.CharactersOfType("Player")[0].Name);

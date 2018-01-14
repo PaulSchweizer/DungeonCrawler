@@ -12,8 +12,8 @@ namespace DungeonCrawler.NUnit.Tests
 
         public static string JsonResource(string file)
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = string.Format("DungeonCrawler.NUnit.Tests.Resources.{0}.json", file);
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            string resourceName = string.Format("DungeonCrawler.NUnit.Tests.Resources.{0}.json", file);
             string json;
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             using (StreamReader reader = new StreamReader(stream))
@@ -21,6 +21,12 @@ namespace DungeonCrawler.NUnit.Tests
                 json = reader.ReadToEnd();
             }
             return json;
+        }
+
+        public static string JsonResourceFromFile(string file)
+        {
+            string root = "C:\\PROJECTS\\DungeonCrawler\\cs\\DungeonCrawler.NUnit.Tests\\Resources\\GameData\\{0}.json";
+            return File.ReadAllText(string.Format(root, file));
         }
 
         public static void LoadRulebook()
@@ -67,7 +73,46 @@ namespace DungeonCrawler.NUnit.Tests
         public static void InitializeGame()
         {
             GameMaster.RootDataPath = RootDataPath;
-            GameMaster.InitializeGame();
+            string rulebook = File.ReadAllText(Path.Combine(RootDataPath, "Rulebook.json"));
+
+            string[] armourFiles = Directory.GetFiles(Path.Combine(Path.Combine(RootDataPath, "Items"), "Armour"));
+            string[] armours = new string[armourFiles.Length];
+            for (int i = 0; i < armourFiles.Length; i++)
+            {
+                armours[i] = File.ReadAllText(armourFiles[i]);
+            }
+
+            string[] itemFiles = Directory.GetFiles(Path.Combine(Path.Combine(RootDataPath, "Items"), "Items"));
+            string[] items = new string[itemFiles.Length];
+            for (int i = 0; i < itemFiles.Length; i++)
+            {
+                items[i] = File.ReadAllText(itemFiles[i]);
+            }
+
+            string[] weaponFiles = Directory.GetFiles(Path.Combine(Path.Combine(RootDataPath, "Items"), "Weapons"));
+            string[] weapons = new string[weaponFiles.Length];
+            for (int i = 0; i < weaponFiles.Length; i++)
+            {
+                weapons[i] = File.ReadAllText(weaponFiles[i]);
+            }
+
+            string[] skillFiles = Directory.GetFiles(Path.Combine(RootDataPath, "Skills"));
+            string[] skills = new string[skillFiles.Length];
+            for (int i = 0; i < skillFiles.Length; i++)
+            {
+                skills[i] = File.ReadAllText(skillFiles[i]);
+            }
+
+            string[] monsters = new string[] { };
+
+            string[] locationFiles = Directory.GetFiles(Path.Combine(RootDataPath, "Locations"));
+            string[] locations = new string[locationFiles.Length];
+            for (int i = 0; i < locationFiles.Length; i++)
+            {
+                locations[i] = File.ReadAllText(locationFiles[i]);
+            };
+
+            GameMaster.InitializeGame(rulebook, armours, items, weapons, skills, monsters, locations);
         }
     }
 

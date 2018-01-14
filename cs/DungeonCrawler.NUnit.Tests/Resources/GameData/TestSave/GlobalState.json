@@ -1,3 +1,6 @@
 {
-    "Conditions": {}
+    "Conditions": {
+        "TrueCondition": true,
+        "FalseCondition": false
+    }
 }

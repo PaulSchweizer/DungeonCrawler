@@ -13,10 +13,7 @@ public class MainController : MonoBehaviour
     public static MainController Instance;
 
     [Header("Game Data")]
-    //public string GameDataPath = "json/TestData/GameData";
-    //public string SavedGamesPath = "SavedGames";
-    //public string DefaultGamePath = "json/TestData/GameData";
-    //public string DefaultGame = "TestSave";
+    public string SavedGamesPath = "SavedGames";
     public JsonDatabase GameData;
     public JsonSavedGame DefaultGame;
 
@@ -36,7 +33,7 @@ public class MainController : MonoBehaviour
 
     // Internals
     private string _rootDataPath;
-    private string _gameToLoad;
+    private JsonSavedGame _gameToLoad;
     private string _locationToLoad;
     private LoadAction _loadAction;
 
@@ -63,6 +60,10 @@ public class MainController : MonoBehaviour
             Destroy(gameObject);
         }
 
+        // Set internals
+        _rootDataPath = Path.Combine(Application.persistentDataPath, SavedGamesPath);
+
+        // Delegates
         DontDestroyOnLoad(transform.gameObject);
         updateDelegates = new UpdateDelegate[(int)SceneState.Count];
         updateDelegates[(int)SceneState.FadeOut] = UpdateSceneFadeOut;
@@ -84,39 +85,55 @@ public class MainController : MonoBehaviour
     public void NewGame()
     {
         NextSceneName = "LevelTemplate";
-        InitializeGame(DefaultGame); // Path.Combine(Application.dataPath, DefaultGamePath), DefaultGame);
+        InitializeGame(DefaultGame);
     }
 
     public void LoadGame(string name)
     {
         NextSceneName = "LevelTemplate";
-        //
-        // Use the TextAsset on the ScriptabelObject to create a struct of strings that hold all the json information 
-        // for the game, this goes for loading games
-        //
-        //InitializeGame(Application.persistentDataPath, name);
+
+        string root = Path.Combine(Path.Combine(Application.persistentDataPath, SavedGamesPath), name);
+        JsonSavedGame savedGame = Instantiate(DefaultGame);
+        GameState gameState = GameState.DeserializeFromJson(File.ReadAllText(Path.Combine(root, "GameState.json")));
+
+        savedGame.Location = gameState.Location;
+
+        string[] pcFiles = Directory.GetFiles(Path.Combine(root, "PCs"));
+        string[] pcs = new string[pcFiles.Length];
+        for (int i = 0; i < pcFiles.Length; i++)
+        {
+            pcs[i] = File.ReadAllText(pcFiles[i]);
+        }
+        savedGame.PCsData = pcs;
+
+        savedGame.GlobalStateData = File.ReadAllText(Path.Combine(root, "GlobalState.json"));
+
+        InitializeGame(savedGame);
     }
 
     public void SaveGame(string name)
     {
-        //
-        // Find the correct place to store save data
-        //
-        //GameMaster.RootDataPath = Path.Combine(Application.persistentDataPath, SavedGamesPath);
+        GameMaster.RootDataPath = Path.Combine(Application.persistentDataPath, SavedGamesPath);
         GameMaster.SaveCurrentGame(name);
     }
 
     private void InitializeGame(JsonSavedGame savedGame)
     {
-        //_rootDataPath = path;
-        //_gameToLoad = name;
+        _gameToLoad = savedGame;
         _loadAction = LoadAction.StartGame;
         sceneState = SceneState.FadeOut;
     }
 
     public static void SwitchLocation(string location)
     {
-        // 1. Make the PlayerCharacters undeletable
+        // 1. Make the PlayerCharacters and the Camera undeletable
+        foreach(PlayerCharacter pc in FindObjectsOfType<PlayerCharacter>())
+        {
+            pc.gameObject.transform.SetParent(null);
+            pc.ChangeState(pc.Idle);
+            DontDestroyOnLoad(pc.gameObject);
+        }
+        DontDestroyOnLoad(FindObjectOfType<CameraRig>().gameObject);
 
         // 2. FadeOut
         Instance.NextSceneName = "LevelTemplate";
@@ -208,18 +225,16 @@ public class MainController : MonoBehaviour
 
     private void StartGame()
     {
-        //
-        // Exchange to feed the GameMaster with the contents of the TextAssets instead!
-        //
-        GameMaster.RootDataPath = Path.Combine(Application.dataPath, GameDataPath);
-        GameMaster.InitializeGame();
+        // Initialize the GameMaster
+        GameMaster.InitializeGame(GameData.RulebookData, GameData.ArmoursData, GameData.ItemsData, GameData.WeaponsData, 
+                                  GameData.SkillsData, GameData.MonstersData, GameData.LocationsData);
 
         // Load the Game
         GameMaster.RootDataPath = _rootDataPath;
-        GameMaster.LoadGame(_gameToLoad);
+        GameMaster.LoadGame(_gameToLoad.PCsData, _gameToLoad.Location, _gameToLoad.GlobalStateData);
 
         //  Init the Tabletop and the Location
-        GameObject tabletop = Instantiate<GameObject>(TabletopPrefab);
+        GameObject tabletop = Instantiate(TabletopPrefab);
         Level level = tabletop.GetComponent<Level>();
         level.Location = GameMaster.CurrentLocation;
         level.Create();
@@ -234,6 +249,8 @@ public class MainController : MonoBehaviour
             GameObject player = Instantiate(PlayerCharacterPrefab);
             PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
             playerCharacter.Character.Data = character;
+            playerCharacter.transform.position = new Vector3(character.Transform.Position.X, 0, character.Transform.Position.Y);
+            playerCharacter.transform.Rotate(new Vector3(0, character.Transform.Rotation, 0), Space.World);
             camera.Target = player.transform;
         }
     }
@@ -241,6 +258,12 @@ public class MainController : MonoBehaviour
     private void LoadLocation()
     {
         Debug.Log("Switching Location to: " + _locationToLoad);
+
+        GameMaster.CurrentLocation = Rulebook.Instance.Locations[_locationToLoad];
+        GameObject tabletop = Instantiate(TabletopPrefab);
+        Level level = tabletop.GetComponent<Level>();
+        level.Location = GameMaster.CurrentLocation;
+        level.Create();
     }
 
     #endregion

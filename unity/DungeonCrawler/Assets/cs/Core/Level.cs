@@ -12,10 +12,12 @@ public class Level : MonoBehaviour
     public int ScalingFactor;
 
     [Header("Cells")]
-    public TextAsset JsonFile;
     public GameObject ForestPrefab;
     public GameObject ClearingPrefab;
     public List<GameObject> Cells = new List<GameObject>();
+
+    [Header("Cell Additionals")]
+    public GameObject ExitPrefab;
 
     [Header("Monsters")]
     public GameObject[] MonsterPrefabs;
@@ -41,13 +43,26 @@ public class Level : MonoBehaviour
             }
             else
             {
-                continue;
+                throw new Exception(string.Format("Celltype {0} does not exist."));
             }
             instance.name = string.Format("{0}_{1}_{2}", cell.Type, cell.Position[0], cell.Position[1]);
             instance.transform.localScale = new Vector3(ScalingFactor / 10, ScalingFactor / 10, ScalingFactor / 10);
             instance.transform.position = new Vector3(-cell.Position[0] * ScalingFactor, 0, cell.Position[1] * ScalingFactor);
             Cells.Add(instance);
 
+            // Destination - Cell is an Exit to another Location
+            //
+            if (cell.Destination != null)
+            {
+                GameObject exit = Instantiate(ExitPrefab, instance.transform);
+                exit.GetComponent<Exit>().Destination = cell.Destination;
+                exit.name = string.Format("ExitTo_{0}", cell.Destination);
+                exit.transform.localScale = new Vector3(1, 1, 1);
+                exit.transform.localPosition = new Vector3(0, 0, 0);
+            }
+
+            // Monsters
+            //
             if (cell.Monsters != null)
             {
                 foreach (KeyValuePair<string, int> entry in cell.Monsters)
