@@ -23,12 +23,17 @@ public class Level : MonoBehaviour
     public GameObject[] MonsterPrefabs;
     public string[] MonsterNames;
 
+    [Header("Prefabs")]
+    public GameObject ExitUIPrefab;
+
     // Internals
     public Location Location;
     
     public void Create()
     {
         name = Location.Name;
+
+        ExitUI exitUI = Instantiate(ExitUIPrefab).GetComponent<ExitUI>();
 
         foreach (Cell cell in Location.Cells)
         {
@@ -59,6 +64,7 @@ public class Level : MonoBehaviour
                 exit.name = string.Format("ExitTo_{0}", cell.Destination);
                 exit.transform.localScale = new Vector3(1, 1, 1);
                 exit.transform.localPosition = new Vector3(0, 0, 0);
+                exit.GetComponent<Exit>().UI = exitUI;
             }
 
             // Monsters

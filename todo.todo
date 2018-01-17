@@ -118,17 +118,24 @@ String UUID = Guid.NewGuid().ToString("N")
     ✔ game load SavedGame @done (18-01-13 21:31)
  ✔ Why does the DarkForest not load? @done (18-01-14 11:28)
  ✘ Empty space in location names? File names don't have the empty space? Build into the retrieval? @cancelled (18-01-14 13:04)
- ☐ MainController.LocationSwitch
-  ☐ Implement Exit tile
-   ☐ Add button to trigger the exit -> Show the button when the player is on the tile
+ ✘ Make the level layout from excel to unity have the same orientation @cancelled (18-01-17 22:10)
+ ✔ MainController.LocationSwitch @done (18-01-17 22:50)
+  ✔ Implement Exit tile @done (18-01-17 22:50)
+   ✔ Add button to trigger the exit -> Show the button when the player is on the tile @done (18-01-17 22:50)
 
- ☐ Make the level layout from excel to unity have the same orientation
+ ☐ Set location of player when switching location, connect destination cells somehow
+ ☐ Exit has to be in navigation layer
+ ☐ Layout of exit menu maybe needs to be fixed but fix start menu first as that is a "MUST"
+ ☐ Layout of start menu MUST be fixed at all costs
+
+ ☐ LoadGame: HUD has to be shown, when loading the game
 
 
  ☐ Cleanup the data
   ☐ Get rid of the "test" folder in the gamedata?
   ☐ Use the excel data to drive the game instead of the test data -> sync them up
 
+ ☐ Return to WorldMap
 
  ☐ CharacterData to CharacterData, delete the ScriptableObject?
 

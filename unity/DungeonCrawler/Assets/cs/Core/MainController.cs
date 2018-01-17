@@ -253,6 +253,8 @@ public class MainController : MonoBehaviour
             playerCharacter.transform.Rotate(new Vector3(0, character.Transform.Rotation, 0), Space.World);
             camera.Target = player.transform;
         }
+
+        // Load UIs
     }
 
     private void LoadLocation()

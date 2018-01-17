@@ -8,11 +8,21 @@ public class Exit : MonoBehaviour
 {
     public string Destination;
 
+    public ExitUI UI;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            MainController.SwitchLocation(Destination);
+            UI.Show(Destination);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            UI.Close();
         }
     }
 }
