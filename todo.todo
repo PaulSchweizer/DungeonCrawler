@@ -123,19 +123,54 @@ String UUID = Guid.NewGuid().ToString("N")
   ✔ Implement Exit tile @done (18-01-17 22:50)
    ✔ Add button to trigger the exit -> Show the button when the player is on the tile @done (18-01-17 22:50)
 
- ☐ Set location of player when switching location, connect destination cells somehow
- ☐ Exit has to be in navigation layer
- ☐ Layout of exit menu maybe needs to be fixed but fix start menu first as that is a "MUST"
- ☐ Layout of start menu MUST be fixed at all costs
+ ✔ Set location of player when switching location, connect destination cells somehow @done (18-01-19 23:43)
+ ✔ Display of the name of the location has to be fixed @done (18-01-19 23:44)
+ ✔ Exit has to be in navigation layer @done (18-01-19 23:47)
+ ✔ Cells indexes in google sheets should start at 0 to keep in line with unity scene @done (18-01-19 23:48)
+ ✔ Layout of exit menu maybe needs to be fixed but fix start menu first as that is a "MUST" @done (18-01-20 00:00)
+ ✔ Layout of start menu MUST be fixed at all costs @done (18-01-20 00:00)
 
- ☐ LoadGame: HUD has to be shown, when loading the game
+Step 1 - HUD:
+ ✔ LoadGame: HUD has to be shown, when loading the game @done (18-01-20 15:59)
+
+Step 2 - Cleanup:
+  ✔ Get rid of the "test" folder in the gamedata? @done (18-01-20 16:05)
+  ✔ Delete GameMaster? @done (18-01-20 16:11)
+  ✔ Sort all data in the spreadsheet @done (18-01-20 18:23)
+  ✔ Download pipeline @done (18-01-20 18:23)
+   ✔ Items @done (18-01-20 17:02)
+   ✔ Weapons @done (18-01-20 17:02)
+   ✔ Armour @done (18-01-20 17:02)
+   ✔ Locations @done (18-01-20 17:02)
+   ✔ Monsters @done (18-01-20 18:03)
+   ☐ NPCS -> Later
+   ✔ PCs @done (18-01-20 18:03)
+   ✔ Skills @done (18-01-20 18:14)
+   ✔ GlobalState @done (18-01-20 18:18)
+   ✔ Rulebook @done (18-01-20 18:23)
+ ✔ Cleanup the data and don't use the test data folder any more in unity @done (18-01-20 18:29)
+
+Step 3 - Worldmap:
+ ☐ Worldmap
+  ✔ Switch from Location to WorldMap @done (18-01-21 20:24)
+  ✔ Switch from Worldmap to Location @done (18-01-21 20:24)
+  ☐ Switch from Loading state to Worldmap
+
+  ☐ GameMaster.CurrentLocation?
+  ☐ Show Locations
+  ☐ Marker on Current Location
+  ☐ Show Connections
+
+  ☐ Allow travel
+   ☐ Zufallsbegegnungen
 
 
- ☐ Cleanup the data
-  ☐ Get rid of the "test" folder in the gamedata?
-  ☐ Use the excel data to drive the game instead of the test data -> sync them up
-
- ☐ Return to WorldMap
+Bugs:
+ ☐ Consolidate the table names with the actual names
+ ☐ Use the excel data in the unit tests as well
+ ☐ Consolidate the columns in the Monsters and Characters Table? XP, SkillPoints?
+ ☐ On Start, Player is not inside level hierarchy, but when switching location he is?
+ ☐ Load Player Position on Initial Game
 
  ☐ CharacterData to CharacterData, delete the ScriptableObject?
 

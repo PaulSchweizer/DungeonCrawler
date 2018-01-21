@@ -22,7 +22,7 @@ public class ExitUI : MonoBehaviour
     {
         gameObject.SetActive(true);
         Destination = destination;
-        DestinationText.text = string.Format("Do you want to travel to {0}?", destination);
+        DestinationText.text = string.Format("Do you want to travel to {0}?", destination.Split('.')[0]);
     }
 
     public void SwitchLocation()

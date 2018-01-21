@@ -44,7 +44,7 @@ public class MainController : MonoBehaviour
     private delegate void UpdateDelegate();
     private UpdateDelegate[] updateDelegates;
 
-    private enum LoadAction { StartGame, LoadLocation, Count };
+    private enum LoadAction { StartGame, LoadLocation, LoadWorldmap, Count };
     private delegate void LoadActionDelegate();
     private LoadActionDelegate[] loadActionDelegates;
 
@@ -77,6 +77,7 @@ public class MainController : MonoBehaviour
         loadActionDelegates = new LoadActionDelegate[(int)LoadAction.Count];
         loadActionDelegates[(int)LoadAction.StartGame] = StartGame;
         loadActionDelegates[(int)LoadAction.LoadLocation] = LoadLocation;
+        loadActionDelegates[(int)LoadAction.LoadWorldmap] = LoadWorldmap;
         _loadAction = LoadAction.StartGame;
     }
 
@@ -133,15 +134,23 @@ public class MainController : MonoBehaviour
             pc.ChangeState(pc.Idle);
             DontDestroyOnLoad(pc.gameObject);
         }
-        DontDestroyOnLoad(FindObjectOfType<CameraRig>().gameObject);
+        //DontDestroyOnLoad(FindObjectOfType<CameraRig>().gameObject);
 
-        // 2. FadeOut
-        Instance.NextSceneName = "LevelTemplate";
-        Instance.sceneState = SceneState.FadeOut;
+        if (location == "Worldmap")
+        {
+            // Get the current location to determine the position on the map 
+            Instance.NextSceneName = "Worldmap";
 
-        // Load the next Location
+            Instance._locationToLoad = location;
+            Instance._loadAction = LoadAction.LoadWorldmap;
+        }
+        else
+        {
+            Instance.NextSceneName = "LevelTemplate";
+            Instance._loadAction = LoadAction.LoadLocation;
+        }
         Instance._locationToLoad = location;
-        Instance._loadAction = LoadAction.LoadLocation;
+        Instance.sceneState = SceneState.FadeOut;
     }
 
     #endregion
@@ -243,8 +252,8 @@ public class MainController : MonoBehaviour
         CameraRig camera = FindObjectOfType<CameraRig>();
 
         // Load the PCs  
-        List<Character> players = GameMaster.CharactersOfType("Player");
-        foreach (Character character in players)
+        List<Character> pcs = GameMaster.CharactersOfType("Player");
+        foreach (Character character in pcs)
         {
             GameObject player = Instantiate(PlayerCharacterPrefab);
             PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
@@ -259,13 +268,46 @@ public class MainController : MonoBehaviour
 
     private void LoadLocation()
     {
-        Debug.Log("Switching Location to: " + _locationToLoad);
+        string[] tokens = _locationToLoad.Split('.');
+        string locationToLoad = tokens[0];
+        Debug.Log("Switching Location to: " + locationToLoad);
 
-        GameMaster.CurrentLocation = Rulebook.Instance.Locations[_locationToLoad];
+        GameMaster.CurrentLocation = Rulebook.Instance.Locations[locationToLoad];
         GameObject tabletop = Instantiate(TabletopPrefab);
         Level level = tabletop.GetComponent<Level>();
         level.Location = GameMaster.CurrentLocation;
         level.Create();
+
+        // Camera
+        //
+        CameraRig camera = FindObjectOfType<CameraRig>();
+
+        // Apply the Player position
+        //
+        Vector3 destinationPosition = new Vector3(0, 0, 0); 
+        if (tokens.Length > 1)
+        {
+            destinationPosition = new Vector3(- float.Parse(tokens[1]) * level.ScalingFactor, 
+                                              0, 
+                                              float.Parse(tokens[2]) * level.ScalingFactor);
+        }
+        foreach(PlayerCharacter pc in PlayerCharacter.PlayerCharacters)
+        {
+            pc.gameObject.SetActive(true);
+            pc.gameObject.transform.position = destinationPosition;
+            camera.Target = pc.transform;
+        }
+    }
+
+    private void LoadWorldmap()
+    {
+        Debug.Log("Switching Location to: Worldmap");
+
+        // Hide the Players and the Camera
+        foreach (PlayerCharacter pc in PlayerCharacter.PlayerCharacters)
+        {
+            pc.gameObject.SetActive(false);
+        }
     }
 
     #endregion

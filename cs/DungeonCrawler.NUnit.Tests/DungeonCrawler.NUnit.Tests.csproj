@@ -77,7 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <EmbeddedResource Include="Resources\GameData\GameMaster.json" />
     <EmbeddedResource Include="Resources\GameData\Items\Items\Item.json" />
     <EmbeddedResource Include="Resources\GameData\Locations\Location.json" />
     <EmbeddedResource Include="Resources\GameData\Items\Armour\Armour.json" />

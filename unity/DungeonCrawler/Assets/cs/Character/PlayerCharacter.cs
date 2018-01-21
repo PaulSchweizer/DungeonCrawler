@@ -7,4 +7,11 @@ using UnityEngine;
 
 public class PlayerCharacter : BaseCharacter
 {
+    public static List<PlayerCharacter> PlayerCharacters = new List<PlayerCharacter>();
+
+    public override void Awake()
+    {
+        base.Awake();
+        PlayerCharacters.Add(this);
+    }
 }
