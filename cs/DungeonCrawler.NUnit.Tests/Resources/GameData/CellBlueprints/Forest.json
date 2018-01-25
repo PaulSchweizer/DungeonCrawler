@@ -1,0 +1,13 @@
+﻿{
+    "Type": "Forest",
+	"Tags": 
+	[
+		"dark",
+		"foresty"
+	],
+	"AvailableDecorations": 
+	{
+		"Fern": 0.2,
+		"Tree": 0.6
+	}
+}

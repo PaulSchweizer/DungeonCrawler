@@ -6,6 +6,18 @@ using System.Collections.Generic;
 namespace DungeonCrawler.Core
 {
 
+    public class CellBlueprint
+    {
+        public string Type;
+        public string[] Tags;
+        public Dictionary<string, float> AvailableDecorations;
+
+        public static CellBlueprint DeserializeFromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<CellBlueprint>(json);
+        }
+    }
+
     public class Cell
     {
         public static float GridSize = 3;
@@ -14,6 +26,11 @@ namespace DungeonCrawler.Core
         public int[] Position;
         public string Destination;
         public Dictionary<string, int> Monsters;
+
+        public static void AvailableDecorations(string cellType)
+        {
+
+        }
 
         public Cell()
         {
@@ -35,6 +52,7 @@ namespace DungeonCrawler.Core
             Location location = JsonConvert.DeserializeObject<Location>(json);
             foreach (Cell cell in location.Cells)
             {
+
                 List<string> tags = new List<string>();
                 tags.AddRange(cell.Tags);
                 foreach (string tag in location.Tags)
@@ -44,6 +62,16 @@ namespace DungeonCrawler.Core
                         tags.Add(tag);
                     }
                 }
+
+                CellBlueprint blueprint = Rulebook.Instance.CellBlueprints[cell.Type];
+                foreach (string tag in blueprint.Tags)
+                {
+                    if (!tags.Contains(tag))
+                    {
+                        tags.Add(tag);
+                    }
+                }
+
                 cell.Tags = tags.ToArray();
             }
             return location;

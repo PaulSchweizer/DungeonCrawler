@@ -76,7 +76,7 @@ namespace DungeonCrawler.Core
         #region Initialize
 
         public static void InitializeGame(string rulebook, string[] armours, string[] items, string[] weapons, 
-                                          string[] skills, string[] monsters, string[] locations)
+                                          string[] skills, string[] monsters, string[] locations, string[] cellBlueprints)
         {
             // Initialize Rulebook, including Aspects - Tags Mapping
             Rulebook.DeserializeFromJson(rulebook);
@@ -105,13 +105,19 @@ namespace DungeonCrawler.Core
             // Monsters - omitted for now
             //
 
+            // Cell Blueprints
+            foreach (string cellBlueprintData in cellBlueprints)
+            {
+                CellBlueprint cellBlueprint = CellBlueprint.DeserializeFromJson(cellBlueprintData);
+                Rulebook.Instance.CellBlueprints[cellBlueprint.Type] = cellBlueprint;
+            }
+
             // Locations
             foreach (string locationData in locations)
             {
                 Location location = Location.DeserializeFromJson(locationData);
                 Rulebook.Instance.Locations[location.Name] = location;
             }
-            
         }
 
         #endregion

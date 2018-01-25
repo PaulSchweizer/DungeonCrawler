@@ -46,5 +46,15 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
             Item item = Rulebook.Item("DoesNotExist");
             Assert.IsNull(item);
         }
+
+        [Test]
+        public void Define_Celltypes_in_Rulebook()
+        {
+            Utilities.LoadRulebook();
+
+            string cellType = "Forest";
+            CellBlueprint cellBlueprint = Rulebook.Instance.CellBlueprints[cellType];
+            Console.WriteLine(cellBlueprint.Type);
+        }
     }
 }

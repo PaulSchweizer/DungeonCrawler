@@ -1,0 +1,12 @@
+﻿{
+    "Type": "Clearing",
+	"Tags": 
+	[
+		"clear"
+	],
+	"AvailableDecorations": 
+	{
+		"Fern": 0.3,
+		"Tree": 0.05
+	}
+}

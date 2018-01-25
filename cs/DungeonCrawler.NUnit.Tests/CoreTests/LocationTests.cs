@@ -14,19 +14,24 @@ namespace DungeonCrawler.NUnit.Tests.CoreTests
         [SetUp]
         public void SetUp()
         {
+            Utilities.LoadRulebook();
             string json = Utilities.JsonResource("GameData.Locations.Location");
             location = Location.DeserializeFromJson(json);
         }
 
         [Test]
-        public void LocationAddsTagsToCells()
+        public void Location_And_CellBlueprint_Add_Tags_To_Cell()
         {
             Assert.AreEqual(new string[] { "dark", "forest" }, location.Tags);
             foreach (Cell cell in location.Cells)
             {
-                Assert.AreEqual(2, cell.Tags.Length);
                 Assert.IsTrue(Array.Exists(cell.Tags, element => element == "dark"));
                 Assert.IsTrue(Array.Exists(cell.Tags, element => element == "forest"));
+                CellBlueprint cellBlueprint = Rulebook.Instance.CellBlueprints[cell.Type];
+                foreach(string tag in cellBlueprint.Tags)
+                {
+                    Assert.IsTrue(Array.Exists(cell.Tags, element => element == tag));
+                }
             }
         }
 

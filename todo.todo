@@ -149,12 +149,15 @@ Step 2 - Cleanup:
    ✔ GlobalState @done (18-01-20 18:18)
    ✔ Rulebook @done (18-01-20 18:23)
  ✔ Cleanup the data and don't use the test data folder any more in unity @done (18-01-20 18:29)
+ ✔ Load CellBlueprints from google sheet @done (18-01-25 23:35)
+ ✔ Consolidate the table names with the actual names @done (18-01-25 23:43)
 
 Step 3 - Worldmap:
  ☐ Worldmap
   ✔ Switch from Location to WorldMap @done (18-01-21 20:24)
   ✔ Switch from Worldmap to Location @done (18-01-21 20:24)
   ☐ Switch from Loading state to Worldmap
+
 
   ☐ GameMaster.CurrentLocation?
   ☐ Show Locations
@@ -165,8 +168,16 @@ Step 3 - Worldmap:
    ☐ Zufallsbegegnungen
 
 
+Decorations:
+  ✔ Rulebook.CellBlueprints @done (18-01-25 23:25)
+  ✔ Cells take initial values from the Blueprint @done (18-01-25 23:25)
+  ☐ static Cell.AvailableDecorations
+   ☐ Cell.DistributeDecorations
+    ☐ Cell.Decorations
+
+
+
 Bugs:
- ☐ Consolidate the table names with the actual names
  ☐ Use the excel data in the unit tests as well
  ☐ Consolidate the columns in the Monsters and Characters Table? XP, SkillPoints?
  ☐ On Start, Player is not inside level hierarchy, but when switching location he is?

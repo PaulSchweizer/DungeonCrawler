@@ -60,18 +60,25 @@ def download_locations():
         save("Locations", location["Name"], location)
 
 
+def download_cellblueprints():
+    cell_blueprints = get("?Game={game}&Table=CellBlueprints".format(game=game))
+
+    for cell_blueprint in cell_blueprints:
+        save("CellBlueprints", cell_blueprint["Type"], cell_blueprint)
+
+
 def download_monsters():
-    enemies = get("?Game={game}&Table=Enemies".format(game=game))
-    for enemy in enemies:
-        enemy["Tags"] = enemy["Tags"] or []
-        enemy["Aspects"] = enemy["Aspects"] or []
-        enemy["Equipment"] = enemy["Equipment"] or {}
-        enemy["Inventory"] = enemy["Inventory"] or {}
-        save("Monsters", enemy["Name"], enemy)
+    monsters = get("?Game={game}&Table=Monsters".format(game=game))
+    for monsters in monsters:
+        monsters["Tags"] = monsters["Tags"] or []
+        monsters["Aspects"] = monsters["Aspects"] or []
+        monsters["Equipment"] = monsters["Equipment"] or {}
+        monsters["Inventory"] = monsters["Inventory"] or {}
+        save("Monsters", monsters["Name"], monsters)
 
 
 def download_pcs():
-    pcs = get("?Game={game}&Table=Characters".format(game=game))
+    pcs = get("?Game={game}&Table=PCs".format(game=game))
     for pc in pcs:
         pc["Tags"] = pc["Tags"] or []
         pc["Aspects"] = pc["Aspects"] or []
@@ -88,7 +95,7 @@ def download_skills():
 
 
 def download_globalstate():
-    conditions = get("?Game={game}&Table=GameConditions".format(game=game))
+    conditions = get("?Game={game}&Table=GlobalState".format(game=game))
     globalstate = {"Conditions":
             {c["Name"]: c["Value"] for c in conditions}
         }
@@ -121,6 +128,7 @@ if __name__ == "__main__":
     download_weapons()
     download_armour()
     download_locations()
+    download_cellblueprints()
     download_monsters()
     # download_npcs()
     download_pcs()

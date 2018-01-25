@@ -112,7 +112,14 @@ namespace DungeonCrawler.NUnit.Tests
                 locations[i] = File.ReadAllText(locationFiles[i]);
             };
 
-            GameMaster.InitializeGame(rulebook, armours, items, weapons, skills, monsters, locations);
+            string[] cellBlueprintFiles = Directory.GetFiles(Path.Combine(RootDataPath, "CellBlueprints"));
+            string[] cellBlueprints = new string[cellBlueprintFiles.Length];
+            for (int i = 0; i < cellBlueprintFiles.Length; i++)
+            {
+                cellBlueprints[i] = File.ReadAllText(cellBlueprintFiles[i]);
+            };
+
+            GameMaster.InitializeGame(rulebook, armours, items, weapons, skills, monsters, locations, cellBlueprints);
         }
     }
 

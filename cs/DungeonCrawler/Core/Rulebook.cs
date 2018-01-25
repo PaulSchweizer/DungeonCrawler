@@ -14,7 +14,8 @@ namespace DungeonCrawler.Core
         public List<Armour> Armours = new List<Armour>();
         public List<Stunt> Stunts = new List<Stunt>();
         public Dictionary<string, Location> Locations = new Dictionary<string, Location>();
-
+        public Dictionary<string, CellBlueprint> CellBlueprints = new Dictionary<string, CellBlueprint>();
+        
         #region Singleton
 
         private static Rulebook _instance;

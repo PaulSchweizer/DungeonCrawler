@@ -91,6 +91,7 @@
     <EmbeddedResource Include="Resources\GameData\GlobalState.json" />
     <EmbeddedResource Include="Resources\GameData\PCs\Hero.json" />
     <EmbeddedResource Include="Resources\GameData\Items\Weapons\Weapon2.json" />
+    <None Include="Resources\GameData\CellBlueprints\Forest.json" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -104,6 +105,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\GameData\NPCs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameData\CellBlueprints\Clearing.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
