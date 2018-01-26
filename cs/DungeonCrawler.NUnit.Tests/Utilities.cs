@@ -1,4 +1,5 @@
 ﻿using DungeonCrawler.Core;
+using DungeonCrawler.QuestSystem;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -64,6 +65,11 @@ namespace DungeonCrawler.NUnit.Tests
             return Core.Location.DeserializeFromJson(JsonResource("GameData.Locations.Location"));
         }
 
+        public static Quest Quest()
+        {
+            return QuestSystem.Quest.DeserializeFromJson(File.ReadAllText(Path.Combine(RootDataPath, Path.Combine("Quests", "FindItemQuest.json"))));
+        }
+
         public static void SetupTestDice()
         {
             Dice.Distribution = new Dictionary<int, int>() { { -4, -4 }, { -3, -3 }, { -2, -2 }, { -1, -1 }, { 0, 0 },
@@ -110,16 +116,23 @@ namespace DungeonCrawler.NUnit.Tests
             for (int i = 0; i < locationFiles.Length; i++)
             {
                 locations[i] = File.ReadAllText(locationFiles[i]);
-            };
+            }
 
             string[] cellBlueprintFiles = Directory.GetFiles(Path.Combine(RootDataPath, "CellBlueprints"));
             string[] cellBlueprints = new string[cellBlueprintFiles.Length];
             for (int i = 0; i < cellBlueprintFiles.Length; i++)
             {
                 cellBlueprints[i] = File.ReadAllText(cellBlueprintFiles[i]);
-            };
+            }
 
-            GameMaster.InitializeGame(rulebook, armours, items, weapons, skills, monsters, locations, cellBlueprints);
+            string[] questFiles = Directory.GetFiles(Path.Combine(RootDataPath, "Quests"));
+            string[] quests = new string[questFiles.Length];
+            for (int i = 0; i < questFiles.Length; i++)
+            {
+                quests[i] = File.ReadAllText(questFiles[i]);
+            }
+
+            GameMaster.InitializeGame(rulebook, armours, items, weapons, skills, monsters, locations, cellBlueprints, quests);
         }
     }
 

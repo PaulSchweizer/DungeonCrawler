@@ -61,11 +61,13 @@
     <Compile Include="CoreTests\RulebookTests.cs" />
     <Compile Include="IntegrationTests\CombatIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestSystemTests\QuestTests.cs" />
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
+    <None Include="Resources\GameData\Quests\FindItemQuest.json" />
     <Compile Include="UtilityTests\TransformTests.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>

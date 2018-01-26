@@ -62,6 +62,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="QuestSystem\Objective.cs" />
+    <Compile Include="QuestSystem\Quest.cs" />
     <Compile Include="Utility\Transform.cs" />
   </ItemGroup>
   <ItemGroup>

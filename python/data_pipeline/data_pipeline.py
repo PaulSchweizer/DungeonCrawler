@@ -94,6 +94,12 @@ def download_skills():
         save("Skills", skill["Name"], skill)
 
 
+def download_quests():
+    quests = get("?Game={game}&Table=Quests".format(game=game))
+    for quest in quests:
+        save("Quest", quest["Name"], quest)
+
+
 def download_globalstate():
     conditions = get("?Game={game}&Table=GlobalState".format(game=game))
     globalstate = {"Conditions":
@@ -133,5 +139,6 @@ if __name__ == "__main__":
     # download_npcs()
     download_pcs()
     download_skills()
+    download_quests()
     download_globalstate()
     download_rulebook()

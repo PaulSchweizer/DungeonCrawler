@@ -152,6 +152,11 @@ Step 2 - Cleanup:
  ✔ Load CellBlueprints from google sheet @done (18-01-25 23:35)
  ✔ Consolidate the table names with the actual names @done (18-01-25 23:43)
 
+QuestSystem:
+  ☐ Implement Quest.Requirements
+  ☐
+
+
 Step 3 - Worldmap:
  ☐ Worldmap
   ✔ Switch from Location to WorldMap @done (18-01-21 20:24)

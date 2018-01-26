@@ -1,0 +1,14 @@
+﻿{
+    "Name": "FindItem",
+    "Description": "Find an Item.",
+    "Requirements": {"a": true},
+    "State": 0,
+    "XP": 100,
+    "Objectives": [
+        {
+            "Name": "Find a mammoth tusk.",
+            "Conditions": ["MammothTusk"],
+            "IsCompleted": false
+        }
+    ]
+}
