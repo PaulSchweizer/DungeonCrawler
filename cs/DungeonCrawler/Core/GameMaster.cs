@@ -1,4 +1,5 @@
-﻿using DungeonCrawler.Utility;
+﻿using DungeonCrawler.QuestSystem;
+using DungeonCrawler.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -76,7 +77,8 @@ namespace DungeonCrawler.Core
         #region Initialize
 
         public static void InitializeGame(string rulebook, string[] armours, string[] items, string[] weapons, 
-                                          string[] skills, string[] monsters, string[] locations, string[] cellBlueprints)
+                                          string[] skills, string[] monsters, string[] locations, string[] cellBlueprints,
+                                          string[] quests)
         {
             // Initialize Rulebook, including Aspects - Tags Mapping
             Rulebook.DeserializeFromJson(rulebook);
@@ -117,6 +119,13 @@ namespace DungeonCrawler.Core
             {
                 Location location = Location.DeserializeFromJson(locationData);
                 Rulebook.Instance.Locations[location.Name] = location;
+            }
+
+            // Quests
+            foreach (string questData in quests)
+            {
+                Quest quest = Quest.DeserializeFromJson(questData);
+                Rulebook.Instance.Quests[quest.Name] = quest;
             }
         }
 

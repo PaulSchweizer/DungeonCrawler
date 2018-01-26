@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DungeonCrawler.QuestSystem;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,8 @@ namespace DungeonCrawler.Core
         public List<Stunt> Stunts = new List<Stunt>();
         public Dictionary<string, Location> Locations = new Dictionary<string, Location>();
         public Dictionary<string, CellBlueprint> CellBlueprints = new Dictionary<string, CellBlueprint>();
-        
+        public Dictionary<string, Quest> Quests = new Dictionary<string, Quest>();
+
         #region Singleton
 
         private static Rulebook _instance;
