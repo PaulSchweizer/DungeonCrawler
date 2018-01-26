@@ -10,7 +10,7 @@ namespace DungeonCrawler.Core
     {
         public string Type;
         public string[] Tags;
-        public Dictionary<string, float> AvailableDecorations;
+        public Dictionary<string, float> Decorations;
 
         public static CellBlueprint DeserializeFromJson(string json)
         {
@@ -26,11 +26,7 @@ namespace DungeonCrawler.Core
         public int[] Position;
         public string Destination;
         public Dictionary<string, int> Monsters;
-
-        public static void AvailableDecorations(string cellType)
-        {
-
-        }
+        public Dictionary<string, int[]> Decorations;
 
         public Cell()
         {
