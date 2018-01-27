@@ -4,8 +4,6 @@ using UnityEngine.EventSystems;
 
 public class InputController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [Header("Data")]
-    public PlayerParty Party;
 
     public static InputController Instance;
     private bool _pointerIsDown;
@@ -112,8 +110,9 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         for (int i = 0; i < Tabletop.PlayerParty.Length; i++)
         {
             PlayerCharacter pc = Tabletop.PlayerParty[i];
+            NPCCharacter destinationNPC = hit.collider.gameObject.GetComponent<NPCCharacter>();
+            pc.DestinationNPC = destinationNPC;
             pc.ChangeState(pc.MoveToNPC);
-            pc.DestinationNPC = hit.collider.gameObject.GetComponent<NPCCharacter>();
         }
     }
 

@@ -8,19 +8,27 @@ using DungeonCrawler.Character;
 
 public class GameOverUI : MonoBehaviour
 {
-    [Header("Data")]
-    public PlayerParty Party;
+
+    public static GameOverUI Instance;
 
     protected void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         gameObject.SetActive(false);
     }
 
-    public void Start()
+    public void Initialize()
     {
-        foreach (CharacterData character in Party.Characters)
+        foreach (PlayerCharacter player in PlayerCharacter.PlayerCharacters)
         {
-            character.Data.OnTakenOut += new TakenOutHandler(PlayerGotTakenOut);
+            player.Character.Data.OnTakenOut += new TakenOutHandler(PlayerGotTakenOut);
         }
     }
 
@@ -33,9 +41,9 @@ public class GameOverUI : MonoBehaviour
     public void PlayerGotTakenOut(object sender, EventArgs e)
     {
         bool allTakenOut = true;
-        foreach (CharacterData character in Party.Characters)
+        foreach (PlayerCharacter player in PlayerCharacter.PlayerCharacters)
         {
-            if (!character.Data.IsTakenOut)
+            if (!player.Character.Data.IsTakenOut)
             {
                 allTakenOut = false;
                 break;

@@ -236,8 +236,9 @@ public class MainController : MonoBehaviour
     {
         // Initialize the GameMaster
         GameMaster.InitializeGame(GameData.RulebookData, GameData.ArmoursData, GameData.ItemsData, GameData.WeaponsData, 
-                                  GameData.SkillsData, GameData.MonstersData, GameData.LocationsData);
-
+                                  GameData.SkillsData, GameData.MonstersData, GameData.LocationsData, GameData.CellBlueprintsData, 
+                                  GameData.QuestsData);
+          
         // Load the Game
         GameMaster.RootDataPath = _rootDataPath;
         GameMaster.LoadGame(_gameToLoad.PCsData, _gameToLoad.Location, _gameToLoad.GlobalStateData);
@@ -263,7 +264,10 @@ public class MainController : MonoBehaviour
             camera.Target = player.transform;
         }
 
-        // Load UIs
+        // Initialize UIs
+        PlayerUI.Instance.Initialize();
+        GameOverUI.Instance.Initialize();
+        HUDMessageUI.Instance.Initialize();
     }
 
     private void LoadLocation()

@@ -52,7 +52,9 @@ def download_locations():
         for i, cell in enumerate(location["Cells"]):
             location["Cells"][i] = {
                 "Position": cell["Position"],
-                "Type": cell["Type"]
+                "Type": cell["Type"],
+                "Monsters": cell.get("Monsters", {}),
+                "NPCs": cell.get("NPCs", [])
             }
             if "Destination" in cell.keys():
                 location["Cells"][i]["Destination"] = cell["Destination"]
@@ -75,6 +77,17 @@ def download_monsters():
         monsters["Equipment"] = monsters["Equipment"] or {}
         monsters["Inventory"] = monsters["Inventory"] or {}
         save("Monsters", monsters["Name"], monsters)
+
+
+def download_npcs():
+    npcs = get("?Game={game}&Table=NPCs".format(game=game))
+    for npc in npcs:
+        npc = {
+            "Id": npc["Id"],
+            "Name": npc["Name"],
+            "StoryName": npc["StoryName"]
+        }
+        save("NPCs", npc["Name"], npc)
 
 
 def download_pcs():
@@ -136,7 +149,7 @@ if __name__ == "__main__":
     download_locations()
     download_cellblueprints()
     download_monsters()
-    # download_npcs()
+    download_npcs()
     download_pcs()
     download_skills()
     download_quests()

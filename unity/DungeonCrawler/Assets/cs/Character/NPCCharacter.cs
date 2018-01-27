@@ -6,13 +6,31 @@ using Ink.Runtime;
 
 public class NPCCharacter : MonoBehaviour
 {
-    public TextAsset InkData;
+    public string Name;
+    public Sprite Portrait;
 
-    [HideInInspector]
-    public Story InkStory;
+    public string StoryName;
 
-    void Awake()
+    public Story InkStory
     {
-        InkStory = new Story(InkData.text);
+        get
+        {
+            return StoryController.Instance.GetStory(StoryName);
+        }
     }
+
+    //public TextAsset InkData;
+
+    //public Story InkStory;
+
+    //private void Awake()
+    //{
+    //    InkStory = new Story(InkData.text);
+    //}
+
+    //private void OnDestroy()
+    //{
+    //    //SerializeField the story
+    //    //InkStory.ToJsonString
+    //}
 }

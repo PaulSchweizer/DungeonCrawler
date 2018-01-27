@@ -143,7 +143,7 @@ Step 2 - Cleanup:
    ✔ Armour @done (18-01-20 17:02)
    ✔ Locations @done (18-01-20 17:02)
    ✔ Monsters @done (18-01-20 18:03)
-   ☐ NPCS -> Later
+   ✔ NPCS -> Later @done (18-01-26 17:28)
    ✔ PCs @done (18-01-20 18:03)
    ✔ Skills @done (18-01-20 18:14)
    ✔ GlobalState @done (18-01-20 18:18)
@@ -151,10 +151,60 @@ Step 2 - Cleanup:
  ✔ Cleanup the data and don't use the test data folder any more in unity @done (18-01-20 18:29)
  ✔ Load CellBlueprints from google sheet @done (18-01-25 23:35)
  ✔ Consolidate the table names with the actual names @done (18-01-25 23:43)
+ ✔ Add Monsters to Cells @done (18-01-26 15:47)
+
+NPCs:
+ ✔ Define them in the sheets @done (18-01-26 16:35)
+  ✔ Download @done (18-01-26 16:35)
+  ✔ Unity class @done (18-01-26 16:35)
+ ✔ Add NPCs to Tiles @done (18-01-26 16:35)
 
 QuestSystem:
-  ☐ Implement Quest.Requirements
-  ☐
+  ✔ Make the ink stories persist between scenes @done (18-01-26 17:35)
+ ✔ Improve the Conversation UI @done (18-01-26 17:43)
+  ✔ Name of the NPC @done (18-01-26 17:43)
+  ✔ Sprite of the Character @done (18-01-26 17:43)
+  ☐ Trigger Quests in Unity
+   ✔ How to connect to inkle? @done (18-01-26 18:29)
+    ✘ custom string hints in the text? @cancelled (18-01-26 18:29)
+    ✔ use ink global variables @done (18-01-26 18:29)
+   ✔ Example: InkStory.variablesState["FindItem"] = true; @done (18-01-27 11:10)
+   ✔ Observe inkle variables when loading a story @done (18-01-27 11:10)
+    ✔ Set Global Variables from GameState @done (18-01-27 11:10)
+    ✔ When starting the story, check all the global variables from GlobalState that are in the story and set them accordingly @done (18-01-27 11:11)
+    ✔ Change the GlobalState values when the story has changed them. -> On continue in story @done (18-01-27 18:27)
+   ✔ Send out signal if tags are found in the section @done (18-01-27 18:49)
+    # Signal:StartQuest:QuestName
+   ✔ Character.Update -> UpdateActiveQuests @done (18-01-27 19:02)
+  ✔ CharacterData is not the same, does it come from the ScriptableObject??? WTF did I do here? @done (18-01-27 20:08)
+ ✔ Delete PlayerParty ScriptableObject ! @done (18-01-27 21:18)
+
+  ☐ HUD:
+   ✔ Name @done (18-01-27 19:19)
+   ✔ Life bar @done (18-01-27 19:19)
+   ✔ Message board in the HUD @done (18-01-27 23:08)
+   ☐ Image
+
+  ☐ Connect signals
+   ☐ Send other Values through Signals
+    ☐ Quest.Started(Name)
+
+
+
+
+
+
+   ☐ Quest log in the UI -> Have a print statement
+    ☐ Add Every Quest as a GlobalState Variable "Name": Quest.Completed
+    ☐ Have an overview of all used GlobalState variables
+
+
+
+
+
+
+
+  ☐ Implement Quest.Requirements? Or get rid of it
 
 
 Step 3 - Worldmap:
@@ -172,6 +222,7 @@ Step 3 - Worldmap:
   ☐ Allow travel
    ☐ Zufallsbegegnungen
 
+ ☐ Automatically populate the JsonDatabase after downloading
 
 Decorations:
   ✔ Rulebook.CellBlueprints @done (18-01-25 23:25)
@@ -181,8 +232,8 @@ Decorations:
     ☐ Cell.Decorations
 
 
-
 Bugs:
+ ☐ When loading Global state, only override the modified values
  ☐ Use the excel data in the unit tests as well
  ☐ Consolidate the columns in the Monsters and Characters Table? XP, SkillPoints?
  ☐ On Start, Player is not inside level hierarchy, but when switching location he is?

@@ -23,6 +23,10 @@ public class Level : MonoBehaviour
     public GameObject[] MonsterPrefabs;
     public string[] MonsterNames;
 
+    [Header("NPCs")]
+    public GameObject[] NPCPrefabs;
+    public string[] NPCNames;
+
     [Header("Prefabs")]
     public GameObject ExitUIPrefab;
 
@@ -76,8 +80,21 @@ public class Level : MonoBehaviour
                     GameObject prefab = MonsterPrefabs[Array.IndexOf(MonsterNames, entry.Key)];
                     for (int i = 0; i < entry.Value; i++)
                     {
-                        Instantiate(prefab, transform);
+                        GameObject monster = Instantiate(prefab, transform);
+                        monster.transform.position = instance.transform.position;
                     }
+                }
+            }
+
+            // NPCs
+            //
+            if (cell.NPCs != null)
+            {
+                foreach (string npcName in cell.NPCs)
+                {
+                    GameObject prefab = NPCPrefabs[Array.IndexOf(NPCNames, npcName)];
+                    GameObject npc = Instantiate(prefab, transform);
+                    npc.transform.position = instance.transform.position;
                 }
             }
         }

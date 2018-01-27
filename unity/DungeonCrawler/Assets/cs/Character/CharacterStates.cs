@@ -254,7 +254,10 @@ public class ConversationState : CharacterState
     public override void Enter(BaseCharacter character)
     {
         character.NavMeshAgent.isStopped = true;
-        ConversationUI.Instance.Open(character.DestinationNPC.InkStory);
+        if (!ConversationUI.Instance.gameObject.activeSelf)
+        {
+            ConversationUI.Instance.Open(character.DestinationNPC.InkStory, character.DestinationNPC);
+        }
     }
 
     public override void Update(BaseCharacter character)

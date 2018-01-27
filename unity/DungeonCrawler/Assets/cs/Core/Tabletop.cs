@@ -5,11 +5,10 @@ using DungeonCrawler.Core;
 using UnityEngine.Analytics;
 using System;
 using DungeonCrawler.Character;
+using DungeonCrawler.QuestSystem;
 
 public class Tabletop : MonoBehaviour
 {
-    [Header("Data")]
-    public PlayerParty Party;
 
     public static PlayerCharacter[] PlayerParty = new PlayerCharacter[] { };
 
@@ -21,9 +20,9 @@ public class Tabletop : MonoBehaviour
     private void Start()
     {
         PlayerParty = GameObject.FindObjectsOfType<PlayerCharacter>();
-        foreach(CharacterData character in Party.Characters)
+        foreach(PlayerCharacter player in PlayerParty)
         {
-            character.Data.OnTakenOut += new TakenOutHandler(PlayerGotTakenOut);
+            player.Character.Data.OnTakenOut += new TakenOutHandler(PlayerGotTakenOut);
         }
     }
 
@@ -43,6 +42,14 @@ public class Tabletop : MonoBehaviour
                 Debug.Log(log);
             }
         }
+
+        foreach (KeyValuePair<string, Quest> entry in Rulebook.Instance.Quests)
+        {
+            if (entry.Value.State == Quest.States.Active)
+            {
+                entry.Value.CheckProgress();
+            }
+        }
     }
 
     #endif
@@ -59,9 +66,9 @@ public class Tabletop : MonoBehaviour
     public void PlayerGotTakenOut(object sender, EventArgs e)
     {
         bool allTakenOut = true;
-        foreach(CharacterData character in Party.Characters)
+        foreach(PlayerCharacter player in PlayerParty)
         {
-            if (!character.Data.IsTakenOut)
+            if (!player.Character.Data.IsTakenOut)
             {
                 allTakenOut = false;
                 break;

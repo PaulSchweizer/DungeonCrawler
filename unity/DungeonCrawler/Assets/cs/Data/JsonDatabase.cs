@@ -13,12 +13,16 @@ public class JsonDatabase : ScriptableObject
     public TextAsset[] Weapons;
 
     [Header("Locations")]
+    public TextAsset[] CellBlueprints;
     public TextAsset[] Locations;
 
     [Header("Characters")]
     public TextAsset[] Monsters;
     public TextAsset[] PCs;
     public TextAsset[] Skills;
+
+    [Header("Quests")]
+    public TextAsset[] Quests;
 
     [Header("Global")]
     public TextAsset GlobalState;
@@ -60,6 +64,19 @@ public class JsonDatabase : ScriptableObject
             for (int i = 0; i < Weapons.Length; i++)
             {
                 data[i] = Weapons[i].text;
+            }
+            return data;
+        }
+    }
+
+    public string[] CellBlueprintsData
+    {
+        get
+        {
+            string[] data = new string[CellBlueprints.Length];
+            for (int i = 0; i < CellBlueprints.Length; i++)
+            {
+                data[i] = CellBlueprints[i].text;
             }
             return data;
         }
@@ -112,6 +129,19 @@ public class JsonDatabase : ScriptableObject
             for (int i = 0; i < Skills.Length; i++)
             {
                 data[i] = Skills[i].text;
+            }
+            return data;
+        }
+    }
+
+    public string[] QuestsData
+    {
+        get
+        {
+            string[] data = new string[Quests.Length];
+            for (int i = 0; i < Quests.Length; i++)
+            {
+                data[i] = Quests[i].text;
             }
             return data;
         }

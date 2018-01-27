@@ -8,8 +8,7 @@ using DungeonCrawler.Character;
 
 public class PlayerUI : MonoBehaviour
 {
-    [Header("Data")]
-    public PlayerParty Party;
+    public static PlayerUI Instance;
 
     [Header("HUD")]
     public GameObject MenuPanel;
@@ -27,31 +26,35 @@ public class PlayerUI : MonoBehaviour
 
     protected void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         MenuPanel.SetActive(false);
-    }
-
-    public void Start()
-    {
-        Initialize();
     }
 
     public void Initialize()
     {
-        foreach (CharacterData character in Party.Characters)
+        foreach (PlayerCharacter player in PlayerCharacter.PlayerCharacters)
         {
             // Connect signals
-            character.Data.OnTakenOut += new TakenOutHandler(PlayerGotTakenOut);
+            player.Character.Data.OnTakenOut += new TakenOutHandler(PlayerGotTakenOut);
 
             // Add Portraits for each Character
             RectTransform portrait = GameObject.Instantiate<RectTransform>(CharacterPortrait, PortraitsPanel.transform);
             portrait.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 115);
+            portrait.GetComponent<CharacterPortraitUI>().Initialize(player);
 
             // Initialize the ItemView
-            InventoryView.InitFromInventory(character.Data.Inventory);
+            InventoryView.InitFromInventory(player.Character.Data.Inventory);
 
             // Connect Signals
-            character.Data.Inventory.OnItemAdded += new ItemAddedHandler(ItemAdded);
-            character.Data.Inventory.OnItemRemoved += new ItemRemovedHandler(ItemRemoved);
+            player.Character.Data.Inventory.OnItemAdded += new ItemAddedHandler(ItemAdded);
+            player.Character.Data.Inventory.OnItemRemoved += new ItemRemovedHandler(ItemRemoved);
         }
     }
 
@@ -68,12 +71,12 @@ public class PlayerUI : MonoBehaviour
        
     public void ItemAdded(object sender, EventArgs e)
     {
-        InventoryView.InitFromInventory(Party.Characters[0].Data.Inventory);
+        InventoryView.InitFromInventory(PlayerCharacter.PlayerCharacters[0].Character.Data.Inventory);
     }
 
     public void ItemRemoved(object sender, EventArgs e)
     {
-        InventoryView.InitFromInventory(Party.Characters[0].Data.Inventory);
+        InventoryView.InitFromInventory(PlayerCharacter.PlayerCharacters[0].Character.Data.Inventory);
     }
 
     #endregion
@@ -83,9 +86,9 @@ public class PlayerUI : MonoBehaviour
     public void PlayerGotTakenOut(object sender, EventArgs e)
     {
         bool allTakenOut = true;
-        foreach (CharacterData character in Party.Characters)
+        foreach (PlayerCharacter player in PlayerCharacter.PlayerCharacters)
         {
-            if (!character.Data.IsTakenOut)
+            if (!player.Character.Data.IsTakenOut)
             {
                 allTakenOut = false;
                 break;
