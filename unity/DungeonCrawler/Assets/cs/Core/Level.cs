@@ -27,6 +27,9 @@ public class Level : MonoBehaviour
     public GameObject[] NPCPrefabs;
     public string[] NPCNames;
 
+    [Header("Items")]
+    public GameObject LootPrefab;
+
     [Header("Prefabs")]
     public GameObject ExitUIPrefab;
 
@@ -96,6 +99,16 @@ public class Level : MonoBehaviour
                     GameObject npc = Instantiate(prefab, transform);
                     npc.transform.position = instance.transform.position;
                 }
+            }
+
+            // Items
+            //
+            if (cell.Items.Count > 0)
+            {
+                Loot lootPrefab = Instantiate(LootPrefab, transform).GetComponent<Loot>();
+                lootPrefab.transform.position = instance.transform.position;
+                lootPrefab.Items = cell.Items;
+                lootPrefab.RemoveItemsOnCollect = true;
             }
         }
 

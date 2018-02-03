@@ -28,7 +28,7 @@ public class MainController : MonoBehaviour
     public GameObject PlayerCharacterPrefab;
 
     [Header("Internal Data")]
-    public string CurrentSceneName;
+    // public string CurrentSceneName;
     public string NextSceneName;
 
     // Internals
@@ -127,20 +127,18 @@ public class MainController : MonoBehaviour
 
     public static void SwitchLocation(string location)
     {
-        // 1. Make the PlayerCharacters and the Camera undeletable
+        // 1. Make the PlayerCharacters undeletable
         foreach(PlayerCharacter pc in FindObjectsOfType<PlayerCharacter>())
         {
             pc.gameObject.transform.SetParent(null);
             pc.ChangeState(pc.Idle);
             DontDestroyOnLoad(pc.gameObject);
         }
-        //DontDestroyOnLoad(FindObjectOfType<CameraRig>().gameObject);
 
         if (location == "Worldmap")
         {
             // Get the current location to determine the position on the map 
             Instance.NextSceneName = "Worldmap";
-
             Instance._locationToLoad = location;
             Instance._loadAction = LoadAction.LoadWorldmap;
         }
@@ -301,6 +299,11 @@ public class MainController : MonoBehaviour
             pc.gameObject.transform.position = destinationPosition;
             camera.Target = pc.transform;
         }
+
+        // Initialize UIs
+        PlayerUI.Instance.Initialize();
+        GameOverUI.Instance.Initialize();
+        HUDMessageUI.Instance.Initialize();
     }
 
     private void LoadWorldmap()

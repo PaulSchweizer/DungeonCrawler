@@ -178,19 +178,34 @@ QuestSystem:
    ✔ Character.Update -> UpdateActiveQuests @done (18-01-27 19:02)
   ✔ CharacterData is not the same, does it come from the ScriptableObject??? WTF did I do here? @done (18-01-27 20:08)
  ✔ Delete PlayerParty ScriptableObject ! @done (18-01-27 21:18)
-
   ☐ HUD:
    ✔ Name @done (18-01-27 19:19)
    ✔ Life bar @done (18-01-27 19:19)
    ✔ Message board in the HUD @done (18-01-27 23:08)
-   ☐ Image
-
+   ☐ Image of the Char
   ☐ Connect signals
    ☐ Send other Values through Signals
-    ☐ Quest.Started(Name)
+    ✔ Quest.Started(Name) @done (18-01-28 12:36)
+
+Continue here:
+  ✘ On LocationSwitch Serialize the location into the Rulebook @cancelled (18-02-03 16:38)
+  ✔ Verify that the Rulebook is DontDestroyOnLoad @done (18-02-03 16:41)
+  ✔ When picking up loot from Location, delete it from the location @done (18-02-03 17:15)
+  ✔ Verify that switch from Worldmap works @done (18-02-03 17:29)
+  ✔ Cleanup @done (18-02-03 17:29)
+  ☐ Remove the ScriptableObjects
+
+  ☐ Check to unlink all delegate signals that are ever linked
+
+  ☐ Serialize the Locations as well, when saving the Game
+  ☐ Load locations from SavedGameState
 
 
 
+  ☐ Make Item findable
+   ☐ Place Items on location
+   ☐ Loot Item
+   ☐ Set GlobalState.Variable
 
 
 
@@ -201,6 +216,7 @@ QuestSystem:
 
 
 
+ ☐ Reconfirm the unittests
 
 
 

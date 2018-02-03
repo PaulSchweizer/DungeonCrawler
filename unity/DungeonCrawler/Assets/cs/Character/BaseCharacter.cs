@@ -10,9 +10,6 @@ using DungeonCrawler.Utility;
 
 public class BaseCharacter : MonoBehaviour
 {
-    [Header("Data")]
-    public CharacterData Character;
-
     [Header("References")]
     public UnityEngine.AI.NavMeshAgent NavMeshAgent;
 
@@ -39,12 +36,44 @@ public class BaseCharacter : MonoBehaviour
     public Slider PhysicalStressSlider;
     public Slider AttackSlider;
 
+    [Header("Data")]
+    public Character Data;
+    private TextAsset JsonFile;
+    private string _jsonStringData;
+    public string JsonData
+    {
+        get
+        {
+            if (_jsonStringData != null)
+            {
+                return _jsonStringData;
+            }
+            else if (JsonFile != null)
+            {
+                return JsonFile.text;
+            }
+            else
+            {
+                throw new Exception("Missing json data for character initialization!");
+            }
+        }
+        set
+        {
+            _jsonStringData = value;
+        }
+    }
+
     public virtual void Awake()
     {
+        Data = Character.DeserializeFromJson(JsonData);
+        if (Data.Type != "Player")
+        {
+            GameMaster.RegisterCharacter(Data);
+        }
         // Unity 
-        tag = Character.Data.Type;
+        tag = Data.Type;
         CurrentState = Idle;
-        NavMeshAgent.radius = Character.Data.Radius;
+        NavMeshAgent.radius = Data.Radius;
         ResetUI();
 
         // Connect Events

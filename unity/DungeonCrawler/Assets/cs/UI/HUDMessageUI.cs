@@ -28,8 +28,19 @@ public class HUDMessageUI : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
         gameObject.SetActive(false);
+    }
+
+    public void OnDestroy()
+    {
+        Instance = null;
+        foreach (KeyValuePair<string, Quest> entry in Rulebook.Instance.Quests)
+        {
+            entry.Value.OnQuestStarted -= new QuestStartedHandler(OnQuestStarted);
+            entry.Value.OnQuestCompleted -= new QuestCompletedHandler(OnQuestCompleted);
+        }
     }
 
     public void Initialize()
@@ -83,14 +94,14 @@ public class HUDMessageUI : MonoBehaviour
 
     #region Events
 
-    private void OnQuestStarted(object sender, EventArgs e)
+    private void OnQuestStarted(object sender, QuestStatusChangedEventArgs e)
     {
-        PushMessage(new MessageStruct("New Quest", "TODO: QuestName"));
+        PushMessage(new MessageStruct("New Quest", e.Quest.Name));
     }
 
-    private void OnQuestCompleted(object sender, EventArgs e)
+    private void OnQuestCompleted(object sender, QuestStatusChangedEventArgs e)
     {
-        PushMessage(new MessageStruct("Quest Completed", "TODO: QuestName"));
+        PushMessage(new MessageStruct("Quest Completed", e.Quest.Name));
     }
 
     #endregion

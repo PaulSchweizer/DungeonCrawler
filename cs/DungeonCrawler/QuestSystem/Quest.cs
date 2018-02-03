@@ -9,8 +9,8 @@ namespace DungeonCrawler.QuestSystem
 {
     #region Delegates
 
-    public delegate void QuestStartedHandler(object sender, EventArgs e);
-    public delegate void QuestCompletedHandler(object sender, EventArgs e);
+    public delegate void QuestStartedHandler(object sender, QuestStatusChangedEventArgs e);
+    public delegate void QuestCompletedHandler(object sender, QuestStatusChangedEventArgs e);
     public delegate void ObjectiveCompletedHandler(object sender, EventArgs e);
 
     #endregion
@@ -35,7 +35,7 @@ namespace DungeonCrawler.QuestSystem
         public void Start()
         {
             State = States.Active;
-            OnQuestStarted?.Invoke(this, null);
+            OnQuestStarted?.Invoke(this, new QuestStatusChangedEventArgs(this));
         }
 
         public void CheckProgress()
@@ -60,7 +60,7 @@ namespace DungeonCrawler.QuestSystem
         public void CompleteSuccessfully()
         {
             State = States.Completed;
-            OnQuestCompleted?.Invoke(this, null);
+            OnQuestCompleted?.Invoke(this, new QuestStatusChangedEventArgs(this));
         }
 
         #region Serialization
@@ -87,5 +87,15 @@ namespace DungeonCrawler.QuestSystem
 
         #endregion
 
+    }
+
+    public class QuestStatusChangedEventArgs : EventArgs
+    {
+        public Quest Quest;
+        
+        public QuestStatusChangedEventArgs(Quest quest)
+        {
+            Quest = quest;
+        }
     }
 }

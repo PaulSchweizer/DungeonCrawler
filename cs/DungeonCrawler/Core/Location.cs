@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace DungeonCrawler.Core
 {
@@ -27,6 +28,7 @@ namespace DungeonCrawler.Core
         public string Destination;
         public Dictionary<string, int> Monsters;
         public string[] NPCs;
+        public Dictionary<string, int> Items;
         public Dictionary<string, int[]> Decorations;
 
         public Cell()
@@ -72,6 +74,22 @@ namespace DungeonCrawler.Core
                 cell.Tags = tags.ToArray();
             }
             return location;
+        }
+
+        public static string SerializeToJson(Location location)
+        {
+            string json = JsonConvert.SerializeObject(location, Formatting.Indented,
+                new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+
+            using (var stringReader = new StringReader(json))
+            using (var stringWriter = new StringWriter())
+            {
+                var jsonReader = new JsonTextReader(stringReader);
+                var jsonWriter = new JsonTextWriter(stringWriter) { Formatting = Formatting.Indented };
+                jsonWriter.Indentation = 4;
+                jsonWriter.WriteToken(jsonReader);
+                return stringWriter.ToString();
+            }
         }
 
         public int[] BBox
