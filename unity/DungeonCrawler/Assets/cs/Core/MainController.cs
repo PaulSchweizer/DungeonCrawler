@@ -256,7 +256,7 @@ public class MainController : MonoBehaviour
         {
             GameObject player = Instantiate(PlayerCharacterPrefab);
             PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
-            playerCharacter.Character.Data = character;
+            playerCharacter.Data = character;
             playerCharacter.transform.position = new Vector3(character.Transform.Position.X, 0, character.Transform.Position.Y);
             playerCharacter.transform.Rotate(new Vector3(0, character.Transform.Rotation, 0), Space.World);
             camera.Target = player.transform;

@@ -14,7 +14,7 @@ public class TestCharacter {
         string json = File.ReadAllText(path);
         Character character = Character.DeserializeFromJson(json);
         PlayerCharacter pc = GameObject.FindObjectOfType<PlayerCharacter>();
-        pc.Character.Data = character;
+        pc.Data = character;
 	}
 
 	// A UnityTest behaves like a coroutine in PlayMode

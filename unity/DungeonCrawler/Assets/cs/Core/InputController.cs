@@ -87,11 +87,11 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     private void HitEnemy(RaycastHit hit)
     {
         BaseCharacter enemy = hit.transform.GetComponent<BaseCharacter>();
-        Vector3 point = new Vector3(enemy.Character.Data.Transform.Position.X, 0, enemy.Character.Data.Transform.Position.Y); 
+        Vector3 point = new Vector3(enemy.Data.Transform.Position.X, 0, enemy.Data.Transform.Position.Y); 
         for (int i = 0; i < Tabletop.PlayerParty.Length; i++)
         {
             PlayerCharacter pc = Tabletop.PlayerParty[i];
-            if (!pc.Character.Data.ScheduledAttack.IsActive)
+            if (!pc.Data.ScheduledAttack.IsActive)
             {
                 Vector3 from_pc_to_enemy = point - pc.transform.position;
                 float mag = from_pc_to_enemy.magnitude;

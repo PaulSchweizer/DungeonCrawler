@@ -7,6 +7,14 @@ using System.IO;
 namespace DungeonCrawler.Core
 {
 
+    public struct Event
+    {
+        public enum Types { OnItemsPickedUp };
+        public Types Type;
+        public string Condition;
+        public bool Value;
+    }
+
     public class CellBlueprint
     {
         public string Type;
@@ -30,6 +38,7 @@ namespace DungeonCrawler.Core
         public string[] NPCs;
         public Dictionary<string, int> Items;
         public Dictionary<string, int[]> Decorations;
+        public Event[] Events;
 
         public Cell()
         {

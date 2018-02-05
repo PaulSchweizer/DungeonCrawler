@@ -28,7 +28,7 @@ public class GameOverUI : MonoBehaviour
     {
         foreach (PlayerCharacter player in PlayerCharacter.PlayerCharacters)
         {
-            player.Character.Data.OnTakenOut += new TakenOutHandler(PlayerGotTakenOut);
+            player.Data.OnTakenOut += new TakenOutHandler(PlayerGotTakenOut);
         }
     }
 
@@ -43,7 +43,7 @@ public class GameOverUI : MonoBehaviour
         bool allTakenOut = true;
         foreach (PlayerCharacter player in PlayerCharacter.PlayerCharacters)
         {
-            if (!player.Character.Data.IsTakenOut)
+            if (!player.Data.IsTakenOut)
             {
                 allTakenOut = false;
                 break;

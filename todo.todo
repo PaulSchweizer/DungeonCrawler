@@ -35,7 +35,6 @@ Conversation System:
  ✔ Start the Conversation of the NPC @done (17-10-22 22:59)
  ✔ Exit the conversation @done (17-10-27 21:36)
  ✔ put state on github @done (17-10-28 18:04)
-<<<<<<< HEAD
  ✔ Only the forward vector is necessary in the AttackShape @done (17-10-30 19:13)
  ✔ Use the distance in the check as well @done (17-10-30 19:34)
  ✔ Change GridPoint to (Float)Point @done (17-10-31 22:45)
@@ -178,38 +177,53 @@ QuestSystem:
    ✔ Character.Update -> UpdateActiveQuests @done (18-01-27 19:02)
   ✔ CharacterData is not the same, does it come from the ScriptableObject??? WTF did I do here? @done (18-01-27 20:08)
  ✔ Delete PlayerParty ScriptableObject ! @done (18-01-27 21:18)
-  ☐ HUD:
+  ✔ HUD: @done (18-02-03 18:20)
    ✔ Name @done (18-01-27 19:19)
    ✔ Life bar @done (18-01-27 19:19)
    ✔ Message board in the HUD @done (18-01-27 23:08)
-   ☐ Image of the Char
-  ☐ Connect signals
-   ☐ Send other Values through Signals
+  ✔ Connect signals @done (18-02-03 18:18)
+   ✔ Send other Values through Signals @done (18-02-03 18:18)
     ✔ Quest.Started(Name) @done (18-01-28 12:36)
-
-Continue here:
   ✘ On LocationSwitch Serialize the location into the Rulebook @cancelled (18-02-03 16:38)
   ✔ Verify that the Rulebook is DontDestroyOnLoad @done (18-02-03 16:41)
   ✔ When picking up loot from Location, delete it from the location @done (18-02-03 17:15)
   ✔ Verify that switch from Worldmap works @done (18-02-03 17:29)
   ✔ Cleanup @done (18-02-03 17:29)
-  ☐ Remove the ScriptableObjects
+  ✔ Remove the ScriptableObjects @done (18-02-03 18:17)
+  ✔ Loot can't be clicked on, make it like terrain @done (18-02-04 08:46)
+  ✔ Sliders for health are not locked @done (18-02-04 08:47)
+  ✔ Make Item findable @done (18-02-04 08:47)
+   ✔ Place Items on location @done (18-02-03 18:20)
+   ✔ Loot Item @done (18-02-03 18:20)
+   ✔ Set GlobalState.Variable @done (18-02-04 08:47)
+ ✔ CharacterData to CharacterData, delete the ScriptableObject? @done (18-02-04 08:48)
+ ✔ Implement Events @done (18-02-03 22:36)
+  ✔ On Cells @done (18-02-03 22:36)
+   ☐ Add them to Cells and wire them up:
+    ✔ OnItemPickedUp @done (18-02-03 22:36)
+    ☐ OnCellEntered
+    ☐ OnEnemyDefeated
+    ☐ Delete them once they have been triggered once
 
+
+  ☐ Image of the Char in HUD
   ☐ Check to unlink all delegate signals that are ever linked
-
   ☐ Serialize the Locations as well, when saving the Game
   ☐ Load locations from SavedGameState
 
 
+Bug:
+ ✔ 1. Switch Location @done (18-02-05 22:14)
+  ✔ 2. Then switch back and pick up Item @done (18-02-05 22:14)
+ ☐ The ui for displaying the end of the quest does not appear a second time?
+  ☐ Is it the event?
+  ✔ Is it the menu - no @done (18-02-05 22:15)
 
-  ☐ Make Item findable
-   ☐ Place Items on location
-   ☐ Loot Item
-   ☐ Set GlobalState.Variable
 
 
+  ☐ data_pipeline: cleanup the directory before downloading
 
-   ☐ Quest log in the UI -> Have a print statement
+   ☐ Quest log in the UI
     ☐ Add Every Quest as a GlobalState Variable "Name": Quest.Completed
     ☐ Have an overview of all used GlobalState variables
 
@@ -255,20 +269,17 @@ Bugs:
  ☐ On Start, Player is not inside level hierarchy, but when switching location he is?
  ☐ Load Player Position on Initial Game
 
- ☐ CharacterData to CharacterData, delete the ScriptableObject?
 
  ☐ MainController
   ✔ NewGame() @done (17-12-23 19:52)
    ✔ Load the default Game content @done (17-12-23 19:52)
   ✔ Load Game(string name) @done (18-01-14 19:48)
    ✔ Load the Saved Game @done (18-01-14 19:48)
-
   ☐ Level Switch
     ✔ Exit Points @done (18-01-14 19:48)
     ☐ Same as "Load Game"
     ✔ Except that the PCs are being kept in memory, everything else is being deleted @done (18-01-14 19:48)
-
- ☐ SaveGame()
+  ☐ SaveGame()
 
 
 
@@ -293,60 +304,6 @@ Bugs:
  ✘ Is the shipped Resource.GameState even necessary? @cancelled (18-01-14 19:49)
 
 
-
-Quest
-{
-"Name": "FirstQuest",
-"Description": "Solve the quest!",
-"Requirements": {
-"Condition1": true,
-"Condition2": false
-},
-"Status": "Inactive|Active|Success",
-"XP": 100,
-"Objectives": [
-{
-"Name": "Find stuff",
-"Type": "FindItems",
-"ItemsToFind": {
-"ItemA": 12,
-"ItemB": 2
-},
-"Status": false
-},
-{
-"Name": "Do something",
-"Type": "Conditional",
-"Conditions": {
-"Condition3": true
-},
-"Status": false
-}
-]
-}
-Quest.StartQuest()
-Quest.CheckProgress()
-Quest.CompleteQuestSuccessfully()
-Objective.CompleteObjective()
-
-OnQuestStarted
-OnQuestSuccess
-OnObjectiveSuccess
-Update:
-for quest in quests if quast.Status == Active:
-quest.CheckProgress() ->
-for objective in Quest.Objectives:
-objective.CheckConditions()
-
-
-
-
-
-
-
-
-
-
  ☐ Only Lists not Arrays wherever applicable
  ☐ GameMaster.LoadGame(GameState.json)
    ☐ GameState: Characters, Location, GobalValues
@@ -364,35 +321,35 @@ Simple Code Refactor:
  ☐ Change the rotation system for the other states as well, take it from MoveToNPC
 
 Unity:
- ☐ Game Startup Procedure -> Tabletop
-  ☐ Init Rulebook
-  ☐ If New Game
-   ☐ Load Default Environment
-  ☐ If Loads
-   ☐ Load Saved Game State
+ ✔ Game Startup Procedure -> Tabletop @done (18-02-04 08:57)
+  ✔ Init Rulebook @done (18-02-04 08:57)
+  ✔ If New Game @done (18-02-04 08:57)
+   ✔ Load Default Environment @done (18-02-04 08:57)
+  ✔ If Loads @done (18-02-04 08:57)
+   ✔ Load Saved Game State @done (18-02-04 08:57)
+ ✔ "CharacterData" replace with "Data"? @done (18-02-04 09:18)
  ☐ Enemy AI
   ✘ ChasePersistency in sec @cancelled (17-11-04 21:30)
   ☐ Trigger them when being attacked
  ☐ Load Level in Editor
  ☐ Shorten names of classes, e.g. NPCCharacter to NPC
- ☐ "CharacterData" replace with "Data"?
  ☐ Show a damage number for the Attack
  ☐ Place the Characters on the Grid properly, find a good spot for each
  ☐ When moving slider: SendMessage cannot be called during Awake, CheckConsistency, or OnValidate
-UnityEngine.GUIUtility:ProcessEvent(Int32, IntPtr)
+  UnityEngine.GUIUtility:ProcessEvent(Int32, IntPtr)
  ☐ Visualize the currently active tags
  ☐ In InputController, use the list of enemies to detect hit
  ☐ Party.MainCharacter
  ☐ Character states: When clicking on char repeatedly, do not re init the states, just keep on turning
 
 Inkle:
+ ✔ Update the image @done (18-02-04 09:18)
+ ✔ Attach callbacks @done (18-02-04 09:18)
+ ✔ Use the tags @done (18-02-04 09:18)
  ☐ Stepwise through the dialog
  ☐ Show the response
- ☐ Update the image
  ☐ Set to Conversation Mode
    ☐ Block everything until conversation is ending
- ☐ Attach callbacks
- ☐ Use the tags
 
 Aspect:
  ☐ Levels of Aspects
@@ -400,7 +357,6 @@ Aspect:
  ☐ Make possible to add Aspects to other values too, e.g. Range of Attack
 
 Character:
-
  ☐ Set default values for AttackShape
  ☐ Reverse PhysicalStress -> empty the slider bar
  ☐ Character.Transform -> AttackShape rotate until faces the character to attack

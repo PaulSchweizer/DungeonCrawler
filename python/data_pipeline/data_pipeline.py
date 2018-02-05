@@ -55,7 +55,8 @@ def download_locations():
                 "Type": cell["Type"],
                 "Monsters": cell.get("Monsters", {}),
                 "NPCs": cell.get("NPCs", []),
-                "Items": cell.get("Items", {})
+                "Items": cell.get("Items", {}),
+                "Events": cell.get("Events", [])
             }
             if "Destination" in cell.keys():
                 location["Cells"][i]["Destination"] = cell["Destination"]

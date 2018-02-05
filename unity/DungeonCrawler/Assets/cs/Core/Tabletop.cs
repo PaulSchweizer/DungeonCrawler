@@ -22,7 +22,7 @@ public class Tabletop : MonoBehaviour
         PlayerParty = GameObject.FindObjectsOfType<PlayerCharacter>();
         foreach(PlayerCharacter player in PlayerParty)
         {
-            player.Character.Data.OnTakenOut += new TakenOutHandler(PlayerGotTakenOut);
+            player.Data.OnTakenOut += new TakenOutHandler(PlayerGotTakenOut);
         }
     }
 
@@ -68,7 +68,7 @@ public class Tabletop : MonoBehaviour
         bool allTakenOut = true;
         foreach(PlayerCharacter player in PlayerParty)
         {
-            if (!player.Character.Data.IsTakenOut)
+            if (!player.Data.IsTakenOut)
             {
                 allTakenOut = false;
                 break;

@@ -17,16 +17,16 @@ class CharacterPortraitUI : MonoBehaviour
     public void Initialize(PlayerCharacter player)
     {
         Player = player;
-        Name.text = Player.Character.Data.Name;
-        PhysicalStress.minValue = Player.Character.Data.PhysicalStress.MinValue;
-        PhysicalStress.maxValue = Player.Character.Data.PhysicalStress.MaxValue;
-        PhysicalStress.value = Player.Character.Data.PhysicalStress.Value;
-        Player.Character.Data.OnPhysicalStressChanged += new PhysicalStressChangedHandler(PhysicalStressChanged);
+        Name.text = Player.Data.Name;
+        PhysicalStress.minValue = Player.Data.PhysicalStress.MinValue;
+        PhysicalStress.maxValue = Player.Data.PhysicalStress.MaxValue;
+        PhysicalStress.value = Player.Data.PhysicalStress.Value;
+        Player.Data.OnPhysicalStressChanged += new PhysicalStressChangedHandler(PhysicalStressChanged);
     }
 
     public void PhysicalStressChanged(object sender, EventArgs e)
     {
-        PhysicalStress.value = Player.Character.Data.PhysicalStress.Value;
+        PhysicalStress.value = Player.Data.PhysicalStress.Value;
     }
 }
 

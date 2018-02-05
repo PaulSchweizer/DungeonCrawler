@@ -10,7 +10,6 @@ public class EnemyCharacter : BaseCharacter
     {
         Idle = EnemyIdleState.Instance;
         Chase = EnemyChaseState.Instance;
-        Character = Instantiate(Character);
         base.Awake();
     }
 }
@@ -34,7 +33,7 @@ public class EnemyIdleState : CharacterState
     {
         foreach (PlayerCharacter pc in Tabletop.PlayerParty)
         {
-            if (Vector3.Distance(character.transform.position, pc.transform.position) < character.Character.Data.AlertnessRadius && !pc.Character.Data.IsTakenOut)
+            if (Vector3.Distance(character.transform.position, pc.transform.position) < character.Data.AlertnessRadius && !pc.Data.IsTakenOut)
             {
                 // Angle Rotation 
                 Vector3 pos = new Vector3(character.transform.position.x, 0, character.transform.position.z);
@@ -68,7 +67,7 @@ public class EnemyChaseState : CharacterState
 
     public override void Update(BaseCharacter character)
     {
-        if (character.Character.Data.EnemiesInAttackShape().Length > 0)
+        if (character.Data.EnemiesInAttackShape().Length > 0)
         {
             character.ChangeState(character.Attack);
             return;
@@ -77,7 +76,7 @@ public class EnemyChaseState : CharacterState
         {
             foreach (PlayerCharacter pc in Tabletop.PlayerParty)
             {
-                if (Vector3.Distance(character.transform.position, pc.transform.position) < character.Character.Data.AlertnessRadius && !pc.Character.Data.IsTakenOut)
+                if (Vector3.Distance(character.transform.position, pc.transform.position) < character.Data.AlertnessRadius && !pc.Data.IsTakenOut)
                 {
                     Vector3 pos = new Vector3(character.transform.position.x, 0, character.transform.position.z);
                     Vector3 rotation = Vector3.RotateTowards(character.transform.forward, pc.transform.position - pos, 2 * Mathf.PI, 1);

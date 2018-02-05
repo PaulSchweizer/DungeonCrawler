@@ -109,7 +109,30 @@ public class Level : MonoBehaviour
                 lootPrefab.transform.position = instance.transform.position;
                 lootPrefab.Items = cell.Items;
                 lootPrefab.RemoveItemsOnCollect = true;
+                foreach (DungeonCrawler.Core.Event ev in cell.Events)
+                {
+                    if(ev.Type == DungeonCrawler.Core.Event.Types.OnItemsPickedUp)
+                    {
+                        lootPrefab.GlobalStateCondition = ev.Condition;
+                        lootPrefab.GlobalStateValue = ev.Value;
+                        break;
+                    }
+                }
             }
+
+            // Events
+            //
+            //if (cell.Events != null)
+            //{
+            //    foreach (KeyValuePair<string, string> entry in cell.Events)
+            //    {
+            //        Debug.Log(string.Format("Add Event {0} - {1}", entry.Key, entry.Value));
+
+            //        if (entry.Key == "OnItemPickedUp")
+            //        {
+            //        }
+            //    }
+            //}
         }
 
         NPCCharacter[] npcs = GameObject.FindObjectsOfType<NPCCharacter>();

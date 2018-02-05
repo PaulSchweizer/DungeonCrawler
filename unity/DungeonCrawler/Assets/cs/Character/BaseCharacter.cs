@@ -37,9 +37,10 @@ public class BaseCharacter : MonoBehaviour
     public Slider AttackSlider;
 
     [Header("Data")]
+    public TextAsset JsonFile;
     public Character Data;
-    private TextAsset JsonFile;
     private string _jsonStringData;
+
     public string JsonData
     {
         get
@@ -70,6 +71,7 @@ public class BaseCharacter : MonoBehaviour
         {
             GameMaster.RegisterCharacter(Data);
         }
+
         // Unity 
         tag = Data.Type;
         CurrentState = Idle;
@@ -77,9 +79,9 @@ public class BaseCharacter : MonoBehaviour
         ResetUI();
 
         // Connect Events
-        Character.Data.OnPhysicalStressChanged += new PhysicalStressChangedHandler(PhysicalStressChanged);
-        Character.Data.OnAttackScheduled += new AttackScheduledHandler(AttackScheduled);
-        Character.Data.OnTakenOut += new TakenOutHandler(GotTakenOut);
+        Data.OnPhysicalStressChanged += new PhysicalStressChangedHandler(PhysicalStressChanged);
+        Data.OnAttackScheduled += new AttackScheduledHandler(AttackScheduled);
+        Data.OnTakenOut += new TakenOutHandler(GotTakenOut);
     }
 
     private void Start()
@@ -90,9 +92,9 @@ public class BaseCharacter : MonoBehaviour
 
     public virtual void Update()
     {
-        Character.Data.Transform.Position.X = transform.position.x;
-        Character.Data.Transform.Position.Y = transform.position.z;
-        Character.Data.Transform.Rotation = (float)((Math.PI / 180f) * (transform.eulerAngles.y - 90));
+        Data.Transform.Position.X = transform.position.x;
+        Data.Transform.Position.Y = transform.position.z;
+        Data.Transform.Rotation = (float)((Math.PI / 180f) * (transform.eulerAngles.y - 90));
         CurrentState.Update(this);
     }
 
@@ -138,7 +140,7 @@ public class BaseCharacter : MonoBehaviour
             if (other.gameObject.tag == "Player")
             {
                 BaseCharacter character = other.gameObject.GetComponent<BaseCharacter>();
-                character.Character.Data.Inventory += Character.Data.Inventory;
+                character.Data.Inventory += Data.Inventory;
                 isLoot = false;
                 gameObject.SetActive(false);
             }
@@ -149,6 +151,7 @@ public class BaseCharacter : MonoBehaviour
 
 #if UNITY_EDITOR
 
+    [Header("Debug")]
     public Color DebugColor;
 
     void OnDrawGizmos()
@@ -159,34 +162,34 @@ public class BaseCharacter : MonoBehaviour
 
             // Position
             Gizmos.color = DebugColor;
-            Vector3 center = new Vector3(Character.Data.Transform.Position.X, 0, Character.Data.Transform.Position.Y);
+            Vector3 center = new Vector3(Data.Transform.Position.X, 0, Data.Transform.Position.Y);
             Vector3 size = new Vector3(1, 0.01f, 1);
             Gizmos.DrawCube(center, size);
 
             // AttackShape
             Gizmos.color = Color.red;
-            foreach(AttackShapeMarker shape in Character.Data.AttackShape)
+            foreach(AttackShapeMarker shape in Data.AttackShape)
             {
-                Vector mapped = Character.Data.Transform.Map(shape.Transform.Position);
+                Vector mapped = Data.Transform.Map(shape.Transform.Position);
                 center = new Vector3(mapped.X, 0.01f, mapped.Y);
                 size = new Vector3(1, 0.01f, 1);
                 DebugExtension.DebugCircle(center, Gizmos.color, shape.Radius);
 
                 //shape.Transform.Rotation
                 float angle = shape.Angle * Mathf.Rad2Deg;
-                Vector3 to = Quaternion.AngleAxis(angle / 2 + Character.Data.Transform.Rotation * Mathf.Rad2Deg, Vector3.up) * Vector3.left;
+                Vector3 to = Quaternion.AngleAxis(angle / 2 + Data.Transform.Rotation * Mathf.Rad2Deg, Vector3.up) * Vector3.left;
                 Gizmos.DrawLine(center, center + to);
-                to = Quaternion.AngleAxis(-angle / 2 + Character.Data.Transform.Rotation * Mathf.Rad2Deg, Vector3.up) * Vector3.left;
+                to = Quaternion.AngleAxis(-angle / 2 + Data.Transform.Rotation * Mathf.Rad2Deg, Vector3.up) * Vector3.left;
                 Gizmos.DrawLine(center, center + to);
 
                 // Forward
-                shape.Apply(Character.Data.Transform.Rotation);
+                shape.Apply(Data.Transform.Rotation);
                 to = new Vector3(shape.Forward[0], 0, shape.Forward[1]);
                 Gizmos.DrawLine(center, center + to);
             }
 
             // AlertnessRadius
-            DebugExtension.DebugCircle(transform.position, Gizmos.color, Character.Data.AlertnessRadius);
+            DebugExtension.DebugCircle(transform.position, Gizmos.color, Data.AlertnessRadius);
 
             // States
             DebugExtension.DebugCircle(transform.position, CurrentState.DebugColor, NavMeshAgent.radius);
@@ -203,15 +206,15 @@ public class BaseCharacter : MonoBehaviour
 
     private void ResetUI()
     {
-        PhysicalStressSlider.maxValue = Character.Data.PhysicalStress.MaxValue;
-        PhysicalStressSlider.minValue = Character.Data.PhysicalStress.MinValue;
-        PhysicalStressSlider.value = Character.Data.PhysicalStress.Value;
+        PhysicalStressSlider.maxValue = Data.PhysicalStress.MaxValue;
+        PhysicalStressSlider.minValue = Data.PhysicalStress.MinValue;
+        PhysicalStressSlider.value = Data.PhysicalStress.Value;
         AttackSlider.value = 0;
     }
 
     private void PhysicalStressChanged(object sender, EventArgs e)
     {
-        PhysicalStressSlider.value = Character.Data.PhysicalStress.Value;
+        PhysicalStressSlider.value = Data.PhysicalStress.Value;
     }
 
     private void AttackScheduled(object sender, EventArgs e)
