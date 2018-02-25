@@ -80,8 +80,9 @@ public class PlayerUI : MonoBehaviour
 
     #region Updates
        
-    public void ItemAdded(object sender, EventArgs e)
+    public void ItemAdded(object sender, ItemAddedEventArgs e)
     {
+        HUDMessageUI.Instance.PushMessage(new MessageStruct("Found Item", string.Format("{0} {1}", e.Amount, e.Item.Name)));
         InventoryView.InitFromInventory(PlayerCharacter.PlayerCharacters[0].Data.Inventory);
     }
 

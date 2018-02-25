@@ -125,7 +125,7 @@ def download_globalstate():
 
 def download_rulebook():
     rulebook = get("?Game={game}&Table=Rulebook".format(game=game))
-    save("", "Rubelbook", rulebook[0])
+    save("", "Rulebook", rulebook[0])
 
 
 def get(request):

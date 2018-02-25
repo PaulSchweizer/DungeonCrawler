@@ -200,10 +200,16 @@ QuestSystem:
  ✔ Implement Events @done (18-02-03 22:36)
   ✔ On Cells @done (18-02-03 22:36)
    ☐ Add them to Cells and wire them up:
-    ✔ OnItemPickedUp @done (18-02-03 22:36)
+    ✔ OnItemPickedUp @done (18-02-24 21:41)
+     ✔ change input params for event @done (18-02-24 21:41)
     ☐ OnCellEntered
     ☐ OnEnemyDefeated
     ☐ Delete them once they have been triggered once
+
+
+ ☐ Image of Item in UI
+  ☐ use the new struct approach in the JsonDatabase
+
 
   ☐ Image of the Char in HUD
   ☐ Check to unlink all delegate signals that are ever linked

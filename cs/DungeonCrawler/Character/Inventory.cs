@@ -10,7 +10,7 @@ namespace DungeonCrawler.Character
 
     #region Delegates
 
-    public delegate void ItemAddedHandler(object sender, EventArgs e);
+    public delegate void ItemAddedHandler(object sender, ItemAddedEventArgs e);
     public delegate void ItemRemovedHandler(object sender, EventArgs e);
 
     #endregion
@@ -64,7 +64,7 @@ namespace DungeonCrawler.Character
                     }
                 }
             }
-            OnItemAdded?.Invoke(this, null);
+            OnItemAdded?.Invoke(this, new ItemAddedEventArgs(item, amount));
         }
 
         public Item Item(string identifier)
@@ -195,5 +195,17 @@ namespace DungeonCrawler.Character
 
         #endregion
 
+    }
+
+    public class ItemAddedEventArgs : EventArgs
+    {
+        public Item Item;
+        public int Amount;
+
+        public ItemAddedEventArgs(Item item, int amount)
+        {
+            Item = item;
+            Amount = amount;
+        }
     }
 }

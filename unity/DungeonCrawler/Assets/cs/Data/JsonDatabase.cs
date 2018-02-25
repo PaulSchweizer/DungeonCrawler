@@ -7,10 +7,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "JsonDatabase", menuName = "DungeonCrawler/JsonDatabase")]
 public class JsonDatabase : ScriptableObject
 {
+
     [Header("Items")]
-    public TextAsset[] Armour;
-    public TextAsset[] Items;
-    public TextAsset[] Weapons;
+    public ItemData[] Armour;
+    public ItemData[] Items;
+    public ItemData[] Weapons;
 
     [Header("Locations")]
     public TextAsset[] CellBlueprints;
@@ -37,7 +38,7 @@ public class JsonDatabase : ScriptableObject
             string[] data = new string[Armour.Length];
             for (int i = 0; i < Armour.Length; i++)
             {
-                data[i] = Armour[i].text;
+                data[i] = Armour[i].JsonData.text;
             }
             return data;
         }
@@ -50,7 +51,7 @@ public class JsonDatabase : ScriptableObject
             string[] data = new string[Items.Length];
             for (int i = 0; i < Items.Length; i++)
             {
-                data[i] = Items[i].text;
+                data[i] = Items[i].JsonData.text;
             }
             return data;
         }
@@ -63,7 +64,7 @@ public class JsonDatabase : ScriptableObject
             string[] data = new string[Weapons.Length];
             for (int i = 0; i < Weapons.Length; i++)
             {
-                data[i] = Weapons[i].text;
+                data[i] = Weapons[i].JsonData.text;
             }
             return data;
         }
